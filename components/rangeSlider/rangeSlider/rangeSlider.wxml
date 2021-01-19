@@ -1,0 +1,9 @@
+<template name="rangeSlider">
+  <view class="range">
+    <view class="range-slider">
+      <view class="range-slider__selected" style="left:{{translateLeft}}px;right:{{translateRight}}px;"></view>
+      <view catchtouchend="{{comKey+'_buttonEnd'}}" catchtouchmove="{{comKey+'_buttonMove'}}" catchtouchstart="{{comKey+'_buttonStart'}}" class="range__min_handle" data-com-key="{{comKey}}" data-key="left" hidden="{{isSingoBtn}}" style="left:{{translateLeft}}px;"></view>
+      <view catchtouchend="{{comKey+'_buttonEnd'}}" catchtouchmove="{{comKey+'_buttonMove'}}" catchtouchstart="{{comKey+'_buttonStart'}}" class="range__max_handle" data-com-key="{{comKey}}" data-key="right" style="right:{{translateRight}}px;"></view>
+    </view>
+  </view>
+</template>

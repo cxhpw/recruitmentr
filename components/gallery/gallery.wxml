@@ -1,0 +1,45 @@
+<view class="weui-gallery custom-class {{show ? 'weui-gallery_show' : ''}} {{extClass}}" animation="{{animations}}">
+  <!-- <view class="weui-gallery__info">{{current+1}}/{{currentImgs.length}}</view> -->
+  <view class="" style="height: 64px"></view>
+  <swiper class="weui-gallery__img__wrp" bindtap="hideGallery" indicator-dots="{{false}}" bindchange="change" current="{{current}}" autoplay="{{false}}" duration="{{300}}">
+    <block wx:for="{{currentImgs}}" wx:key="{{item + '-' +index}}">
+      <swiper-item>
+        <image mode="aspectFit" class="weui-gallery__img" src="{{item.url}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="control-bar">
+    <view class="inner">
+      <view class="top">
+        <input class="form-control" placeholder="添加描述" value="{{ currentImgs[current].remark }}" placeholder-style="color:#fff;" bindconfirm="onSubmit" bindblur="onSubmit" />
+      </view>
+      <view class="bottom" hidden>
+        <view class="fl">
+          <picker mode="selector" range="{{ lockSelector }}" value="{{ lockIndex }}">
+            <view class="flex-box align-center">
+              <view class="icon">
+                <icon name="/assets/images/icon_c.png" size="15" />
+              </view>
+              <view class="text">{{ lockSelector[lockIndex] }}</view>
+              <view class="icon">
+                <icon name="arrow-down" color="#fff" size="14" />
+              </view>
+            </view>
+          </picker>
+        </view>
+        <view class="fr">
+          <view class="flex-box align-center">
+            <view class="flex-box align-center">
+              <image class="img" src="/assets/images/icon_z.png" />
+              <text>0</text>
+            </view>
+            <view class="flex-box align-center ml30">
+              <image class="img" src="/assets/images/icon_t.png" />
+              <text>0</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,96 @@
+<view class="page">
+  <view class='top-section'>
+    <view class='title'>完善品牌信息</view>
+    <view class='summary'>标准工作时间是求职者参考求职的依据之一，完善后有利于
+    加强求职者对企业的认知</view>
+  </view>
+  <van-collapse value="{{ activeNames }}" bind:change="onChange" border="{{ false }}">
+    <van-collapse-item name="baseInfo" custom-class='my-collapse-item'>
+      <view slot='title' class='progress-info'>
+        基本信息
+        <text>5/5</text>
+      </view>
+      <view class='cell-group'>
+        <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onNavTo" data-url='/pages/hr-companyphoto/hr-companyphoto?isLogo=true'>
+          <view slot="title">
+            <view class="flex-box align-center">
+              <view class="van-cell-text f28">品牌Logo</view>
+            </view>
+          </view>
+          <view></view>
+        </van-cell>
+        <van-cell border="{{ false }}" custom-class="my-cell">
+          <view slot="title">
+            <view class="flex-box align-center">
+              <view class="van-cell-text f28">品牌名称</view>
+            </view>
+          </view>
+          <view class='c999 f28'>阿里巴巴</view>
+          <icon slot="right-icon" class="iconfont icon-suoding_o" size="{{ 16 }}" />
+        </van-cell>
+        <van-cell border="{{ false }}" custom-class="my-cell">
+          <view slot="title">
+            <view class="flex-box align-center">
+              <view class="van-cell-text f28">全称</view>
+            </view>
+          </view>
+          <view class='c999 f28  ellipsis'>阿里巴巴网络技术有限公司</view>
+          <icon slot="right-icon" class="iconfont icon-suoding_o" size="{{ 16 }}" />
+        </van-cell>
+        <van-cell border="{{ false }}" custom-class="my-cell">
+          <view slot="title">
+            <view class="flex-box align-center">
+              <view class="van-cell-text f28">行业</view>
+            </view>
+          </view>
+          <view class='c999 f28'>互联网</view>
+          <icon slot="right-icon" class="iconfont icon-suoding_o" size="{{ 16 }}" />
+        </van-cell>
+        <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onAgencyTap">
+          <view slot="title">
+            <view class="flex-box align-center">
+              <view class="van-cell-text f28">人员规模</view>
+            </view>
+          </view>
+          <view class='f28 c333'>20-99人</view>
+        </van-cell>
+      </view>
+    </van-collapse-item>
+    <van-cell border="{{ false }}" custom-class="my-cell__main" is-link catch:tap="onNavTo" data-url='/pages/hr-companyIntro/hr-companyIntro'>
+      <view slot="title">
+        <view class="flex-box align-center">
+          <view class="label">公司介绍</view>
+        </view>
+      </view>
+    </van-cell>
+    <van-collapse-item border="{{ false }}" name="3" custom-class='my-collapse-item'>
+      <view slot='title' class='label'>公司福利</view>
+      <view class='cell-group'>
+        <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onAgencyTap">
+          <view slot="title">
+            <view class="flex-box align-center">
+              <view class="van-cell-text f28">标准工作时间</view>
+            </view>
+          </view>
+          <view class='c999'>上午9:00-下午6:00</view>
+        </van-cell>
+        <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onAgencyTap">
+          <view slot="title">
+            <view class="flex-box align-center">
+              <view class="van-cell-text f28">福利待遇</view>
+            </view>
+          </view>
+          <view class='c999'>已选3项</view>
+        </van-cell>
+      </view>
+    </van-collapse-item>
+    <van-cell border="{{ false }}" custom-class="my-cell__last" is-link catch:tap="onNavTo" data-url='/pages/hr-companyphoto/hr-companyphoto'>
+      <view slot="title">
+        <view class="flex-box align-center">
+          <view class="label">公司相册</view>
+        </view>
+      </view>
+      <view class='value'>未添加</view>
+    </van-cell>
+  </van-collapse>
+</view>

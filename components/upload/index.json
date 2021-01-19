@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "sortComponent": "/components/sortComponent/index"
+  }
+}

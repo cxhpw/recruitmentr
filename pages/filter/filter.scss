@@ -1,0 +1,112 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+page {
+  background: #fff;
+}
+.container {
+  padding: 0 40rpx;
+}
+.page {
+  padding-top: 30rpx;
+  padding-bottom: 150rpx;
+  &.safeArea {
+    padding-bottom: calc(135rpx + 30px);
+    .fixed-bottom {
+      .button-group {
+        padding-bottom: 30px;
+      }
+    }
+  }
+}
+.section {
+  + .section {
+    margin-top: 50rpx;
+  }
+  .title {
+    font-size: 32rpx;
+    color: #000;
+    margin-bottom: 30rpx;
+    font-weight: 500;
+    text {
+      font-size: 25rpx;
+    }
+  }
+  .list {
+    van-checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    van-checkbox {
+      flex: 0 0 205rpx;
+      margin-right: 27.5rpx;
+      margin-bottom: 20rpx;
+      &:nth-child(3n + 3) {
+        margin-right: 0;
+      }
+    }
+    .item {
+      height: 64rpx;
+      background: #f8f8f8;
+      border-radius: 4px;
+      flex: 0 0 205rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      &.active {
+        border: 1px solid $bodycolor;
+        color: $bodycolor;
+      }
+      &.van-checkbox--checked {
+        .van-checkbox__label {
+          background: #a1b4e9;
+          border: 1px solid $bodycolor;
+          color: #fff !important;
+        }
+      }
+      .van-checkbox__icon-wrap {
+        display: none;
+      }
+      .van-checkbox__label {
+        margin: 0;
+        display: flex;
+        font-size: 24rpx;
+        width: 100%;
+        color: #000 !important;
+        line-height: 1;
+        height: 65rpx;
+        background: #f8f8f8;
+        border-radius: 4px;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 0 10rpx;
+        @include nowrap();
+      }
+    }
+  }
+}
+
+.fixed-bottom {
+  .button-group {
+    height: 135rpx;
+    box-sizing: border-box;
+    padding: 0 40rpx;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    .button {
+      font-size: 29rpx;
+    }
+    .button-cancel {
+      height: 84rpx;
+      margin-right: 25rpx;
+      width: 185rpx;
+      flex: 0 0 185rpx;
+    }
+    .button-normal {
+      flex: 1;
+      height: 84rpx;
+    }
+  }
+}

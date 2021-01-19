@@ -1,0 +1,44 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+.scroll-wrapper {
+  height: 100vh;
+  background: #fff;
+  display: flex;
+}
+.menu-wrapper {
+  flex: 0 0 250rpx;
+  @include border-right(#ebebeb, 0, 0);
+  .list {
+  }
+  .item {
+    height: 45px;
+    font-size: 28rpx;
+    color: #000;
+    line-height: 45px;
+    padding-left: 40rpx;
+    box-sizing: border-box;
+    &.active {
+      color: $bodycolor;
+    }
+  }
+}
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  .colum {
+    flex: 1;
+    + .colum {
+      @include border-left($borderColor, 0, 0)
+    }
+  }
+  .item {
+    font-size: 28rpx;
+    height: 45px;
+    padding-left: 40rpx;
+    box-sizing: border-box;
+    line-height: 45px;
+    &.active {
+      color: $bodycolor;
+    }
+  }
+}

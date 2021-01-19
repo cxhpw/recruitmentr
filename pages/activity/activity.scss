@@ -1,0 +1,37 @@
+@import "../../scss/minxi/minxi.scss";
+@import "../../scss/variable/variable.scss";
+
+.list {
+  .item {
+    display: flex;
+    @include border-bottom($borderColor, 0, 0);
+    padding:  30rpx;
+    .image {
+      width: 270rpx;
+      height: 180rpx;
+      margin-right: 30rpx;
+    }
+    .con {
+      flex: 1;
+      padding-top: 15rpx
+    }
+    .name {
+      font-size: 30rpx;
+      font-weight: 500;
+      margin-bottom: 30rpx;
+    }
+    .date {
+      font-size: 20rpx;
+      color: #999;
+      margin-bottom: 40rpx;
+    }
+    .button-group {
+      text-align: right;
+      .button {
+        height: 50rpx;
+        font-size: 25rpx;
+        border-radius: 50rpx;
+      }
+    }
+  }
+}

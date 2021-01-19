@@ -1,0 +1,26 @@
+<!-- components/commentInput/index.wxml -->
+<view class="comment-fixed" wx:if="{{ show }}">
+  <view class="search-bar">
+    <van-search 
+    adjustPosition="{{ adjustPosition }}" 
+    name="search" 
+    focus="{{focus}}" 
+    confirmType="send" 
+    custom-class="my_search" 
+    input-class="my_input" 
+    field-class="my_form-group" 
+    use-left-icon-slot="{{true}}" 
+    value="{{ value }}" 
+    placeholder="" 
+    use-action-slot
+    confi
+    background="#ffffff" 
+    bind:change="onChange"
+    bind:search="onConfirm"
+    bind:blur="onBlur"
+    bind:cancel="onCancel">
+      <view slot="left-icon" class="icon"></view>
+      <button slot='action' class='button button-normal' catch:tap="onSend">发送</button>
+    </van-search>
+  </view>
+</view>

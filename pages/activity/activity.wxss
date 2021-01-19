@@ -1,0 +1,37 @@
+.list .item {
+  display: flex;
+  position: relative;
+  padding: 30rpx; }
+  .list .item:after {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #EBEBEB;
+    transform: scaleY(0.5); }
+  .list .item .image {
+    width: 270rpx;
+    height: 180rpx;
+    margin-right: 30rpx; }
+  .list .item .con {
+    flex: 1;
+    padding-top: 15rpx; }
+  .list .item .name {
+    font-size: 30rpx;
+    font-weight: 500;
+    margin-bottom: 30rpx; }
+  .list .item .date {
+    font-size: 20rpx;
+    color: #999;
+    margin-bottom: 40rpx; }
+  .list .item .button-group {
+    text-align: right; }
+    .list .item .button-group .button {
+      height: 50rpx;
+      font-size: 25rpx;
+      border-radius: 50rpx; }

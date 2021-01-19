@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "wxParamComponent": "../../components/wxParseComponent"
+  },
+  "navigationBarTitleText": "职位管理"
+}

@@ -1,0 +1,15 @@
+.ad-box {
+  position: fixed;
+  margin: 0 auto;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex; }
+
+.close {
+  position: absolute;
+  right: 0rpx;
+  top: -45px;
+  z-index: 999;
+  color: #fff; }

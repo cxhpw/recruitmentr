@@ -1,0 +1,12 @@
+/* components/order/countDown/index.wxss */
+.CountDown {
+  font-size: 22rpx;
+  color: #868686;
+  display: flex;
+  align-items: center; }
+  .CountDown text {
+    color: #FFC824 }
+    .CountDown image {
+      width: 22rpx;
+      height: 22rpx;
+      margin-right: 8rpx; }

@@ -1,0 +1,15 @@
+<!-- components/sortComponent/index.wxml -->
+<block wx:if="{{ show }}">
+  <text class='normal_title'>拖动排序、默认第一张为封面</text>
+  <view class='item_container' style="height: {{height}}px" data-current="{{ current }}">
+    <view wx:for='{{_fileList}}' 
+    class="item {{ index==current? 'moving':'normal' }}" 
+    style="width:{{item_w}}px;height:{{item_h}}px;left:{{ index==current? move_x: item.left }}px;top:{{index==current?move_y:item.top}}px" 
+    catchtouchstart="movestart" 
+    catchtouchmove="move" 
+    bindtouchend="moveend" 
+    data-index="{{ index }}">
+      <image data-index="{{ index }}" mode="aspectFill" src='{{ item.url }}' />
+    </view>
+  </view>
+</block>

@@ -1,0 +1,105 @@
+page {
+  background: #fff; }
+
+.page {
+  padding-bottom: 160rpx; }
+
+.top-section {
+  padding: 40rpx 0;
+  position: relative; }
+  .top-section:after {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #EBEBEB;
+    transform: scaleY(0.5); }
+  .top-section .name {
+    font-size: 36rpx;
+    color: #000;
+    font-weight: 500;
+    flex: 1; }
+  .top-section .price {
+    font-weight: 500;
+    color: #0866FF;
+    font-size: 34rpx; }
+  .top-section .base {
+    display: flex;
+    align-items: center;
+    margin-top: 20rpx; }
+    .top-section .base .icon-item {
+      display: flex;
+      align-items: center;
+      margin-right: 40rpx; }
+    .top-section .base .icon {
+      width: 30rpx;
+      height: 30rpx;
+      margin-right: 10rpx; }
+    .top-section .base .text {
+      font-size: 28rpx; }
+
+.detail-section {
+  padding: 60rpx 0;
+  position: relative; }
+  .detail-section:after {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #EBEBEB;
+    transform: scaleY(0.5); }
+  .detail-section .title {
+    font-weight: 500;
+    color: #000;
+    font-size: 35rpx;
+    margin-bottom: 50rpx; }
+  .detail-section .content {
+    font-size: 28rpx;
+    color: #666;
+    line-height: 150%; }
+
+.company-section {
+  padding: 47rpx 0 0; }
+  .company-section .logo {
+    width: 112rpx;
+    height: 112rpx;
+    margin-right: 18rpx;
+    border-radius: 4px; }
+  .company-section .name {
+    font-size: 33rpx;
+    margin-bottom: 20rpx;
+    font-weight: 500; }
+  .company-section .info {
+    font-size: 27rpx;
+    color: #999999; }
+  .company-section .map {
+    margin-top: 60rpx; }
+    .company-section .map .image {
+      width: 100%;
+      height: 460rpx;
+      border-radius: 6px; }
+
+.fixed-bottom .button-group {
+  height: 140rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 0 40rpx;
+  box-sizing: border-box; }
+  .fixed-bottom .button-group .button {
+    font-size: 28rpx; }
+  .fixed-bottom .button-group .button-normal {
+    flex: 1; }
+  .fixed-bottom .button-group .button-normal-reverse {
+    flex: 0 0 170rpx;
+    margin-right: 30rpx; }

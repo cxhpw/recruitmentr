@@ -1,0 +1,17 @@
+module.exports = {
+  formatPriceBig: function(price) {
+    var index = price.trim().indexOf('.')
+    return price.slice(0, index)
+  },
+  formatPricesmall: function(price) {
+    var index = price.trim().indexOf('.')
+    return price.slice(index)
+  },
+  price: function(text) {
+    var arr = text.trim().split('.')
+    return '<text>' + arr[0] + '</text>'
+  },
+  toFixed: function(price) {
+    return Number(price).toFixed(2)
+  }
+}

@@ -1,0 +1,59 @@
+<view class="page">
+  <van-tabs  sticky active="{{ active }}" bind:change="onChange" type='' custom-class='my-tabs' border="{{ false }}" title-active-color='#fff' title-inactive-color='#fff' bind:disabled="onTabsClick">
+    <van-tab title="消息">
+      <view class='chatroom-list'>
+        <view class='chatroom-item' catch:tap='onChatRoomTap'>
+          <image src='https://s3.ax1x.com/2021/01/18/syDJ74.png' class='image'></image>
+          <view class='con'>
+            <view class='flex-box align-center'>
+              <text class='name'>郑小姐</text>
+              <text class='f24 c666'>.net</text>
+              <text class='f23 c999 fr'>15:24</text>
+            </view>
+            <view class='content'>您好，我可以把我的简历发给您看看吗？</view>
+          </view>
+        </view>
+        <view class='chatroom-item'>
+          <image src='https://s3.ax1x.com/2021/01/18/syDJ74.png' class='image'></image>
+          <view class='con'>
+            <view class='flex-box align-center'>
+              <text class='name'>郑小姐</text>
+              <text class='f24 c666'>.net</text>
+              <text class='f23 c999 fr'>15:24</text>
+            </view>
+            <view class='content'>您好，我可以把我的简历发给您看看吗？</view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="站内信">
+      <view class=''>
+        <view class='msg-list'>
+          <view class='item'>
+            <view class='date'>12月30日</view>
+            <view class='content'>
+              <image src="https://s3.ax1x.com/2021/01/18/s6LVeO.jpg" class='image' mode='widthFix'></image>
+              本文以电商和医疗行业为例，看工作台和消息系统是如
+              何设计的，既能满足用户使用，又能节省开发成本...
+            </view>
+            <view class='button-group'>
+              <text>查看详情</text>
+            </view>
+          </view>
+          <view class='item'>
+            <view class='date'>12月30日</view>
+            <view class='content'>
+              <image src="https://s3.ax1x.com/2021/01/18/s6LVeO.jpg" class='image' mode='widthFix'></image>
+              本文以电商和医疗行业为例，看工作台和消息系统是如
+              何设计的，既能满足用户使用，又能节省开发成本...
+            </view>
+            <view class='button-group'>
+              <text>查看详情</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-tab>
+    <van-tab title="面试邀请" disabled></van-tab>
+  </van-tabs>
+</view>

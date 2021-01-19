@@ -1,0 +1,31 @@
+@import "../../scss/minxi/minxi.scss";
+@import "../../scss/variable/variable.scss";
+page {
+  background: #fff;
+}
+.page {
+  padding-bottom: 140rpx;
+}
+.list {
+  .item {
+    padding: 40rpx;
+    background: #fff;
+    @include border-bottom($borderColor, 40rpx, 40rpx);
+    .fl {
+      font-size: 26rpx;
+      font-weight: 500;
+    }
+    .fr {
+      font-size: 22rpx;
+      color: #999;
+    }
+    .info {
+      font-size: 22rpx;
+      color: #666;
+      margin-top: 20rpx;
+      .dot {
+        margin: 0 10rpx;
+      }
+    }
+  }
+}

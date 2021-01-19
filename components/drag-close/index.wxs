@@ -1,0 +1,61 @@
+function computeDragDistance(t) {
+  var n = DAMPING / (DAMPING + t)
+  var a = t * n
+  return a
+}
+
+function getTouchPos(t) {
+  var n = t.touches[0]
+  return {
+    x: n.clientX,
+    y: n.clientY
+  }
+}
+var startX = 0
+var startY = 0
+var lock = null
+var container = null
+var MAX_DISTANCE = 100
+var DAMPING = 300
+var distance = 0
+
+module.exports = {
+  touchstart: function(event, ownerInstance) {
+    container = ownerInstance.selectComponent('.sc-container')
+    var pos = getTouchPos(event)
+    startX = pos.x
+    startY = pos.y
+  },
+  touchmove: function(event) {
+    var n = getTouchPos(event)
+    var moveX = n.x
+    var moveY = n.y
+    distance = moveY - startY
+
+    if (
+      !(0 >= distance) &&
+      (null === lock &&
+        (Math.abs(moveX - startX) > 30 && (lock = true),
+        Math.abs(distance) > 10 && (lock = false)),
+      lock === false)
+    ) {
+      var styleText = 'translateY(' + computeDragDistance(distance) + 'px)'
+      container.setStyle({
+        transform: styleText
+      })
+    }
+  },
+  touchend: function(event, ownerInstance) {
+    lock = null
+    var isClose = distance > MAX_DISTANCE
+    container.setStyle({
+      transition: 'transform .1s ease-out',
+      transform: 'translateY(' + (isClose ? '100%' : '0') + ')'
+    })
+    isClose && ownerInstance.callMethod('close', 'touch'),
+      ownerInstance.callMethod('touchend')
+  },
+  refresh: function() {
+    distance = 0
+  }
+}

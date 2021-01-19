@@ -1,0 +1,105 @@
+@import "../../scss/minxi/minxi.scss";
+@import "../../scss/variable/variable.scss";
+page {
+  background: #fff;
+}
+.page {
+  padding-bottom: 160rpx;
+}
+.top-section {
+  padding: 40rpx 0;
+  @include border-bottom($borderColor, 0, 0);
+  .name {
+    font-size: 36rpx;
+    color: #000;
+    font-weight: 500;
+    flex: 1;
+  }
+  .price {
+    font-weight: 500;
+    color: #0866FF;
+    font-size: 34rpx;
+  }
+  .base {
+    display: flex;
+    align-items: center;
+    margin-top: 20rpx;
+    .icon-item {
+      display: flex;
+      align-items: center;
+      margin-right: 40rpx;
+    }
+    .icon {
+      width: 30rpx;
+      height: 30rpx;
+      margin-right: 10rpx;
+    }
+    .text {
+      font-size: 28rpx;
+    }
+  }
+}
+
+.detail-section {
+  padding: 60rpx 0;
+  @include border-bottom($borderColor, 0, 0);
+  .title {
+    font-weight: 500;
+    color: #000;
+    font-size: 35rpx;
+    margin-bottom: 50rpx;
+  }
+  .content {
+    font-size: 28rpx;
+    color: #666;
+    line-height: 150%;
+  }
+}
+
+.company-section {
+  padding: 47rpx 0 0;
+  .logo {
+    width: 112rpx;
+    height: 112rpx;
+    margin-right: 18rpx;
+    border-radius: 4px;
+  }
+  .name {
+    font-size: 33rpx;
+    margin-bottom: 20rpx;
+    font-weight: 500;
+  }
+  .info {
+    font-size: 27rpx;
+    color: #999999;
+  }
+  .map {
+    margin-top: 60rpx;
+    .image {
+      width: 100%;
+      height: 460rpx;
+      border-radius: 6px;
+    }
+  }
+}
+
+.fixed-bottom {
+  .button-group {
+    height: 140rpx;
+    display: flex;
+    align-items: center;
+    background: #fff;
+    padding: 0 40rpx;
+    box-sizing: border-box;
+    .button {
+      font-size: 28rpx;
+    }
+    .button-normal {
+      flex: 1
+    }
+    .button-normal-reverse {
+      flex: 0 0 170rpx;
+      margin-right: 30rpx;
+    }
+  }
+}

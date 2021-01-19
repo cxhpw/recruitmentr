@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "wxParamComponent": "../../components/wxParseComponent"
+  },
+  "navigationBarTitleText": "简历详情"
+}

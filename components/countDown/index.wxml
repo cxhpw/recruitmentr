@@ -1,0 +1,10 @@
+<!-- components/order/countDown/index.wxml -->
+<view class="CountDown custom-class">
+  <block wx:if="{{!custom}}">
+    <view><text wx:if="{{isPrefix}}">剩余付款时间：</text><text wx:if="{{hours != 0}}">{{hours}}小时</text>{{min}}<text >分</text>{{sec}}<text>秒</text></view>
+    <!-- <image src="/assets/images/CountDown.png" />
+  <text>{{countDownText}}</text>
+    分钟后订单自动取消 -->
+  </block>
+  <slot wx:else></slot>
+</view>

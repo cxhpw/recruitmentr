@@ -1,0 +1,9 @@
+<!-- components/ad/index.wxml -->
+<van-overlay show="{{ show }}" bind:click="onClose">
+  <cover-view class='ad-box'>
+    <cover-view class='close' catch:tap="onClose">
+      <cover-view class=''>关闭</cover-view>
+    </cover-view>
+    <slot></slot>
+  </cover-view>
+</van-overlay>

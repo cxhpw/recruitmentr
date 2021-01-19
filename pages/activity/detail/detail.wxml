@@ -1,0 +1,78 @@
+<view class="page {{ safeArea }}">
+  <view class='banner'>
+    <image class='image' src='https://s3.ax1x.com/2021/01/18/syTAG6.png'></image>
+  </view>
+  <view class='tab-wrapper'>
+    <van-tabs active="{{ active }}" bind:change="onChange" line-width='23' custom-class='my-tabs' title-inactive-color="#A5A5A5" color="#2351D3">
+      <van-tab title="介绍">
+        <view class='desc-section'>
+          <view class='title'>2021年春季招聘会</view>
+          <view class='box'>
+            <view>审核时间：预计报名后 10 天内必审</view>
+            <view>报名时间：报名长期有效</view>
+            <view>活动时间：活动长期有效</view>
+          </view>
+          <view class='desc-wrapper'>
+            <view class='title'>活动介绍</view>
+            <view class='edit'>
+              <wxParamComponent html="{{ html }}"></wxParamComponent>
+            </view>
+          </view>
+          <view class='fixed-bottom'>
+            <view class='action-wrapper'>
+              <view class='action-icon'>
+                <icon custom-class="my-icon" name="/assets/images/icon-share.jpg" color='#333' size='15'></icon>
+                <view class="text">分享</view>
+                <button open-type='share' style='opacity:0' class='contact-button'></button>
+              </view>
+              <view class='action-icon'>
+                <icon custom-class="my-icon" name='/assets/images/icon-kefu.jpg' color='#333' size='15'></icon>
+                <view class="text">客服</view>
+                <button open-type='contact' style='opacity:0' class='contact-button'></button>
+              </view>
+              <button class="button button-normal">立即报名</button>
+            </view>
+          </view>
+        </view>
+      </van-tab>
+      <van-tab title="企业">
+        <view class='search-list'>
+          <view class='search-item'>
+            <image class='image' mode='aspectFill' src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
+            <view class='con'>
+              <view class='name'>腾讯</view>
+              <view class='info'>
+                <text>10000人以上</text>
+                <text>|</text>
+                <text>互联网</text>
+              </view>
+              <view class='summary'>
+                热招
+                <text class='label'>IOS工程师</text>
+                等1个职位
+                <icon custom-class="my-icon" name='arrow' size='15' color='#BFBFBF'></icon>
+              </view>
+            </view>
+          </view>
+          <view class='search-item'>
+            <image class='image' mode='aspectFill' src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
+            <view class='con'>
+              <view class='name'>腾讯</view>
+              <view class='info'>
+                <text>10000人以上</text>
+                <text>|</text>
+                <text>互联网</text>
+              </view>
+              <view class='summary'>
+                热招
+                <text class='label'>IOS工程师</text>
+                等1个职位
+                <icon custom-class="my-icon" name='arrow' size='15' color='#BFBFBF'></icon>
+              </view>
+            </view>
+          </view>
+        </view>
+      </van-tab>
+    </van-tabs>
+  </view>
+</view>

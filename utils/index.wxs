@@ -1,0 +1,37 @@
+module.exports = {
+  price: function (opt) {
+    return Number(opt).toFixed(2);
+  },
+  username: function (str, regExp, text) {
+    var str = str + '';
+    var regExp = regExp + '';
+    return str.replace(regExp, text);
+  },
+  phone: function(phone){
+    phone = phone + "";
+    var len = phone.length;
+    var start = phone.substring(0, 3);
+    var end = phone.substring(7, 11);
+    return start + "****" + end;
+  },
+  idCard: function(str) {
+    str = str + '';
+    var start = str.substring(0,8);
+    var end = str.substring(str.length-4,str.length);
+    var arr = [];
+    for(var i = 0; i < str.length - 12;i++){
+      arr.push("*")
+    };
+    return start + arr.join('') + end;
+  },
+  formatPriceBig: function(price) {
+    price = price + ''
+    var index = price.trim().indexOf('.')
+    return price.slice(0, index)
+  },
+  formatPriceSmall: function(price) {
+    price = price + ''
+    var index = price.trim().indexOf('.')
+    return price.slice(index)
+  },
+}

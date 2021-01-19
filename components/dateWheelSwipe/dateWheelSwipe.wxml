@@ -1,0 +1,17 @@
+<!--components/dateWheelSwipe/dateWheelSwipe.wxml-->
+<view class="date-wheel">
+  <scroll-view scroll-x="true" scroll-left="{{ scrollX }}" scroll-with-animation="{{ true }}" class="scroll-view">
+    <view class="date-slider">
+      <view class="date-cell {{ item.isActive ? 'active' : ''}}" 
+      data-index="{{ index }}" 
+      data-date="{{ item.date }}"
+      wx:for="{{ dates }}" 
+      wx:key="date"
+      catchtap="onDateTap">
+        <view class="weekday">{{ item.isNow ? '今天' : weeks[item.weekday] }}</view>
+        <view class="day">{{ item.isActive ? item.ISO : item.day }}</view>
+        <!-- <view class="price">￥{{ data[index].Price ? data[index].Price : '--' }}</view> -->
+      </view>
+    </view>
+  </scroll-view>
+</view>

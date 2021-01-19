@@ -1,0 +1,15 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+.page {
+  padding-top: 70rpx;
+  .title {
+    font-size: 43rpx;
+    font-weight: 500;
+    margin-bottom: 30rpx;
+  }
+  .summary {
+    font-size: 25rpx;
+    padding-bottom: 70rpx;
+    @include border-bottom($borderColor, 0, 0);
+  }
+}

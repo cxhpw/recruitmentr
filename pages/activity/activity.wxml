@@ -1,0 +1,25 @@
+<view class="page">
+  <view class='list'>
+    <view class='item'>
+      <image class='image' mode='aspectFill' src='https://s3.ax1x.com/2021/01/18/sy5mrj.png'></image>
+      <view class='con'>
+        <view class='name'>广东地区线上双选会</view>
+        <view class='date'>11月16日 09:00 ～ 2月15日 18:00</view>
+        <view class='button-group'>
+          <button class="button button-normal" bindtap="onTap">立即报名</button>
+        </view>
+      </view>
+    </view>
+    <view class='item'>
+      <image class='image' mode='aspectFill' src='https://s3.ax1x.com/2021/01/18/sy5mrj.png'></image>
+      <view class='con'>
+        <view class='name'>广东地区线上双选会</view>
+        <view class='date'>11月16日 09:00 ～ 2月15日 18:00</view>
+        <view class='button-group'>
+          <button class="button button-normal" bindtap="onTap">立即报名</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  <loadButton loading="{{ loading }}" text="{{ buttontext }}"></loadButton>
+</view>

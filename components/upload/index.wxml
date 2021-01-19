@@ -1,0 +1,35 @@
+<view hidden="{{ sortabled }}" class="wux-class custom-class wux-upload {{ listType ? 'wux-upload--' + listType : '' }} {{ disabled ? 'wux-upload--disabled' : '' }}">
+  <view class="wux-upload__files">
+    <block wx:if="{{ listType === 'picture-card' && showUploadList && fileList }}">
+      <block wx:for="{{ fileList }}" wx:for-item="file" wx:key="uid">
+        <view style="{{style}}" class="wux-upload__file {{ file.status ? 'wux-upload__file--' + file.status : '' }}" data-file="{{ file }}" data-index="{{ index }}" bindtap="onPreview">
+          <view class="wux-upload__label">
+            <view class='wux-upload__num'>{{ index + 1}}</view>
+            <block wx:if="{{ file.status == 'done' && cover }}">
+              <view class='cover' wx:if="{{ index == 0 }}" data-index="{{ index }}" data-file="{{ file }}">
+                封面
+              </view>
+            </block>
+          </view>
+          <image class="wux-upload__thumb" mode="aspectFill" src="{{ file.url }}" />
+          <view class="wux-upload__remove" data-file="{{ file }}" data-index="{{ index }}" catchtap="onRemove" wx:if="{{ showRemoveIcon }}"></view>
+          <view class="wux-upload__status {{file.status == 'error' ? 'wux-upload__status_error' : ''}}">
+            <view wx:if="{{file.status == 'done'}}">上传成功</view>
+            <view wx:if="{{  file.status == 'uploading' || file.status == 'progress'}}">
+              上传中{{file.progress ?  (file.progress - 1) + '%' : '...'}}
+            </view>
+            <view wx:if="{{file.status == 'error'}}">上传失败</view>
+          </view>
+        </view>
+      </block>
+    </block>
+    <block wx:if="{{ showSelect }}">
+      <view class="wux-upload__files" style="{{style}}" bindtap="onSelect">
+        <view class="wux-upload__button">
+          <slot></slot>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<sortComponent show="{{ sortabled }}" fileList="{{ fileList }}" bind:success="onSortSuccess"></sortComponent>

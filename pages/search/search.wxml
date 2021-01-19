@@ -1,0 +1,129 @@
+<view class="page">
+  <van-sticky>
+    <view class='top-section'>
+      <view class='search-wrapper'>
+        <view class="search-wrapper__region" catch:tap="onAreaTap">
+          <text>深圳</text>
+          <image class='arrow' src='/assets/images/icon-arrow-down.png'></image>
+        </view>
+        <view class='search-wrapper__input'>
+          <input class='form-control' type="text" placeholder="搜索职位、公司" placeholder-class="placeholder" />
+          <view class='search-wrapper__icon'>
+            <icon name='search' size='16' color='#999'></icon>
+          </view>
+        </view>
+      </view>
+      <view class="filter-wrapper">
+        <view class='fl'>
+          <view catch:tap="onTypeTap" data-index="{{ index }}" class="item {{  typeIndex=== index ? 'active' : ''}}" wx:for="{{ type }}">
+            {{ item }}
+          </view>
+        </view>
+        <view class='fr'>
+          <view class='item' catch:tap='onAreaTap'>区域搜索</view>
+          <view class='item' catch:tap='onFilterTap'>筛选</view>
+        </view>
+      </view>
+    </view>
+  </van-sticky>
+  <view class='content'>
+    <view class='search-list'>
+      <view class='search-item'>
+        <image class='image' mode='aspectFill' src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
+        <view class='con'>
+          <view class='name'>腾讯</view>
+          <view class='info'>
+            <text>10000人以上</text>
+            <text>|</text>
+            <text>互联网</text>
+          </view>
+          <view class='summary'>
+            热招
+            <text class='label'>IOS工程师</text>
+            等1个职位
+            <icon custom-class="my-icon" name='arrow' size='15' color='#BFBFBF'></icon>
+          </view>
+        </view>
+      </view>
+      <view class='search-item'>
+        <image class='image' mode='aspectFill' src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
+        <view class='con'>
+          <view class='name'>腾讯</view>
+          <view class='info'>
+            <text>10000人以上</text>
+            <text>|</text>
+            <text>互联网</text>
+          </view>
+          <view class='summary'>
+            热招
+            <text class='label'>IOS工程师</text>
+            等1个职位
+            <icon custom-class="my-icon" name='arrow' size='15' color='#BFBFBF'></icon>
+          </view>
+        </view>
+      </view>
+      <view class='search-item_work'>
+        <view class='con'>
+          <view class='name'>
+            <text>java engineer</text>
+            <text class='salary'>20-40K·16薪</text>
+          </view>
+          <view class='info'>
+            <text>阿里巴巴</text>
+            <text>10000人以上</text>
+            <text>已上市</text>
+          </view>
+          <view class="hr">
+            <view class="flex-box align-center">
+              <view class='fl'>
+                <image class="avatar" src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
+                <view class='con'>
+                  <text>刘女士</text>
+                  <text>高级研发工程师</text>
+                </view>
+              </view>
+              <view class='fr'>
+                <text>南山区</text>
+                <text>海岸城</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='search-item_work'>
+        <view class='con'>
+          <view class='name'>
+            <text>java engineer</text>
+            <text class='salary'>20-40K·16薪</text>
+          </view>
+          <view class='info'>
+            <text>阿里巴巴</text>
+            <text>10000人以上</text>
+            <text>已上市</text>
+          </view>
+          <view class="hr">
+            <view class="flex-box align-center">
+              <view class='fl'>
+                <image class="avatar" src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
+                <view class='con'>
+                  <text>刘女士</text>
+                  <text>高级研发工程师</text>
+                </view>
+              </view>
+              <view class='fr'>
+                <text>南山区</text>
+                <text>海岸城</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='more'>
+      <Button class='button button-block'>
+        查看更多职位
+        <icon name='arrow' size='15' color='#0866FF'></icon>
+      </Button>
+    </view>
+  </view>
+</view>

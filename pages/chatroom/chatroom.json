@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "comment-input": "../../components/commentInput"
+  },
+  "navigationBarTitleText": ""
+}

@@ -1,0 +1,33 @@
+<view class="page">
+  <view class='scroll-wrapper'>
+    <view class='menu-wrapper'>
+      <scroll-view scroll-y style='height: 100%'>
+        <view class='list'>
+          <view class='item {{ pIndex === index ? "active" : ""}}' wx:for="{{ menu }}" wx:key="{{ index }}">
+            衢州市
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class='content-wrapper'>
+      <view class='colum'>
+        <scroll-view scroll-y style='height: 100%'>
+          <view class='list'>
+            <view class='item {{ index === 0 ? "active"  : ""}}' wx:for="{{ menu }}" wx:key="{{ index }}">
+              衢州市
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+      <view class='colum'>
+        <scroll-view scroll-y style='height: 100%'>
+          <view class='list'>
+            <view class='item {{ index === 0 ? "active"  : ""}}' wx:for="{{ menu }}" wx:key="{{ index }}">
+              衢州市
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,216 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+
+.page {
+  padding-bottom: 160rpx;
+  &.safeArea {
+    padding-bottom: calc(160rpx + 30px);
+    .button-group {
+      padding-bottom: 30px;
+    }
+  }
+}
+
+.button-group {
+  height: 140rpx;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  .action-wrapper {
+    display: flex;
+    flex: 0 0 auto;
+    .action-item {
+      min-width: 55px;
+      height: 80rpx;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      padding: 5rpx 0;
+      margin-left: 10rpx;
+      .icon {
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .text {
+        font-size: 24rpx;
+        color: #666;
+        margin-top: auto;
+      }
+    }
+  }
+  .button {
+    flex: 1;
+    height: 80rpx;
+    margin-right: 40rpx;
+    margin-left: 10rpx;
+  }
+}
+
+.seeker-section {
+  background: #fff;
+  display: flex;
+  padding: 40rpx;
+  @include border-bottom($borderColor, 40rpx, 40rpx);
+  .image-wrapper {
+    position: relative;
+  }
+  .avatar {
+    width: 110rpx;
+    height: 110rpx;
+    border-radius: 50%;
+  }
+  .sex-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 33rpx;
+    height: 33rpx;
+  }
+  .name {
+    font-size: 48rpx;
+    font-weight: 500;
+    margin-bottom: 30rpx;
+  }
+  .info {
+    font-size: 29rpx;
+    .dot {
+      margin: 0 10rpx;
+    }
+  }
+}
+
+.desc-section {
+  padding: 40rpx;
+  background: #fff;
+  @include border-bottom($borderColor, 40rpx, 40rpx);
+  .status {
+    font-size: 29rpx;
+    margin-bottom: 50rpx;
+  }
+  .desc {
+    display: flex;
+    align-items: center;
+    font-size: 27rpx;
+    .flex-box {
+      margin-right: 30rpx;
+    }
+    .icon {
+      font-size: 16px;
+      margin-right: 10rpx;
+    }
+  }
+  .summary {
+    font-size: 25rpx;
+    margin-top: 40rpx;
+  }
+}
+
+.expect-section {
+  background: #fff;
+  padding: 40rpx;
+  @include border-bottom($borderColor, 40rpx, 40rpx);
+  .hd {
+    line-height: 1;
+    font-size: 31rpx;
+    border-left: 2px solid $bodycolor;
+    padding-left: 14rpx;
+    margin-bottom: 50rpx;
+  }
+  .bd {
+    .target {
+      font-size: 29rpx;
+      text {
+        margin-right: 30rpx;
+      }
+      .price {
+        margin-left: auto;
+        color: $bodycolor;
+      }
+    }
+    .category {
+      font-size: 28rpx;
+      margin-top: 30rpx;
+    }
+  }
+}
+
+.skill-section {
+  background: #fff;
+  padding: 40rpx 40rpx 0;
+  @include border-bottom($borderColor, 40rpx, 40rpx);
+  .hd {
+    line-height: 1;
+    font-size: 31rpx;
+    border-left: 2px solid $bodycolor;
+    padding-left: 14rpx;
+    margin-bottom: 10rpx;
+  }
+  .bd {
+  }
+}
+.skill-item {
+  @include border-bottom($borderColor, 0rpx, 0rpx);
+  padding: 40rpx 0;
+  .flex-box {
+    margin-bottom: 40rpx;
+    .fl {
+      font-size: 29rpx;
+      font-weight: 500;
+    }
+    .fr {
+      color: #bababa;
+      font-size: 24rpx;
+    }
+  }
+  .position {
+    font-size: 29rpx;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40rpx;
+    .label {
+      font-size: 20rpx;
+      color: $bodycolor;
+      height: 28rpx;
+      border: 1px solid $bodycolor;
+      padding: 0 8rpx;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 15rpx;
+      line-height: 1;
+    }
+  }
+  .summary {
+    font-size: 25rpx;
+    line-height: 1.45;
+  }
+}
+
+.education-section {
+  background: #fff;
+  padding: 40rpx 40rpx 0;
+  .hd {
+    line-height: 1;
+    font-size: 31rpx;
+    border-left: 2px solid $bodycolor;
+    padding-left: 14rpx;
+    margin-bottom: 10rpx;
+  }
+  .item {
+    padding: 40rpx 0;
+    @include border-bottom($borderColor, 0rpx, 0rpx);
+    .fl {
+      font-size: 29rpx;
+      font-weight: 500;
+    }
+    .fr {
+      font-size: 24rpx;
+      color: #BABABA;
+    }
+    .text {
+      font-size: 27rpx;
+      margin-top: 30rpx;
+    }
+  }
+}

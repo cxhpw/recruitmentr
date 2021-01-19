@@ -1,0 +1,65 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+
+page {
+  background: #fff;
+}
+.page {
+  padding-bottom: 30rpx;
+}
+
+.top-section {
+  padding: 70rpx 40rpx 30rpx;
+}
+.title {
+  font-size: 43rpx;
+  font-weight: 500;
+  margin-bottom: 30rpx;
+}
+
+.summary {
+  font-size: 25rpx;
+}
+.progress-info {
+  font-size: 33rpx;
+  font-weight: 500;
+}
+
+.my-collapse-item {
+  @include border-bottom(#eee, 0, 0);
+  .van-collapse-item__content {
+    padding: 0;
+  }
+  .van-cell {
+    padding: 15px 40rpx !important;
+    &:after {
+      display: none !important;
+    }
+  }
+}
+.label {
+  font-size: 33rpx;
+  font-weight: 500;
+  color: #333;
+}
+.value {
+  font-size: 29rpx;
+  color: #333;
+}
+.my-cell {
+  padding: 15px 40rpx !important;
+  .van-cell__title {
+    flex: 0 0 auto !important;
+  }
+}
+.iconfont {
+  color: #999999;
+}
+.my-cell__main {
+  padding: 15px 40rpx !important;
+}
+
+.my-cell__last {
+  padding: 15px 40rpx !important;
+  @include border-top(#eee, 0, 0);
+}

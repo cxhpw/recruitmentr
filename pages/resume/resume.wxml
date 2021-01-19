@@ -1,0 +1,144 @@
+<view class="page {{safeArea}}">
+  <view class='seeker-section'>
+    <view class="fl">
+      <view class='name'>林志玲</view>
+      <view class='info'>
+        <text>.NET</text>
+        <text class='dot'>·</text>
+        <text>日立</text>
+      </view>
+    </view>
+    <view class="fr">
+      <view class="image-wrapper">
+        <image class='avatar' src='/assets/images/首页_03.jpg'></image>
+        <image class='sex-icon' src='/assets/images/girl.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='desc-section'>
+    <view class="status">在职-考虑机会</view>
+    <view class='desc'>
+      <view class='flex-box align-center'>
+        <icon custom-class='icon iconfont icon-gongzuo'></icon>
+        <text>1-3年</text>
+      </view>
+      <view class='flex-box align-center'>
+        <icon custom-class='icon iconfont icon-xueli'></icon>
+        <text>本科</text>
+      </view>
+      <view class='flex-box align-center'>
+        <icon custom-class='icon iconfont icon-shengridangao'></icon>
+        <text>21岁</text>
+      </view>
+    </view>
+    <view class='summary'>
+      <wxParamComponent html="{{ html }}"></wxParamComponent>
+    </view>
+  </view>
+  <view class='expect-section'>
+    <view class='hd'>
+      <text>求职期望</text>
+    </view>
+    <view class='bd'>
+      <view class='flex-box target'>
+        <view class='fl'>
+          <text class=''>.NET</text>
+          <text class=''>深圳</text>
+        </view>
+        <view class='fr'>
+          <text class='price'>12-22k</text>
+        </view>
+      </view>
+      <view class='category'>
+        <text>互联网</text>
+        <text>·</text>
+        <text>计算机软件</text>
+        <text>·</text>
+        <text>媒体</text>
+      </view>
+    </view>
+  </view>
+  <view class='skill-section'>
+    <view class='hd'>
+      <text>工作经历</text>
+    </view>
+    <view class='bd'>
+      <view class='skill-list'>
+        <view class='skill-item'>
+          <view class='flex-box align-center'>
+            <view class='fl'>云顶房屋租赁系统</view>
+            <view class='fr'>2020.07-2020.10</view>
+          </view>
+          <view class='position'>
+            <text>.NET开发工程师</text>
+            <text class='label'>实习</text>
+          </view>
+          <view class='summary'>
+            用来给管理员管理出租房屋的网站，包括登录与注册，部门
+                信息、角色、员工等等的一些基本信息，客户入住登记、收
+              费、抄表、报损等等等
+          </view>
+        </view>
+        <view class='skill-item no-border'>
+          <view class='flex-box align-center'>
+            <view class='fl'>云顶房屋租赁系统</view>
+            <view class='fr'>2020.07-2020.10</view>
+          </view>
+          <view class='position'>
+            <text>.NET开发工程师</text>
+            <text class='label'>实习</text>
+          </view>
+          <view class='summary'>
+            用来给管理员管理出租房屋的网站，包括登录与注册，部门
+                信息、角色、员工等等的一些基本信息，客户入住登记、收
+              费、抄表、报损等等等
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='education-section'>
+    <view class='hd'>
+      <text>教育经历</text>
+    </view>
+    <view class='bd'>
+      <view class='item'>
+        <view class='flex-box align-center'>
+          <view class='fl'>长沙理工大学</view>
+          <view class='fr'>2019-2021</view>
+        </view>
+        <view class='text'>
+          <text>本科</text>
+          <text>·</text>
+          <text>计算机技术</text>
+        </view>
+      </view>
+      <view class='item no-border'>
+        <view class='flex-box align-center'>
+          <view class='fl'>长沙理工大学</view>
+          <view class='fr'>2019-2021</view>
+        </view>
+        <view class='text'>
+          <text>本科</text>
+          <text>·</text>
+          <text>计算机技术</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="fixed-bottom">
+    <view class='button-group'>
+      <view class="action-wrapper">
+        <view class='action-item'>
+          <icon custom-class='icon iconfont icon-share'></icon>
+          <view class='text'>分享</view>
+        </view>
+        <view class='action-item'>
+          <icon custom-class='icon' name="like-o"></icon>
+          <view class='text'>收藏</view>
+        </view>
+      </view>
+      <button class="button button-normal">立即沟通</button>
+    </view>
+  </view>
+</view>

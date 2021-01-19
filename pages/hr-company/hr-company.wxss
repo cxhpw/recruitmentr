@@ -1,0 +1,77 @@
+page {
+  background: #fff; }
+
+.page {
+  padding-bottom: 30rpx; }
+
+.top-section {
+  padding: 70rpx 40rpx 30rpx; }
+
+.title {
+  font-size: 43rpx;
+  font-weight: 500;
+  margin-bottom: 30rpx; }
+
+.summary {
+  font-size: 25rpx; }
+
+.progress-info {
+  font-size: 33rpx;
+  font-weight: 500; }
+
+.my-collapse-item {
+  position: relative; }
+  .my-collapse-item:after {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #eee;
+    transform: scaleY(0.5); }
+  .my-collapse-item .van-collapse-item__content {
+    padding: 0; }
+  .my-collapse-item .van-cell {
+    padding: 15px 40rpx !important; }
+    .my-collapse-item .van-cell:after {
+      display: none !important; }
+
+.label {
+  font-size: 33rpx;
+  font-weight: 500;
+  color: #333; }
+
+.value {
+  font-size: 29rpx;
+  color: #333; }
+
+.my-cell {
+  padding: 15px 40rpx !important; }
+  .my-cell .van-cell__title {
+    flex: 0 0 auto !important; }
+
+.iconfont {
+  color: #999999; }
+
+.my-cell__main {
+  padding: 15px 40rpx !important; }
+
+.my-cell__last {
+  padding: 15px 40rpx !important;
+  position: relative; }
+  .my-cell__last::before {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    bottom: auto;
+    right: 0;
+    top: 0;
+    left: 0;
+    border-bottom: 1px solid #eee;
+    transform: scaleY(0.5); }

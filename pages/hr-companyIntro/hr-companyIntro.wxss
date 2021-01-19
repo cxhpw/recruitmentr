@@ -1,0 +1,15 @@
+page {
+  background: #fff; }
+
+.page {
+  padding-top: 70rpx; }
+
+.title {
+  font-size: 43rpx;
+  font-weight: 500;
+  margin-bottom: 30rpx; }
+
+.textarea-control {
+  height: 250rpx;
+  width: 100%;
+  font-size: 26rpx; }

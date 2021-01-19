@@ -1,0 +1,8 @@
+<view class="page {{ safeArea }}">
+  <view class='container'>
+    <view class='form'>
+      <view class='title'>公司标准工作时间</view>
+      <view class='summary'></view>
+    </view>
+  </view>
+</view>

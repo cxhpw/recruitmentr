@@ -1,0 +1,32 @@
+<view class="scroll-close df custom-class" style="z-index:{{zindex}}" wx:if="{{isDisplay}}">
+  <view catch:tap="close" catchtouchmove="handleTouchmove" class="mask {{isShow?'fade-in':'fade-out'}}"></view>
+  <view 
+    bindtouchstart="{{sc.touchstart}}" 
+    catchtouchend="{{sc.touchend}}"
+    catchtouchmove="{{isDragClose?sc.touchmove:'handleTouchmove'}}" 
+    change:prop="{{sc.refresh}}"
+    class="sc-container bdbf34 {{isShow?'sc-out-in':'sc-in-out'}}" 
+    prop="{{touchendState}}">
+    <view class="sc-title t32 tc ftb" wx:if="{{title&&title!=='slot'}}">
+      {{title}}
+      <image class="image" catch:tap="close" src="/assets/images/close_btn.png"></image>
+    </view>
+    <view wx:if="{{title==='slot'}}">
+      <slot name="title"></slot>
+    </view>
+    <view class="sc-main">
+      <scroll-view class="sc-scroll" scrollY="{{true}}">
+        <view class="{{footer==='button'?'pb16':''}} " style="height: 100%">
+          <slot name="content"></slot>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="footer" wx:if="{{showFooter}}">
+      <slot name="footer" wx:if="{{ footer === 'slot' }}"></slot>
+    </view>
+    <view class="sc-footer" wx:if="{{ footer === 'button' }}">
+      <view catchtap="confirm" class="sc-button df dfm dfc">{{buttonText}}</view>
+    </view>
+  </view>
+</view>
+<wxs module="sc" src="./index.wxs" />

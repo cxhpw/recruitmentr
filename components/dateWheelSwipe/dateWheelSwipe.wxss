@@ -1,0 +1,44 @@
+/* components/dateWheelSwipe/dateWheelSwipe.wxss */
+
+.date-wheel {
+  width: 100%
+}
+
+.date-slider {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.date-slider .date-cell {
+  flex: 0 0 115rpx;
+  width: 115rpx;
+  height: 115rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1rpx solid transparent;
+  border-radius: 6px;
+  margin-right: 8rpx;
+  box-sizing: border-box;
+}
+
+.weekday {
+  font-size: 20rpx;
+  margin-bottom: 5rpx;
+}
+
+.day {
+  font-size: 24rpx;
+  font-weight: 500;
+}
+
+.price {
+  font-size: 22rpx;
+  margin-top: 10rpx;
+}
+
+.date-cell.active {
+  background: #2E364D;
+  border-color: #596171;
+}

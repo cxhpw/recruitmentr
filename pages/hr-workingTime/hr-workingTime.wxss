@@ -1,0 +1,22 @@
+.page {
+  padding-top: 70rpx; }
+  .page .title {
+    font-size: 43rpx;
+    font-weight: 500;
+    margin-bottom: 30rpx; }
+  .page .summary {
+    font-size: 25rpx;
+    padding-bottom: 70rpx;
+    position: relative; }
+    .page .summary:after {
+      position: absolute;
+      box-sizing: border-box;
+      transform-origin: center;
+      content: ' ';
+      pointer-events: none;
+      top: auto;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border-bottom: 1px solid #EBEBEB;
+      transform: scaleY(0.5); }

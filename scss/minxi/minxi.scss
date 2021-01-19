@@ -1,0 +1,89 @@
+﻿@mixin border-bottom($borderColor, $left: 0, $right: 0) {
+  position: relative;
+  &:after {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: auto;
+    right: $right;
+    bottom: 0;
+    left: $left;
+    border-bottom: 1px solid $borderColor;
+    transform: scaleY(0.5);
+  }
+}
+
+@mixin border-top($borderColor, $left: 0, $right: 0) {
+  position: relative;
+  &::before {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    bottom: auto;
+    right: $right;
+    top: 0;
+    left: $left;
+    border-bottom: 1px solid $borderColor;
+    transform: scaleY(0.5);
+  }
+}
+@mixin border-right($borderColor, $top: 0, $bottom: 0) {
+  position: relative;
+  &::before {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: $top;
+    bottom: $bottom;
+    right: 0;
+    left: auto;
+    border-right: 1Px solid $borderColor;
+    transform: scaleX(0.5);
+  }
+}
+
+@mixin border-left($borderColor, $top: 0, $bottom: 0) {
+  position: relative;
+  &::before {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: $top;
+    bottom: $bottom;
+    left: 0;
+    right: auto;
+    border-right: 1Px solid $borderColor;
+    transform: scaleX(0.5);
+  }
+}
+@mixin clamp($line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical;
+}
+
+@mixin nowrap() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@mixin textOverflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin fontBold() {
+  font-weight: bold;
+  font-family: MicrosoftYaHei-Bold;
+}

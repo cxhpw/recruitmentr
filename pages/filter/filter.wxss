@@ -1,0 +1,89 @@
+page {
+  background: #fff; }
+
+.container {
+  padding: 0 40rpx; }
+
+.page {
+  padding-top: 30rpx;
+  padding-bottom: 150rpx; }
+  .page.safeArea {
+    padding-bottom: calc(135rpx + 30px); }
+    .page.safeArea .fixed-bottom .button-group {
+      padding-bottom: 30px; }
+
+.section + .section {
+  margin-top: 50rpx; }
+
+.section .title {
+  font-size: 32rpx;
+  color: #000;
+  margin-bottom: 30rpx;
+  font-weight: 500; }
+  .section .title text {
+    font-size: 25rpx; }
+
+.section .list van-checkbox-group {
+  display: flex;
+  flex-wrap: wrap; }
+
+.section .list van-checkbox {
+  flex: 0 0 205rpx;
+  margin-right: 27.5rpx;
+  margin-bottom: 20rpx; }
+  .section .list van-checkbox:nth-child(3n + 3) {
+    margin-right: 0; }
+
+.section .list .item {
+  height: 64rpx;
+  background: #f8f8f8;
+  border-radius: 4px;
+  flex: 0 0 205rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box; }
+  .section .list .item.active {
+    border: 1px solid #0866FF;
+    color: #0866FF; }
+  .section .list .item.van-checkbox--checked .van-checkbox__label {
+    background: #a1b4e9;
+    border: 1px solid #0866FF;
+    color: #fff !important; }
+  .section .list .item .van-checkbox__icon-wrap {
+    display: none; }
+  .section .list .item .van-checkbox__label {
+    margin: 0;
+    display: flex;
+    font-size: 24rpx;
+    width: 100%;
+    color: #000 !important;
+    line-height: 1;
+    height: 65rpx;
+    background: #f8f8f8;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 10rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+
+.fixed-bottom .button-group {
+  height: 135rpx;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+  display: flex;
+  align-items: center;
+  background: #fff; }
+  .fixed-bottom .button-group .button {
+    font-size: 29rpx; }
+  .fixed-bottom .button-group .button-cancel {
+    height: 84rpx;
+    margin-right: 25rpx;
+    width: 185rpx;
+    flex: 0 0 185rpx; }
+  .fixed-bottom .button-group .button-normal {
+    flex: 1;
+    height: 84rpx; }

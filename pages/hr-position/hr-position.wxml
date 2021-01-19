@@ -1,0 +1,36 @@
+<view class="page">
+  <van-tabs sticky active="{{ active }}" bind:change="onChange" line-width="{{ 15 }}" color="#0866FF">
+    <van-tab wx:for="{{ tabs }}" title="{{item.title}}">
+      <view class="list">
+        <view class="inner">
+          <block wx:for="{{ lists[index].data }}" wx:key="{{ index }}" wx:for-item="item" wx:for-index="index">
+            <view class="item">
+              <view class="flex-box align-center">
+                <view class='fl'>PHP</view>
+                <view class='fr'>已关闭</view>
+              </view>
+              <view class='info'>
+                <text>深圳</text>
+                <text class='dot'>·</text>
+                <text>民治</text>
+                <text class='dot'>|</text>
+                <text>本科</text>
+                <text class='dot'>|</text>
+                <text>5-10年</text>
+                <text class='dot'>|</text>
+                <text>3-4K</text>
+              </view>
+            </view>
+          </block>
+        </view>
+        <nomore wx:if="{{lists[index].nomore}}" />
+        <loadButton wx:if="{{!lists[index].nomore}}" loading="{{lists[index].loading}}" text="{{lists[index].buttontext}}" />
+      </view>
+    </van-tab>
+  </van-tabs>
+  <view class='fixed-bottom'>
+    <view class='confirm-group'>
+      <button class='button button-normal button-block'>发布新职位</button>
+    </view>
+  </view>
+</view>

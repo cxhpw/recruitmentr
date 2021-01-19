@@ -1,0 +1,83 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/my/my",
+    "pages/message/message",
+    "pages/search/search",
+    "pages/area/area",
+    "pages/filter/filter",
+    "pages/resume/resume",
+    "pages/activity/activity",
+    "pages/activity/detail/detail",
+    "pages/register/register",
+    "pages/account/account",
+    "pages/avatar/avatar",
+    "pages/chatroom/chatroom",
+    "pages/talked/talked",
+    "pages/collect/collect",
+    "pages/hr-position/hr-position",
+    "pages/hr-positionDetail/hr-positionDetail",
+    "pages/hr-company/hr-company",
+    "pages/hr-companyIntro/hr-companyIntro",
+    "pages/hr-companyphoto/hr-companyphoto",
+    "pages/hr-workingTime/hr-workingTime"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "柯城人社",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": false,
+    "color": "#999999",
+    "selectedColor": "#000000",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "推荐",
+        "iconPath": "/assets/images/index.jpg",
+        "selectedIconPath": "/assets/images/index-select.jpg"
+      },
+      {
+        "pagePath": "pages/message/message",
+        "text": "消息",
+        "iconPath": "/assets/images/message.jpg",
+        "selectedIconPath": "/assets/images/message-select.jpg"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "/assets/images/my.jpg",
+        "selectedIconPath": "/assets/images/my-select.jpg"
+      }
+    ]
+  },
+  "usingComponents": {
+    "nomore": "/components/nomore/nomore",
+    "loadButton": "/components/loadButton/loadButton",
+    "unLogin": "/components/ullogin/ullogin",
+    "icon": "@vant/weapp/icon",
+    "transition": "@vant/weapp/transition",
+    "van-cell": "@vant/weapp/cell",
+    "van-cell-group": "@vant/weapp/cell-group",
+    "van-sticky": "@vant/weapp/sticky",
+    "formatPrice": "/components/formatPrice/index",
+    "ad": "/components/ad/index"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "subPackages": [
+    {
+      "root": "sub-pages",
+      "pages": []
+    }
+  ]
+}

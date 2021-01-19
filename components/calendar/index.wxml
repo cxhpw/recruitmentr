@@ -1,0 +1,42 @@
+<!-- components/calendar/index.wxml -->
+<view class="calendar">
+  <view class="calendar-switcher">
+    <view class="prev btn" data-type="prev" catch:tap="onSwitcher" wx:if="{{!left_hidden}}">
+      <view class="icon">
+        <icon name="arrow-left" size="15" color="#9C9C9C" />
+      </view>
+    </view>
+    <view class="month">{{ months[0] }}月</view>
+    <view class="next btn" data-type="next" catch:tap="onSwitcher" wx:if="{{!right_hidden}}">
+      <view class="icon">
+        <icon name="arrow" size="15" color="#9C9C9C" />
+      </view>
+    </view>
+  </view>
+  <view class="calendar-weeks">
+    <view class="week" wx:for="{{ days_array}}" wx:key="week">
+      <text>{{ item }}</text>
+    </view>
+  </view>
+  <view class="calendar-day-list-wrapper">
+    <block wx:if="{{dates.length > 0}}">
+      <view class="calendar-day-list-block" wx:for="{{dates}}" wx:key="dates" wx:for-index="monthIndex">
+        <view class="calendar-day-list">
+        <block wx:for="{{item}}" wx:key="date" wx:for-item="date" wx:for-index="dateIndex">
+         <view 
+         catch:tap="onDateTap" 
+         data-date="{{ date.date }}" 
+         data-monthindex="{{monthIndex}}" 
+         data-dateindex="{{dateIndex}}" 
+         class="date {{ date.activity ? 'activity' : ''}} {{ date.fade ? 'fade' : ''}} {{date.past ? 'past' : ''}} {{ date.current ? 'selected' : ''}}">
+            <view class="num">{{date.str}}</view>
+          </view>
+        </block>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <loadButton loading="{{ true }}" text="初始化中..."></loadButton>
+    </block>
+  </view>
+</view>

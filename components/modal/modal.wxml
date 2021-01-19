@@ -1,0 +1,12 @@
+<!--components/modal/modal.wxml-->
+<view class="custom-class session-share-container {{show ? 'show' : ''}} ">
+  <view class="shade" catchtap="close" style="background-color: {{rgba}};"></view>
+  <block wx:if="{{!custom}}">
+    <view class="share-dialogue {{center ? 'center' : ''}}" style="z-index: 999999;">
+      <input type="text" placeholder="{{placeholder}}" focus="{{false}}" value="{{value}}" bindinput="onipuut" />
+      <view style="color: #fff" class="button ghost copy-button" id="SessionShareCopy" catchtap="duihuan">
+        <span>{{buttonText}}</span></view>
+    </view>
+  </block>
+  <slot wx:else name="custom" />
+</view>

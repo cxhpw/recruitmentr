@@ -1,0 +1,86 @@
+/* components/calendar/index.wxss */
+.calendar-day-list-wrapper {
+  display: flex; }
+
+.calendar-weeks {
+  display: flex; }
+  .calendar-weeks .week {
+    flex: 0 0 14.28571%;
+    width: 14.28571%;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 26rpx;
+    color: #7f899f;
+    text-align: center;
+    font-weight: 500; }
+
+.calendar-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative; }
+  .calendar-switcher .icon {
+    height: 90rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .calendar-switcher .btn {
+    width: 14.28571%;
+    flex: 0 0 14.28571%;
+    text-align: center; }
+  .calendar-switcher .month {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 26rpx;
+    font-weight: 500; }
+  .calendar-switcher .next {
+    margin-left: auto; }
+
+.calendar-day-list {
+  display: flex;
+  flex-wrap: wrap; }
+  .calendar-day-list .date {
+    position: relative;
+    flex: 0 0 14.28571%;
+    width: 14.28571%;
+    height: 106rpx;
+    font-size: 26rpx;
+    color: #000;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 500; }
+    .calendar-day-list .date .num {
+      position: relative;
+      z-index: 10; }
+  .calendar-day-list .fade {
+    opacity: 0;
+    pointer-events: none; }
+    .calendar-day-list .fade::before {
+      display: none !important; }
+  .calendar-day-list .selected::after,
+  .calendar-day-list .start::after,
+  .calendar-day-list .end::after {
+    content: '';
+    position: absolute;
+    background: #eef3fd;
+    border-radius: 50%;
+    width: 80rpx;
+    height: 80rpx;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+  .calendar-day-list .activity:before {
+    content: "";
+    width: 10rpx;
+    height: 10rpx;
+    border-radius: 50%;
+    background: #0000FF;
+    position: absolute;
+    bottom: 25rpx;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100; }

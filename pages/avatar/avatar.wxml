@@ -1,0 +1,12 @@
+<!-- sub-pages/avator/avator.wxml -->
+<import src="../../we-cropper/we-cropper.wxml" />
+<view class="cropper-wrapper" >
+  <navigation-bar  color="#fff" theme='white'></navigation-bar>
+  <template is="we-cropper" data="{{...cropperOpt}}"/>
+  <view class="cropper-buttons" style="color: {{cropperOpt.boundStyle.color}}">
+    <view class="upload btn" bindtap="uploadTap">上传图片</view>
+    <view class="getCropperImage btn" style="background-color: {{cropperOpt.boundStyle.color}};" bindtap="getCropperImage">
+      生成头像
+    </view>
+  </view>
+</view>

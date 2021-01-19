@@ -1,0 +1,115 @@
+.top-section {
+  background: #fff; }
+  .top-section .flex-item {
+    padding: 30rpx 0; }
+  .top-section .image {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    display: block;
+    margin: 0 auto 20rpx; }
+  .top-section .text {
+    font-size: 22rpx;
+    text-align: center; }
+
+.resume-card {
+  background: #fff;
+  width: 690rpx;
+  margin: 0 auto;
+  border-right: 4px; }
+  .resume-card .resume-card__top {
+    padding: 45rpx 30rpx;
+    position: relative; }
+    .resume-card .resume-card__top:after {
+      position: absolute;
+      box-sizing: border-box;
+      transform-origin: center;
+      content: ' ';
+      pointer-events: none;
+      top: auto;
+      right: 30rpx;
+      bottom: 0;
+      left: 30rpx;
+      border-bottom: 1px solid #EBEBEB;
+      transform: scaleY(0.5); }
+    .resume-card .resume-card__top > .flex-box {
+      margin-bottom: 40rpx; }
+    .resume-card .resume-card__top .avatar {
+      width: 50rpx;
+      height: 50rpx;
+      border-radius: 50%;
+      margin-right: 12rpx; }
+    .resume-card .resume-card__top .con {
+      flex: 1; }
+      .resume-card .resume-card__top .con > .flex-box {
+        margin-bottom: 10rpx; }
+      .resume-card .resume-card__top .con .name {
+        font-size: 25rpx; }
+      .resume-card .resume-card__top .con .price {
+        color: #64BFBB;
+        font-size: 28rpx;
+        margin-left: auto; }
+    .resume-card .resume-card__top .info {
+      display: flex;
+      align-items: center; }
+      .resume-card .resume-card__top .info .fl {
+        font-size: 27rpx;
+        color: #333;
+        display: flex;
+        align-items: center; }
+        .resume-card .resume-card__top .info .fl .info-item {
+          display: flex;
+          align-items: center;
+          margin-right: 30rpx; }
+        .resume-card .resume-card__top .info .fl .icon {
+          width: 30rpx;
+          height: 30rpx;
+          margin-right: 12rpx; }
+      .resume-card .resume-card__top .info .fr {
+        font-size: 25rpx;
+        color: #999; }
+  .resume-card .resume-card__bottom {
+    padding: 20rpx 30rpx; }
+    .resume-card .resume-card__bottom .date {
+      font-size: 24rpx;
+      color: #999;
+      margin-bottom: 30rpx; }
+    .resume-card .resume-card__bottom .info {
+      font-size: 24rpx;
+      color: #000; }
+      .resume-card .resume-card__bottom .info .price {
+        color: #64BFBB;
+        margin-left: 16rpx; }
+
+.chatroom-time {
+  font-size: 24rpx;
+  color: #999999;
+  margin-bottom: 45rpx;
+  text-align: center; }
+
+.chatroom-item {
+  display: flex;
+  width: 690rpx;
+  margin: 60rpx auto 0; }
+  .chatroom-item .chatroom-item__avatar {
+    flex: 0 0 85rpx;
+    width: 85rpx;
+    height: 85rpx;
+    margin-right: 20rpx;
+    border-radius: 50%; }
+  .chatroom-item .chatroom-item__content {
+    position: relative;
+    font-size: 28rpx;
+    color: #000;
+    background: #fff;
+    padding: 25rpx 30rpx;
+    border-radius: 4px;
+    word-break: break-all; }
+  .chatroom-item.my {
+    flex-direction: row-reverse; }
+    .chatroom-item.my .chatroom-item__avatar {
+      margin-right: 0;
+      margin-left: 20rpx; }
+    .chatroom-item.my .chatroom-item__content {
+      background: #2351D3;
+      color: #fff; }

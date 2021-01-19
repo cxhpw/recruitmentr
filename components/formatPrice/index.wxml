@@ -1,0 +1,8 @@
+<wxs src="../../utils/index.wxs" module="format"></wxs>
+<!-- components/formatPrice/index.wxml -->
+<view class="custom-class">
+  <text class='ins ins-class'>{{ins}}</text>
+  <text class='prefix'>{{format.formatPriceBig(format.price(price))}}</text>
+  <text class='suffix'>{{format.formatPriceSmall(format.price(price))}}</text>
+  <text class='unit'>{{unit}}</text>
+</view>

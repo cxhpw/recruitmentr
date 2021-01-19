@@ -1,0 +1,139 @@
+.banner {
+  font-size: 0; }
+  .banner .image {
+    height: 374rpx;
+    width: 750rpx; }
+
+.tab-wrapper {
+  background: #f8f8f8; }
+  .tab-wrapper .van-tabs__scroll {
+    background: #f8f8f8; }
+  .tab-wrapper .van-tabs__wrap {
+    padding: 0 150rpx; }
+
+.desc-section {
+  padding: 70rpx 50rpx 120rpx 50rpx; }
+  .desc-section > .title {
+    font-size: 50rpx;
+    font-weight: 500;
+    margin-bottom: 55rpx; }
+  .desc-section .box {
+    background: #efefef;
+    color: #666666;
+    font-size: 28rpx;
+    padding: 22rpx;
+    margin-bottom: 70rpx; }
+    .desc-section .box view {
+      margin-bottom: 25rpx; }
+      .desc-section .box view:last-child {
+        margin-bottom: 0; }
+  .desc-section .desc-wrapper .title {
+    font-size: 34rpx;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 30rpx; }
+  .desc-section .edit {
+    color: #666;
+    font-size: 25rpx;
+    line-height: 150%; }
+
+.search-list {
+  padding-top: 40rpx; }
+
+.search-item {
+  display: flex;
+  padding: 30rpx;
+  position: relative; }
+  .search-item:after {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: calc(30rpx + 112rpx + 30rpx);
+    border-bottom: 1px solid #EBEBEB;
+    transform: scaleY(0.5); }
+  .search-item .image {
+    width: 112rpx;
+    height: 112rpx;
+    border-radius: 4px;
+    margin-right: 30rpx;
+    border: 1px solid #efefef; }
+  .search-item .con {
+    flex: 1; }
+  .search-item .name {
+    font-size: 33rpx;
+    font-weight: 500;
+    margin-bottom: 20rpx; }
+  .search-item .info {
+    font-size: 22rpx;
+    color: #666;
+    margin-bottom: 30rpx; }
+  .search-item .summary {
+    font-size: 22rpx;
+    color: #666;
+    display: flex; }
+    .search-item .summary .label {
+      color: #0866ff;
+      margin: 0 5rpx; }
+    .search-item .summary icon {
+      margin-left: auto; }
+    .search-item .summary .my-icon {
+      margin-left: auto;
+      font-weight: 500; }
+
+.action-wrapper {
+  background: #fff;
+  height: 100rpx;
+  display: flex; }
+  .action-wrapper .action-icon {
+    position: relative;
+    flex: 1;
+    height: 100rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+  .action-wrapper .my-icon {
+    margin: 0 auto 14rpx; }
+    .action-wrapper .my-icon .van-icon__image {
+      width: 32rpx;
+      height: 32rpx;
+      display: block;
+      margin: 0 auto; }
+  .action-wrapper .text {
+    font-size: 22rpx;
+    color: #000; }
+  .action-wrapper .button {
+    height: 100rpx;
+    font-size: 31rpx;
+    font-weight: 500;
+    flex: 0 0 320rpx;
+    border-radius: 0; }
+
+.contact-button {
+  background: transparent;
+  border: none;
+  margin: 0;
+  text-align: left;
+  padding: 0;
+  height: auto;
+  line-height: initial;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999; }
+
+.safeArea .desc-section {
+  padding-bottom: calc(120rpx + 30px); }
+
+.safeArea .action-wrapper {
+  padding-bottom: 30px; }

@@ -1,0 +1,10 @@
+{
+  "backgroundTextStyle":"dark",
+  "navigationBarBackgroundColor": "#000",
+  "navigationBarTitleText": "裁剪头像",
+  "navigationBarTextStyle": "white",
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "navigation-bar": "../../components/navigation-bar/navigation-bar"
+  }
+}

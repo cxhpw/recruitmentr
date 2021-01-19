@@ -1,0 +1,34 @@
+@import "../../scss/minxi/minxi.scss";
+@import "../../scss/variable/variable.scss";
+page {
+  background: #fff;
+}
+.page {
+  padding-top: 70rpx;
+  .title {
+    font-size: 43rpx;
+    font-weight: 500;
+    margin-bottom: 30rpx;
+  }
+  .summary {
+    font-size: 25rpx;
+    margin-bottom: 86rpx;
+  }
+}
+.upload_btn {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  border: 1px dashed #808599;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .icon {
+    margin-bottom: 16rpx;
+  }
+  .text {
+    font-size: 28rpx;
+    color: #808599;
+  }
+}
