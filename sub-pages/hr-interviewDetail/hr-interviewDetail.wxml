@@ -1,0 +1,82 @@
+<view class="page">
+  <view class='container'>
+    <view class='top-section'>
+      <view class='flex-box align-center'>
+        <view class='con'>
+          <view class='name'>与 林志玲 的面试</view>
+          <view class='summary'>面试完成</view>
+        </view>
+        <view class='image-wrapper'>
+          <image src='/assets/images/首页_03.jpg' class='avatar'></image>
+          <image src='/assets/images/girl.png' class='sex'></image>
+        </view>
+      </view>
+    </view>
+    <view class='nav-section'>
+      <view class='flex-box'>
+        <view class='flex-item'>
+          <image class="icon" src="/assets/images/icon-resume.jpg"></image>
+          <view class='text'>在线简历</view>
+        </view>
+        <view class='flex-item'>
+          <image class="icon" src="/assets/images/icon-phone.jpg"></image>
+          <view class='text'>电话</view>
+        </view>
+        <view class='flex-item'>
+          <image class="icon" src="/assets/images/icon-liantian.jpg"></image>
+          <view class='text'>聊天</view>
+        </view>
+      </view>
+    </view>
+    <view class='cell-wrapper'>
+      <van-cell border="{{ false }}" custom-class='my-cell'>
+        <view slot='title' class='f24'>
+          <view class='flex-box align-center'>
+            <icon custom-class='iconfont    icon-shijian' size='18' color='#BFBFBF'></icon>
+            <view class='f24'>2020-12-29 10:00</view>
+          </view>
+        </view>
+      </van-cell>
+      <van-cell border="{{ false }}" custom-class='my-cell'>
+        <view slot='title' class='f24'>
+          <view class='flex-box align-center'>
+            <icon custom-class='iconfont icon-bangongbao' size='18' color='#BFBFBF'></icon>
+            <view class='f24'>php，3-4K</view>
+          </view>
+        </view>
+      </van-cell>
+      <van-cell border="{{ false }}" custom-class='my-cell'>
+        <view slot='title' class='f24'>
+          <view class='flex-box align-center'>
+            <icon custom-class='iconfont icon-ditu_dingwei' size='18' color='#BFBFBF'></icon>
+            <view class='f24'>深圳市 龙华新区 蓝坤大厦 1107</view>
+          </view>
+        </view>
+      </van-cell>
+    </view>
+  </view>
+  <view class='fixed-bottom'>
+    <view class='button-group'>
+      <button class='button button-cancel'>重新邀约</button>
+      <button class='button button-normal' catch:tap="onRemarkTap">编辑牛人备注</button>
+    </view>
+  </view>
+  <van-popup show="{{ show }}" bind:close="onClose" position="bottom" round closeable>
+    <view class='model-popup'>
+      <view class='header'>面试备注</view>
+      <view class='body'>
+        <view class='checkbox-list'>
+          <van-checkbox-group custom-class='checkbox-group' value="{{  labelsSelected }}" bind:change="onLabelsChange">
+            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ labels }}" wx:key="{{ index }}">
+              {{ item }}
+            </van-checkbox>
+          </van-checkbox-group>
+        </view>
+        <view class='wrapper'>
+          <view class='title'>添加备注</view>
+          <textarea maxlength="140" class='textarea-control' placeholder-style="color: #BCBCBC" placeholder="请补充其他说明" disable-default-padding></textarea>
+        </view>
+      </view>
+    </view>
+  </van-popup>
+</view>

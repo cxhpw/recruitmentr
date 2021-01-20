@@ -14,13 +14,7 @@
     "pages/avatar/avatar",
     "pages/chatroom/chatroom",
     "pages/talked/talked",
-    "pages/collect/collect",
-    "pages/hr-position/hr-position",
-    "pages/hr-positionDetail/hr-positionDetail",
-    "pages/hr-company/hr-company",
-    "pages/hr-companyIntro/hr-companyIntro",
-    "pages/hr-companyphoto/hr-companyphoto",
-    "pages/hr-workingTime/hr-workingTime"
+    "pages/collect/collect"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,7 +22,6 @@
     "navigationBarTitleText": "柯城人社",
     "navigationBarTextStyle": "black"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "custom": false,
@@ -67,7 +60,8 @@
     "van-cell-group": "@vant/weapp/cell-group",
     "van-sticky": "@vant/weapp/sticky",
     "formatPrice": "/components/formatPrice/index",
-    "ad": "/components/ad/index"
+    "ad": "/components/ad/index",
+    "van-overlay": "@vant/weapp/overlay/index"
   },
   "permission": {
     "scope.userLocation": {
@@ -77,7 +71,27 @@
   "subPackages": [
     {
       "root": "sub-pages",
-      "pages": []
+      "pages": [
+        "index/index",
+        "my/my",
+        "hr-position/hr-position",
+        "hr-positionDetail/hr-positionDetail",
+        "hr-company/hr-company",
+        "hr-companyIntro/hr-companyIntro",
+        "hr-companyphoto/hr-companyphoto",
+        "hr-workingTime/hr-workingTime",
+        "hr-companySize/hr-companySize",
+        "hr-companyWelfare/hr-companyWelfare",
+        "hr-releaseWorkPlace/hr-releaseWorkPlace",
+        "hr-releaseBaseInfo/hr-releaseBaseInfo",
+        "hr-releaseJopRequire/hr-releaseJopRequire",
+        "hr-releaseDescription/hr-releaseDescription",
+        "hr-releaseJopName/hr-releaseJopName",
+        "hr-companyCertification/hr-companyCertification",
+        "hr-interview/hr-interview",
+        "hr-interviewDetail/hr-interviewDetail",
+        "hr-interviewAfresh/hr-interviewAfresh"
+      ]
     }
   ]
 }

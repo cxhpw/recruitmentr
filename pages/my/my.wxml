@@ -19,18 +19,18 @@
         <view class='num'>1</view>
         <view class='text'>沟通过</view>
       </view>
-      <view class='flex-item'>
+      <view class='flex-item' catch:tap='onNavTo' data-url='/sub-pages/hr-interview/hr-interview'>
         <view class='num'>1</view>
-        <view class='text'>沟通过</view>
+        <view class='text'>面试</view>
       </view>
-      <view class='flex-item'>
+      <view class='flex-item' catch:tap='onNavTo' data-url='/pages/collect/collect'>
         <view class='num'>1</view>
-        <view class='text'>沟通过</view>
+        <view class='text'>收藏</view>
       </view>
     </view>
   </view>
   <view class=''>
-    <van-cell custom-class="my-cell" is-link catch:tap="onAgencyTap">
+    <van-cell custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-position/hr-position">
       <view slot="title">
         <view class="flex-box align-center">
           <view class='van-cell-num'>1</view>
@@ -41,7 +41,7 @@
     </van-cell>
   </view>
   <view class='cell-wrapper'>
-    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onAgencyTap">
+    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-company/hr-company">
       <view slot="title">
         <view class="flex-box align-center">
           <image class='icon' src='/assets/images/icon-qiye1.png'></image>
@@ -49,7 +49,7 @@
         </view>
       </view>
     </van-cell>
-    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onAgencyTap">
+    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-companyCertification/hr-companyCertification">
       <view slot="title">
         <view class="flex-box align-center">
           <image class='icon' src='/assets/images/icon-certification.png'></image>

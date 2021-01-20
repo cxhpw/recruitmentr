@@ -147,32 +147,51 @@
                     "scene": null
                 },
                 {
-                    "name": "pages/hr-position/hr-position",
-                    "pathName": "pages/hr-position/hr-position",
+                    "name": "sub-pages/hr-companyWelfare/hr-companyWelfare",
+                    "pathName": "sub-pages/hr-companyWelfare/hr-companyWelfare",
                     "query": "",
                     "scene": null
                 },
                 {
-                    "name": "pages/hr-positionDetail/hr-positionDetail",
-                    "pathName": "pages/hr-positionDetail/hr-positionDetail",
+                    "name": "sub-pages/hr-releaseWorkPlace/hr-releaseWorkPlace",
+                    "pathName": "sub-pages/hr-releaseWorkPlace/hr-releaseWorkPlace",
                     "query": "",
                     "scene": null
                 },
                 {
-                    "name": "pages/hr-company/hr-company",
-                    "pathName": "pages/hr-company/hr-company",
+                    "name": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
+                    "pathName": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
                     "query": "",
                     "scene": null
                 },
                 {
-                    "name": "pages/hr-companyIntro/hr-companyIntro",
-                    "pathName": "pages/hr-companyIntro/hr-companyIntro",
+                    "name": "sub-pages/hr-releaseJopName/hr-releaseJopName",
+                    "pathName": "sub-pages/hr-releaseJopName/hr-releaseJopName",
                     "query": "",
                     "scene": null
                 },
                 {
-                    "name": "pages/hr-companyphoto/hr-companyphoto",
-                    "pathName": "pages/hr-companyphoto/hr-companyphoto",
+                    "name": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
+                    "pathName": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/hr-companyCertification/hr-companyCertification",
+                    "pathName": "sub-pages/hr-companyCertification/hr-companyCertification",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/hr-interview/hr-interview",
+                    "pathName": "sub-pages/hr-interview/hr-interview",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/hr-interviewDetail/hr-interviewDetail",
+                    "pathName": "sub-pages/hr-interviewDetail/hr-interviewDetail",
+                    "query": "",
                     "scene": null
                 }
             ]

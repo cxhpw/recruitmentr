@@ -1,18 +1,18 @@
-﻿const package = require('../package.json')
+const package = require('../package.json')
 const fs = require('fs')
 const path = require('path')
 const { log } = require('./utils')
 const shell = require('shelljs')
 const app = require('../app.json')
 let srcRoot = path.join(process.cwd(), '.')
-let pageRoot = path.join(srcRoot, './pages')
-// let pageRoot = path.join(srcRoot, './sub-pages')
+let pageRoot = path.join(srcRoot, './sub-pages')
 let page = process.argv.slice(2)[0]
 let pageTitle = process.argv.slice(2)[1]
 
-
 if (!page) {
-  log.error('请输入页面名称 $ npm run || yarn new pageName [navigationBarTitleText]')
+  log.error(
+    '请输入页面名称 $ npm run || yarn new pageName [navigationBarTitleText]'
+  )
   shell.exit(1)
 }
 let dir = path.join(pageRoot, page)
@@ -24,12 +24,13 @@ if (fs.existsSync(dir)) {
 }
 
 page = page.split('/')[1] ? page.split('/')[1] : page.split('/')[0]
-
+console.log(dir, page)
 let pagePath = (dir + `/${page}`)
-  .split(`\\${package.name}\\`)[1]
+  .split(`\\${package.name}\\sub-pages\\`)[1]
   .replace(/\\/gi, '/')
 
-app.pages.push(pagePath)
+// app.pages.push(pagePath)
+app.subPackages[0].pages.push(pagePath)
 
 let wxml = `<view class="page">${pagePath}</view>`
 

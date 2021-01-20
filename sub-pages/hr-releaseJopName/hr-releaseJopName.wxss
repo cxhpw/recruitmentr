@@ -1,0 +1,50 @@
+page {
+  background: #fff; }
+
+.rela {
+  position: relative; }
+  .rela .count {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%); }
+  .rela .van-search__content {
+    border-radius: 34px; }
+
+.my-cell {
+  padding: 15px 40rpx !important; }
+  .my-cell:after {
+    left: 40rpx;
+    right: 40rpx; }
+  .my-cell .title {
+    font-size: 25rpx;
+    color: #333; }
+
+.popup-select {
+  top: 54px; }
+
+.popup-body {
+  background: #fff;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 0.3s 5s; }
+  .popup-body .flex-box {
+    height: 100%; }
+    .popup-body .flex-box .colum {
+      height: 100%;
+      border-right: 1px solid #EBEBEB; }
+      .popup-body .flex-box .colum .list {
+        display: flex;
+        flex-direction: column; }
+      .popup-body .flex-box .colum .item {
+        padding: 0 15px;
+        min-width: 100px;
+        height: 50px;
+        box-sizing: border-box;
+        border-bottom: 1px solid #EBEBEB;
+        word-break: break-all;
+        max-width: 150px;
+        display: inline-flex;
+        align-items: center; }

@@ -4,7 +4,8 @@
   "main": "app.js",
   "license": "MIT",
   "scripts": {
-    "new": "node ./script/newpage.js"
+    "new": "node ./script/newpage.js",
+    "newsub": "node ./script/newsubpages.js"
   },
   "devDependencies": {
     "chalk": "^3.0.0",

@@ -1,0 +1,68 @@
+page {
+  background: #fff; }
+
+.hd {
+  display: flex;
+  align-items: center;
+  margin: 70rpx 0rpx; }
+  .hd .fl {
+    font-size: 43rpx;
+    font-weight: 500; }
+  .hd .fr {
+    font-size: 22rpx;
+    color: #333;
+    display: flex;
+    align-items: center;
+    line-height: 1; }
+    .hd .fr .icon {
+      width: 25rpx;
+      height: 25rpx;
+      margin-right: 10rpx; }
+
+.steps-wrapper {
+  position: relative;
+  display: flex; }
+  .steps-wrapper .steps-item {
+    position: relative;
+    flex: 1;
+    line-height: 1;
+    text-align: center; }
+  .steps-wrapper .steps-item__line {
+    position: absolute;
+    height: 2.5px;
+    background: #0866FF;
+    left: 50%;
+    width: 100%;
+    top: 13rpx; }
+  .steps-wrapper .steps-item__num {
+    position: relative;
+    height: 40rpx;
+    width: 40rpx;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 1px solid #0866FF;
+    color: #0866FF;
+    font-size: 23rpx;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    z-index: 10; }
+    .steps-wrapper .steps-item__num.active {
+      background: #0866FF;
+      color: #fff; }
+  .steps-wrapper .steps-item__text {
+    font-size: 23rpx;
+    color: #000;
+    text-align: center;
+    margin-top: 20rpx; }
+
+.cell-wrapper {
+  margin-top: 60rpx; }
+
+.my-cell {
+  padding: 30rpx 40rpx !important; }
+  .my-cell .title {
+    margin-bottom: 20rpx; }
+  .my-cell .van-icon {
+    margin-top: 65px; }

@@ -1,0 +1,7 @@
+page {
+  background: #fff; }
+
+.textarea-control {
+  height: 500rpx;
+  font-size: 30rpx;
+  color: #333; }

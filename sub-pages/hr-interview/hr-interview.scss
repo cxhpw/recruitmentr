@@ -1,0 +1,63 @@
+@import "../../scss/minxi/minxi.scss";
+@import "../../scss/variable/variable.scss";
+page {
+  background: #fff;
+}
+
+.item {
+  background: #fff;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+  border-bottom: 20rpx solid #f8f8f8;
+ .item-header{
+   padding: 30rpx 0;
+   @include border-bottom($borderColor,0,0);
+   .fl {
+     font-size: 24rpx;
+     color: #999;
+   }
+   .fr {
+     font-size: 24rpx;
+     color: #000;
+   }
+ } 
+ .item-body {
+   @include border-bottom($borderColor, 0, 0);
+   padding: 40rpx 0;
+   .image-wrapper {
+    position: relative;
+    margin-right: 30rpx;
+   }
+   .sex {
+     position: absolute;
+     right: 0;
+     top: 0;
+     width: 24rpx;
+     height: 24rpx;
+   }
+   .avatar {
+     width: 85rpx;
+     height: 85rpx;
+     border-radius: 50%;
+   }
+   .name {
+     font-size: 33rpx;
+     font-weight: 500;
+     margin-bottom: 20rpx;
+     line-height: 1;
+   }
+   .summary {
+     font-size: 27rpx;
+     line-height: 1;
+   }
+   
+ }
+ .item-footer {
+   padding: 30rpx 0;
+   .date {
+     font-size: 24rpx;
+     color: #999;
+     line-height: 1;
+   }
+ }
+}

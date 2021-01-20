@@ -1,0 +1,118 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+page {
+  background: #fff;
+}
+.page {
+  padding-bottom: 170rpx;
+  &.safeArea {
+    padding-bottom: calc(170rpx + 30px);
+    .button-group {
+      padding-bottom: 30px;
+    }
+  }
+}
+.top-section {
+  padding: 50rpx 0;
+  @include border-bottom($borderColor, 0, 0);
+  .con {
+    flex: 1;
+  }
+  .image-wrapper {
+    position: relative;
+    .avatar {
+      width: 100rpx;
+      height: 100rpx;
+      border-radius: 50%;
+    }
+    .sex {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 25rpx;
+      height: 25rpx;
+    }
+  }
+  .con {
+    .name {
+      font-size: 42rpx;
+      font-weight: 500;
+      margin-bottom: 30rpx;
+      line-height: 1;
+    }
+    .summary {
+      font-size: 25rpx;
+      line-height: 1;
+    }
+  }
+}
+
+.nav-section {
+  @include border-bottom($borderColor,0,0);
+  padding: 30rpx 0;
+  margin-bottom: 30rpx;
+  .icon {
+    width: 52rpx;
+    height: 52rpx;
+    display: block;
+    margin: 0 auto 20rpx;
+  }
+  .text {
+    font-size: 22rpx;
+    text-align: center;
+  }
+}
+
+.my-cell {
+  padding: 30rpx 0 !important;
+  .iconfont {
+    margin-right: 30rpx;
+  }
+}
+
+.button-group {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  height: 150rpx;
+  border-top: 1px solid $borderColor;
+  padding: 0 40rpx;
+  .button-cancel {
+    flex: 0 0 200rpx;
+    margin-right: 20rpx;
+    background: #C7C7C7;
+    border-color: #C7C7C7;
+    color: #fff;
+  }
+  .button-normal {
+    flex: 1;
+  }
+}
+
+.model-popup {
+  .header {
+    font-size: 34rpx;
+    height: 50px;
+    font-weight: 500;
+    padding: 0 40rpx;
+    line-height: 50px;
+  }
+  .body {
+    padding: 40rpx;
+  }
+  .wrapper {
+    .title {
+      font-size: 25rpx;
+      font-weight: 500;
+      margin-bottom: 36rpx;
+    }
+    .textarea-control {
+      height: 175rpx;
+      font-size: 25rpx;
+      background: #F5F5F5;
+      border-radius: 4px;
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}

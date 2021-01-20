@@ -1,0 +1,18 @@
+<view class="page">
+  <view class='container'>
+    <view class='top-section__release'>
+      <view class='title'>职位描述</view>
+      <view class='summary'>详细清晰的职位描述能获得更多牛人关注</view>
+    </view>
+    <form bindsubmit="onSubmit">
+      <view class='form'>
+        <textarea name='content' value="{{  content }}" class='textarea-control' placeholder-class="placeholder" disable-default-padding placeholder="工作内容，任务要求，特别说明"></textarea>
+      </view>
+      <view class='fixed-bottom'>
+        <view class='confirm-group'>
+          <button class='button button-normal button-block' form-type="submit">确定</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>

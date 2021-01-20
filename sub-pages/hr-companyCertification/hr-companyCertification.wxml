@@ -1,0 +1,32 @@
+<view class="page">
+  <view class='container'>
+    <scroll-view style="width: 100%" scroll-x="{{true}}">
+      <view class='table'>
+        <view class='tbody'>
+          <view class='tr'>
+            <view class='td'>公司名称</view>
+            <view class='td'>阿里巴巴网络技术有限公司</view>
+          </view>
+          <view class='tr'>
+            <view class='td'>公司简称</view>
+            <view class='td'>阿里巴巴</view>
+          </view>
+          <view class='tr'>
+            <view class='td'>公司行业</view>
+            <view class='td'>互联网</view>
+          </view>
+          <view class='tr'>
+            <view class='td'>统一社会信用代码</view>
+            <view class='td'>2656526262622322232</view>
+          </view>
+          <view class='tr'>
+            <view class='td'>营业执照</view>
+            <view class='td'>
+              <text>查看图片</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view>

@@ -1,0 +1,35 @@
+<view class="page {{ safeArea }}">
+  <view class='container'>
+    <view class='top-section__release'>
+      <view class='title'>工作地点</view>
+      <view class='summary'>必须填写真实工作地点，一经查实造假，将可能被冻结账号</view>
+    </view>
+  </view>
+  <view class='form'>
+    <view class='cell-group'>
+      <van-cell is-link center custom-class='my-cell' bind:click='onMapTap' use-label-slot>
+        <view slot='title' class='label'>工作地点</view>
+        <view class='' slot='label'>
+          <view class='name'>蓝坤大厦</view>
+          <view class='text'>广东省深圳市龙华新区民治街道民康路213号</view>
+        </view>
+      </van-cell>
+      <van-cell custom-class='my-cell' bind:click='onMapTap' use-label-slot border="{{ false }}">
+        <view slot='title' class='label'>门牌号</view>
+        <view class='rela' slot='label'>
+          <input class='form-control' maxlength="20" placeholder="楼层/单元室/门牌号，例:3层302室" placeholder-class="placeholder" value="{{houseNumberValue}}" bindinput="onInput" />
+          <view class='count'>
+            <text>{{ houseNumberValue.length }}</text>
+            <text>/</text>
+            <text>20</text>
+          </view>
+        </view>
+      </van-cell>
+    </view>
+  </view>
+  <view class='fixed-bottom'>
+    <view class='confirm-group'>
+      <button class='button button-normal button-block' catch:tap="onNavTo">下一步</button>
+    </view>
+  </view>
+</view>

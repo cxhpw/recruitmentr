@@ -1,0 +1,29 @@
+page {
+  background: #fff; }
+
+.my-cell {
+  padding: 15px 40rpx !important; }
+  .my-cell .label {
+    font-size: 25rpx;
+    color: #666; }
+  .my-cell .name {
+    font-size: 31rpx;
+    color: #999;
+    margin-bottom: 14rpx; }
+  .my-cell .text {
+    font-size: 25rpx;
+    color: #666; }
+
+.rela {
+  position: relative; }
+  .rela .form-control {
+    height: 24px;
+    font-size: 30rpx;
+    color: #333; }
+
+.count {
+  position: absolute;
+  right: 0;
+  color: #333;
+  top: 50%;
+  transform: translateY(-50%); }

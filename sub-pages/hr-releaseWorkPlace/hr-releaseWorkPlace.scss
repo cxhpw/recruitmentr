@@ -1,0 +1,37 @@
+@import "../../scss/minxi/minxi.scss";
+@import "../../scss/variable/variable.scss";
+
+page {
+  background: #fff;
+}
+.my-cell {
+  padding: 15px 40rpx !important;
+  .label {
+    font-size: 25rpx;
+    color: #666;
+  }
+  .name {
+    font-size: 31rpx;
+    color: #999;
+    margin-bottom: 14rpx;
+  }
+  .text {
+    font-size: 25rpx;
+    color: #666;
+  }
+}
+.rela {
+  position: relative;
+  .form-control {
+    height: 24px;
+    font-size: 30rpx;
+    color: #333;
+  }
+}
+.count{
+  position: absolute;
+  right: 0;
+  color: #333;
+  top: 50%;
+  transform: translateY(-50%);
+}

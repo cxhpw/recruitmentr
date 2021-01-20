@@ -1,0 +1,39 @@
+<view class="page">
+  <van-tabs sticky active="{{ active }}" bind:change="onChange" color="#0866FF" line-width="15" swipe-threshold="5">
+    <van-tab title="{{ item.title }}" wx:for="{{ tabs }}" wx:key="{{index}}">
+      <view class="list">
+        <view class="inner">
+          <block wx:for="{{ lists[index].data }}" wx:key="{{ index }}" wx:for-item="item" wx:for-index="index">
+            <view class="item">
+              <view class='item-header'>
+                <view class='flex-box align-center'>
+                  <view class='fl'>面试职位：.NET</view>
+                  <view class='fr'>
+                    <text class='text-success'>待接受</text>
+                  </view>
+                </view>
+              </view>
+              <view class='item-body'>
+                <view class='flex-box align-center'>
+                  <view class='image-wrapper'>
+                    <image src="/assets/images/avatar.png" class='avatar'></image>
+                    <image src="/assets/images/girl.png" class='sex'></image>
+                  </view>
+                  <view class='con'>
+                    <view class='name'>林志玲</view>
+                    <view class='summary'>.NET</view>
+                  </view>
+                </view>
+              </view>
+              <view class='item-footer'>
+                <view class='date'>面试时间：12月29日 08:04</view>
+              </view>
+            </view>
+          </block>
+        </view>
+        <nomore wx:if="{{lists[index].nomore}}" />
+        <loadButton wx:if="{{!lists[index].nomore}}" loading="{{lists[index].loading}}" text="{{lists[index].buttontext}}" />
+      </view>
+    </van-tab>
+  </van-tabs>
+</view>

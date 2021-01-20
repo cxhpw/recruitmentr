@@ -1,5 +1,8 @@
 @import '../../scss/minxi/minxi.scss';
 @import '../../scss/variable/variable.scss';
+page {
+  background: #fff;
+}
 .page {
   padding-top: 70rpx;
   .title {
@@ -12,4 +15,8 @@
     padding-bottom: 70rpx;
     @include border-bottom($borderColor, 0, 0);
   }
+}
+
+.my-cell {
+  padding: 30rpx 40rpx !important;
 }

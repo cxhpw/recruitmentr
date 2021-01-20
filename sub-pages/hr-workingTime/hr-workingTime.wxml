@@ -1,0 +1,49 @@
+<view class="page {{ safeArea }}">
+  <view class='container'>
+    <view class='form'>
+      <view class='title'>公司标准工作时间</view>
+      <view class='summary'>添加工作时间，标准时间仅为求职者提供参考，不代表公司下所有职位工作时间</view>
+      <view class='time-rang'>
+        <view class='label'>工作时间</view>
+        <view class='time-rang__picker'>
+          <picker mode="selector" range="{{ams}}" value="{{am}}">
+            <view class='pciker'>{{ ams[am] }}</view>
+          </picker>
+          <view class='fat'>-</view>
+          <picker mode="selector" range="{{pms}}" value="{{pm}}">
+            <view class='pciker'>{{ pms[pm] }}</view>
+          </picker>
+        </view>
+      </view>
+      <view class='form-group no-border'>
+        <view class='label'>休息时间(可选)</view>
+        <view class='con'>
+          <view class='checkbox-list'>
+            <van-checkbox-group custom-class='checkbox-group' value="{{ breakTimeSelected }}" bind:change="onBreakTimeChange">
+              <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{  breakTime }}" wx:key="{{ index }}">
+                {{ item }}
+              </van-checkbox>
+            </van-checkbox-group>
+          </view>
+        </view>
+      </view>
+      <view class='form-group no-border last-group'>
+        <view class='label'>加班情况(可选)</view>
+        <view class='con'>
+          <view class='checkbox-list'>
+            <van-checkbox-group custom-class='checkbox-group' value="{{ overtimeSelected }}" bind:change="onOvertimeChange">
+              <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ overtime }}" wx:key="{{ index }}">
+                {{ item }}
+              </van-checkbox>
+            </van-checkbox-group>
+          </view>
+        </view>
+      </view>
+      <view class='fixed-bottom'>
+        <view class='confirm-group'>
+          <button class='button button-normal button-block'>确定</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

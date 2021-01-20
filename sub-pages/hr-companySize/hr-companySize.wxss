@@ -1,3 +1,6 @@
+page {
+  background: #fff; }
+
 .page {
   padding-top: 70rpx; }
   .page .title {
@@ -20,3 +23,6 @@
       left: 0;
       border-bottom: 1px solid #EBEBEB;
       transform: scaleY(0.5); }
+
+.my-cell {
+  padding: 30rpx 40rpx !important; }

@@ -1,0 +1,70 @@
+<view class="page">
+  <view class='container'>
+    <view class='title'>编辑公司福利</view>
+    <view class='summary'>选择公司提供福利信息，以吸引更多求职者</view>
+    <view class='form'>
+      <view class='form-group'>
+        <view class='label-v2'>保险</view>
+        <view class='con'>
+          <van-checkbox-group value="{{  baseInsuranceValue }}" bind:change="onBaseInsuranChange">
+            <van-checkbox custom-class='my-radio' wx:for="{{ baseInsurance }}" name="{{ item.name }}">
+              <view class='name'>{{ item.name }}</view>
+              <view class='text'>{{ item.summary }}</view>
+            </van-checkbox>
+          </van-checkbox-group>
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label-v2'>薪资期权</view>
+        <view class='con'>
+          <van-checkbox-group value="{{  rewardValue }}" bind:change="onRewardChange">
+            <van-checkbox custom-class='my-radio' wx:for="{{ reward }}" name="{{ item.name }}">
+              <view class='name'>{{ item.name }}</view>
+              <view class='text'>{{ item.summary }}</view>
+            </van-checkbox>
+          </van-checkbox-group>
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label-v2'>度假休假</view>
+        <view class='con'>
+          <van-checkbox-group value="{{ holidayValue }}" bind:change="onHolidayChange">
+            <van-checkbox custom-class='my-radio' wx:for="{{ holiday }}" name="{{ item.name }}">
+              <view class='name'>{{ item.name }}</view>
+              <view class='text'>{{ item.summary }}</view>
+            </van-checkbox>
+          </van-checkbox-group>
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label-v2'>生活补贴</view>
+        <view class='con'>
+          <van-checkbox-group value="{{ subsidyValue }}" bind:change="onSubsidyChange">
+            <van-checkbox custom-class='my-radio' wx:for="{{ subsidy }}" name="{{ item.name }}">
+              <view class='name'>{{ item.name }}</view>
+              <view class='text'>{{ item.summary }}</view>
+            </van-checkbox>
+          </van-checkbox-group>
+        </view>
+      </view>
+      <view class='selected-box'>
+        <view class='text'>
+          已选福利{{baseInsuranceValue.length +  rewardValue.length +  holidayValue.length +  subsidyValue.length}}个
+        </view>
+        <scroll-view scroll-x style="width: 100%">
+          <view class='flex-box'>
+            <view class='item' wx:for="{{baseInsuranceValue}}">{{ item }}</view>
+            <view class='item' wx:for="{{rewardValue}}">{{ item }}</view>
+            <view class='item' wx:for="{{holidayValue}}">{{ item }}</view>
+            <view class='item' wx:for="{{subsidyValue}}">{{ item }}</view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+  <view class='fixed-bottom'>
+    <view class='confirm-group'>
+      <button class='button button-normal button-block'>确定</button>
+    </view>
+  </view>
+</view>

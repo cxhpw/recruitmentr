@@ -1,0 +1,67 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+
+page {
+  background: #fff;
+}
+.rela {
+  position: relative;
+  .count {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .van-search__content {
+    border-radius: 34px;
+  }
+}
+.my-cell {
+  padding: 15px 40rpx !important;
+  &:after {
+    left: 40rpx;
+    right: 40rpx;
+  }
+  .title {
+    font-size: 25rpx;
+    color: #333;
+  }
+}
+
+.popup-select {
+  top: 54px;
+}
+
+.popup-body {
+  background: #fff;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: all 0.3s 5s;
+  .flex-box {
+    height: 100%;
+    .colum {
+      height: 100%;
+      border-right: 1px solid $borderColor;
+      .list {
+        display: flex;
+        flex-direction: column;
+      }
+      .item {
+        padding: 0 15px;
+        min-width: 100px;
+        height: 50px;
+        box-sizing: border-box;
+        border-bottom: 1px solid $borderColor;
+        word-break: break-all;
+        max-width: 150px;
+        display: inline-flex;
+        align-items: center;
+      }
+      &:first-child {
+        // background: rgba($color: #000000, $alpha: 1.0);
+      }
+    }
+  }
+}

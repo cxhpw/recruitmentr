@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-picker": "@vant/weapp/picker/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index"
+  },
+  "navigationBarTitleText": "工作时间"
+}

@@ -9,7 +9,12 @@ var watcher
 
 
 function dev() {
-  watcher = gulp.watch(['./app.scss', 'pages/**/*.scss', 'components/**/*.scss'])
+  watcher = gulp.watch([
+    './app.scss',
+    'pages/**/*.scss',
+    'sub-pages/**/*.scss',
+    'components/**/*.scss',
+  ])
   watcher.on('change', function(path) {
     // var index = path.search(/\\\w+\.scss/)
     var index = path.search(/\\\w+-?\w*\.scss/)
