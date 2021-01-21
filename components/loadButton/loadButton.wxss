@@ -1,6 +1,5 @@
 /* components/loadButton/loadButton.wxss */
 .loadButton {
-  padding: 40rpx 0;
   background: transparent !important;
 }
 

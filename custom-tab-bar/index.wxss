@@ -1,0 +1,44 @@
+/* components/tabBar/index.wxss */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120rpx;
+  background: #fff;
+  display: flex;
+  padding-bottom: env(safe-area-inset-bottom);
+  /* box-shadow: 0px 4px 20px 0px rgba(45, 54, 91, 1); */
+  background-color: #1d203d;
+}
+
+
+.tab-bar-item {
+  position: relative;
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;     
+  
+}
+.tab-bar-item:last-child{
+  background: none;           
+}
+.tab-bar-item .mb {
+  width: 120rpx;
+  height: 120rpx;
+}
+.line{
+  width: 6rpx;
+  height: 120rpx;
+  position: absolute;
+  right: -3rpx;
+  top:0;
+}
+
+.tab-bar-item cover-view {
+  font-size: 10px;
+  display: none;
+}

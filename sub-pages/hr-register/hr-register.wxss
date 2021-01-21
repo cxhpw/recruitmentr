@@ -1,0 +1,7 @@
+page {
+  background: #fff; }
+
+.title {
+  font-size: 43rpx;
+  font-weight: 500;
+  margin: 70rpx 0 40rpx; }

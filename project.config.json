@@ -193,6 +193,48 @@
                     "pathName": "sub-pages/hr-interviewDetail/hr-interviewDetail",
                     "query": "",
                     "scene": null
+                },
+                {
+                    "name": "sub-pages/hr-invitePage/hr-invitePage",
+                    "pathName": "sub-pages/hr-invitePage/hr-invitePage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/hr-index/hr-index",
+                    "pathName": "sub-pages/hr-index/hr-index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/hr-my/hr-my",
+                    "pathName": "sub-pages/hr-my/hr-my",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/register/register",
+                    "pathName": "pages/register/register",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/hr-userInfo/hr-userInfo",
+                    "pathName": "sub-pages/hr-userInfo/hr-userInfo",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/main/main",
+                    "pathName": "sub-pages/main/main",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/hr-positionDetail/hr-positionDetail",
+                    "pathName": "sub-pages/hr-positionDetail/hr-positionDetail",
+                    "query": "",
+                    "scene": null
                 }
             ]
         }

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "upload": "../../components/upload"
+  },
+  "navigationBarTitleText": "企业注册"
+}

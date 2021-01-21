@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    show: true,
+    show: false,
     labels: [
       '入职',
       '需要二面',
@@ -16,6 +16,16 @@ Page({
       '淘汰',
     ],
     labelsSelected: [],
+  },
+  onClose() {
+    this.setData({
+      show: false
+    })
+  },
+  onClick() {
+    wx.navigateTo({
+      url: "/sub-pages/hr-invitePage/hr-invitePage"
+    })
   },
   onLabelsChange(e) {
     this.setData({

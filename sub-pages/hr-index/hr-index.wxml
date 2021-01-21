@@ -1,0 +1,54 @@
+<!-- index.wxml -->
+<view class="sub-page">
+  <van-sticky>
+    <view class='hd'>
+      <view class="flex-box align-center">
+        <view class='fl'>
+          <view class='tabs'>
+            <view wx:for="{{ tabs }}" wx:key="tabs" class='tab {{ tabIndex === index ? "active" : "" }}'>
+              {{ item.title }}
+            </view>
+          </view>
+        </view>
+        <view class='fr'>
+          <view class="filter-wrapper">
+            <view class='filter-item' catch:tap="onAreaTap">深圳</view>
+            <view class='filter-item' catch:tap="onNavTo" data-url="/pages/filter/filter">筛选</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </van-sticky>
+  <view class='bd'>
+    <view class='seeker-list'>
+      <view class='item' wx:for="{{  list }}" wx:key="{{ index }}">
+        <view class='flex-box align-center'>
+          <view class='fl'>
+            <view class='name'>林志玲</view>
+            <view class='base'>
+              <text>6年</text>
+              <text>|</text>
+              <text>本科</text>
+              <text>|</text>
+              <text>6-10K</text>
+            </view>
+          </view>
+          <view class='fr'>
+            <view class='image-wrapper'>
+              <image class='avatar' src="/assets/images/首页_03.jpg" />
+              <image class='sex-icon' src="/assets/images/body.png"></image>
+            </view>
+          </view>
+        </view>
+        <view class='work'>
+          <image class='icon' src="/assets/images/icon_work.png"></image>
+          <text>广民建筑</text>
+          <text class='dot'>·</text>
+          <text>建筑施工现场管理</text>
+        </view>
+        <view class='summary'>在学校担任过班级班长，负责协调班级各种事物，为人较开
+            朗，善于处理人际关系。</view>
+      </view>
+    </view>
+  </view>
+</view>

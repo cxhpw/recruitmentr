@@ -56,6 +56,11 @@
     .calendar-day-list .date .num {
       position: relative;
       z-index: 10; }
+  .calendar-day-list .past {
+    opacity: 0.3;
+    pointer-events: none; }
+    .calendar-day-list .past::before {
+      display: none !important; }
   .calendar-day-list .fade {
     opacity: 0;
     pointer-events: none; }

@@ -6,7 +6,11 @@ Page({
   data: {
     tabs: [{ title: '推荐' }, { title: '最新' }],
     tabIndex: 0,
-    list: [{}, {}, {}, {}],
+    list: [{}, {}, {}, {}, {}, {}, {}],
+    loading: true,
+    buttontext:'加载中',
+    nomore: false,
+    pageNum: 1
   },
   // 事件处理函数
   getList: function (pageNum = 1) {
@@ -59,6 +63,12 @@ Page({
   onAreaTap() {
     wx.navigateTo({
       url: '/pages/area/area',
+    })
+  },
+  onNavTo(e) {
+    const { url } = e.currentTarget.dataset
+    wx.navigateTo({
+      url
     })
   },
   onLoad() {},

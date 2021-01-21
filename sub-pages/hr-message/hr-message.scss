@@ -1,0 +1,90 @@
+@import "../../scss/minxi/minxi.scss";
+@import "../../scss/variable/variable.scss";
+
+.message-tabs {
+  .van-tabs__scroll  {
+    background: $bodycolor;
+  }
+  .van-tab {
+    flex: 0 0 auto;
+    padding: 0 20px;
+    transition: all 0.3s;
+    &.van-tab--active {
+      font-size: 18px;
+    }
+  }
+}
+.my-tab {
+  flex: 0 0 auto;
+  padding: 0 20px;
+  transition: all 0.3s;
+}
+.my-tab-active {
+  font-size: 18px;
+}
+.my-nav {
+  background: $bodycolor !important;
+}
+.van-tabs__scroll {
+  background: $bodycolor !important;
+}
+.chatroom-list {
+  padding: 20rpx 0 0;
+  .chatroom-item {
+    display: flex;
+    align-items: center;
+    padding: 30rpx 40rpx;
+    @include border-bottom($borderColor, 40rpx, 40rpx);
+    .image {
+      width: 100rpx;
+      height: 100rpx;
+      border-radius: 50%;
+      margin-right: 30rpx;
+    }
+    .con {
+      fleX: 1;
+      .name {
+        font-size: 30rpx;
+        margin-right: 20rpx;
+      }
+      .content {
+        color: #999;
+        font-size: 27rpx;
+        margin-top: 20rpx;
+      }
+    }
+  }
+}
+
+.msg-list {
+  .item {
+    background: #fff;
+    border-top: 15rpx solid #f8f8f8;
+    padding: 0 40rpx;
+    .date {
+      padding: 35rpx 0;
+      font-size: 25rpx;
+      color: #999999;
+    }
+    .content {
+      font-size: 28rpx;
+      color: #333;
+      padding-bottom: 45rpx;
+      @include border-bottom($borderColor, 0, 0);
+      .image {
+        width: 100%;
+        height: 278rpx;
+        display: block;
+        margin-bottom: 30rpx;
+      }
+    }
+    .button-group {
+      text-align: right;
+      padding: 30rpx 0;
+      text {
+        color: $bodycolor;
+        font-size: 25rpx;
+      }
+    }
+  }
+}

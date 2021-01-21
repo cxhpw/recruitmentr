@@ -6,39 +6,47 @@ page {
 
 .top-section {
   color: #fff;
-  background: #0866FF;
-  padding: 40rpx 40rpx 0; }
+  padding: 50rpx 40rpx;
+  background: #0866FF; }
   .top-section .avatar {
     width: 110rpx;
     height: 110rpx;
     flex: 0 0 110rpx;
     border-radius: 50%;
-    margin-right: 20rpx; }
+    margin-right: 20rpx;
+    background: #fff; }
   .top-section .con {
     flex: 1; }
   .top-section .name {
-    font-size: 40rpx;
+    font-size: 42rpx;
     font-weight: 500;
     line-height: 1; }
   .top-section .info {
-    font-size: 22rpx;
-    margin-top: 20rpx; }
-    .top-section .info text {
+    font-size: 24rpx;
+    margin-top: 20rpx;
+    display: flex;
+    align-items: center; }
+    .top-section .info .icon {
+      width: 34rpx;
+      height: 34rpx;
       margin-right: 10rpx; }
 
 .nav-section {
-  background: #0866FF;
+  background: #fff;
   color: #fff;
-  padding: 0 40rpx;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  border-bottom: 15rpx solid #f8f8f8; }
   .nav-section .flex-item {
     text-align: center;
     padding: 46rpx 0; }
-  .nav-section .num {
-    font-size: 30rpx;
-    margin-bottom: 14rpx; }
+  .nav-section .image {
+    width: 75rpx;
+    height: 75rpx;
+    display: block;
+    margin: 0 auto 15rpx; }
   .nav-section .text {
-    font-size: 22rpx; }
+    font-size: 24rpx;
+    color: #333; }
 
 .van-cell-num {
   font-size: 36rpx;

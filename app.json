@@ -14,7 +14,8 @@
     "pages/avatar/avatar",
     "pages/chatroom/chatroom",
     "pages/talked/talked",
-    "pages/collect/collect"
+    "pages/collect/collect",
+    "pages/userInfo/userInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,13 +27,13 @@
   "tabBar": {
     "custom": false,
     "color": "#999999",
-    "selectedColor": "#000000",
+    "selectedColor": "#0866ff",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "推荐",
+        "text": "找工作",
         "iconPath": "/assets/images/index.jpg",
         "selectedIconPath": "/assets/images/index-select.jpg"
       },
@@ -72,8 +73,6 @@
     {
       "root": "sub-pages",
       "pages": [
-        "index/index",
-        "my/my",
         "hr-position/hr-position",
         "hr-positionDetail/hr-positionDetail",
         "hr-company/hr-company",
@@ -90,7 +89,14 @@
         "hr-companyCertification/hr-companyCertification",
         "hr-interview/hr-interview",
         "hr-interviewDetail/hr-interviewDetail",
-        "hr-interviewAfresh/hr-interviewAfresh"
+        "hr-userInfo/hr-userInfo",
+        "hr-invitePage/hr-invitePage",
+        "hr-index/hr-index",
+        "hr-my/hr-my",
+        "main/main",
+        "hr-message/hr-message",
+        "hr-account/hr-account",
+        "hr-register/hr-register"
       ]
     }
   ]

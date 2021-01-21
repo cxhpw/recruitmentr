@@ -1,0 +1,27 @@
+<!--components/tabBar/index.wxml-->
+<cover-view class="tab-bar" hidden="{{hidden}}">
+  <cover-view wx:key="index" class="tab-bar-item" data-index="0" data-path="/pages/index/index" catchtap="switchTab">
+    <cover-image class="mb" src="{{selected == 0 ? '/assets/images/vr-select.png' : '/assets/images/vr.png'}}"></cover-image>
+    <cover-image class="line" src="/assets/images/bottom-line.png"></cover-image>
+  </cover-view>
+  <cover-view wx:key="index" class="tab-bar-item" data-index="1" data-path="/pages/arms/arms" catchtap="switchTab">
+    <cover-image class="mb" src="{{selected == 1 ? '/assets/images/gan-select.png' : '/assets/images/gan.png'}}"></cover-image>
+    <cover-image class="line" src="/assets/images/bottom-line.png"></cover-image>
+  </cover-view>
+  <cover-view wx:key="index" class="tab-bar-item" catchtap="cameraTap">
+    <cover-image class="mb" src="/assets/images/camera.png"></cover-image>
+    <cover-image class="line" src="/assets/images/bottom-line.png"></cover-image>
+  </cover-view>
+  <cover-view wx:key="index" class="tab-bar-item" data-index="2" data-path="/pages/booking/booking" catchtap="switchTab">
+    <cover-image class="mb" src="{{selected == 2 ? '/assets/images/booking-select.png' : '/assets/images/booking.png'}}"></cover-image>
+    <cover-image class="line" src="/assets/images/bottom-line.png"></cover-image>
+  </cover-view>
+  <cover-view wx:key="index" class="tab-bar-item" data-index="3" data-path="/pages/my/my" catchtap="switchTab">
+    <cover-image class="mb" src="{{selected ==3 ? '/assets/images/my-select.png' : '/assets/images/my.png' }}"></cover-image>
+  </cover-view>
+  
+  <!-- <cover-view wx:for="{{list}}" wx:key="index" class="tab-bar-item" data-path="{{item.pagePath}}" data-index="{{index}}" catchtap="switchTab">
+    <cover-image src="{{selected === index ? item.selectedIconPath : item.iconPath}}"></cover-image>
+    <cover-view style="color: {{selected === index ? selectedColor : color}}">{{item.text}}</cover-view>
+  </cover-view> -->
+</cover-view>

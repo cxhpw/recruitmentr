@@ -1,0 +1,102 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+.hd {
+  height: 44px;
+  background: #fff;
+  padding: 0 30rpx;
+  @include border-bottom(#EBEBEB, 30rpx, 30rpx);
+  .flex-box {
+    height: 100%;
+  }
+  .tabs {
+    display: flex;
+    align-items: center;
+    margin: 0 -15rpx;
+    .tab {
+      font-size: 25rpx;
+      color: #666;
+      font-weight: 500;
+      box-sizing: border-box;
+      padding: 15rpx;
+      &.active {
+        color: #000;
+      }
+    }
+  }
+  .filter-wrapper {
+    display: flex;
+    .filter-item {
+      background: #f5f5f5;
+      height: 46rpx;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 25rpx;
+      margin-left: 14rpx;
+      border-radius: 2px;
+      &:after {
+        content: "";
+        display: inline-block;
+        border-width: 7rpx;
+        border-style: solid;
+        border-color: transparent #C7C7C7 #C7C7C7 transparent;
+        margin-left: 5rpx;
+        margin-top: 10rpx;
+      }
+    }
+  }
+}
+
+.seeker-list {
+  .item {
+    background: #fff;
+    padding: 35rpx 30rpx;
+    border-bottom: 15rpx solid $borderColor;
+    .flex-box {
+      margin-bottom: 30rpx;
+    }
+    .image-wrapper {
+      width: 85rpx;
+      height: 85rpx;
+      position: relative;
+      .avatar {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+      }
+      .sex-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40rpx;
+        height: 40rpx;
+        border-radius: 50%;
+      }
+    }
+    .dot {
+      margin: 0 5rpx;
+    }
+    .icon {
+      width: 30rpx;
+      height: 30rpx;
+      margin-right: 10rpx;
+    }
+    .name {
+      font-size: 33rpx;
+      font-weight: 500;
+      margin-bottom: 20rpx;
+    }
+    .base {
+      font-size: 24prpx;
+    }
+    .work {
+      font-size: 25rpx;
+      margin-bottom: 20rpx;
+      display: flex;
+      align-items: center;
+    }
+    .summary {
+      font-size: 25rpx;
+      color: #666;
+    }
+  }
+}

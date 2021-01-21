@@ -80,7 +80,7 @@ App({
     var temp = {
       apiname: 'getuserinfo',
     }
-    return new Promise( (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.request({
         url: this.api.host + 'Include/Weixin/wechatdata',
         data: temp,
@@ -109,11 +109,11 @@ App({
     mylogin: false,
     safeArea: false,
     filterData: null,
-    userType: 'user' // 'user'|'hr'
+    userType: 'user', // 'user'|'hr'
   },
   api: {
-    host: 'https://wx.tuhuabao.net/',
-    // host: 'http://192.168.1.17:8088/'
+    // host: 'https://wx.tuhuabao.net/',
+    host: 'http://192.168.1.18:8088',
   },
   updataOptions: function (t, a) {
     ;(null != this.globalData.nextOptions &&

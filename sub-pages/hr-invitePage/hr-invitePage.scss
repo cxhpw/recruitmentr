@@ -1,0 +1,120 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+.top-section {
+  background: $bodycolor;
+  height: 260rpx;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+  .title {
+    font-size: 43rpx;
+    color: #fff;
+    padding-top: 90rpx;
+  }
+}
+
+.cell-section {
+  border-radius: 6px;
+  margin-top: -75rpx;
+  overflow: hidden;
+  .my-cell {
+    padding: 20rpx 30rpx !important;
+    .title {
+      font-size: 25rpx;
+      color: 29rpx;
+      color: #333;
+    }
+    .value {
+      font-size: 25rpx;
+      color: #333;
+    }
+  }
+}
+
+.date-section {
+  background: #fff;
+  padding: 30rpx;
+  margin-top: 20rpx;
+  border-radius: 6px;
+  overflow: hidden;
+  .title {
+    font-size: 34rpx;
+    font-weight: 500;
+    margin-bottom: 30rpx;
+  }
+}
+
+.remark-section {
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  .title {
+    font-size: 25rpx;
+    font-weight: 500;
+    margin-bottom: 30rpx;
+  }
+  .textarea-control {
+    height: 175rpx;
+    font-size: 25rpx;
+    background: #f5f5f5;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .count {
+    position: absolute;
+    font-size: 20rpx;
+    color: #BCBCBC;
+    right: 10px;
+    bottom: 10px;
+  }
+}
+
+.page {
+  padding-bottom: 160rpx;
+  &.safeArea {
+    padding-bottom: calc(160rpx + 30px);
+    .button-geoup {
+      padding-bottom: 30px;
+    }
+  }
+}
+.button-group {
+  display: flex;
+  align-items: center;
+  height: 140rpx;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 0 40rpx;
+}
+
+.model {
+  background: #fff;
+  width: 490rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .icon {
+    margin-bottom: 30rpx;
+    margin-top: 70rpx;
+  }
+  .title {
+    font-size: 36rpx;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 20rpx;
+  }
+  .summary {
+    font-size: 25rpx;
+    color: #999999;
+  }
+  .button {
+    font-size: 30rpx;
+    margin-top: 100rpx;
+  }
+}

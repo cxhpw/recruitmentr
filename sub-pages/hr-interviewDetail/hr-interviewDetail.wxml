@@ -57,7 +57,7 @@
   </view>
   <view class='fixed-bottom'>
     <view class='button-group'>
-      <button class='button button-cancel'>重新邀约</button>
+      <button class='button button-cancel' catch:tap="onClick">重新邀约</button>
       <button class='button button-normal' catch:tap="onRemarkTap">编辑牛人备注</button>
     </view>
   </view>
@@ -65,6 +65,7 @@
     <view class='model-popup'>
       <view class='header'>面试备注</view>
       <view class='body'>
+        <view class='title'>选择标签</view>
         <view class='checkbox-list'>
           <van-checkbox-group custom-class='checkbox-group' value="{{  labelsSelected }}" bind:change="onLabelsChange">
             <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ labels }}" wx:key="{{ index }}">
@@ -76,6 +77,7 @@
           <view class='title'>添加备注</view>
           <textarea maxlength="140" class='textarea-control' placeholder-style="color: #BCBCBC" placeholder="请补充其他说明" disable-default-padding></textarea>
         </view>
+        <view class='button button-normal button-block'>确定</view>
       </view>
     </view>
   </van-popup>

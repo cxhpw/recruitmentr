@@ -8,47 +8,55 @@ page {
 }
 .top-section {
   color: #fff;
+  padding: 50rpx 40rpx;
   background: $bodycolor;
-  padding: 40rpx 40rpx 0;
   .avatar {
     width: 110rpx;
     height: 110rpx;
     flex: 0 0 110rpx;
     border-radius: 50%;
     margin-right: 20rpx;
+    background: #fff;
   }
   .con {
     flex: 1;
   }
   .name {
-    font-size: 40rpx;
+    font-size: 42rpx;
     font-weight: 500;
     line-height: 1;
   }
   .info {
-    font-size: 22rpx;
+    font-size: 24rpx;
     margin-top: 20rpx;
-    text {
-      margin-right:10rpx;
+    display: flex;
+    align-items: center;
+    .icon {
+      width: 34rpx;
+      height: 34rpx;
+      margin-right: 10rpx;
     }
   }
 }
 
 .nav-section {
-  background: $bodycolor;
+  background: #fff;
   color: #fff;
-  padding: 0 40rpx;
   box-sizing: border-box;
+  border-bottom: 15rpx solid #f8f8f8;
   .flex-item {
     text-align: center;
     padding: 46rpx 0;
   }
-  .num {
-    font-size: 30rpx;
-    margin-bottom:14rpx;
+  .image {
+    width: 75rpx;
+    height: 75rpx;
+    display: block;
+    margin: 0 auto 15rpx;
   }
   .text {
-    font-size: 22rpx;
+    font-size: 24rpx;
+    color: #333;
   }
 }
 .van-cell-num {

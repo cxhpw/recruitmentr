@@ -1,0 +1,72 @@
+<view class="page">
+  <view class='container'>
+    <form class='form' bindsubmit="onSubmit">
+      <view class='form-group'>
+        <view class='label'>公司名称</view>
+        <view class='form-group__input'>
+          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写公司名称" />
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>公司简称</view>
+        <view class='form-group__input'>
+          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写公司简称" />
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>公司行业</view>
+        <view class='form-group__input'>
+          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请选择公司行业" />
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>人员规模</view>
+        <view class='form-group__input'>
+          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写人员规模" />
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='flex-box'>
+          <view class='label photo-label'>
+            <view>营业执照</view>
+            <view>请上传营业执照</view>
+          </view>
+          <view class='fr'>
+            <upload wux-class="my_upload" width="200rpx" height="200rpx" id="upload-room" progress bind:fail="onFail" bind:before="onBefore" bind:preview="onPreview" bind:success="onSuccess" bind:complete="onComplete" bind:remove="onRemove" listType="picture-card" showUploadList fileList="{{fileList}}" url="{{url}}" name="uploadfile" header="{{ header }}" formData="{{formData}}" count="4" max="1" showSelect="{{ showSelect }}" showRemoveIcon="{{showRemoveIcon}}">
+              <view class="upload_btn" style="margin-right: 0 !important;">
+                <view class="icon">
+                  <icon custom-class="bold" name="plus" size="24" color="#808599" />
+                </view>
+                <view class="text">添加图片</view>
+              </view>
+            </upload>
+          </view>
+        </view>
+      </view>
+      <view class='title'>请在如下信息中选择一项进行补充填写</view>
+      <view class='form-group'>
+        <view class='label'>统一社会信用代码</view>
+        <view class='form-group__input'>
+          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写统一社会信用代码" />
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>纳税人识别号</view>
+        <view class='form-group__input'>
+          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写纳税人识别号" />
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>工商注册号</view>
+        <view class='form-group__input'>
+          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写工商注册号" />
+        </view>
+      </view>
+      <view class='fixed-bottom'>
+        <view class='confirm-group'>
+          <button class='button button-block button-normal'>完成</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>

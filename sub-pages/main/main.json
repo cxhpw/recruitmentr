@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "index": "/sub-pages/hr-index/hr-index",
+    "messgae": "/sub-pages/hr-message/hr-message",
+    "my": "/sub-pages/hr-my/hr-my"
+  },
+  "navigationBarBackgroundColor": "#0866ff",
+  "navigationBarTextStyle": "white"
+}

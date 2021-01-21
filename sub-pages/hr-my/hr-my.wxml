@@ -1,0 +1,88 @@
+<view class="sub-page">
+  <view class='top-section'>
+    <view class='flex-box align-center'>
+      <image class='avatar' src='{{mylogin ? "/assets/images/首页_03.jpg" : "/assets/images/avatar.png" }}'></image>
+      <view class='con'>
+        <view class='name'>{{ mylogin ? '郑小姐' : '注册' }}</view>
+        <view class='info' wx:if="{{ mylogin }}">
+          <text>阿里巴巴</text>
+          <text>·</text>
+          <text>人力</text>
+        </view>
+      </view>
+      <icon name='arrow' size='15' color='#fff'></icon>
+    </view>
+  </view>
+  <view class='nav-section'>
+    <view class='flex-box'>
+      <view class='flex-item' catch:tap='onNavTo' data-url='/pages/talked/talked'>
+        <view class='num'>1</view>
+        <view class='text'>沟通过</view>
+      </view>
+      <view class='flex-item' catch:tap='onNavTo' data-url='/sub-pages/hr-interview/hr-interview'>
+        <view class='num'>1</view>
+        <view class='text'>面试</view>
+      </view>
+      <view class='flex-item' catch:tap='onNavTo' data-url='/pages/collect/collect'>
+        <view class='num'>1</view>
+        <view class='text'>收藏</view>
+      </view>
+    </view>
+  </view>
+  <view class=''>
+    <van-cell custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-position/hr-position">
+      <view slot="title">
+        <view class="flex-box align-center">
+          <view class='van-cell-num'>1</view>
+          <view class="van-cell-text f22">个在线职位</view>
+        </view>
+      </view>
+      <view class='f24 c666'>管理职位</view>
+    </van-cell>
+  </view>
+  <view class='cell-wrapper'>
+    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-company/hr-company">
+      <view slot="title">
+        <view class="flex-box align-center">
+          <image class='icon' src='/assets/images/icon-qiye1.png'></image>
+          <view class="van-cell-text f28">企业主页</view>
+        </view>
+      </view>
+    </van-cell>
+    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-companyCertification/hr-companyCertification">
+      <view slot="title">
+        <view class="flex-box align-center">
+          <image class='icon' src='/assets/images/icon-certification.png'></image>
+          <view class="van-cell-text f28">企业认证</view>
+        </view>
+      </view>
+    </van-cell>
+    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onAgencyTap">
+      <view slot="title">
+        <view class="flex-box align-center">
+          <image class='icon' src='/assets/images/icon-user1.png'></image>
+          <view class="van-cell-text f28">个人信息</view>
+        </view>
+      </view>
+    </van-cell>
+    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onAgencyTap">
+      <view slot="title">
+        <view class="flex-box align-center">
+          <image class='icon' src='/assets/images/icon_togger.png'></image>
+          <view class="van-cell-text f28">切换为求职者</view>
+        </view>
+      </view>
+    </van-cell>
+  </view>
+  <swiper class='my-swiper' indicator-dots indicator-active-color="#2351D3">
+    <swiper-item>
+      <image class='image' src='https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image class='image' src='https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image class='image' src='https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
+    </swiper-item>
+  </swiper>
+</view>

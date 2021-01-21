@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "calendar": "../../components/calendar",
+    "van-popup": "@vant/weapp/popup/index"
+  },
+  "navigationBarTitleText": "邀请面试",
+  "navigationBarBackgroundColor": "#0866ff",
+  "navigationBarTextStyle": "white"
+}

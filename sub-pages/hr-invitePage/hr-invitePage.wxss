@@ -1,0 +1,98 @@
+.top-section {
+  background: #0866FF;
+  height: 260rpx;
+  padding: 0 40rpx;
+  box-sizing: border-box; }
+  .top-section .title {
+    font-size: 43rpx;
+    color: #fff;
+    padding-top: 90rpx; }
+
+.cell-section {
+  border-radius: 6px;
+  margin-top: -75rpx;
+  overflow: hidden; }
+  .cell-section .my-cell {
+    padding: 20rpx 30rpx !important; }
+    .cell-section .my-cell .title {
+      font-size: 25rpx;
+      color: 29rpx;
+      color: #333; }
+    .cell-section .my-cell .value {
+      font-size: 25rpx;
+      color: #333; }
+
+.date-section {
+  background: #fff;
+  padding: 30rpx;
+  margin-top: 20rpx;
+  border-radius: 6px;
+  overflow: hidden; }
+  .date-section .title {
+    font-size: 34rpx;
+    font-weight: 500;
+    margin-bottom: 30rpx; }
+
+.remark-section {
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  margin-top: 20rpx;
+  padding: 30rpx;
+  box-sizing: border-box; }
+  .remark-section .title {
+    font-size: 25rpx;
+    font-weight: 500;
+    margin-bottom: 30rpx; }
+  .remark-section .textarea-control {
+    height: 175rpx;
+    font-size: 25rpx;
+    background: #f5f5f5;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box; }
+  .remark-section .count {
+    position: absolute;
+    font-size: 20rpx;
+    color: #BCBCBC;
+    right: 10px;
+    bottom: 10px; }
+
+.page {
+  padding-bottom: 160rpx; }
+  .page.safeArea {
+    padding-bottom: calc(160rpx + 30px); }
+    .page.safeArea .button-geoup {
+      padding-bottom: 30px; }
+
+.button-group {
+  display: flex;
+  align-items: center;
+  height: 140rpx;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 0 40rpx; }
+
+.model {
+  background: #fff;
+  width: 490rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .model .icon {
+    margin-bottom: 30rpx;
+    margin-top: 70rpx; }
+  .model .title {
+    font-size: 36rpx;
+    color: #000;
+    font-weight: 500;
+    margin-bottom: 20rpx; }
+  .model .summary {
+    font-size: 25rpx;
+    color: #999999; }
+  .model .button {
+    font-size: 30rpx;
+    margin-top: 100rpx; }

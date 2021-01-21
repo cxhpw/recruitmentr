@@ -98,7 +98,13 @@ page {
     line-height: 50px;
   }
   .body {
-    padding: 40rpx;
+    padding: 20rpx 40rpx 40rpx;
+    box-sizing: border-box;
+    > .title {
+      margin-bottom: 30rpx;
+      font-weight: 500;
+      font-size: 25rpx;
+    }
   }
   .wrapper {
     .title {
@@ -113,6 +119,10 @@ page {
       border-radius: 4px;
       width: 100%;
       padding: 10px;
+      box-sizing: border-box;
     }
+  }
+  .button {
+    margin-top: 30rpx;
   }
 }

@@ -64,11 +64,11 @@
     }
   }
   .past {
-    // opacity: 0.3;
-    // pointer-events: none;
-    // &::before{
-    //   display: none !important;
-    // }
+    opacity: 0.3;
+    pointer-events: none;
+    &::before{
+      display: none !important;
+    }
   }
 
   .fade {
