@@ -25,10 +25,12 @@ export function postCollect(id) {
  * @summary status 0：全部 1：待沟通 99：沟通中
  */
 export function requestList(params) {
+  
   return request({
     url: '/include/getdata',
     data: {
       apiname: 'getinterviewlist',
+      ...params
     },
   })
 }

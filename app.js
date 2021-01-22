@@ -102,11 +102,15 @@ App({
     mylogin: false,
     safeArea: false,
     filterData: null,
+    filterArea: [
+      { RegionName: '北京', RegionCode: '11' },
+      { RegionName: '北京市辖区', RegionCode: '110100000000' },
+    ],
     userType: 'user', // 'user'|'hr'
   },
   api: {
-    // host: 'https://wx.tuhuabao.net/',
-    host: 'http://192.168.1.18:8088',
+    host: 'http://daf10181.hk2.ue.net.cn',
+    // host: 'http://192.168.1.18:8088',
   },
   updataOptions: function (t, a) {
     ;(null != this.globalData.nextOptions &&

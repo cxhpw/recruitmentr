@@ -14,6 +14,7 @@ Component({
       requestHRInfo().then((res) => {
         app.globalData.hrInfo = res.data
         this.setData({
+          mylogin: true,
           user: res.data
         })
       })

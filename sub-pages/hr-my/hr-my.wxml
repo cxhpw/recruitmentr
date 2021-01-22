@@ -23,7 +23,7 @@
         <view class='num'>{{ user.InterviewCount }}</view>
         <view class='text'>面试</view>
       </view>
-      <view class='flex-item' catch:tap='onNavTo' data-url='/pages/collect/collect'>
+      <view class='flex-item' catch:tap='onNavTo' data-url='/sub-pages/hr-collect/hr-collect'>
         <view class='num'>{{ user.FavoritesCount }}</view>
         <view class='text'>收藏</view>
       </view>

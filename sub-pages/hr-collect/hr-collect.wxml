@@ -1,0 +1,44 @@
+<view class="page">
+  <van-tabs sticky active="{{ active }}" bind:change="onChange" line-width="{{ 15 }}" color="#0866FF">
+    <van-tab wx:for="{{ tabs }}" title="{{item.title}}">
+      <view class='prey-list'>
+        <view class='item' wx:for="{{lists[index].data}}" wx:key="{{cell.AutoID}}" wx:for-item="cell">
+          <view class='flex-box align-center'>
+            <view class='image-wrapper'>
+              <image src='/assets/images/avatar.png' class='avatar'></image>
+              <image src='/assets/images/girl.png' class='sex'></image>
+            </view>
+            <view class='flex-item'>
+              <view class='flex-box align-center mb20'>
+                <view class='name'>林志玲</view>
+                <view class='f24 c666'>
+                  <text>林志玲</text>
+                  <text>6年</text>
+                  <text>|</text>
+                  <text>本科</text>
+                  <text>|</text>
+                  <text>6-10K</text>
+                </view>
+              </view>
+              <view class='f28'>
+                <text>电子</text>
+                <text class='dot'>·</text>
+                <text>.NET</text>
+              </view>
+            </view>
+          </view>
+          <view class='summary'>
+            本人忠实诚信，讲原则，说到做到，决不推卸责任；有自制
+        力,做事情始终坚持有始有终，从不半途而废；肯学习，有...
+          </view>
+          <view class='date'>
+            12月29日 08:04
+            <view class='fr'>沟通中</view>
+          </view>
+        </view>
+      </view>
+      <nomore wx:if="{{lists[index].nomore}}" />
+      <loadButton wx:if="{{!lists[index].nomore}}" loading="{{lists[index].loading}}" text="{{lists[index].buttontext}}" />
+    </van-tab>
+  </van-tabs>
+</view>

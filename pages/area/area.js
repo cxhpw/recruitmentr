@@ -1,7 +1,6 @@
 const app = getApp()
 import { requestList } from '../../api/hr/resume'
 import { requestRegion, requestRegionById } from '../../api/region'
-let eventChannel
 Page({
   /**
    * 页面的初始数据
@@ -34,19 +33,14 @@ Page({
   },
   onCTap(e) {
     const { code, index } = e.currentTarget.dataset
-    console.log(eventChannel)
+    const { province, pindex, city } = this.data
+    app.globalData.filterArea = [province[pindex], city[index]]
     this.setData(
       {
         Ccode: code,
         cindex: index,
       },
       () => {
-        eventChannel.emit('areaPage', {
-          data: [
-            this.data.province[this.data.pindex],
-            this.data.city[this.data.cindex],
-          ],
-        })
         wx.navigateBack()
       }
     )
@@ -57,8 +51,27 @@ Page({
   onLoad: function (options) {
     requestRegionById().then((res) => {
       console.log(res)
+      if (app.globalData.filterArea) {
+        requestRegionById(app.globalData.filterArea[0].RegionCode).then(
+          (res) => {
+            this.setData({
+              city: res.data.dataList,
+              Ccode: app.globalData.filterArea[1].RegionCode,
+            })
+          }
+        )
+      }
+      let pindex = 0
+      for (let i = 0; i < res.data.dataList.length; i++) {
+        const element = res.data.dataList[i]
+        if (element.RegionCode === app.globalData.filterArea[0].RegionCode) {
+          pindex = i
+        }
+      }
       this.setData({
         province: res.data.dataList,
+        Pcode: app.globalData.filterArea[0].RegionCode,
+        pindex,
       })
     })
   },

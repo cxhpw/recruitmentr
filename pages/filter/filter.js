@@ -1,4 +1,5 @@
 const app = getApp()
+import { requestResumeFilter } from '../../api/config'
 Page({
   /**
    * 页面的初始数据
@@ -70,6 +71,7 @@ Page({
       experiences: [],
       educations: [],
     })
+    app.globalData.filterData = null
   },
   onConfirm() {
     const { wages, types, experiences, educations } = this.data
@@ -79,7 +81,17 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    requestResumeFilter().then((res) => {
+      console.log('筛选条件' ,res)
+      this.setData({
+        educationSelector: res.data[0].keyvalue.slice(1),
+        wageSelector: res.data[1].keyvalue.slice(1),
+        experienceSelector: res.data[2].keyvalue.slice(1),
+        typeSelector: res.data[3].keyvalue.slice(1)
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -89,7 +101,16 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    if(app.globalData.filterData) {
+      this.setData({
+        educations: app.globalData.filterData.educations,
+        experiences:  app.globalData.filterData.experiences,
+        types:  app.globalData.filterData.types,
+        wages:  app.globalData.filterData.wages
+      })
+    }
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

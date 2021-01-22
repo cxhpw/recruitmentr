@@ -12,8 +12,8 @@
         </view>
         <view class='fr'>
           <view class="filter-wrapper">
-            <view class='filter-item' catch:tap="onAreaTap">深圳</view>
-            <view class='filter-item' catch:tap="onNavTo" data-url="/pages/filter/filter">筛选</view>
+            <view class='filter-item' catch:tap="onAreaTap">{{filterArea[1].RegionName}}</view>
+            <view class='filter-item' catch:tap="onNavTo" data-url="/pages/filter/filter">{{!filterData ? '筛选' : filterText }}</view>
           </view>
         </view>
       </view>

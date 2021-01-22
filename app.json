@@ -97,7 +97,8 @@
         "main/main",
         "hr-message/hr-message",
         "hr-account/hr-account",
-        "hr-register/hr-register"
+        "hr-register/hr-register",
+        "hr-collect/hr-collect"
       ]
     }
   ]

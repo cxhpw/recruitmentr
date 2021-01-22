@@ -8,26 +8,29 @@ Page({
     tabs: [{ title: '全部' }, { title: '开放中' }, { title: '已关闭' }],
     lists: [],
     safeArea: app.globalData.safeArea ? 'safeArea' : '',
+    initList: false
   },
   onChange(e) {
     console.log(e)
   },
   initList() {
-    var listTemp = []
+    console.log(213123)
+    var lists = []
     for (var i = 0; i < this.data.tabs.length; i++) {
-      listTemp[i] = {}
-      listTemp[i].pageNum = 1
-      listTemp[i].loading = true
-      listTemp[i].nomore = false
-      listTemp[i].init = false
-      listTemp[i].data = [{}, {}, {}]
-      listTemp[i].buttontext = '加载中...'
-      listTemp[i].loadData = false
+      lists[i] = {}
+      lists[i].pageNum = 1
+      lists[i].loading = true
+      lists[i].nomore = false
+      lists[i].init = false
+      lists[i].data = [{}, {}, {}]
+      lists[i].buttontext = '加载中...'
+      lists[i].loadData = false
     }
     this.setData({
       initList: true,
-      lists: listTemp,
+      lists: lists,
     })
+    return Promise.resolve()
   },
   getLists(pageNum) {
     const { active, lists, tabs } = this.data
@@ -93,7 +96,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initList() && this.getLists(1)
+    this.initList().then(() => {
+      console.log(123123)
+      this.getLists(1)
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
