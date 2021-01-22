@@ -69,12 +69,6 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "pages/area/area",
-                    "pathName": "pages/area/area",
-                    "query": "",
-                    "scene": null
-                },
-                {
                     "name": "pages/fiter/fiter",
                     "pathName": "pages/fiter/fiter",
                     "query": "",
@@ -233,6 +227,18 @@
                 {
                     "name": "sub-pages/hr-positionDetail/hr-positionDetail",
                     "pathName": "sub-pages/hr-positionDetail/hr-positionDetail",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/main/main",
+                    "pathName": "sub-pages/main/main",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/area/area",
+                    "pathName": "pages/area/area",
                     "query": "",
                     "scene": null
                 }

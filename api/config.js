@@ -39,3 +39,33 @@ export function requestPositionName() {
     },
   })
 }
+
+/**
+ * 简历筛选条件
+ */
+export function requestResumeFilter() {
+  return request({
+    url: '/config/filter-resume.json',
+    data: {}
+  })
+}
+
+/**
+ * 公司筛选条件
+ */
+export function requestCompanyFilter() {
+  return request({
+    url: '/config/filter-company.json',
+    data: {},
+  })
+}
+
+/**
+ * 职位筛条件
+ */
+export function requestJopFilter() {
+  return request({
+    url: '/config/filter-job.json',
+    data: {}
+  })
+}

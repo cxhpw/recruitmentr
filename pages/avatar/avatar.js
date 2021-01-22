@@ -53,10 +53,11 @@ Page({
       } else {
         console.log(path)
         var uploadTask = wx.uploadFile({
-          url: app.api.wxhost + 'Include/Ajax/uploadfilenew.aspx',
+          url: app.api.host + '/include/getdata',
           filePath: path,
-          name: 'uploadfile',
+          name: 'file',
           formData: {
+            apiname: 'uploadfile',
             customrdsession: wx.getStorageSync('LogiSessionKey'),
             encrypttime: encodeURIComponent(
               encrypt(getTimeStr(Date.now(), 'datetime', true))
@@ -66,6 +67,7 @@ Page({
             'Content-Type': 'multipart/form-data',
           },
           success: function (res) {
+            console.log('图片上传', res)
             var data = JSON.parse(res.data)
             getCurrentPages()[getCurrentPages().length - 2].setData({
               avator: data.filename,

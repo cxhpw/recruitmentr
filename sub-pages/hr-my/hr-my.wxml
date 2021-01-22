@@ -1,13 +1,13 @@
 <view class="sub-page">
   <view class='top-section'>
     <view class='flex-box align-center'>
-      <image class='avatar' src='{{mylogin ? "/assets/images/首页_03.jpg" : "/assets/images/avatar.png" }}'></image>
+      <image class='avatar' src='{{ mylogin ? user.HeaderPhoto : "/assets/images/avatar.png" }}'></image>
       <view class='con'>
-        <view class='name'>{{ mylogin ? '郑小姐' : '注册' }}</view>
+        <view class='name'>{{ mylogin ? user.Name : '注册' }}</view>
         <view class='info' wx:if="{{ mylogin }}">
-          <text>阿里巴巴</text>
+          <text>{{ user.Abbreviat }}</text>
           <text>·</text>
-          <text>人力</text>
+          <text>{{ user.Job }}</text>
         </view>
       </view>
       <icon name='arrow' size='15' color='#fff'></icon>
@@ -16,15 +16,15 @@
   <view class='nav-section'>
     <view class='flex-box'>
       <view class='flex-item' catch:tap='onNavTo' data-url='/pages/talked/talked'>
-        <view class='num'>1</view>
+        <view class='num'>{{ user.ContactsCount }}</view>
         <view class='text'>沟通过</view>
       </view>
       <view class='flex-item' catch:tap='onNavTo' data-url='/sub-pages/hr-interview/hr-interview'>
-        <view class='num'>1</view>
+        <view class='num'>{{ user.InterviewCount }}</view>
         <view class='text'>面试</view>
       </view>
       <view class='flex-item' catch:tap='onNavTo' data-url='/pages/collect/collect'>
-        <view class='num'>1</view>
+        <view class='num'>{{ user.FavoritesCount }}</view>
         <view class='text'>收藏</view>
       </view>
     </view>
@@ -33,7 +33,7 @@
     <van-cell custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-position/hr-position">
       <view slot="title">
         <view class="flex-box align-center">
-          <view class='van-cell-num'>1</view>
+          <view class='van-cell-num'>{{ user.JobCount }}</view>
           <view class="van-cell-text f22">个在线职位</view>
         </view>
       </view>
@@ -75,12 +75,6 @@
     </van-cell>
   </view>
   <swiper class='my-swiper' indicator-dots indicator-active-color="#2351D3">
-    <swiper-item>
-      <image class='image' src='https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
-    </swiper-item>
-    <swiper-item>
-      <image class='image' src='https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
-    </swiper-item>
     <swiper-item>
       <image class='image' src='https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
     </swiper-item>

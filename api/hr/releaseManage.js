@@ -35,8 +35,35 @@ export function postReleaseJop(params) {
   })
 }
 
+/**
+ * 获取职位管理
+ * @param {{
+ * pageindex: Number,
+ * pagesize: NUmber,
+ * status: Number
+ * }} params 
+ * @summary status 0：全部 1：已关闭 99：开放中
+ */
 export function requestJopInfo(params) {
   return request({
-    url: 
+    url: '/include/getdata',
+    data: {
+      apiname: 'getcompanyjoblist',
+    },
+  })  
+}
+
+/**
+ * 获取职位管理详情
+ * @param {Number} id 
+ */
+export function requestDetailById(id) {
+  return request({
+    url: '/include/getdata',
+    data: {
+      apiname: 'getcompanyjobdetial',
+      id
+    },
   })
 }
+

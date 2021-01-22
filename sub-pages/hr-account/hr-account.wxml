@@ -4,25 +4,33 @@
       <view class='form-group'>
         <view class='label'>公司名称</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写公司名称" />
+          <input disabled="{{true}}" name='longCompany' value="{{ form.longCompany }}" type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写公司名称" />
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>公司简称</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写公司简称" />
+          <input name="shortCompany" type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写公司简称" />
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>公司行业</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请选择公司行业" />
+          <picker name="industryValue" id="picker" mode="selector" range="{{industry}}" value="{{industryValue}}" bindchange="onIndustryChange">
+            <view wx:if="{{ industryValue === - 1 }}" class='placeholder'>请选择公司行业</view>
+            <view wx:else>{{industry[industryValue]}}</view>
+          </picker>
+          <!-- <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请选择公司行业" /> -->
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>人员规模</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写人员规模" />
+          <picker name="companyValue" id="picker" mode="selector" range="{{companySize}}" value="{{companyValue}}" bindchange="onCompanySizeChange">
+            <view wx:if="{{ companyValue === - 1 }}" class='placeholder'>请选择公司规模</view>
+            <view wx:else>{{companySize[companyValue]}}</view>
+          </picker>
+          <!-- <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写人员规模" /> -->
         </view>
       </view>
       <view class='form-group'>
@@ -32,7 +40,7 @@
             <view>请上传营业执照</view>
           </view>
           <view class='fr'>
-            <upload wux-class="my_upload" width="200rpx" height="200rpx" id="upload-room" progress bind:fail="onFail" bind:before="onBefore" bind:preview="onPreview" bind:success="onSuccess" bind:complete="onComplete" bind:remove="onRemove" listType="picture-card" showUploadList fileList="{{fileList}}" url="{{url}}" name="uploadfile" header="{{ header }}" formData="{{formData}}" count="4" max="1" showSelect="{{ showSelect }}" showRemoveIcon="{{showRemoveIcon}}">
+            <upload wux-class="my_upload" width="200rpx" height="200rpx" id="upload-room" progress bind:fail="onFail" bind:before="onBefore" bind:preview="onPreview" bind:success="onSuccess" bind:complete="onComplete" bind:remove="onRemove" listType="picture-card" showUploadList fileList="{{fileList}}" url="{{url}}" name="file" header="{{ header }}" formData="{{formData}}" count="4" max="1" showSelect="{{ showSelect }}" showRemoveIcon="{{showRemoveIcon}}">
               <view class="upload_btn" style="margin-right: 0 !important;">
                 <view class="icon">
                   <icon custom-class="bold" name="plus" size="24" color="#808599" />
@@ -47,24 +55,24 @@
       <view class='form-group'>
         <view class='label'>统一社会信用代码</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写统一社会信用代码" />
+          <input name="creditNumber" type="text" class='form-control' placeholder-class="placeholder" placeholder="请输入18位统一社会信用代码" />
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>纳税人识别号</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写纳税人识别号" />
+          <input name="taxpayerNumber" type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写纳税人识别号" />
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>工商注册号</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写工商注册号" />
+          <input name="businessNumber" type="text" class='form-control' placeholder-class="placeholder" placeholder="请填写工商注册号" />
         </view>
       </view>
       <view class='fixed-bottom'>
         <view class='confirm-group'>
-          <button class='button button-block button-normal'>完成</button>
+          <button class='button button-block button-normal' form-type="submit">完成</button>
         </view>
       </view>
     </form>

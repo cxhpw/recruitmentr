@@ -1,16 +1,16 @@
+import { togglerRole  } from '../../api/user'
 // index.js
 // 获取应用实例
 const app = getApp()
-
 Page({
   data: {
     tabs: [{ title: '推荐' }, { title: '最新' }],
     tabIndex: 0,
     list: [{}, {}, {}, {}, {}, {}, {}],
     loading: true,
-    buttontext:'加载中',
+    buttontext: '加载中',
     nomore: false,
-    pageNum: 1
+    pageNum: 1,
   },
   // 事件处理函数
   getList: function (pageNum = 1) {
@@ -68,8 +68,10 @@ Page({
   onNavTo(e) {
     const { url } = e.currentTarget.dataset
     wx.navigateTo({
-      url
+      url,
     })
   },
-  onLoad() {},
+  onLoad() {
+    togglerRole(99)
+  },
 })

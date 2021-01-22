@@ -1,24 +1,22 @@
+import { requestHRInfo  } from '../../api/hr/company'
 const app = getApp()
 Component({
   data: {
-    mylogin: false,
+    mylogin: app.globalData.mylogin,
     user: null,
-    isRegister: false,
   },
   options: {
     addGlobalClass: true,
   },
   lifetimes: {
     attached: function () {
-      console.log('我的挂载')
-      app
-        .getUserInfos()
-        .then((res) => {
-          console.log('个人信息', res)
+      console.log('我的,挂载')
+      requestHRInfo().then((res) => {
+        app.globalData.hrInfo = res.data
+        this.setData({
+          user: res.data
         })
-        .catch(() => {
-          console.error('未授权')
-        })
+      })
     },
     moved: function () {},
     detached: function () {},
@@ -32,12 +30,6 @@ Component({
     onNavTo(e) {
       let { url } = e.currentTarget.dataset
       const { mylogin, isRegister } = this.data
-      if (!mylogin) {
-        url = '/pages/login/login'
-      }
-      if (!isRegister) {
-        url = '/pages/register/register'
-      }
       wx.navigateTo({
         url,
       })

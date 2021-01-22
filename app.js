@@ -1,5 +1,6 @@
 //app.js
-import { getTimeStr, encrypt, decrypt } from './utils/util'
+import { getTimeStr, encrypt } from './utils/util'
+import { togglerRole } from './api/user'
 import './utils/es6-promise.min.js'
 global.Promise && (Promise = global.Promise)
 var timer
@@ -10,15 +11,17 @@ App({
 
     this.updateAppHandle()
     // 登录
-    this.checkLoginStatus()
+    this.getRoleInfos()
       .then((res) => {
-        this.getUserInfos()
+        console.log('会员信息', res)
+        if (res.data.Role === 1) {
+          // togglerRole(99)
+        }
       })
-      .catch((err) => {
-        console.error(err)
+      .catch((error) => {
+        console.error(error)
       })
 
-    // this.getConfig()
     wx.getSystemInfo({
       success: (res) => {
         console.log('系统信息', res)
@@ -30,17 +33,8 @@ App({
       },
     })
   },
-  getConfig() {
-    this.request({
-      url: this.api.host + 'Include/Weixin/wechatdata.aspx',
-      data: {
-        apiname: 'getconfig',
-      },
-      success: (res) => {
-        console.log('配置', res)
-        this.globalData.config = res.data
-      },
-    })
+  onShow: function () {
+    console.log('App show')
   },
   checkLoginStatus() {
     return new Promise((resolve, reject) => {
@@ -48,7 +42,7 @@ App({
         success: (res) => {
           var code = res.code
           wx.request({
-            url: this.api.host + 'Include/Weixin/wechatapp',
+            url: this.api.host + '/include/getdata',
             method: 'POST',
             data: {
               apiname: 'wechatuseropenid',
@@ -76,24 +70,23 @@ App({
       })
     })
   },
-  getUserInfos: function () {
-    var temp = {
-      apiname: 'getuserinfo',
-    }
+  getRoleInfos: function () {
     return new Promise((resolve, reject) => {
       this.request({
-        url: this.api.host + 'Include/Weixin/wechatdata',
-        data: temp,
+        url: this.api.host + '/include/getdata',
+        data: {
+          apiname: 'getuserinfo',
+        },
         success: (res) => {
           if (res.data.ret == 'success') {
-            this.globalData.userInfo = res.data
+            this.globalData.roleInfo = res.data
             this.globalData.mylogin = true
             resolve(res)
             if (typeof this.mylogin == 'function') {
               this.mylogin()
             }
           } else {
-            reject()
+            reject('未授权')
           }
         },
       })
@@ -103,9 +96,9 @@ App({
     this.globalData.filterData = data
   },
   globalData: {
+    roleInfo: null,
     userInfo: {},
-    teacherInfo: {},
-    agencyInfo: {},
+    hrInfo: {},
     mylogin: false,
     safeArea: false,
     filterData: null,

@@ -19,12 +19,13 @@
     border-right: 1Px solid #ebebeb;
     transform: scaleX(0.5); }
   .menu-wrapper .item {
-    height: 45px;
+    min-height: 45px;
     font-size: 28rpx;
     color: #000;
-    line-height: 45px;
-    padding-left: 40rpx;
-    box-sizing: border-box; }
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 10rpx 0 10rpx 30rpx; }
     .menu-wrapper .item.active {
       color: #0866FF; }
 

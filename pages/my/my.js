@@ -1,44 +1,67 @@
 const app = getApp()
+import { auth, getRoleInfos, togglerRole } from '../../api/user'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    mylogin: false,
+    mylogin: app.globalData.mylogin,
     user: {},
     isRegister: false,
-    code: -1
+    code: -1,
   },
   onPhone(e) {
     console.log('weapp绑定手机', e)
     const { detail } = e
-    const { user, code } = this.state
+    const { user, code } = this.data
     if (detail.errMsg.indexOf('fail') > -1) {
       console.log('授权手机失败')
     } else {
-      var temp = {}
-      temp.type = 'wechat'
-      temp.apiname = 'bindmobile'
-      temp.iv = encodeURIComponent(e.detail.iv)
-      temp.encryptedData = encodeURIComponent(e.detail.encryptedData)
-      temp.code = code
-      console.log(temp)
-      app.request({
-        url: app.api.host + '/Include/Weixin/wechatdata',
-        data: temp,
-        method: 'POST',
-        success: (resp) => {
-          console.log('微信绑定手机', resp)
-          user.Mobile = resp.data.mobile
-          user.bindphone = true
-          this.setState({
-            user,
-          })
-          if (resp.data.ret != 'success') {
-            return app.showToast('绑定失败')
-          }
-        },
+      auth({
+        encryptedData: encodeURIComponent(detail.encryptedData),
+        iv: encodeURIComponent(detail.iv),
+        code,
       })
+        .then((res) => {
+          console.log(res)
+          if (res.data.ret == 'success') {
+            wx.setStorageSync('LogiSessionKey', res.data.rdsession)
+            app.globalData.mylogin = true
+            this.setData({
+              mylogin: true,
+            })
+            getRoleInfos().then((res) => {
+              console.log('会员信息', res)
+              app.globalData.roleInfo = res
+            })
+          }
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+      // var temp = {}
+      // temp.type = 'wechat'
+      // temp.apiname = 'bindmobile'
+      // temp.iv = encodeURIComponent(e.detail.iv)
+      // temp.encryptedData = encodeURIComponent(e.detail.encryptedData)
+      // temp.code = code
+      // console.log(temp)
+      // app.request({
+      //   url: app.api.host + '/Include/Weixin/wechatdata',
+      //   data: temp,
+      //   method: 'POST',
+      //   success: (resp) => {
+      //     console.log('微信绑定手机', resp)
+      //     user.Mobile = resp.data.mobile
+      //     user.bindphone = true
+      //     this.setState({
+      //       user,
+      //     })
+      //     if (resp.data.ret != 'success') {
+      //       return app.showToast('绑定失败')
+      //     }
+      //   },
+      // })
     }
   },
   onNavTo(e) {
@@ -54,14 +77,20 @@ Page({
     })
   },
   onNavToHr() {
-    wx.reLaunch({
-      url: '/sub-pages/main/main',
+    togglerRole(1).then(() => {
+      wx.reLaunch({
+        url: '/sub-pages/main/main',
+      })
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.setData({
+      mylogin: app.globalData.mylogin,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -79,14 +108,14 @@ Page({
         })
       },
     })
-    app
-      .getUserInfos()
-      .then((res) => {
-        console.log('个人信息', res)
-      })
-      .catch(() => {
-        console.error('未授权')
-      })
+    // app
+    //   .getUserInfos()
+    //   .then((res) => {
+    //     console.log('个人信息', res)
+    //   })
+    //   .catch(() => {
+    //     console.error('未授权')
+    //   })
   },
 
   /**

@@ -6,31 +6,31 @@
         <view class='flex-box align-center' catch:tap="onUpload">
           <view class='label'>头像</view>
           <view class='fr'>
-            <image class="avatar-placeholider" src='/assets/images/avatar-placegolider.jpg'></image>
+            <image class="avatar-placeholider" src='{{avatar || "/assets/images/avatar-placegolider.jpg"}}'></image>
           </view>
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>姓名</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请输入姓名" />
+          <input name="name" type="text" class='form-control' placeholder-class="placeholder" placeholder="请输入姓名" />
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>我的公司</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="您当前就职的公司" />
+          <input name="company" type="text" class='form-control' placeholder-class="placeholder" placeholder="您当前就职的公司" />
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>我的职位</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="真实的职务，更能赢得牛人信任" />
+          <input name="jop" type="text" class='form-control' placeholder-class="placeholder" placeholder="真实的职务，更能赢得牛人信任" />
         </view>
       </view>
       <view class="fixed-bottom">
         <view class='confirm-group'>
-          <button class='button button-normal button-block'>下一步</button>
+          <button class='button button-normal button-block' form-type="submit">下一步</button>
         </view>
       </view>
     </form>

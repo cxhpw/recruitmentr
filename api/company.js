@@ -1,7 +1,7 @@
 import request from '../utils/request'
 
 /**
- *
+ * 企业列表
  * @param {{
  * pageindex: Number,
  * pagesize: Number,

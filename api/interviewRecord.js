@@ -1,4 +1,3 @@
-import request from '../utils/request'
 //面试记录
 import request from '../utils/request'
 

@@ -4,13 +4,49 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: {},
-  onSubmit() {
-    console.log('提交')
+  data: {
+    sex: ['男', '女'],
+    sexValue: -1,
+    identity: ['在校', '应届', '往届'],
+    identityValue: -1,
+  },
+  onSexChange(e) {
+    this.setData({
+      sexValue: e.detail.value,
+    })
+  },
+  onIdentityChange(e) {
+    this.setData({
+      identityValue: e.detail.value,
+    })
+  },
+  valid(value) {
+    if (!value) {
+      return app.showToast('请输入姓名')
+    } else if (this.data.sexValue == -1) {
+      return app.showToast('请选择性别')
+    } else if (this.data.identityValue == -1) {
+      return app.showToast('请选择性别')
+    }
+    return true
+  },
+  onSubmit(e) {
+    console.log('提交', e)
+    const { value } = e.detail
+    let formData = {}
+    if (this.valid(value)) {
+      wx.navigateTo({
+        url: `./educationExperience/educationExperience?formData=${JSON.stringify(
+          formData
+        )}`,
+      })
+    }
   },
   onUpload() {
     const customrdsession = wx.getStorageSync('LogiSessionKey')
-    const encrypttime = encodeURIComponent(encrypt(getTimeStr(Date.now(), 'datetime', true)))
+    const encrypttime = encodeURIComponent(
+      encrypt(getTimeStr(Date.now(), 'datetime', true))
+    )
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有

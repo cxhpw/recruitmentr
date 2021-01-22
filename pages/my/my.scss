@@ -40,6 +40,7 @@ page {
 }
 
 .nav-section {
+  position: relative;
   background: #fff;
   color: #fff;
   box-sizing: border-box;
@@ -65,6 +66,7 @@ page {
   margin-right: 8rpx;
 }
 .cell-wrapper {
+  position: relative;
   border-top: 15rpx solid #f8f8f8;
   .icon {
     width: 33rpx;
@@ -73,6 +75,7 @@ page {
   }
 }
 .my-cell {
+  position: relative;
   padding: 15px 40rpx !important;
 }
 

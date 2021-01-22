@@ -11,21 +11,27 @@
         </view>
       </view>
       <view class='form-group'>
+        <view class='label'>性别</view>
+        <view class='form-group__input'>
+          <picker mode="selector" range="{{sex}}" value='{{sexValue}}' bindchange="onSexChange">
+            <view wx:if="{{sexValue === -1}}" class='placeholder'>请选择性别</view>
+            <view wx:else  id='picker'>{{sex[sexValue]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>求职身份</view>
+        <view class='form-group__input'>
+          <picker  mode="selector" range="{{identity}}" value='{{identityValue}}' bindchange="onIdentityChange">
+            <view wx:if="{{ identityValue === - 1 }}" class='placeholder'>请选择身份</view>
+            <view wx:else id='picker'>{{identity[identityValue]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class='form-group'>
         <view class='label'>姓名</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请输入姓名" />
-        </view>
-      </view>
-      <view class='form-group'>
-        <view class='label'>我的公司</view>
-        <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="您当前就职的公司" />
-        </view>
-      </view>
-      <view class='form-group'>
-        <view class='label'>我的职位</view>
-        <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="真实的职务，更能赢得牛人信任" />
+          <input type="text" name="name" class='form-control' placeholder-class="placeholder" placeholder="请输入姓名" />
         </view>
       </view>
       <view class="fixed-bottom">

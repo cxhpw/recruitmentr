@@ -5,7 +5,7 @@
       <view class="flex-box align-center">
         <view class='fl'>
           <view class='tabs'>
-            <view wx:for="{{ tabs }}" wx:key="tabs" class='tab {{ tabIndex === index ? "active" : "" }}'>
+            <view wx:for="{{ tabs }}" wx:key="tabs" catch:tap="onTab" data-index="{{index}}" class='tab {{ tabIndex === index ? "active" : "" }}'>
               {{ item.title }}
             </view>
           </view>

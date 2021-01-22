@@ -11,12 +11,13 @@
   .list {
   }
   .item {
-    height: 45px;
+    min-height: 45px;
     font-size: 28rpx;
     color: #000;
-    line-height: 45px;
-    padding-left: 40rpx;
+    display: flex;
+    align-items: center;
     box-sizing: border-box;
+    padding: 10rpx 0 10rpx 30rpx;
     &.active {
       color: $bodycolor;
     }

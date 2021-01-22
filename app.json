@@ -15,7 +15,8 @@
     "pages/chatroom/chatroom",
     "pages/talked/talked",
     "pages/collect/collect",
-    "pages/userInfo/userInfo"
+    "pages/userInfo/userInfo",
+    "pages/register/educationExperience/educationExperience"
   ],
   "window": {
     "backgroundTextStyle": "light",

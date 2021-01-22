@@ -1,3 +1,4 @@
+console.log('LOGON',getApp())
 module.exports = {
   login: function(options) {
     let app = getApp()

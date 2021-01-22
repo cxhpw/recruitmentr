@@ -1,10 +1,14 @@
 // index.js
 // 获取应用实例
+import { requestList } from '../../api/hr/resume'
 const app = getApp()
 
 Component({
   data: {
-    tabs: [{ title: '推荐' }, { title: '最新' }],
+    tabs: [
+      { title: '推荐', value: 'recommend' },
+      { title: '最新', value: 'new' },
+    ],
     tabIndex: 0,
     list: [{}, {}, {}, {}],
   },
@@ -20,14 +24,29 @@ Component({
     detached: function () {},
   },
   pageLifetimes: {
-    show: function () {},
+    show: function () {
+      console.log('首页show')
+    },
     hide: function () {},
     resize: function () {},
   },
   methods: {
     // 事件处理函数
     getList: function (pageNum = 1) {
-      var temp = {}
+      const { tabIndex, tabs } = this.data
+      requestList({
+        pageindex: pageNum,
+        pagesize: 20,
+        action: tabs[tabIndex].value,
+        name: '',
+        area: '',
+        educat: '',
+        salary: '',
+        experience: '',
+        status: '',
+      }).then((res) => {
+        console.log('简历列表', res)
+      })
       temp.apiname = 'getchilduserlist'
       temp.pageNum = pageNum
       temp.pageSize = 10
@@ -73,9 +92,26 @@ Component({
         },
       })
     },
+    onTap(e) {
+      const { index } = e.currentTarget.dataset
+      this.setData(
+        {
+          tabIndex: index,
+        },
+        () => {
+          this.getList()
+        }
+      )
+    },
     onAreaTap() {
       wx.navigateTo({
         url: '/pages/area/area',
+        events: {
+          areaPage: function (data) {
+            console.log(data)
+          },
+        },
+        success: function (event) {},
       })
     },
     onNavTo(e) {

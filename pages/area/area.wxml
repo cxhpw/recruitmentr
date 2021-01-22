@@ -3,8 +3,8 @@
     <view class='menu-wrapper'>
       <scroll-view scroll-y style='height: 100%'>
         <view class='list'>
-          <view class='item {{ pIndex === index ? "active" : ""}}' wx:for="{{ menu }}" wx:key="{{ index }}">
-            衢州市
+          <view class='item {{ item.RegionCode === Pcode ? "active" : ""}}' data-index="{{ index }}" data-code="{{ item.RegionCode }}" wx:for="{{ province }}" wx:key="{{ index }}" catch:tap="onPTap">
+            {{ item.RegionName }}
           </view>
         </view>
       </scroll-view>
@@ -13,13 +13,13 @@
       <view class='colum'>
         <scroll-view scroll-y style='height: 100%'>
           <view class='list'>
-            <view class='item {{ index === 0 ? "active"  : ""}}' wx:for="{{ menu }}" wx:key="{{ index }}">
-              衢州市
+            <view class='item {{ item.RegionCode === Ccode ? "active"  : ""}}'  data-index="{{ index }}" data-code="{{ item.RegionCode }}" wx:for="{{ city }}" wx:key="{{ index }}" catch:tap="onCTap">
+              {{ item.RegionName }}
             </view>
           </view>
         </scroll-view>
       </view>
-      <view class='colum'>
+      <!-- <view class='colum'>
         <scroll-view scroll-y style='height: 100%'>
           <view class='list'>
             <view class='item {{ index === 0 ? "active"  : ""}}' wx:for="{{ menu }}" wx:key="{{ index }}">
@@ -27,7 +27,7 @@
             </view>
           </view>
         </scroll-view>
-      </view>
+      </view> -->
     </view>
   </view>
 </view>

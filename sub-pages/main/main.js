@@ -1,6 +1,6 @@
 // sub-pages/main/main.js
 var app = getApp()
-var pages = ['订单', '消息', '房源', '我的']
+import { requestHRInfo } from '../../api/hr/company'
 Page({
   /**
    * 页面的初始数据
@@ -80,7 +80,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var _self = this
     wx.hideHomeButton()
     this.setData({
       tabIndex: options.tabIndex || this.data.tabIndex,
@@ -88,17 +87,19 @@ Page({
       loadData: true,
       currentIndex: options.currentIndex || 0,
     })
-
-    app.mylogin = function () {
-      _self.setData({
-        mylogin: app.globalData.mylogin,
-        loadData: true,
-        currentIndex: options.currentIndex || 0,
+    
+    requestHRInfo()
+      .then((res) => {
+        console.log('hr 信息', res)
+        app.globalData.hrInfo = res.data
       })
-    }
-    // wx.setNavigationBarTitle({
-    //   title: pages[this.data.tabIndex]
-    // })
+      .catch((err) => {
+        // 未填写企业信息
+        console.error(err)
+        wx.reLaunch({
+          url: '/sub-pages/hr-register/hr-register',
+        })
+      })
   },
   onPullDownRefresh: function () {
     console.log(213)

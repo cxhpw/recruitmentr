@@ -55,7 +55,7 @@
   border-radius: 6px;
   overflow: hidden;
   transform: translateY(0);
-  margin: 30rpx auto 0; }
+  margin: 30rpx auto; }
   .my-swiper .image {
     width: 100%;
     height: 100%; }

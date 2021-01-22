@@ -39,10 +39,10 @@ export function updateCompanyInfo(params) {
 }
 
 /**
- * 获取企业信息
+ * 获取HR信息
  */
-export function requestCompanyInfo() {
-  request({
+export function requestHRInfo() {
+  return request({
     url: '/include/getdata',
     data: {
       apiname: 'getcompanyinfo',
