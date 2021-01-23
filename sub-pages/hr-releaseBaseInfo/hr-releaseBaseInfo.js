@@ -5,10 +5,12 @@ Page({
    */
   data: {
     content: '',
-    name: '',
+    position: null,
     show: false,
     type: ['社招', '实习生招聘', '兼职招聘'],
-    typeSelected: [],
+    typeSelected: ['社招'],
+    searchKey: '',
+    address: ''
   },
   onTypeChange(e) {
     console.log(e)
@@ -23,10 +25,27 @@ Page({
       url,
     })
   },
+  valid() {
+    if (!this.data.position) {
+      return app.showToast('请输入职位名称')
+    } else if (!this.data.content) {
+      return app.showToast('请输入职位描述')
+    }
+    return true
+  },
   onSubmit() {
-    wx.navigateTo({
-      url: '/sub-pages/hr-releaseJopRequire/hr-releaseJopRequire',
-    })
+    if (this.valid()) {
+      const formData = {
+        position: this.data.position,
+        desc: this.data.content,
+        type: this.data.typeSelected[0],
+      }
+      wx.navigateTo({
+        url: `/sub-pages/hr-releaseJopRequire/hr-releaseJopRequire?formData=${JSON.stringify(
+          formData
+        )}`,
+      })
+    }
   },
   onClick() {
     this.setData({
@@ -49,7 +68,21 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    if (
+      app.globalData.selectPostion.length &&
+      app.globalData.selectPostion[2]
+    ) {
+      this.setData({
+        position: app.globalData.selectPostion[2],
+        searchKey: '',
+      })
+    } else if (app.globalData.searchKey) {
+      this.setData({
+        searchKey: app.globalData.searchKey || '',
+      })
+    }
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

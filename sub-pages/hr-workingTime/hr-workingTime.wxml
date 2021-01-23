@@ -6,11 +6,11 @@
       <view class='time-rang'>
         <view class='label'>工作时间</view>
         <view class='time-rang__picker'>
-          <picker mode="selector" range="{{ams}}" value="{{am}}">
+          <picker mode="selector" range="{{ams}}" value="{{am}}" bindchange="onAmChange">
             <view class='pciker'>{{ ams[am] }}</view>
           </picker>
           <view class='fat'>-</view>
-          <picker mode="selector" range="{{pms}}" value="{{pm}}">
+          <picker mode="selector" range="{{pms}}" value="{{pm}}" bindchange="onPmChange">
             <view class='pciker'>{{ pms[pm] }}</view>
           </picker>
         </view>
@@ -20,7 +20,7 @@
         <view class='con'>
           <view class='checkbox-list'>
             <van-checkbox-group custom-class='checkbox-group' value="{{ breakTimeSelected }}" bind:change="onBreakTimeChange">
-              <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{  breakTime }}" wx:key="{{ index }}">
+              <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{  breakTime }}" wx:key="item">
                 {{ item }}
               </van-checkbox>
             </van-checkbox-group>
@@ -32,7 +32,7 @@
         <view class='con'>
           <view class='checkbox-list'>
             <van-checkbox-group custom-class='checkbox-group' value="{{ overtimeSelected }}" bind:change="onOvertimeChange">
-              <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ overtime }}" wx:key="{{ index }}">
+              <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ overtime }}" wx:key="item">
                 {{ item }}
               </van-checkbox>
             </van-checkbox-group>
@@ -41,7 +41,7 @@
       </view>
       <view class='fixed-bottom'>
         <view class='confirm-group'>
-          <button class='button button-normal button-block'>确定</button>
+          <button class='button button-normal button-block' bind:tap="onSubmit">确定</button>
         </view>
       </view>
     </view>

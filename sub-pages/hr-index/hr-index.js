@@ -10,8 +10,8 @@ Component({
       { title: '最新', value: 'new' },
     ],
     tabIndex: 0,
-    list: [{}, {}, {}, {}],
-    filterText: ''
+    list: [],
+    filterText: '',
   },
   options: {
     addGlobalClass: true,
@@ -30,19 +30,19 @@ Component({
       let result = []
       if (app.globalData.filterData) {
         app.globalData.filterData.educations.length &&
-          (result.push(app.globalData.filterData.educations[0]))
+          result.push(app.globalData.filterData.educations[0])
         app.globalData.filterData.experiences.length &&
-          (result.push(app.globalData.filterData.experiences[0]))
+          result.push(app.globalData.filterData.experiences[0])
         app.globalData.filterData.types.length &&
-          (result.push(app.globalData.filterData.types[0]))
+          result.push(app.globalData.filterData.types[0])
         app.globalData.filterData.wages.length &&
-          (result.push(app.globalData.filterData.wages[0]))
+          result.push(app.globalData.filterData.wages[0])
       }
 
       this.setData({
         filterArea: app.globalData.filterArea,
         filterData: app.globalData.filterData,
-        filterText:result.join(','),
+        filterText: result.join(','),
       })
       this.getList()
     },
@@ -50,6 +50,9 @@ Component({
     resize: function () {},
   },
   methods: {
+    onReachBottom() {
+      this.data.pageNum != 0 && this.getList(this.data.pageNum + 1)
+    },
     onTab(e) {
       const { index } = e.currentTarget.dataset
       this.setData(
@@ -66,7 +69,7 @@ Component({
       const { tabIndex, tabs } = this.data
       requestList({
         pageindex: pageNum,
-        pagesize: 20,
+        pagesize: 10,
         action: tabs[tabIndex].value,
         name: '',
         area: app.globalData.filterArea
@@ -87,55 +90,48 @@ Component({
       })
         .then((res) => {
           console.log('简历列表', res)
-          this.setData({})
+          if (res.data.ret == 'success') {
+            var data = res.data.dataList
+            this.setData({
+              init: true,
+            })
+            if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
+              this.setData({
+                nomore: true,
+                buttontext: '暂无更多数据',
+                loading: false,
+                pageNum: 0,
+              })
+            } else {
+              this.setData({
+                buttontext: '加载中..',
+                loading: true,
+                pageNum: pageNum,
+              })
+            }
+            if (res.data.TotalCount > 0) {
+              this.setData({
+                list: pageNum == 1 ? data : this.data.list.concat(data),
+                nomore: false,
+              })
+            } else {
+              this.setData({
+                nomore: true,
+                loadData: false,
+              })
+            }
+          }
         })
         .catch((res) => {
           console.error(res)
+          this.setData({
+            loading: false,
+            buttontext: '暂无更多数据',
+            nomore: true,
+            list: [],
+            pageNum: 0
+          })
         })
-      // temp.apiname = 'getchilduserlist'
-      // temp.pageNum = pageNum
-      // temp.pageSize = 10
-      // this.setData({
-      //   loading: true,
-      // })
-      // app.request({
-      //   url: app.api.host + 'Include/Weixin/wechatdata',
-      //   data: temp,
-      //   success: (res) => {
-      //     console.log('=======', res)
-      //     if (res.data.ret == 'success') {
-      //       var data = res.data.datalist
-      //       this.setData({
-      //         init: true,
-      //       })
-      //       if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
-      //         this.setData({
-      //           nomore: true,
-      //           buttontext: '暂无更多数据',
-      //           loading: false,
-      //           pageNum: 0,
-      //         })
-      //       } else {
-      //         this.setData({
-      //           buttontext: '加载中..',
-      //           loading: true,
-      //           pageNum: pageNum,
-      //         })
-      //       }
-      //       if (res.data.TotalCount > 0) {
-      //         this.setData({
-      //           list: pageNum == 1 ? data : this.data.list.concat(data),
-      //           nomore: false,
-      //         })
-      //       } else {
-      //         this.setData({
-      //           nomore: true,
-      //           loadData: false,
-      //         })
-      //       }
-      //     }
-      //   },
-      // })
     },
     onTap(e) {
       const { index } = e.currentTarget.dataset

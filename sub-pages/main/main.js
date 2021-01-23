@@ -1,6 +1,7 @@
 // sub-pages/main/main.js
 var app = getApp()
 import { requestHRInfo } from '../../api/hr/company'
+import { togglerRole } from '../../api/user'
 Page({
   /**
    * 页面的初始数据
@@ -87,7 +88,7 @@ Page({
       loadData: true,
       currentIndex: options.currentIndex || 0,
     })
-    
+    togglerRole(1)
     requestHRInfo()
       .then((res) => {
         console.log('hr 信息', res)
@@ -123,10 +124,10 @@ Page({
    */
   onReachBottom: function () {
     var tabIndex = parseInt(this.data.tabIndex)
-    // switch (tabIndex) {
-    //   case 2:
-    //     this.selectComponent('#my').onReachBottom()
-    //     break
-    // }
+    switch (tabIndex) {
+      case 0:
+        this.selectComponent('#index').onReachBottom()
+        break;
+    }
   },
 })

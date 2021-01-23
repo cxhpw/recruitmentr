@@ -11,7 +11,7 @@
               </view>
             </block>
           </view>
-          <image class="wux-upload__thumb" mode="aspectFill" src="{{ file.url }}" />
+          <image class="wux-upload__thumb" mode="aspectFit" src="{{ file.url }}" />
           <view class="wux-upload__remove" data-file="{{ file }}" data-index="{{ index }}" catchtap="onRemove" wx:if="{{ showRemoveIcon }}"></view>
           <view class="wux-upload__status {{file.status == 'error' ? 'wux-upload__status_error' : ''}}">
             <view wx:if="{{file.status == 'done'}}">上传成功</view>

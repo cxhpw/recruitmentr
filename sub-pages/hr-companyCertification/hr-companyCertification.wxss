@@ -23,3 +23,15 @@ page {
       color: #999999; }
     .table .td text {
       color: #2B27DD; }
+
+.box {
+  padding-top: 20vh; }
+  .box .icon {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 15px;
+    display: block; }
+  .box .text {
+    font-size: 28rpx;
+    color: #999;
+    text-align: center; }

@@ -1,4 +1,6 @@
 import { getTimeStr, encrypt } from '../../utils/util'
+import { updateCompanyInfo } from '../../api/hr/company'
+import { getUuid } from '../../utils/util'
 const app = getApp()
 
 Page({
@@ -6,19 +8,21 @@ Page({
    * 页面的初始数据
    */
   data: {
+    max: 1,
     safeArea: app.globalData.safeArea ? 'safeArea' : '',
     isLogo: false,
     header: {
       'Content-Type': 'multipart/form-data',
     },
     formData: {
-      apiname: 'uploadbytool',
+      apiname: 'uploadfile',
       customrdsession: wx.getStorageSync('LogiSessionKey'),
       encrypttime: encodeURIComponent(
         encrypt(getTimeStr(Date.now(), 'datetime', true))
       ),
     },
-    url: app.api.host + '',
+    user: app.globalData.hrInfo,
+    url: app.api.host + '/include/getdata',
     fileList: [],
     loadData: false,
     content: '',
@@ -52,7 +56,8 @@ Page({
       () => {
         wx.hideLoading()
         this.setData({
-          showSelect: this.data[`fileList`].length >= 4 ? false : true,
+          showSelect:
+            this.data[`fileList`].length >= this.data.max ? false : true,
         })
       }
     )
@@ -81,7 +86,29 @@ Page({
     console.log('temp', temp)
     this.setData({
       [`fileList`]: temp,
-      showSelect: temp.length < 4 ? true : false,
+      showSelect: temp.length < this.data.max ? true : false,
+    })
+  },
+  onClick() {
+    const { user, fileList, isLogo } = this.data
+    updateCompanyInfo({
+      name: user.Name,
+      headerphoto: user.HeaderPhoto,
+      job: user.Job,
+      logo: isLogo ? fileList[0].url : user.Logo,
+      staffsize: user.StaffSize,
+      intro: user.Intro,
+      workhours: user.WorkHours,
+      resttime: user.RestTime,
+      overtime: user.OverTime,
+      welfare: user.WelfareList.join(','),
+      album: !isLogo
+        ? fileList.map((item) => item.url).join(',')
+        : user.AlbumList.map(item => item.Img).join(','),
+    }).then((res) => {
+      app.showToast(res.data.msg, () => {
+        wx.navigateBack()
+      })
     })
   },
   /**
@@ -90,9 +117,31 @@ Page({
   onLoad: function (options) {
     this.setData({
       isLogo: options.isLogo || false,
+      max: options.max || this.data.max,
+      user: app.globalData.hrInfo,
     })
+    if (options.isLogo) {
+      this.setData({
+        fileList: app.globalData.hrInfo.Logo
+          ? [{ uid: getUuid(), url: app.globalData.hrInfo.Logo, status: 'done' }]
+          : [],
+      })
+    } else {
+      this.setData({
+        fileList: app.globalData.hrInfo.AlbumList.length
+          ? app.globalData.hrInfo.AlbumList.map((item) => {
+              return {
+                uid: getUuid(),
+                url: item.Img,
+                status: 'done'
+              }
+            })
+          : [],
+      })
+    }
+
     wx.setNavigationBarTitle({
-      title: options.isLogo ? '上传LOGO' : '上传公司图片'
+      title: options.isLogo ? '上传LOGO' : '上传公司图片',
     })
   },
 

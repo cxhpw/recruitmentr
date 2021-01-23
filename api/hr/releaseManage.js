@@ -44,11 +44,12 @@ export function postReleaseJop(params) {
  * }} params 
  * @summary status 0：全部 1：已关闭 99：开放中
  */
-export function requestJopInfo(params) {
+export function requestJopList(params) {
   return request({
     url: '/include/getdata',
     data: {
       apiname: 'getcompanyjoblist',
+      ...params,
     },
   })  
 }

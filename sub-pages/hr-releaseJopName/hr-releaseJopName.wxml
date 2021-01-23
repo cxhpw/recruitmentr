@@ -1,54 +1,25 @@
 <view class="page">
   <van-sticky>
     <view class='rela'>
-      <van-search placeholder="请输入搜索关键词" maxlength="20" bind:change="onChange" value="{{ value }}" clearable="{{ false }}"></van-search>
-      <view class="count">
+      <van-search placeholder="请输入搜索关键词" value="{{searchKey}}" maxlength="20" bind:change="onSearch"  clearable bind:cancel="onCancel"  bind:clear="onClear" clearable="{{ false }}"></van-search>
+      <!-- <view class="count">
         <text>{{ value.length }}</text>
         <text>/</text>
         <text>20</text>
-      </view>
+      </view> -->
     </view>
   </van-sticky>
-  <view class="cell-wrapper">
-    <van-cell custom-class='my-cell' is-link bind:click="onClick">
-      <view class="title" slot="title">技术</view>
+  <view class="cell-wrapper" wx:if="{{ !showSearch }}">
+    <van-cell custom-class='my-cell' is-link  wx:for="{{ top }}" catch:tap="onTopTap" data-index="{{ index }}" data-id="{{item.AutoID}}">
+      <view class='title {{ selected[0].AutoID == item.AutoID ? "active" : "" }}' slot='title'>{{ item.Name }}</view>
     </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
-    <van-cell custom-class='my-cell' is-link>
-      <view class="title" slot="title">技术</view>
-    </van-cell>
+  </view>
+  <view wx:else class='search-list'>
+    <view class='item' wx:for="{{searchList}}" wx:key="searchList" catch:tap="onSelect" data-index="{{ index }}">
+      <view class='name'>{{ item.Name }}</view>
+      <view class='summary'>{{item.NavJob}}>{{item.Name}}</view>
+    </view>
+    <view class="resutl">搜索结果为空</view>
   </view>
   <van-overlay show="{{ show }}" bind:click="onClose" custom-style='top: 54px'>
     <view class="popup-body {{ show ? 'active' : ''}}">
@@ -56,27 +27,18 @@
         <view class='colum'>
           <scroll-view scroll-y style="height: calc(100vh - 54px)">
             <view class='list'>
-              <view class='item'>1技术技术技术技术技术</view>
-              <view class='item'>2技术技术技术技术技术</view>
-              <view class='item'>3技术技术技术技术技术</view>
-              <view class='item'>4技术技术技术技术技术</view>
-              <view class='item'>5技术技术技术技术技术</view>
-              <view class='item'>6技术技术技术技术技术</view>
-              <view class='item'>7技术技术技术技术技术</view>
-              <view class='item'>8技术技术技术技术技术</view>
-              <view class='item'>9技术技术技术技术技术</view>
-              <view class='item'>10技术技术技术技术技术</view>
-              <view class='item'>11技术技术技术技术技术</view>
-              <view class='item'>12技术技术技术技术技术</view>
-              <view class='item'>13技术技术技术技术技术</view>
-              <view class='item'>14技术技术技术技术技术技术技术技术技术技术</view>
+              <view class='item {{ selected[1].AutoID == item.AutoID ? "active" : "" }}' wx:for="{{ middle }}" data-index="{{ index }}" wx:key="middle" data-id="{{ item.AutoID }}" catch:tap="onMiddelTap">
+                {{ item.Name }}
+              </view>
             </view>
           </scroll-view>
         </view>
         <view class='colum'>
           <scroll-view scroll-y style="height: 100%">
             <view class='list'>
-              <view class='item'>技术技术</view>
+              <view class='item  {{ selected[2].AutoID == item.AutoID ? "active" : "" }}' wx:for="{{ last }}" wx:key="last" data-index="{{ index }}" data-id="{{ item.AutoID }}" catch:tap="onLastTap">
+                {{ item.Name }}
+              </view>
             </view>
           </scroll-view>
         </view>

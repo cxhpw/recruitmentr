@@ -1,6 +1,6 @@
 <view class="sub-page">
   <view class='top-section'>
-    <view class='flex-box align-center'>
+    <view class='flex-box align-center' catch:tap="onNavTo"  data-url="/sub-pages/hr-userInfo/hr-userInfo">
       <image class='avatar' src='{{ mylogin ? user.HeaderPhoto : "/assets/images/avatar.png" }}'></image>
       <view class='con'>
         <view class='name'>{{ mylogin ? user.Name : '注册' }}</view>
@@ -15,7 +15,7 @@
   </view>
   <view class='nav-section'>
     <view class='flex-box'>
-      <view class='flex-item' catch:tap='onNavTo' data-url='/pages/talked/talked'>
+      <view class='flex-item' catch:tap='onNavTo' data-url='/sub-pages/hr-talked/hr-talked'>
         <view class='num'>{{ user.ContactsCount }}</view>
         <view class='text'>沟通过</view>
       </view>
@@ -30,7 +30,7 @@
     </view>
   </view>
   <view class=''>
-    <van-cell custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-position/hr-position">
+    <van-cell custom-class="my-cell"  is-link catch:tap="onNavTo" data-url="/sub-pages/hr-position/hr-position">
       <view slot="title">
         <view class="flex-box align-center">
           <view class='van-cell-num'>{{ user.JobCount }}</view>
@@ -41,7 +41,7 @@
     </van-cell>
   </view>
   <view class='cell-wrapper'>
-    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-company/hr-company">
+    <van-cell border="{{ false }}" custom-class="my-cell"  right-icon-class="my-right-icon" is-link catch:tap="onCompanyTap" >
       <view slot="title">
         <view class="flex-box align-center">
           <image class='icon' src='/assets/images/icon-qiye1.png'></image>
@@ -49,15 +49,16 @@
         </view>
       </view>
     </van-cell>
-    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-companyCertification/hr-companyCertification">
+    <van-cell border="{{ false }}" custom-class="my-cell"  right-icon-class="my-right-icon" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-companyCertification/hr-companyCertification">
       <view slot="title">
         <view class="flex-box align-center">
           <image class='icon' src='/assets/images/icon-certification.png'></image>
           <view class="van-cell-text f28">企业认证</view>
         </view>
       </view>
+      <view class='status'>{{ user.Status == 1 ? '审核中' : ''}}</view>
     </van-cell>
-    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onAgencyTap">
+    <van-cell border="{{ false }}" custom-class="my-cell"  right-icon-class="my-right-icon" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-userInfo/hr-userInfo">
       <view slot="title">
         <view class="flex-box align-center">
           <image class='icon' src='/assets/images/icon-user1.png'></image>
@@ -65,7 +66,7 @@
         </view>
       </view>
     </van-cell>
-    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onAgencyTap">
+    <van-cell border="{{ false }}" custom-class="my-cell" right-icon-class="my-right-icon" is-link catch:tap="onToggler">
       <view slot="title">
         <view class="flex-box align-center">
           <image class='icon' src='/assets/images/icon_togger.png'></image>
@@ -75,8 +76,8 @@
     </van-cell>
   </view>
   <swiper class='my-swiper' indicator-dots indicator-active-color="#2351D3">
-    <swiper-item>
-      <image class='image' src='https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
+    <swiper-item wx:for="{{ad}}">
+      <image class='image' src='{{ item.image }}' catch:tap="onAdClick" data-url="{{ item.url }}"></image>
     </swiper-item>
   </swiper>
 </view>

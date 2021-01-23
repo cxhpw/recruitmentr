@@ -5,12 +5,14 @@ import request from '../../utils/request'
  * @param {{
  * pageindex: Number,
  * pagesize:Number
- * }} params 
+ * }} params
  */
 export function requestList(params) {
   return request({
-    url: 'getcontactslist',
-    ...params,
+    url: '/include/getdata',
+    data: {
+      apiname: 'getcontactslist',
+      ...params,
+    },
   })
 }
-

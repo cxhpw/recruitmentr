@@ -6,7 +6,7 @@
         {{!isLogo ? '亮眼的公司照片是雇主品牌建设的重要一步，更吸引牛人' : '公司logo将出现在你公司主页、公司下所有职位出现的地方，请上传清晰规范的LOGO图片'}}
       </view>
       <view class='upload-wrapper'>
-        <upload wux-class="my_upload" width="200rpx" height="200rpx" id="upload-room" progress="{{true}}" bind:fail="onFail" bind:before="onBefore" bind:preview="onPreview" bind:success="onSuccess" bind:complete="onComplete" bind:remove="onRemove" listType="picture-card" showUploadList="{{true}}" fileList="{{fileList}}" url="{{url}}" name="uploadfile" header="{{ header }}" formData="{{formData}}" count="4" max="1" showSelect="{{ showSelect }}" showRemoveIcon="{{showRemoveIcon}}">
+        <upload wux-class="my_upload" width="200rpx" height="200rpx" id="upload-room" progress bind:fail="onFail" bind:before="onBefore" bind:preview="onPreview" bind:success="onSuccess" bind:complete="onComplete" bind:remove="onRemove" listType="picture-card" showUploadList fileList="{{fileList}}" url="{{url}}" name="file" header="{{ header }}" formData="{{formData}}" count="4" max="1" showSelect="{{ fileList.length < max }}" showRemoveIcon="{{showRemoveIcon}}">
           <view class="upload_btn" style="margin-right: 0 !important;">
             <view class="icon">
               <icon custom-class="bold" name="plus" size="24" color="#808599" />
@@ -19,7 +19,7 @@
   </view>
   <view class='fixed-bottom'>
     <view class='confirm-group'>
-      <button class='button button-normal button-block'>确定</button>
+      <button class='button button-normal button-block' catch:tap="onClick">确定</button>
     </view>
   </view>
 </view>

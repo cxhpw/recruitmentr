@@ -1,4 +1,7 @@
 const app = getApp()
+import { postReleaseJop } from '../../api/hr/releaseManage'
+
+import { requestResumeFilter } from '../../api/config'
 Page({
   /**
    * 页面的初始数据
@@ -12,19 +15,76 @@ Page({
       ['5K-6K', '5K-6K'],
       ['12个月', '13个月', '14个月'],
     ],
-    salaryValue: [-1, -1],
+    // salaryValue: [-1, -1],
+    salaryValue: -1,
+    form: {},
+  },
+  onExperienceChange(e) {
+    this.setData({
+      experienceValue: e.detail.value,
+    })
+  },
+  onEducationChange(e) {
+    this.setData({
+      educationValue: e.detail.value,
+    })
   },
   onSalaryChange(e) {
     console.log(e)
     this.setData({
-      salaryValue: e.detail.value
+      salaryValue: e.detail.value,
     })
   },
   onSalaryColumnChange() {},
+  valid() {
+    if (this.data.experienceValue == -1) {
+      return app.showToast('请选择经验要求')
+    } else if (this.data.educationValue == -1 ) {
+      return app.showToast('请选择学历要求')
+    } else if(this.data.salaryValue == -1) {
+      return app.showToast('请选薪资范围')
+    }
+    return true
+  },
+  onSubmit() {
+    if (this.valid()) {
+      const { form } = this.data
+      postReleaseJop({
+        action: 'add',
+        id: 0,
+        name: form.position.Name,
+        desc: form.desc,
+        address: '深圳',
+        housenumber: '1107',
+        type: form.type,
+        experience: '1-3年',
+        educat: '本科',
+        salary: '3-5K',
+      }).then((res) => {
+        // app.showToast(res.data.msg, () => {
+        //   wx.navigateBack({
+        //     delta: 2,
+        //   })
+        // })
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.setData({
+      form: JSON.parse(options.formData),
+    })
+    requestResumeFilter().then((res) => {
+      console.log('筛选', res)
+      this.setData({
+        experience: res.data[2].keyvalue,
+        education: res.data[0].keyvalue,
+        salary: res.data[1].keyvalue,
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

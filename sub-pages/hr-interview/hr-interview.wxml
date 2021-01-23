@@ -4,29 +4,29 @@
       <view class="list">
         <view class="inner">
           <block wx:for="{{ lists[index].data }}" wx:key="{{ index }}" wx:for-item="item" wx:for-index="index">
-            <view class="item">
+            <view class="item" data-id="{{ item.AutoID }}" catch:tap="onNavTo">
               <view class='item-header'>
                 <view class='flex-box align-center'>
-                  <view class='fl'>面试职位：.NET</view>
+                  <view class='fl'>面试职位：{{ item.Job }}</view>
                   <view class='fr'>
-                    <text class='text-success'>待接受</text>
+                    <text class='text-success'>{{ item.Status }}</text>
                   </view>
                 </view>
               </view>
               <view class='item-body'>
                 <view class='flex-box align-center'>
                   <view class='image-wrapper'>
-                    <image src="/assets/images/avatar.png" class='avatar'></image>
-                    <image src="/assets/images/girl.png" class='sex'></image>
+                    <image src="{{ item.HeaderPhoto }}" class='avatar'></image>
+                    <image src="{{ item.Gender == '男' ? '/assets/images/boy.png' : '/assets/images/girl.png' }}" class='sex'></image>
                   </view>
                   <view class='con'>
-                    <view class='name'>林志玲</view>
-                    <view class='summary'>.NET</view>
+                    <view class='name'>{{ item.Name }}</view>
+                    <view class='summary'>{{ item.Job }}</view>
                   </view>
                 </view>
               </view>
               <view class='item-footer'>
-                <view class='date'>面试时间：12月29日 08:04</view>
+                <view class='date'>面试时间：{{ item.InterviewTime }}</view>
               </view>
             </view>
           </block>

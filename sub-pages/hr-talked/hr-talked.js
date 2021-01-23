@@ -1,5 +1,5 @@
 const app = getApp()
-import { requestList } from '../../api/JobFair'
+import { requestList } from '../../api/hr/talked'
 Page({
   /**
    * 页面的初始数据
@@ -12,21 +12,16 @@ Page({
     list: [],
     buttontext: '加载中',
   },
-  onTap(e) {
-    const { id } = e.currentTarget.dataset
-    wx.navigateTo({
-      url: `./detail/detail?id=${id}`
-    })
-  },
   getList: function (pageNum = 1) {
     this.setData({
       loading: true,
     })
     requestList({
-      pageindex: pageNum,
-      pagesize: 10,
+      pageNum: pageNum,
+      pageSize: 10,
     })
       .then((res) => {
+        console.log('沟通列表', res)
         if (res.data.ret == 'success') {
           var data = res.data.dataList
           if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
@@ -73,7 +68,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.getList()
   },
 
   /**
@@ -84,9 +79,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    this.getList()
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

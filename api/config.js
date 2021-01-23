@@ -17,21 +17,24 @@ export function requestConfig(params) {
 
 /**
  * 获取职位名称列表
- * @param {Number} id
+ * @param {{
+ * name: String,
+ * id: Number
+ * }} params
  */
-export function requestPositionNameById(id) {
+export function requestPositionNameById(params) {
   return request({
     url: '/include/getdata',
     data: {
       apiname: 'getjobclass',
-      id: id,
+      ...params
     },
   })
 }
 /**
  * 获取所有职位名称列表
  */
-export function requestPositionName() {
+export function requestAllPositionName() {
   return request({
     url: '/include/getdata',
     data: {

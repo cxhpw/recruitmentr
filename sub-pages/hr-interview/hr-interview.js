@@ -1,4 +1,5 @@
 const app = getApp()
+import { requestList } from '../../api/interviewRecord'
 Page({
   /**
    * 页面的初始数据
@@ -6,47 +7,51 @@ Page({
   data: {
     active: 0,
     tabs: [
-      { title: '全部' },
-      { title: '待接受' },
-      { title: '待面试' },
-      { title: '已面试' },
-      { title: '已拒绝' },
+      { title: '全部', value: 0 },
+      { title: '待接受', value: 1 },
+      { title: '待面试', value: 10 },
+      { title: '已面试', value: 99 },
+      { title: '已拒绝', value: 100 },
     ],
     lists: [],
   },
   onChange(e) {
     console.log(e)
+    this.setData(
+      {
+        active: e.detail.index,
+      },
+      () => {
+        this.getLists()
+      }
+    )
   },
   initList() {
-    var listTemp = []
+    var lists = []
     for (var i = 0; i < this.data.tabs.length; i++) {
-      listTemp[i] = {}
-      listTemp[i].pageNum = 1
-      listTemp[i].loading = true
-      listTemp[i].nomore = false
-      listTemp[i].init = false
-      listTemp[i].data = [{}, {}, {}]
-      listTemp[i].buttontext = '加载中...'
-      listTemp[i].loadData = false
+      lists[i] = {}
+      lists[i].pageNum = 1
+      lists[i].loading = true
+      lists[i].nomore = false
+      lists[i].init = false
+      lists[i].data = []
+      lists[i].buttontext = '加载中...'
+      lists[i].loadData = false
     }
     this.setData({
       initList: true,
-      lists: listTemp,
+      lists,
     })
+    return Promise.resolve()
   },
-  getLists(pageNum) {
+  getLists(pageNum = 1) {
     const { active, lists, tabs } = this.data
-    var temp = {}
-    temp.apiname = 'getorderlist'
-    temp.pageNum = pageNum
-    temp.status = tabs[active].value
-    temp.pageSize = 10
-    console.log(temp)
-    app.request({
-      url: app.api.host + 'include/weixin/wechatdata',
-      data: temp,
-      success: (res) => {
-        console.log(res)
+    requestList({
+      pageindex: pageNum,
+      pagesize: 10,
+      status: tabs[active].value,
+    })
+      .then((res) => {
         if (res.data.ret == 'success') {
           var data = res.data.dataList
           this.setData({
@@ -88,17 +93,27 @@ Page({
             [`lists[${active}].nomore`]: true,
           })
         }
-      },
-      complete: function () {
-        wx.hideToast()
-      },
+      })
+      .catch(() => {
+        this.setData({
+          [`lists[${active}].data`]: [],
+          [`lists[${active}].nomore`]: true,
+        })
+      })
+  },
+  onNavTo(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/sub-pages/hr-interviewDetail/hr-interviewDetail?id=${id}`
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.initList() && this.getLists(1)
+    this.initList().then(() => {
+      this.getLists()
+    })
   },
 
   /**

@@ -6,19 +6,19 @@
           <block wx:for="{{ lists[index].data }}" wx:key="{{ index }}" wx:for-item="item" wx:for-index="index">
             <view class="item">
               <view class="flex-box align-center">
-                <view class='fl'>PHP</view>
-                <view class='fr'>已关闭</view>
+                <view class='fl'>{{ item.Name }}</view>
+                <view class='fr'>{{ item.Status }}</view>
               </view>
               <view class='info'>
-                <text>深圳</text>
+                <text>{{ item.Address }}</text>
                 <text class='dot'>·</text>
-                <text>民治</text>
+                <text>{{ item.Address }}</text>
                 <text class='dot'>|</text>
-                <text>本科</text>
+                <text>{{ item.Educat }}</text>
                 <text class='dot'>|</text>
-                <text>5-10年</text>
+                <text>{{ item.Experience }}</text>
                 <text class='dot'>|</text>
-                <text>3-4K</text>
+                <text>{{ item.Salary }}</text>
               </view>
             </view>
           </block>
@@ -30,7 +30,7 @@
   </van-tabs>
   <view class='fixed-bottom'>
     <view class='confirm-group'>
-      <button class='button button-normal button-block'>发布新职位</button>
+      <button class='button button-normal button-block' catch:tap="onRelease">发布新职位</button>
     </view>
   </view>
 </view>

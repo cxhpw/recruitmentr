@@ -199,6 +199,7 @@ button:after {
   flex: 1; }
 
 .form-group {
+  display: block;
   position: relative;
   box-sizing: border-box; }
 
@@ -337,7 +338,18 @@ button:after {
     height: 24px;
     font-size: 30rpx; }
   .form .form-group .form-group__input {
+    position: relative;
     margin-top: 20rpx; }
+    .form .form-group .form-group__input icon {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%); }
+    .form .form-group .form-group__input .my-icon {
+      color: #bfbfbf; }
+
+.my-right-icon {
+  color: #bfbfbf !important; }
 
 .page .form {
   display: block;
@@ -352,7 +364,7 @@ button:after {
 .prey-list .item {
   padding: 0 40rpx;
   background: #fff;
-  margin-bottom: 15rpx; }
+  border-bottom: 15rpx solid #f8f8f8; }
   .prey-list .item > .flex-box {
     padding-top: 48rpx; }
   .prey-list .item .image-wrapper {

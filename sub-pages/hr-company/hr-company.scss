@@ -48,6 +48,7 @@ page {
 }
 .my-cell {
   padding: 15px 40rpx !important;
+  align-items: center;
   .van-cell__title {
     flex: 0 0 auto !important;
   }
@@ -62,4 +63,25 @@ page {
 .my-cell__last {
   padding: 15px 40rpx !important;
   @include border-top(#eee, 0, 0);
+}
+
+.logo {
+  font-size: 0;
+  line-height: 1;
+  .image {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+}
+.photo-wrapper {
+  .image {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    &+ .image {
+      margin-left: -22rpx;
+    }
+  }
 }

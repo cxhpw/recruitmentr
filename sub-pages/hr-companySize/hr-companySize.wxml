@@ -7,8 +7,8 @@
     <view class='list'>
       <van-radio-group value="{{ value }}" bind:change="onChange">
         <van-cell-group border="{{ false }}">
-          <van-cell custom-class='my-cell' wx:for="{{ arr }}" title="{{ item }}" clickable data-name="{{ item }}" bind:click="onClick">
-            <van-radio  slot="right-icon" name="{{ item }}" />
+          <van-cell custom-class='my-cell' wx:for="{{ arr }}" wx:key="radios" title="{{ item }}" clickable data-name="{{ item }}" bind:click="onClick">
+            <van-radio slot="right-icon" name="{{ item }}" />
           </van-cell>
         </van-cell-group>
       </van-radio-group>
@@ -16,7 +16,7 @@
   </view>
   <view class='fixed-bottom'>
     <view class='confirm-group'>
-      <button class='button button-normal button-block'>确定</button>
+      <button class='button button-normal button-block' catch:tap="onSubmit">确定</button>
     </view>
   </view>
 </view>

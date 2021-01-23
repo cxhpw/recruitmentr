@@ -16,7 +16,8 @@
     "pages/talked/talked",
     "pages/collect/collect",
     "pages/userInfo/userInfo",
-    "pages/register/educationExperience/educationExperience"
+    "pages/register/educationExperience/educationExperience",
+    "pages/companyDetail/companyDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -55,7 +56,7 @@
   "usingComponents": {
     "nomore": "/components/nomore/nomore",
     "loadButton": "/components/loadButton/loadButton",
-    "unLogin": "/components/ullogin/ullogin",
+    "empty": "/components/empty/empty",
     "icon": "@vant/weapp/icon",
     "transition": "@vant/weapp/transition",
     "van-cell": "@vant/weapp/cell",
@@ -98,7 +99,8 @@
         "hr-message/hr-message",
         "hr-account/hr-account",
         "hr-register/hr-register",
-        "hr-collect/hr-collect"
+        "hr-collect/hr-collect",
+        "hr-talked/hr-talked"
       ]
     }
   ]

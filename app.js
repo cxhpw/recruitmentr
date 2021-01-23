@@ -107,10 +107,11 @@ App({
       { RegionName: '北京市辖区', RegionCode: '110100000000' },
     ],
     userType: 'user', // 'user'|'hr'
+    selectPostion: []
   },
   api: {
-    host: 'http://daf10181.hk2.ue.net.cn',
-    // host: 'http://192.168.1.18:8088',
+    // host: 'http://daf10181.hk2.ue.net.cn',
+    host: 'http://192.168.1.18:8088',
   },
   updataOptions: function (t, a) {
     ;(null != this.globalData.nextOptions &&

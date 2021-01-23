@@ -1,76 +1,171 @@
 const app = getApp()
+import { requestConfig } from '../../api/config'
+import { updateCompanyInfo } from '../../api/hr/company'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    baseInsurance: [
-      {
-        name: '五险一金',
-        summary:
-          '缴纳养老保险、医疗保险、失业保险、工伤保险、生育保险和住房公积金',
-      },
-      {
-        name: '补充医疗保险',
-        summary: '补充医疗保险、商业医疗保险、社会互助和社区医疗保险等多种形式',
-      },
-      {
-        name: '定期体检',
-        summary: '阶段性职业健康检查',
-      },
-    ],
+    user: app.globalData.hrInfo,
+    baseInsurance: [],
     baseInsuranceValue: [],
-    reward: [
-      { name: '加班补助', summary: '正常工作时间之外的工资报酬' },
-      { name: '全勤奖', summary: '对于全勤员工给予全勤奖' },
-      {
-        name: '年终奖',
-        summary: '年末给予员工年终奖励，对一年来的工作业绩给予肯定',
-      },
-      { name: '股票期权', summary: '对优秀员工提供股票期权' },
-    ],
+    reward: [],
     rewardValue: [],
-    holiday: [
-      { name: '带薪年假', summary: '为员工提供带薪年休假' },
-      { name: '员工旅游', summary: '组织员工旅游活动' },
-    ],
+    holiday: [],
     holidayValue: [],
-    subsidy: [
-      { name: '免费班车', summary: '配有班车，免费接送员工上下班' },
-      { name: '餐补', summary: '工作餐的额外补贴' },
-      { name: '通讯补贴', summary: '补贴员工因公实际发生的公务话费' },
-      { name: '交通补助', summary: '补贴员工因公实际发生的交通费用' },
-      { name: '包吃', summary: '补贴员工因公实际发生的饮食费用' },
-      { name: '节日福利', summary: '法定或者特定节日时提供礼物' },
-      { name: '住房补贴', summary: '每月员工因公实际发生的住宿费用' },
-      { name: '零食下午茶', summary: '为员工提供零食、饮料、水果茶作为下午茶' },
-    ],
+    subsidy: [],
     subsidyValue: [],
+    baseInsuranceWelfare: [],
+    rewardWelfare: [],
+    holidayWelfare: [],
+    subsidyWelfare: [],
   },
   onBaseInsuranChange(e) {
+    console.log(e.detail)
+    let baseInsuranceWelfare = []
+    e.detail.forEach((id) => {
+      this.data.baseInsurance.forEach((item) => {
+        if (id == item.ContID) {
+          baseInsuranceWelfare.push(item.Title)
+        }
+      })
+    })
     this.setData({
       baseInsuranceValue: e.detail,
+      baseInsuranceWelfare,
     })
   },
   onRewardChange(e) {
+    let rewardWelfare = []
+    e.detail.forEach((id) => {
+      this.data.reward.forEach((item) => {
+        if (id == item.ContID) {
+          rewardWelfare.push(item.Title)
+        }
+      })
+    })
     this.setData({
       rewardValue: e.detail,
+      rewardWelfare,
     })
   },
   onHolidayChange(e) {
+    let holidayWelfare = []
+    e.detail.forEach((id) => {
+      this.data.holiday.forEach((item) => {
+        if (id == item.ContID) {
+          holidayWelfare.push(item.Title)
+        }
+      })
+    })
     this.setData({
       holidayValue: e.detail,
+      holidayWelfare,
     })
   },
   onSubsidyChange(e) {
+    let subsidyWelfare = []
+    e.detail.forEach((id) => {
+      this.data.subsidy.forEach((item) => {
+        if (id == item.ContID) {
+          subsidyWelfare.push(item.Title)
+        }
+      })
+    })
     this.setData({
       subsidyValue: e.detail,
+      subsidyWelfare,
+    })
+  },
+  onSubmit() {
+    const {
+      user,
+      baseInsuranceValue,
+      rewardValue,
+      holidayValue,
+      subsidyValue,
+    } = this.data
+    const welfare = baseInsuranceValue
+      .concat(rewardValue, holidayValue, subsidyValue)
+      .join(',')
+    updateCompanyInfo({
+      name: user.Name,
+      headerphoto: user.HeaderPhoto,
+      job: user.Job,
+      logo: user.Logo,
+      staffsize: user.StaffSize,
+      intro: user.Intro,
+      workhours: user.WorkHours,
+      resttime: user.RestTime,
+      overtime: user.OverTime,
+      welfare: welfare,
+      album: user.AlbumList.map((item) => item.Img).join(','),
+    }).then((res) => {
+      app.showToast('更新成功', () => {
+        wx.navigateBack()
+      })
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.setData({
+      user: app.globalData.hrInfo,
+    })
+    requestConfig('gsfl').then((res) => {
+      console.log(res)
+      const welfareList = app.globalData.hrInfo.WelfareList
+      const data = res.data.dataList
+      let baseInsuranceValue = [],
+        rewardValue = [],
+        holidayValue = [],
+        subsidyValue = [],
+        baseInsuranceWelfare = [],
+        rewardWelfare = [],
+        holidayWelfare = [],
+        subsidyWelfare = []
+      data.forEach((item, index) => {
+        welfareList.forEach((welfare) => {
+          if (item.NodeID === welfare.NodeID) {
+            switch (index) {
+              case 0:
+                baseInsuranceValue.push(String(welfare.ContID))
+                baseInsuranceWelfare.push(welfare.Title)
+                break
+              case 1:
+                rewardValue.push(String(welfare.ContID))
+                rewardWelfare.push(welfare.Title)
+                break
+              case 2:
+                holidayValue.push(String(welfare.ContID))
+                holidayWelfare.push(welfare.Title)
+                break
+              case 3:
+                subsidyValue.push(String(welfare.ContID))
+                subsidyWelfare.push(welfare.Title)
+                break
+            }
+          }
+        })
+      })
+
+      this.setData({
+        baseInsurance: data[0].ContentList,
+        reward: res.data.dataList[1].ContentList,
+        holiday: data[2].ContentList,
+        subsidy: data[3].ContentList,
+        baseInsuranceValue,
+        rewardValue,
+        holidayValue,
+        subsidyValue,
+        baseInsuranceWelfare,
+        rewardWelfare,
+        holidayWelfare,
+        subsidyWelfare,
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -13,7 +13,9 @@
         <view class='fr'>
           <view class="filter-wrapper">
             <view class='filter-item' catch:tap="onAreaTap">{{filterArea[1].RegionName}}</view>
-            <view class='filter-item' catch:tap="onNavTo" data-url="/pages/filter/filter">{{!filterData ? '筛选' : filterText }}</view>
+            <view class='filter-item' catch:tap="onNavTo" data-url="/pages/filter/filter">
+              {{!filterData ? '筛选' : filterText }}
+            </view>
           </view>
         </view>
       </view>
@@ -21,34 +23,35 @@
   </van-sticky>
   <view class='bd'>
     <view class='seeker-list'>
-      <view class='item' wx:for="{{  list }}" wx:key="{{ index }}">
+      <view class='item' wx:for="{{  list }}" wx:key="{{ item.AutoID }}">
         <view class='flex-box align-center'>
           <view class='fl'>
-            <view class='name'>林志玲</view>
+            <view class='name'>{{ item.Name }}</view>
             <view class='base'>
-              <text>6年</text>
-              <text>|</text>
-              <text>本科</text>
-              <text>|</text>
-              <text>6-10K</text>
+              <text>{{ item.Experience }}</text>
+              <text class='dot'>|</text>
+              <text>{{ item.Educat }}</text>
+              <text class='dot'>|</text>
+              <text>{{ item.Salary }}</text>
             </view>
           </view>
           <view class='fr'>
             <view class='image-wrapper'>
-              <image class='avatar' src="/assets/images/首页_03.jpg" />
-              <image class='sex-icon' src="/assets/images/body.png"></image>
+              <image class='avatar' src="{{ item.HeaderPhoto }}" />
+              <image class='sex-icon' src="{{ item.Gender == '男' ? '/assets/images/boy.png' : '/assets/images/girl.png'}}"></image>
             </view>
           </view>
         </view>
         <view class='work'>
           <image class='icon' src="/assets/images/icon_work.png"></image>
-          <text>广民建筑</text>
+          <text>{{ item.School }}</text>
           <text class='dot'>·</text>
-          <text>建筑施工现场管理</text>
+          <text>{{item.Specialty}}</text>
         </view>
-        <view class='summary'>在学校担任过班级班长，负责协调班级各种事物，为人较开
-            朗，善于处理人际关系。</view>
+        <view class='summary'>{{ item.Advantage}}</view>
       </view>
+      <nomore wx:if="{{nomore}}"></nomore>
+      <loadButton wx:else text="{{buttontext}}" loading="{{loading}}"></loadButton>
     </view>
   </view>
 </view>

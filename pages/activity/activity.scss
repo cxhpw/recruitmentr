@@ -1,15 +1,19 @@
 @import "../../scss/minxi/minxi.scss";
 @import "../../scss/variable/variable.scss";
-
+page {
+  background: #fff;
+}
 .list {
   .item {
     display: flex;
     @include border-bottom($borderColor, 0, 0);
     padding:  30rpx;
+    background: #fff;
     .image {
       width: 270rpx;
       height: 180rpx;
       margin-right: 30rpx;
+      border-radius: 6px;
     }
     .con {
       flex: 1;

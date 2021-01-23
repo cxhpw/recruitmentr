@@ -232,6 +232,7 @@ button:after {
 }
 
 .form-group {
+  display: block;
   position: relative;
   box-sizing: border-box;
 }
@@ -377,13 +378,25 @@ button:after {
       font-size: 30rpx;
     }
     .form-group__input {
+      position: relative;
       margin-top: 20rpx;
+      icon {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .my-icon {
+        color: #bfbfbf;
+      } 
     }
   }
   .button {
   }
 }
-
+.my-right-icon {
+  color: #bfbfbf !important ;
+}
 .page {
   .form {
     display: block;
@@ -403,7 +416,8 @@ button:after {
   .item {
     padding: 0 40rpx;
     background: #fff;
-    margin-bottom: 15rpx;
+    // margin-bottom: 15rpx;
+    border-bottom: 15rpx solid #f8f8f8;
     > .flex-box {
       padding-top: 48rpx;
     }

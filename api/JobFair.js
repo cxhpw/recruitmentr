@@ -56,6 +56,7 @@ export function requestListByFairId(params) {
 export function postJobFair(id) {
   return request({
     url: '/include/getdata',
+    method: "post",
     data: {
       apiname: 'jobfairapply',
       id

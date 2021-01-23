@@ -6,7 +6,7 @@
   <view class="page-bd" wx:if="{{tabIndex==1}}">
     <messgae id="messgae" isShow="{{tabIndex==1}}"></messgae>
   </view>
-  <view class="page-bd" wx:if="{{tabIndex==2}}">
+  <view class="page-bd" hidden="{{tabIndex!=2}}">
     <my id="my" isShow="{{tabIndex==2}}" currentIndex="{{currentIndex}}"></my>
   </view>
   <view class="page-ft">

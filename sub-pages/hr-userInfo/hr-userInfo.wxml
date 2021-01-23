@@ -1,36 +1,44 @@
+<wxs module="format" src="../../utils/index.wxs"></wxs>
 <view class="page">
   <view class='container'>
-    <view class='title'>填写基本信息</view>
     <form bindsubmit="onSubmit" class='form'>
       <view class='form-group'>
         <view class='flex-box align-center' catch:tap="onUpload">
           <view class='label'>头像</view>
           <view class='fr'>
-            <image class="avatar-placeholider" src='/assets/images/avatar-placegolider.jpg'></image>
+            <image class="avatar-placeholider" src='{{avatar || user.HeaderPhoto || "/assets/images/avatar-placegolider.jpg"}}'></image>
           </view>
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>姓名</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="请输入姓名" />
+          <input name="name" type="text" value="{{user.Name}}" class='form-control ' placeholder-class="placeholder" placeholder="请输入姓名" />
+          <icon custom-class='my-icon' name="arrow" size="16"></icon>
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>手机号</view>
+        <view class='form-group__input'>
+          <input name="mobile" type="text" disabled="{{true}}" value="{{ format.phone(roleInfo.Phone) }}" class='form-control ' placeholder-class="placeholder" placeholder="请输入姓名" />
         </view>
       </view>
       <view class='form-group'>
         <view class='label'>我的公司</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="您当前就职的公司" />
+          <input name="shortCompany" disabled="{{true}}" type="text" value="{{user.Abbreviat}}" class='form-control' placeholder-class="placeholder" placeholder="您当前就职的公司" />
         </view>
       </view>
       <view class='form-group'>
-        <view class='label'>我的职位</view>
+        <view class='label'>我的职务</view>
         <view class='form-group__input'>
-          <input type="text" class='form-control' placeholder-class="placeholder" placeholder="真实的职务，更能赢得牛人信任" />
+          <input name="jop" type="text" value="{{user.Job}}" class='form-control' placeholder-class="placeholder" placeholder="真实的职务，更能赢得牛人信任" />
+          <icon custom-class='my-icon' name="arrow" size="16"></icon>
         </view>
       </view>
       <view class="fixed-bottom">
         <view class='confirm-group'>
-          <button class='button button-normal button-block'>下一步</button>
+          <button class='button button-normal button-block' form-type="submit">确定</button>
         </view>
       </view>
     </form>

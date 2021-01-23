@@ -16,37 +16,40 @@
     </view>
   </view>
   <view class='cell-wrapper'>
-    <van-cell is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName">
+    <van-cell is-link custom-class='my-cell' use-label-slot>
       <view slot='title' class='title'>职位类型</view>
       <view slot='label' class='form-group'>
-        <picker mode="selector"  value="{{  }}" range="{{}}">
-          <view class='placeholder'>请填写职位类型</view>
-        </picker>
+        <view class="f30 c333">{{form.type}}</view>
       </view>
     </van-cell>
-    <van-cell is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName">
+    <van-cell is-link custom-class='my-cell' use-label-slot>
       <view slot='title' class='title'>经验要求</view>
       <view slot='label' class='form-group'>
-        <picker mode="selector"  value="{{ experienceValue }}" range="{{ experience }}">
+        <picker mode="selector" value="{{ experienceValue }}" range="{{ experience }}" bindchange="onExperienceChange">
           <view wx:if="{{experienceValue === -1}}" class='placeholder'>请选择经验要求</view>
-          <view wx:else class='placeholder'>{{ experience[experienceValue] }}</view>
+          <view wx:else  class='f30 c333'>{{ experience[experienceValue] }}</view>
         </picker>
       </view>
     </van-cell>
-    <van-cell is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName">
+    <van-cell is-link custom-class='my-cell' use-label-slot>
       <view slot='title' class='title'>最低学历</view>
       <view slot='label' class='form-group'>
-        <picker mode="selector"  value="{{ educationValue }}" range="{{education}}">
-          <view class='placeholder'>请选择学历</view>
+        <picker mode="selector" value="{{ educationValue }}" range="{{education}}" bindchange="onEducationChange">
+          <view wx:if="{{  educationValue == -1}}" class='placeholder'>请选择学历</view>
+          <view wx:else  class='f30 c333'>{{education[educationValue]}}</view>
         </picker>
       </view>
     </van-cell>
     <van-cell is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName">
       <view slot='title' class='title'>薪资范围</view>
       <view slot='label' class='form-group'>
-        <picker mode="multiSelector"  value="{{ salaryValue }}" range="{{ salary }}" bindchange="onSalaryChange" bindcolumnchange="onSalaryColumnChange">
+        <!-- <picker mode="multiSelector"  value="{{ salaryValue }}" range="{{ salary }}" bindchange="onSalaryChange" bindcolumnchange="onSalaryColumnChange">
           <view wx:if="{{ salaryValue[0] == -1 ||  salaryValue[1] == -1 }}" class='placeholder'>请选择合理的薪资范围</view>
           <view wx:else class=''>{{ salary[salaryValue[0]]}}{{salary[salaryValue[1]] }}</view>
+        </picker> -->
+        <picker mode="selector" value="{{  salaryValue }}" range="{{salary}}" bindchange="onSalaryChange">
+          <view wx:if="{{ salaryValue == -1}}" class='placeholder'>请选择合理的薪资范围</view>
+          <view wx:else class='f30 c333'>{{  salary[salaryValue]}}</view>
         </picker>
       </view>
     </van-cell>

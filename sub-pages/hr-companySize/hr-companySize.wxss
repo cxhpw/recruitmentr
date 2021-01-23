@@ -26,3 +26,5 @@ page {
 
 .my-cell {
   padding: 30rpx 40rpx !important; }
+  .my-cell .van-icon {
+    color: #fff !important; }

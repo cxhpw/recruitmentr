@@ -29,8 +29,8 @@ export function requestList(params) {
   return request({
     url: '/include/getdata',
     data: {
-      apiname: 'getinterviewlist',
-      ...params
+      apiname: 'getcompanyfavoriteslist',
+      ...params,
     },
   })
 }

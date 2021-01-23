@@ -1,10 +1,10 @@
 <view class="page">
   <view class='container'>
     <view class='hd'>
-      <view class='fl'>发布招聘</view>
+      <view class='fl'>发布招聘{{typeSelected.length? ":"+typeSelected[0] : ''}}</view>
       <view class='fr' catch:tap="onClick">
         <image class='icon' src='/assets/images/icon_togger.png'></image>
-        {{ typeSelected.length ?  typeSelected[0] : '切换招聘类型' }}
+        切换招聘类型
       </view>
     </view>
     <view class='steps-wrapper'>
@@ -21,11 +21,11 @@
     </view>
   </view>
   <view class='cell-wrapper'>
-    <van-cell is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName">
+    <van-cell is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName?search={{ searchKey }}">
       <view slot='title' class='title'>职位名称</view>
       <view slot='label' class='form-group'>
-        <view class='placeholder' wx:if="{{ !name.length }}">请填写职位名称，如“销售专员”</view>
-        <view class='form-control' wx:else>{{ name }}</view>
+        <view class='placeholder' wx:if="{{ !position && !searchKey }}">请填写职位名称，如“销售专员”</view>
+        <view class='form-control' wx:else>{{ position.Name || searchKey }}</view>
       </view>
     </van-cell>
     <van-cell is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseDescription/hr-releaseDescription?content={{content}}">
@@ -35,12 +35,13 @@
         <view class='form-control' wx:else>{{ content }}</view>
       </view>
     </van-cell>
-    <!-- <van-cell is-link class='my-cell'>
-      <view slot='title' class='title'>职位名称</view>
+    <van-cell is-link class='my-cell'>
+      <view slot='title' class='title'>工作地点</view>
       <view slot='label' class='form-group'>
-        <input placeholder-class="placeholder" placeholder="请填写职位名称，如“销售专员”" />
+        <view class='placeholder' wx:if="{{ !address.length }}">请选择工作地点</view>
+        <view class='form-control' wx:else>{{  address }}</view>
       </view>
-    </van-cell> -->
+    </van-cell>
   </view>
   <view class='fixed-bottom'>
     <view class='confirm-group'>

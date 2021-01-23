@@ -48,7 +48,7 @@ Page({
     requestList({
       pageindex: pageNum,
       pagesize: 20,
-      status: tabs[active],
+      status: tabs[active].value,
     }).then((res) => {
       console.log('我的收藏', res)
       if (res.data.ret == 'success') {

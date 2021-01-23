@@ -1,4 +1,6 @@
 const app = getApp()
+import { updateCompanyInfo } from '../../api/hr/company'
+import { requestCompanyFilter } from '../../api/config'
 Page({
   /**
    * 页面的初始数据
@@ -25,10 +27,41 @@ Page({
       value: name,
     })
   },
+  onSubmit() {
+    const { user } = this.data
+    updateCompanyInfo({
+      name: user.Name,
+      headerphoto: user.HeaderPhoto,
+      job: user.Job,
+      logo: user.Logo,
+      staffsize: this.data.value,
+      intro: user.Intro,
+      workhours: user.WorkHours,
+      resttime: user.RestTime,
+      overtime: user.OverTime,
+      welfare: user.WelfareList.join(','),
+      album: user.AlbumList.map((item) => item.Img).join(','),
+    }).then((res) => {
+      app.showToast('更新成功', () => {
+        wx.navigateBack()
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.setData({
+      user: app.globalData.hrInfo,
+    })
+    requestCompanyFilter().then((res) => {
+      console.log(res)
+      this.setData({
+        arr: res.data[0].keyvalue,
+        value: app.globalData.hrInfo.StaffSize,
+      })
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

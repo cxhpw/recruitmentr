@@ -2,10 +2,10 @@
   <view class='container'>
     <view class='title'>编辑公司简介</view>
     <view class='form'>
-      <textarea class='textarea-control' placeholder="可以简单介绍一下公司发展状况、服务范围、主要产品等等信息" disable-default-padding placeholder-class="placeholder" show-confirm-bar></textarea>
+      <textarea bindinput="onInput" value="{{content}}" class='textarea-control' placeholder="可以简单介绍一下公司发展状况、服务范围、主要产品等等信息" disable-default-padding placeholder-class="placeholder" show-confirm-bar></textarea>
       <view class='fixed-bottom'>
         <view class='confirm-group'>
-          <button class='button button-normal button-block'>确认</button>
+          <button class='button button-normal button-block ' catch:tap="onSubmit" >确认</button>
         </view>
       </view>
     </view>

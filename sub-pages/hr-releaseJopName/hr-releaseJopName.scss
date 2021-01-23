@@ -25,6 +25,9 @@ page {
   .title {
     font-size: 25rpx;
     color: #333;
+    &.active {
+      color: $bodycolor;
+    }
   }
 }
 
@@ -44,6 +47,7 @@ page {
     .colum {
       height: 100%;
       border-right: 1px solid $borderColor;
+      min-width: 150px;
       .list {
         display: flex;
         flex-direction: column;
@@ -58,10 +62,31 @@ page {
         max-width: 150px;
         display: inline-flex;
         align-items: center;
+        &.active {
+          color: $bodycolor;
+        }
       }
-      &:first-child {
-        // background: rgba($color: #000000, $alpha: 1.0);
-      }
+    }
+  }
+}
+.resutl {
+  font-size: 25rpx;
+  color: #999;
+  text-align: center;
+  padding: 40rpx 0;
+}
+.search-list {
+  .item {
+    padding: 20rpx 40rpx;
+    @include border-bottom($borderColor, 40rpx, 40rpx);
+    .name {
+      font-size: 26rpx;
+      font-weight: 500;
+      margin-bottom: 20rpx;
+    }
+    .summary {
+      font-size: 24rpx;
+      color: #999;
     }
   }
 }

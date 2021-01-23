@@ -7,9 +7,9 @@
         <view class='label-v2'>保险</view>
         <view class='con'>
           <van-checkbox-group value="{{  baseInsuranceValue }}" bind:change="onBaseInsuranChange">
-            <van-checkbox custom-class='my-radio' wx:for="{{ baseInsurance }}" name="{{ item.name }}">
-              <view class='name'>{{ item.name }}</view>
-              <view class='text'>{{ item.summary }}</view>
+            <van-checkbox custom-class='my-radio' wx:for="{{ baseInsurance }}" name="{{ item.ContID }}">
+              <view class='name'>{{ item.Title }}</view>
+              <view class='text'>{{ item.Content }}</view>
             </van-checkbox>
           </van-checkbox-group>
         </view>
@@ -18,9 +18,9 @@
         <view class='label-v2'>薪资期权</view>
         <view class='con'>
           <van-checkbox-group value="{{  rewardValue }}" bind:change="onRewardChange">
-            <van-checkbox custom-class='my-radio' wx:for="{{ reward }}" name="{{ item.name }}">
-              <view class='name'>{{ item.name }}</view>
-              <view class='text'>{{ item.summary }}</view>
+            <van-checkbox custom-class='my-radio' wx:for="{{ reward }}" name="{{ item.ContID }}">
+              <view class='name'>{{ item.Title }}</view>
+              <view class='text'>{{ item.Content }}</view>
             </van-checkbox>
           </van-checkbox-group>
         </view>
@@ -29,9 +29,9 @@
         <view class='label-v2'>度假休假</view>
         <view class='con'>
           <van-checkbox-group value="{{ holidayValue }}" bind:change="onHolidayChange">
-            <van-checkbox custom-class='my-radio' wx:for="{{ holiday }}" name="{{ item.name }}">
-              <view class='name'>{{ item.name }}</view>
-              <view class='text'>{{ item.summary }}</view>
+            <van-checkbox custom-class='my-radio' wx:for="{{ holiday }}" name="{{ item.ContID }}">
+              <view class='name'>{{ item.Title }}</view>
+              <view class='text'>{{ item.Content }}</view>
             </van-checkbox>
           </van-checkbox-group>
         </view>
@@ -40,9 +40,9 @@
         <view class='label-v2'>生活补贴</view>
         <view class='con'>
           <van-checkbox-group value="{{ subsidyValue }}" bind:change="onSubsidyChange">
-            <van-checkbox custom-class='my-radio' wx:for="{{ subsidy }}" name="{{ item.name }}">
-              <view class='name'>{{ item.name }}</view>
-              <view class='text'>{{ item.summary }}</view>
+            <van-checkbox custom-class='my-radio' wx:for="{{ subsidy }}" name="{{ item.ContID }}">
+              <view class='name'>{{ item.Title }}</view>
+              <view class='text'>{{ item.Content }}</view>
             </van-checkbox>
           </van-checkbox-group>
         </view>
@@ -53,10 +53,10 @@
         </view>
         <scroll-view scroll-x style="width: 100%">
           <view class='flex-box'>
-            <view class='item' wx:for="{{baseInsuranceValue}}">{{ item }}</view>
-            <view class='item' wx:for="{{rewardValue}}">{{ item }}</view>
-            <view class='item' wx:for="{{holidayValue}}">{{ item }}</view>
-            <view class='item' wx:for="{{subsidyValue}}">{{ item }}</view>
+            <view class='item' wx:for="{{baseInsuranceWelfare}}">{{ item }}</view>
+            <view class='item' wx:for="{{rewardWelfare}}">{{ item }}</view>
+            <view class='item' wx:for="{{holidayWelfare}}">{{ item }}</view>
+            <view class='item' wx:for="{{subsidyWelfare}}">{{ item }}</view>
           </view>
         </scroll-view>
       </view>
@@ -64,7 +64,7 @@
   </view>
   <view class='fixed-bottom'>
     <view class='confirm-group'>
-      <button class='button button-normal button-block'>确定</button>
+      <button class='button button-normal button-block' catch:tap="onSubmit">确定</button>
     </view>
   </view>
 </view>

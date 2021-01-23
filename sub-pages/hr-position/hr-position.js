@@ -1,17 +1,35 @@
 const app = getApp()
+import { requestJopList } from '../../api/hr/releaseManage'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     active: 0,
-    tabs: [{ title: '全部' }, { title: '开放中' }, { title: '已关闭' }],
+    tabs: [
+      { title: '全部', value: 0 },
+      { title: '开放中', value: 1 },
+      { title: '已关闭', value: 99 },
+    ],
     lists: [],
     safeArea: app.globalData.safeArea ? 'safeArea' : '',
-    initList: false
+    initList: false,
+  },
+  onRelease() {
+    wx.navigateTo({
+      url: "/sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo"
+    })
   },
   onChange(e) {
     console.log(e)
+    this.setData(
+      {
+        active: e.detail.index,
+      },
+      () => {
+        this.getLists()
+      }
+    )
   },
   initList() {
     console.log(213123)
@@ -22,7 +40,7 @@ Page({
       lists[i].loading = true
       lists[i].nomore = false
       lists[i].init = false
-      lists[i].data = [{}, {}, {}]
+      lists[i].data = []
       lists[i].buttontext = '加载中...'
       lists[i].loadData = false
     }
@@ -32,7 +50,7 @@ Page({
     })
     return Promise.resolve()
   },
-  getLists(pageNum) {
+  getLists(pageNum = 1) {
     const { active, lists, tabs } = this.data
     var temp = {}
     temp.apiname = 'getorderlist'
@@ -40,11 +58,12 @@ Page({
     temp.status = tabs[active].value
     temp.pageSize = 10
     console.log(temp)
-    app.request({
-      url: app.api.host + 'include/weixin/wechatdata',
-      data: temp,
-      success: (res) => {
-        console.log(res)
+    requestJopList({
+      pagesize: 10,
+      pageindex: pageNum,
+      status: tabs[active].value,
+    })
+      .then((res) => {
         if (res.data.ret == 'success') {
           var data = res.data.dataList
           this.setData({
@@ -55,7 +74,7 @@ Page({
           if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
             this.setData({
               [`lists[${active}].moreButton`]: true,
-              [`lists[${active}].buttontext`]: '已经没有更多订单了',
+              [`lists[${active}].buttontext`]: '暂无更多数据',
               [`lists[${active}].loading`]: false,
               [`lists[${active}].pageNum`]: 0,
               [`lists[${active}].loadData`]: true,
@@ -86,11 +105,13 @@ Page({
             [`lists[${active}].nomore`]: true,
           })
         }
-      },
-      complete: function () {
-        wx.hideToast()
-      },
-    })
+      })
+      .catch(() => {
+        this.setData({
+          [`lists[${active}].data`]: [],
+          [`lists[${active}].nomore`]: true,
+        })
+      })
   },
   /**
    * 生命周期函数--监听页面加载

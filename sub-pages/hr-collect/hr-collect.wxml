@@ -5,35 +5,32 @@
         <view class='item' wx:for="{{lists[index].data}}" wx:key="{{cell.AutoID}}" wx:for-item="cell">
           <view class='flex-box align-center'>
             <view class='image-wrapper'>
-              <image src='/assets/images/avatar.png' class='avatar'></image>
-              <image src='/assets/images/girl.png' class='sex'></image>
+              <image src='{{ cell.HeaderPhoto }}' class='avatar'></image>
+              <image src='{{ cell.Gender == "男" ? "/assets/images/boy.png" : "/assets/images/girl.png" }}' class='sex'></image>
             </view>
             <view class='flex-item'>
               <view class='flex-box align-center mb20'>
-                <view class='name'>林志玲</view>
+                <view class='name'>{{cell.Name }}</view>
                 <view class='f24 c666'>
-                  <text>林志玲</text>
-                  <text>6年</text>
+                  <text>{{cell.Experience }}</text>
                   <text>|</text>
-                  <text>本科</text>
+                  <text>{{ cell.Educat }}</text>
                   <text>|</text>
-                  <text>6-10K</text>
+                  <text>{{ cell.Salary }}</text>
                 </view>
               </view>
               <view class='f28'>
-                <text>电子</text>
-                <text class='dot'>·</text>
-                <text>.NET</text>
+                <text wx:for="{{cell.JobList}}" wx:for-item="jop">{{jop}}</text>
+                <!-- <text class='dot'>·</text> -->
               </view>
             </view>
           </view>
           <view class='summary'>
-            本人忠实诚信，讲原则，说到做到，决不推卸责任；有自制
-        力,做事情始终坚持有始有终，从不半途而废；肯学习，有...
+            {{ cell.Advantage }}
           </view>
           <view class='date'>
-            12月29日 08:04
-            <view class='fr'>沟通中</view>
+            {{ cell.AutoTimeStamp }}
+            <view class='fr'>{{ cell.Status }}</view>
           </view>
         </view>
       </view>

@@ -1,10 +1,13 @@
 const app = getApp()
+import { requestHRInfo } from '../../api/hr/company'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
     activeNames: ['baseInfo'],
+    user: app.globalData.hrInfo,
+    count: 0,
   },
   onChange(e) {
     this.setData({
@@ -15,6 +18,22 @@ Page({
     const { url } = e.currentTarget.dataset
     wx.navigateTo({
       url,
+    })
+  },
+  onPreview(e) {
+    var { user } = this.data
+    wx.previewImage({
+      current: user.Logo,
+      urls: [user.Logo],
+    })
+  },
+  onPreview1() {
+    var { user } = this.data
+    wx.previewImage({
+      current: user.AlbumList[0].Img,
+      urls: user.AlbumList.map((item) => {
+        return item.Img
+      }),
     })
   },
   /**
@@ -30,7 +49,23 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    requestHRInfo().then((res) => {
+      const user = res.data
+      let count = 0
+      user.Logo && (count += 1)
+      user.Abbreviat && (count += 1)
+      user.CompanyName && (count += 1)
+      user.Industry && (count += 1)
+      user.StaffSize && (count += 1)
+      app.globalData.hrInfo = user
+      this.setData({
+        user: user,
+        count,
+      })
+    })
+    
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

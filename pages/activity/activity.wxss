@@ -1,7 +1,11 @@
+page {
+  background: #fff; }
+
 .list .item {
   display: flex;
   position: relative;
-  padding: 30rpx; }
+  padding: 30rpx;
+  background: #fff; }
   .list .item:after {
     position: absolute;
     box-sizing: border-box;
@@ -17,7 +21,8 @@
   .list .item .image {
     width: 270rpx;
     height: 180rpx;
-    margin-right: 30rpx; }
+    margin-right: 30rpx;
+    border-radius: 6px; }
   .list .item .con {
     flex: 1;
     padding-top: 15rpx; }

@@ -19,6 +19,8 @@ page {
   .my-cell .title {
     font-size: 25rpx;
     color: #333; }
+    .my-cell .title.active {
+      color: #0866FF; }
 
 .popup-select {
   top: 54px; }
@@ -34,7 +36,8 @@ page {
     height: 100%; }
     .popup-body .flex-box .colum {
       height: 100%;
-      border-right: 1px solid #EBEBEB; }
+      border-right: 1px solid #EBEBEB;
+      min-width: 150px; }
       .popup-body .flex-box .colum .list {
         display: flex;
         flex-direction: column; }
@@ -48,3 +51,34 @@ page {
         max-width: 150px;
         display: inline-flex;
         align-items: center; }
+        .popup-body .flex-box .colum .item.active {
+          color: #0866FF; }
+
+.resutl {
+  font-size: 25rpx;
+  color: #999;
+  text-align: center;
+  padding: 40rpx 0; }
+
+.search-list .item {
+  padding: 20rpx 40rpx;
+  position: relative; }
+  .search-list .item:after {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: auto;
+    right: 40rpx;
+    bottom: 0;
+    left: 40rpx;
+    border-bottom: 1px solid #EBEBEB;
+    transform: scaleY(0.5); }
+  .search-list .item .name {
+    font-size: 26rpx;
+    font-weight: 500;
+    margin-bottom: 20rpx; }
+  .search-list .item .summary {
+    font-size: 24rpx;
+    color: #999; }
