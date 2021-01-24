@@ -12,3 +12,31 @@ page {
 #picker {
   font-size: 30rpx;
 }
+.form-group {
+  min-height: 150rpx;
+  .f22 {
+    line-height: 24px;
+  }
+}
+.placeholder {
+  line-height: 24px;
+}
+.switch-control {
+  display: flex;
+  width: 260rpx;
+  border: 1px solid $bodycolor;
+  border-radius: 4px;
+  .switch-item {
+    flex: 1;
+    height: 57rpx;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24rpx;
+    color: $bodycolor;
+    &.active {
+      background: $bodycolor;
+      color: #fff;
+    }
+  }
+}

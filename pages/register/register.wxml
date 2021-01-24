@@ -14,18 +14,43 @@
         <view class='label'>性别</view>
         <view class='form-group__input'>
           <picker mode="selector" range="{{sex}}" value='{{sexValue}}' bindchange="onSexChange">
-            <view wx:if="{{sexValue === -1}}" class='placeholder'>请选择性别</view>
-            <view wx:else  id='picker'>{{sex[sexValue]}}</view>
+            <view wx:if="{{sexValue === -1}}" class='placeholder'>
+              请选择性别
+            </view>
+            <view wx:else id='picker'>
+              {{sex[sexValue]}}
+            </view>
           </picker>
         </view>
       </view>
       <view class='form-group'>
-        <view class='label'>求职身份</view>
-        <view class='form-group__input'>
-          <picker  mode="selector" range="{{identity}}" value='{{identityValue}}' bindchange="onIdentityChange">
-            <view wx:if="{{ identityValue === - 1 }}" class='placeholder'>请选择身份</view>
-            <view wx:else id='picker'>{{identity[identityValue]}}</view>
-          </picker>
+        <view class='flex-box align-center'>
+          <view class='fl'>
+            <view class='label'>求职身份</view>
+            <view class='form-group__input'>
+              <view class="f22 c999" wx:if="{{ identityValue == 0 }}">
+                职场人
+              </view>
+              <view class="f22 c999" wx:if="{{ identityValue == 1 }}">
+                在校/应届/往届
+              </view>
+              <!-- <picker mode="selector" range="{{identity}}" value='{{identityValue}}' bindchange="onIdentityChange">
+                <view wx:if="{{ identityValue === - 1 }}" class='placeholder'>
+                  请选择身份
+                </view>
+                <view wx:else id='picker'>
+                  {{identity[identityValue]}}
+                </view>
+              </picker> -->
+            </view>
+          </view>
+          <view class='fr'>
+            <view class='switch-control'>
+              <view class="switch-item {{ identityValue === index ? 'active' : '' }}" wx:for="{{identity}}" catch:tap="onSwitch" data-index="{{ index }}">
+                {{ item }}
+              </view>
+            </view>
+          </view>
         </view>
       </view>
       <view class='form-group'>
@@ -34,9 +59,20 @@
           <input type="text" name="name" class='form-control' placeholder-class="placeholder" placeholder="请输入姓名" />
         </view>
       </view>
+      <view class='form-group'>
+        <view class='label'>出生年月</view>
+        <view class='form-group__input'>
+          <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+            <view wx:if="{{date}}">{{date}}</view>
+            <view wx:else class="placeholder">请选择出生日期</view>
+          </picker>
+        </view>
+      </view>
       <view class="fixed-bottom">
         <view class='confirm-group'>
-          <button class='button button-normal button-block'>下一步</button>
+          <button class='button button-normal button-block'>
+            下一步
+          </button>
         </view>
       </view>
     </form>

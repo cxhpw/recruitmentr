@@ -110,8 +110,8 @@ App({
     selectPostion: []
   },
   api: {
-    // host: 'http://daf10181.hk2.ue.net.cn',
-    host: 'http://192.168.1.18:8088',
+    host: 'http://daf10181.hk2.ue.net.cn',
+    // host: 'http://192.168.1.18:8088',
   },
   updataOptions: function (t, a) {
     ;(null != this.globalData.nextOptions &&

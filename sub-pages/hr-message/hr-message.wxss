@@ -1,3 +1,6 @@
+page {
+  background: #fff; }
+
 .message-tabs .van-tabs__scroll {
   background: #0866FF; }
 

@@ -7,8 +7,14 @@ Page({
   data: {
     sex: ['男', '女'],
     sexValue: -1,
-    identity: ['在校', '应届', '往届'],
-    identityValue: -1,
+    identity: ['职场人', '学生'],
+    identityValue: 1,
+    date: '',
+  },
+  bindDateChange(e) {
+    this.setData({
+      date: e.detail.value
+    })
   },
   onSexChange(e) {
     this.setData({
@@ -18,6 +24,12 @@ Page({
   onIdentityChange(e) {
     this.setData({
       identityValue: e.detail.value,
+    })
+  },
+  onSwitch(e) {
+    const { index } =e.currentTarget.dataset
+    this.setData({
+      identityValue: index
     })
   },
   valid(value) {

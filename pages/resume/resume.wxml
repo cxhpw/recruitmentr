@@ -138,7 +138,7 @@
           <view class='text'>收藏</view>
         </view>
       </view>
-      <button class="button button-normal">立即沟通</button>
+      <button class="button button-normal" catch:tap="onClick">立即沟通</button>
     </view>
   </view>
 </view>

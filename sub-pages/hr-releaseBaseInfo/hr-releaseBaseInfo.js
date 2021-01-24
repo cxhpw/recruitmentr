@@ -25,6 +25,13 @@ Page({
       url,
     })
   },
+  onMap() {
+    wx.chooseLocation({
+      success: (res) => {
+        console.log(res)
+      }
+    })
+  },
   valid() {
     if (!this.data.position) {
       return app.showToast('请输入职位名称')

@@ -1,0 +1,20 @@
+@import "../../../scss/minxi/minxi.scss";
+@import "../../../scss/variable/variable.scss";
+page {
+  background: #fff;
+}
+
+.cell-wrapper {
+  margin-top: 20rpx;
+}
+.my-cell {
+  padding: 30rpx 40rpx !important;
+  .title {
+    margin-bottom: 20rpx;
+  }
+}
+.form-control {
+  font-size: 30rpx;
+  color: #333;
+  word-break: break-all;
+}

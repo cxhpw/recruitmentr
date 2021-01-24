@@ -1,1 +1,82 @@
-<view class="page">pages/companyDetail/companyDetail</view>
+<view class="page">
+  <view class='container'>
+    <view class='top-section'>
+      <view class='fl'>
+        <view class="name">腾讯</view>
+        <view class="summary">
+          <text>10000人以上</text>
+          <text>·</text>
+          <text>互联网</text>
+        </view>
+      </view>
+      <view class='fr'>
+        <image class='image' mode="aspectFit" src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
+      </view>
+    </view>
+    <view class='content-section'>
+      <van-tabs active="{{ active }}" bind:change="onChange" border="{{ false }}" line-width="15" color="#2351D3" custom-class="my-tabs" title-active-color="#333" title-inactive-color="#666">
+        <van-tab title="公司介绍">
+          <view class='intro-section'>
+            <view class='welfare-wrapper'>
+              <view class='row'>
+                <view class='cell'>上午9:00-下午6:00</view>
+                <view class='cell'>双休</view>
+                <view class='cell'>弹性工作</view>
+                <view class='icon'>
+                  <icon name='arrow ' color="#CCCCCC" size="16"></icon>
+                </view>
+              </view>
+              <scroll-view style="width: 100%;" scroll-x="{{true}}">
+                <view class='list'>
+                  <view class='item'>五险一金</view>
+                  <view class='item'>补充医疗保险</view>
+                  <view class='item'>补充医疗保险</view>
+                  <view class='item'>补充医疗保险</view>
+                  <view class='item'>补充医疗保险</view>
+                </view>
+              </scroll-view>
+            </view>
+            <view class='address-wrapper'>
+              <view class='hd'>
+                <view class='fl'>公司地址</view>
+                <view class='fr'>
+                  <text>查看全部</text>
+                  <icon name="arrow" color="#999999" size="14"></icon>
+                </view>
+              </view>
+              <view class='bd'>
+                <view class='fl'>深圳市 南山区 腾讯大厦</view>
+                <view class='fr'>
+                  <view class='btn'>导航</view>
+                </view>
+              </view>
+            </view>
+            <view class='intro-wrapper'>
+              <view class='hd'>
+                <view class='title'>公司介绍</view>
+              </view>
+              <view class='hd'>
+                <view class='summary'>
+                  腾讯以技术丰富互联网用户的生活。
+通过通信及社交平台微信和 QQ 促进用户联系，并助其
+连接数字内容和生活服务，尽在弹指间。
+通过高效广告平台，协助品牌和市场营销腾讯以技术丰富互联网用户的生活。
+通过通信及社交平台微信和 QQ 促进用户联系，并助其
+连接数字内容和生活服务，尽在弹指间。
+通过高效广告平台，协助品牌和市场营销腾讯以技术丰富互联网用户的生活。
+通过通信及社交平台微信和 QQ 促进用户联系，并助其
+连接数字内容和生活服务，尽在弹指间。
+通过高效广告平台，协助品牌和市场营销腾讯以技术丰富互联网用户的生活。
+通过通信及社交平台微信和 QQ 促进用户联系，并助其
+连接数字内容和生活服务，尽在弹指间。
+通过高效广告平台，协助品牌和市场营销
+                </view>
+              </view>
+            </view>
+          </view>
+        </van-tab>
+        <van-tab title="在招职位（9947）">内容 2</van-tab>
+      </van-tabs>
+    </view>
+  </view>
+</view>

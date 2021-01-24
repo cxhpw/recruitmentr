@@ -23,7 +23,7 @@
   </van-sticky>
   <view class='bd'>
     <view class='seeker-list'>
-      <view class='item' wx:for="{{  list }}" wx:key="{{ item.AutoID }}">
+      <view class='item' wx:for="{{  list }}" wx:key="{{ item.AutoID }}" data-id="{{ item.AutoID }}" catch:tap="onNavTo" data-url="/pages/resume/resume?id={{item.AutoID}}">
         <view class='flex-box align-center'>
           <view class='fl'>
             <view class='name'>{{ item.Name }}</view>

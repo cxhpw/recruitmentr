@@ -1,6 +1,8 @@
 @import "../../scss/minxi/minxi.scss";
 @import "../../scss/variable/variable.scss";
-
+page {
+  background: #fff;
+}
 .message-tabs {
   .van-tabs__scroll  {
     background: $bodycolor;

@@ -7,47 +7,46 @@
     <form bindsubmit="onSubmit">
       <view class='form'>
         <view class='form-group'>
-          <view class='flex-box align-center' catch:tap="onUpload">
-            <view class='label'>学校</view>
-            <view class='form-group__input'>
-              <input type="text" name="school" class='form-control' placeholder-class="placeholder" placeholder="请填写学校" />
-            </view>
+          <view class='label'>学校</view>
+          <view class='form-group__input'>
+            <input type="text" name="school" class='form-control' placeholder-class="placeholder" placeholder="请填写学校" />
           </view>
         </view>
         <view class='form-group'>
-          <view class='flex-box align-center' catch:tap="onUpload">
-            <view class='label'>学历</view>
-            <view class='form-group__input'>
-              <input type="text" name="school" class='form-control' placeholder-class="placeholder" placeholder="请填写学校" />
-            </view>
+          <view class='label'>学历</view>
+          <view class='form-group__input'>
+            <input type="text" name="school" class='form-control' placeholder-class="placeholder" placeholder="请填写学校" />
           </view>
         </view>
         <view class='form-group'>
-          <view class='flex-box align-center' catch:tap="onUpload">
-            <view class='label'>专业</view>
-            <view class='form-group__input'>
-              <input type="text" name="school" class='form-control' placeholder-class="placeholder" placeholder="请填写学校" />
-            </view>
+          <view class='label'>专业</view>
+          <view class='form-group__input'>
+            <input type="text" name="school" class='form-control' placeholder-class="placeholder" placeholder="请填写学校" />
           </view>
         </view>
         <view class='form-group'>
-          <view class='flex-box align-center' catch:tap="onUpload">
-            <view class='label'>时间段</view>
-            <view class='form-group__input'>
-              <input type="text" name="school" class='form-control' placeholder-class="placeholder" placeholder="请填写学校" />
-            </view>
+          <view class='label'>时间段</view>
+          <view class='form-group__input'>
+            <picker mode="multiSelector" range="{{timeRange}}" value="{{timeRangeValue}}" bindcolumnchange="onTimeRangeColChange" bindchange="onTimeRangeChange">
+              <view wx:if="{{timeRangeValue.indexOf(-1) !== - 1}}" class='placeholder'>请填写时间段</view>
+              <view wx:else class='placeholder'>{{ timeRange[0][timeRangeValue] }}-{{ timeRange[1][timeRangeValue] }}</view>
+            </picker>
           </view>
         </view>
         <view class='form-group'>
-          <view class='flex-box align-center' catch:tap="onUpload">
-            <view class='label'>选填</view>
-            <view class='form-group__input'>
-              <input type="text" name="school" class='form-control' placeholder-class="placeholder" placeholder="请填写学校" />
-            </view>
+          <view class='label'>选填</view>
+          <view class='form-group__input'>
+            <input type="text" name="school" class='form-control' placeholder-class="placeholder" placeholder="请填写学校" />
           </view>
         </view>
       </view>
     </form>
-    <view></view>
+    <view class='fixed-bottom'>
+      <view class='confirm-group'>
+        <button class='button button-normal button-block'>
+          下一步
+        </button>
+      </view>
+    </view>
   </view>
 </view>

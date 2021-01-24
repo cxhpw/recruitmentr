@@ -144,7 +144,9 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () {
+    this.data.lists[this.data.active].pageNum !== 0 && this.data.getLists(this.data.lists[this.data.active].pageNum + 1)
+  },
 
   /**
    * 用户点击右上角分享

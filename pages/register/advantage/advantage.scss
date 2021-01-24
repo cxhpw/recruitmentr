@@ -1,0 +1,20 @@
+@import "../../../scss/minxi/minxi.scss";
+@import "../../../scss/variable/variable.scss";
+page {
+  background: #fff;
+}
+.title {
+  font-size: 48rpx;
+  color: #000;
+  font-weight: 700;
+  margin-bottom: 20rpx;
+  margin-top: 70rpx;
+}
+textarea {
+  padding: 10px 0;
+  font-size: 24rpx;
+  width: 100%;
+}
+.placeholder {
+  font-size: 24rpx;
+}

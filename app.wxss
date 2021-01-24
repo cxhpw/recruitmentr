@@ -337,6 +337,8 @@ button:after {
   .form .form-group .form-control {
     height: 24px;
     font-size: 30rpx; }
+  .form .form-group .placeholder {
+    line-height: 24px; }
   .form .form-group .form-group__input {
     position: relative;
     margin-top: 20rpx; }

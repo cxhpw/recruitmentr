@@ -17,7 +17,9 @@
     "pages/collect/collect",
     "pages/userInfo/userInfo",
     "pages/register/educationExperience/educationExperience",
-    "pages/companyDetail/companyDetail"
+    "pages/companyDetail/companyDetail",
+    "pages/register/advantage/advantage",
+    "pages/register/intention/intention"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -100,7 +102,8 @@
         "hr-account/hr-account",
         "hr-register/hr-register",
         "hr-collect/hr-collect",
-        "hr-talked/hr-talked"
+        "hr-talked/hr-talked",
+        "map/map"
       ]
     }
   ]
