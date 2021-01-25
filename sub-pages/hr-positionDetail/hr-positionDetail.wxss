@@ -5,7 +5,7 @@ page {
   padding-bottom: 160rpx; }
 
 .top-section {
-  padding: 40rpx 0;
+  padding: 40rpx 0 calc(40rpx - 10px);
   position: relative; }
   .top-section:after {
     position: absolute;
@@ -31,11 +31,14 @@ page {
   .top-section .base {
     display: flex;
     align-items: center;
-    margin-top: 20rpx; }
+    margin-top: 20rpx;
+    flex-wrap: wrap; }
     .top-section .base .icon-item {
       display: flex;
       align-items: center;
-      margin-right: 40rpx; }
+      margin-right: 40rpx;
+      white-space: nowrap;
+      margin-bottom: 10px; }
     .top-section .base .icon {
       width: 30rpx;
       height: 30rpx;

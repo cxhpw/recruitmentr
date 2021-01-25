@@ -62,7 +62,7 @@ Page({
           if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
             this.setData({
               [`lists[${active}].moreButton`]: true,
-              [`lists[${active}].buttontext`]: '已经没有更多订单了',
+              [`lists[${active}].buttontext`]: '暂无更多数据',
               [`lists[${active}].loading`]: false,
               [`lists[${active}].pageNum`]: 0,
               [`lists[${active}].loadData`]: true,

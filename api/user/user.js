@@ -1,6 +1,9 @@
 import request from '../../utils/request'
 
-export function requestUserInfo(params) {
+/**
+ * 求职者信息
+ */
+export function requestUserInfo() {
   return request({
     url: '/include/getdata',
     data: {

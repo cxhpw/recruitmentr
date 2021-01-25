@@ -2,30 +2,30 @@
   <view class='container'>
     <view class='top-section'>
       <view class='flex-box'>
-        <view class='name'>PHP高级工程师（跨境电商）PHP高级工程师（跨境电商）PHP高级工程师（跨境电商）</view>
-        <view class='price'>12-22K·16薪</view>
+        <view class='name'>{{ data.JName}}</view>
+        <view class='price'>{{ data.Salary }}</view>
       </view>
       <view class='base'>
         <view class='icon-item'>
           <image class='icon' src='/assets/images/icon_address.jpg'></image>
           <view class='text'>
-            <text>深圳</text>
-            <text class='dot'>·</text>
+            <text>{{ data.Address }}</text>
+            <!-- <text class='dot'>·</text>
             <text>南山区</text>
             <text class='dot'>·</text>
-            <text>科技园</text>
+            <text>科技园</text> -->
           </view>
         </view>
         <view class='icon-item'>
           <image class='icon' src='/assets/images/icon-work.jpg'></image>
           <view class='text'>
-            <text>1-3年</text>
+            <text>{{ data.Experience }}</text>
           </view>
         </view>
         <view class='icon-item'>
           <image class='icon' src='/assets/images/icon_xueli.jpg'></image>
           <view class='text'>
-            <text>本科</text>
+            <text>{{ data.Educat }}</text>
           </view>
         </view>
       </view>
@@ -33,31 +33,32 @@
     <view class='detail-section'>
       <view class='title'>职位详情</view>
       <view class='content'>
-        <wxParamComponent html="{{ html }}"></wxParamComponent>
+        <wxParamComponent html="{{ data.Desc }}"></wxParamComponent>
       </view>
     </view>
     <view class='company-section'>
-      <view class='flex-box align-center'>
-        <image class='logo' mode="aspectFill" src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
+      <view class='flex-box align-center' catch:tap="on">
+        <image class='logo' mode="aspectFill" src="{{data.CLogo}}"></image>
         <view class='flex-item'>
-          <view class="name">腾讯</view>
+          <view class="name">{{ data.CAbbreviat }}</view>
           <view class="info">
-            <text>互联网</text>
+            <text>{{ data.CIndustry }}</text>
             <text>·</text>
-            <text>20-99人</text>
+            <text>{{ data.CStaffSize }}</text>
           </view>
         </view>
         <icon name='arrow' size="{{16}}" color='#999'></icon>
       </view>
       <view class='map' catch:tap="onMapTap">
-        <image src='https://s3.ax1x.com/2021/01/19/sg7GGR.jpg' class='image'></image>
+        <image src='{{ data.MapImage }}' class='image'></image>
       </view>
     </view>
   </view>
   <view class='fixed-bottom'>
     <view class='button-group'>
-      <button class='button button-normal-reverse'>编辑</button>
-      <button class='button button-normal'>关闭职位</button>
+      <button class='button button-normal-reverse' catch:tap="onEdit">编辑</button>
+      <button class='button button-normal' catch:tap="onClose" wx:if="{{ data.Status === 99 }}">关闭职位</button>
+      <button class='button button-normal' catch:tap="onOpen" wx:else>开启职位</button>
     </view>
   </view>
 </view>

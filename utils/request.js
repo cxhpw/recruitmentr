@@ -20,10 +20,16 @@ export default function request(params) {
     params.success =
       params.success ||
       function (res) {
-        if (res.data.ret == 'fail') {
-          reject(res)
+        if (res.data.ret == 'fail' || /DOCTYPE html/.test(res.data)) {
+          const err = Object.assign(
+            {},
+            { reponsive: res.data },
+            { request: params.data, url: params.url }
+          )
+          console.error(err)
+          reject(err)
         } else {
-          resolve(res)
+          resolve(res, params.data)
         }
       }
     params.fail = function (err) {
@@ -49,7 +55,7 @@ export default function request(params) {
           },
         })
       }
-      reject(err)
+      reject(Object.assign({}, { reponsive: err }, { request: params.data }))
     }
     wx.request(params)
     // .catch((err) => {

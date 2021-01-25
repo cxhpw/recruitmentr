@@ -1,6 +1,7 @@
 const app = getApp()
 import { requestDetailById } from '../../api/hr/resume'
 import { postMessage } from '../../api/hr/chatroom'
+import { postCollect } from '../../api/hr/collect'
 Page({
   /**
    * 页面的初始数据
@@ -13,17 +14,30 @@ Page({
       参与系统架构及系统稳定性、可扩展性设计；<br>
       负责后端通用基础组件、开发框架的研发建设;`,
   },
+  onCollect(e) {
+    const { id } = e.currentTarget.dataset
+    postCollect(id).then((res) => {
+      app.showToast(res.data.msg, () => {
+        if (res.data.ret == 'success') {
+          this.setData({
+            [`data.FavStatus`]: this.data.data.FavStatus == 1 ? 99 : 1,
+          })
+        }
+      })
+    })
+  },
   getDetail(id) {
     requestDetailById(id).then((res) => {
       this.setData({
-        data: res.data
+        data: res.data,
       })
     })
   },
   onClick() {
-    postMessage().then(() => {
+    postMessage(this.data.id).then((res) => {
+      console.log(res)
       wx.navigateTo({
-        url: `/pages/chatroom/chatroom?id=${this.data.data.AutoID}`
+        url: `/pages/chatroom/chatroom?id=${res.data.ChatRoomID}`,
       })
     })
   },
@@ -32,7 +46,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      id: options.id
+      id: options.id,
     })
     this.getDetail(options.id)
   },
@@ -70,5 +84,11 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {},
+  onShareAppMessage: function () {
+    const { data } = this.data
+    return {
+      title: `${data.Name}的简历`,
+      path: `/pages/resume/resume?id=${data.AutoID}`,
+    }
+  },
 })

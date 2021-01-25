@@ -6,7 +6,7 @@
         <view class='flex-box align-center' catch:tap="onUpload">
           <view class='label'>头像</view>
           <view class='fr'>
-            <image class="avatar-placeholider" src='/assets/images/avatar-placegolider.jpg'></image>
+            <image class="avatar-placeholider" src='{{ avatar || "/assets/images/avatar-placegolider.jpg" }}'></image>
           </view>
         </view>
       </view>
@@ -70,7 +70,7 @@
       </view>
       <view class="fixed-bottom">
         <view class='confirm-group'>
-          <button class='button button-normal button-block'>
+          <button class='button button-normal button-block' form-type="submit">
             下一步
           </button>
         </view>

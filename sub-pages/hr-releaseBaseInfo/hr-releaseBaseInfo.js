@@ -1,16 +1,26 @@
 const app = getApp()
+import { requestDetailById, postReleaseJop } from '../../api/hr/releaseManage'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    initData: false,
+    data: null,
+    id: -1,
     content: '',
     position: null,
     show: false,
     type: ['社招', '实习生招聘', '兼职招聘'],
     typeSelected: ['社招'],
     searchKey: '',
-    address: ''
+    address: null,
+    housenumber: '',
+  },
+  onInput(e) {
+    this.setData({
+      housenumber: e.detail.value,
+    })
   },
   onTypeChange(e) {
     console.log(e)
@@ -26,29 +36,50 @@ Page({
     })
   },
   onMap() {
-    wx.chooseLocation({
+    const temp = {
       success: (res) => {
         console.log(res)
-      }
-    })
+        this.setData({
+          address: res,
+        })
+      },
+      fail: () => {
+        console.log('fail')
+        app.getLocation().then((res) => {
+          console.log(res)
+        })
+      },
+    }
+    if (this.data.address) {
+      temp.latitude = this.data.address.latitude
+      temp.longitude = this.data.address.longitude
+    }
+    wx.chooseLocation(temp)
   },
   valid() {
     if (!this.data.position) {
       return app.showToast('请输入职位名称')
     } else if (!this.data.content) {
       return app.showToast('请输入职位描述')
+    } else if (!this.data.address || !this.data.address.address) {
+      return app.showToast('请选择工作地点')
+    } else if (!this.data.housenumber) {
+      return app.showToast('请输入门牌号')
     }
     return true
   },
   onSubmit() {
+    const { id } = this.data
     if (this.valid()) {
       const formData = {
         position: this.data.position,
         desc: this.data.content,
         type: this.data.typeSelected[0],
+        address: this.data.address,
+        housenumber: this.data.housenumber,
       }
       wx.navigateTo({
-        url: `/sub-pages/hr-releaseJopRequire/hr-releaseJopRequire?formData=${JSON.stringify(
+        url: `/sub-pages/hr-releaseJopRequire/hr-releaseJopRequire?id=${id}&formData=${JSON.stringify(
           formData
         )}`,
       })
@@ -65,8 +96,35 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
-
+  onLoad: function (options) {
+    this.setData({
+      id: options.id || -1,
+    })
+    if (options.id) {
+      this.getDetail(options.id)
+    }
+  },
+  getDetail(id) {
+    requestDetailById(id).then((res) => {
+      console.log('详情', res)
+      const data = res.data
+      this.setData({
+        data: res.data,
+        position: {
+          Name: data.JName,
+        },
+        content: data.Desc,
+        address: {
+          address: data.Address,
+          name: data.WorkPlace,
+          latitude: Number(data.Latitude),
+          longitude: Number(data.Longitude),
+        },
+        housenumber: data.HouseNumber,
+        typeSelected: [data.Type]
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

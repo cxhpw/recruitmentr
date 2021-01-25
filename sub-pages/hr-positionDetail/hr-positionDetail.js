@@ -1,9 +1,12 @@
 const app = getApp()
+import { requestDetailById, postReleaseJop } from '../../api/hr/releaseManage'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    id: -1,
+    data: {},
     html: `
       【岗位职责】<br>
                                 1、负责跨境电商SaaS服务平台业务需求开发 <br>
@@ -37,10 +40,48 @@ NoSQL数据存储⽐较熟悉；<br>
       scale: 18,
     })
   },
+  getDetail(id) {
+    requestDetailById(id).then((res) => {
+      console.log('详情', res)
+      this.setData({
+        data: res.data,
+      })
+    })
+  },
+  onClose() {
+    postReleaseJop({
+      action: 'close',
+      id: this.data.id,
+    }).then((res) => {
+      app.showToast(res.data.msg, () => {
+        this.getDetail(this.data.id)
+      })
+    })
+  },
+  onOpen() {
+    postReleaseJop({
+      action: 'open',
+      id: this.data.id,
+    }).then((res) => {
+      app.showToast(res.data.msg, () => {
+        this.getDetail(this.data.id)
+      })
+    })
+  },
+  onEdit() {
+    wx.navigateTo({
+      url: `/sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo?id=${this.data.id}`,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    this.setData({
+      id: options.id,
+    })
+    this.getDetail(options.id)
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -50,7 +91,11 @@ NoSQL数据存储⽐较熟悉；<br>
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    app.globalData.isRef &&
+      this.getDetail(this.data.id) &&
+      (app.globalData.isRef = false)
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

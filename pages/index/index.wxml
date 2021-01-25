@@ -1,80 +1,28 @@
-<!-- index.wxml -->
-<view class="page">
-  <!-- <image style="width: 750rpx;height: 100vh" src="/assets/images/9789a6583b0e6ccfa6ea3fb650da526.jpg" mode="aspectFill"></image> -->
-  <image class='bd' src="/assets/images/index-top.png"></image>
-  <view class='search-section'>
-    <view class='search-wrapper'>
-      <image class='icon' src='/assets/images/icon_search.png'></image>
-      <text>搜索职位、公司</text>
-    </view>
+<!-- sub-pages/main/main.wxml -->
+<view class='page'>
+  <view class="page-bd" hidden="{{  tabIndex != 0 }}">
+    <index id="index" isShow="{{tabIndex==0}}"></index>
   </view>
-  <view class='swiper-section'>
-    <swiper class='swiper' indicator-dots indicator-active-color="#0866FF" indicator-color="rgba(0, 0, 0, .3)" circular="{{true}}">
-      <swiper-item>
-        <image class='image' src='https://s3.ax1x.com/2021/01/21/shP1fA.jpg'></image>
-      </swiper-item>
-      <swiper-item>
-        <image class='image' src='https://s3.ax1x.com/2021/01/21/shP1fA.jpg'></image>
-      </swiper-item>
-      <swiper-item>
-        <image class='image' src='https://s3.ax1x.com/2021/01/21/shP1fA.jpg'></image>
-      </swiper-item>
-    </swiper>
+  <view class="page-bd" wx:if="{{tabIndex==1}}">
+    <messgae id="messgae" isShow="{{tabIndex==1}}"></messgae>
   </view>
-  <view class='nav-section'>
-    <view class='flex-box'>
-      <view class='flex-item'>
-        <image src="/assets/images/index_1.png" class='image'></image>
-        <view class='text'>附近工作</view>
+  <view class="page-bd" hidden="{{tabIndex!=2}}">
+    <my id="my" isShow="{{tabIndex==2}}" currentIndex="{{currentIndex}}"></my>
+  </view>
+  <view class="page-ft">
+    <view class="tab-bar02" hidden="{{hidden}}">
+      <view wx:key="index" class="tab-bar-item" data-index="{{0}}" data-path="/sub-pages/hr-index/hr-index" catchtap="tabSwitch">
+        <image class="mb" src="{{tabIndex == 0 ? '/assets/images/hr-index-select.jpg' : '/assets/images/hr-index.jpg'}}"></image>
+        <view class='text  {{  tabIndex == 0 ? "active" : "" }}'>推荐</view>
       </view>
-      <view class='flex-item'>
-        <image src="/assets/images/index_2.png" class='image'></image>
-        <view class='text'>找实习</view>
+      <view wx:key="index" class="tab-bar-item" data-index="{{1}}" data-path="/sub-pages/hr-message/hr-message" catchtap="tabSwitch" data-url="/pages/arms/arms">
+        <image class="mb" src="{{tabIndex == 1 ? '/assets/images/hr-message-select.jpg' : '/assets/images/hr-message.jpg'}}"></image>
+        <view class='text {{  tabIndex == 1 ? "active" : "" }}'>消息</view>
       </view>
-      <view class='flex-item'>
-        <image src="/assets/images/index_3.png" class='image'></image>
-        <view class='text'>找兼职</view>
-      </view>
-      <view class='flex-item'>
-        <image src="/assets/images/index_4.png" class='image'></image>
-        <view class='text'>热门公司</view>
-      </view>
-      <view class='flex-item'>
-        <image src="/assets/images/index_5.png" class='image'></image>
-        <view class='text'>职位分类</view>
+      <view wx:key="index" class="tab-bar-item" data-index="{{2}}" data-path="/sub-pages/hr-my/hr-my" catchtap="tabSwitch">
+        <image class="mb" src="{{tabIndex ==2 ? '/assets/images/hr-my-select.jpg' : '/assets/images/hr-my.jpg' }}"></image>
+        <view class='text  {{  tabIndex == 2 ? "active" : "" }}'>我的</view>
       </view>
     </view>
   </view>
-  <van-sticky>
-    <view class='edit-section'>
-      <view class='type-tabs'>
-        <view class='item active'>PHP</view>
-        <view class='item'>生产组长/拉长</view>
-        <view class='item'>餐饮</view>
-      </view>
-      <view class='btn'>
-        <icon custom-class="iconfont  icon-bianjibiaoge" size="18"></icon>
-      </view>
-    </view>
-  </van-sticky>
-  <view class='recruitment-list'>
-    <view class='card' wx:for="{{list}}" wx:key="{{ index }}">
-      <view class='company-base flex-box align-center'>
-        <view class='name'>PHP高级工程师（跨境电商）</view>
-        <view class='price'>12-22K</view>
-      </view>
-      <view class='company-info'>
-        <text>阿里巴巴</text>
-        <text>20-99人</text>
-      </view>
-      <view class='company-hr'>
-        <image class='avatar' src="/assets/images/avatar.png"></image>
-        <text>刘女士</text>
-        <text>人力资源经理</text>
-        <text class='fr'>深圳</text>
-      </view>
-    </view>
-  </view>
-  <loadButton loading="{{ false }}" text="暂无更多数据"></loadButton>
-  <nomore wx:if="{{nomore}}"></nomore>
 </view>

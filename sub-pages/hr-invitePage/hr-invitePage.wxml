@@ -4,16 +4,16 @@
   </view>
   <view class='container'>
     <view class='cell-section'>
-      <van-cell is-link custom-class='my-cell' border="{{ false }}">
-        <view slot='title' class='title'>.net</view>
+      <van-cell is-link custom-class='my-cell' border="{{ false }}" catch:click="onNavToJop">
+        <view slot='title' class='title'>{{ position.Name || data.Job }}</view>
         <view class='value'>修改职位</view>
       </van-cell>
-      <van-cell is-link custom-class='my-cell' border="{{ false }}">
-        <view slot='title' class='title'>13896333533</view>
+      <van-cell is-link custom-class='my-cell' border="{{ false }}"  catch:click="onNavToMobile">
+        <view slot='title' class='title'>{{ mobile || data.Phone }}</view>
         <view class='value'>修改电话</view>
       </van-cell>
       <van-cell custom-class='my-cell' border="{{ false }}">
-        <view slot='title' class='title'>深圳市 龙华新区 蓝坤大厦 1107</view>
+        <view slot='title' class='title'>{{ data.Address}}{{ data.WorkPlace }}{{ data.HouseNumber }}</view>
       </van-cell>
     </view>
     <view class='date-section'>
@@ -25,7 +25,7 @@
     <view class='remark-section'>
       <view class='title'>添加备注</view>
       <view class='rela'>
-        <textarea maxlength="140" class='textarea-control' value="{{ remark }}" bindinput="onInput" placeholder-style="color: #BCBCBC" placeholder="请输入告知牛人的其他内容，例如具体路线，所需材料。" disable-default-padding></textarea>
+        <textarea maxlength="140" value="{{  remark }}"  class='textarea-control' value="{{ remark }}" bindinput="onInput" placeholder-style="color: #BCBCBC" placeholder="请输入告知牛人的其他内容，例如具体路线，所需材料。" disable-default-padding></textarea>
         <view class='count'>
           <text>{{ remark.length }}</text>
           <text>/</text>
@@ -36,7 +36,7 @@
   </view>
   <view class='fixed-bottom'>
     <view class='button-group'>
-      <button class='button button-normal button-block'>发送面试邀请</button>
+      <button class='button button-normal button-block' catch:tap="onSubmit">发送面试邀请</button>
     </view>
   </view>
   <van-popup show="{{ show }}" bind:close="onClose">

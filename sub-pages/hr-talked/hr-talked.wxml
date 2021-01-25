@@ -1,6 +1,6 @@
 <view class="page">
   <view class='prey-list'>
-    <view class='item' wx:for="{{ list }}" wx:key="{{ item.AutoID }}" data-chatid="{{ item.AutoID }}" data-uid="{{ item.UserID }}">
+    <view class='item' wx:for="{{ list }}" wx:key="{{ item.AutoID }}" data-chatid="{{ item.AutoID }}" data-uid="{{ item.UserID }}" catch:tap="onNavTo">
       <view class='flex-box align-center'>
         <view class='image-wrapper'>
           <image src='{{ item.HeaderPhoto }}' class='avatar'></image>
@@ -17,9 +17,11 @@
               <text>{{ item.Salary }}</text>
             </view>
           </view>
-          <view class='f28'>
-            <text wx:for="{{ item.JobList }}" wx:for-item="jop">{{jop}}</text>
-            <!-- <text class='dot' wx:if="">·</text> -->
+          <view class='target flex-box align-center'>
+            <view wx:for="{{ item.JobList }}" wx:for-item="jop">
+              <text>{{jop.JobName}}</text>
+              <text class='dot' wx:if="{{ index <  item.JobList.length - 1}}">·</text>
+            </view>
           </view>
         </view>
       </view>

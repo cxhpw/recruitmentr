@@ -1,2 +1,5 @@
 page {
   background: #fff; }
+
+.target {
+  font-size: 27rpx; }

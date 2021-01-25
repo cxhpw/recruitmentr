@@ -1,12 +1,14 @@
 const app = getApp()
-import { postReleaseJop } from '../../api/hr/releaseManage'
-
+import { postReleaseJop, requestDetailById } from '../../api/hr/releaseManage'
 import { requestResumeFilter } from '../../api/config'
+
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    data: null,
+    id: -1,
     experience: ['不限', '一年以内', '1-3年内', '3-5年内'],
     experienceValue: -1,
     education: ['小学', '初中', '高中', '大学'],
@@ -39,35 +41,65 @@ Page({
   valid() {
     if (this.data.experienceValue == -1) {
       return app.showToast('请选择经验要求')
-    } else if (this.data.educationValue == -1 ) {
+    } else if (this.data.educationValue == -1) {
       return app.showToast('请选择学历要求')
-    } else if(this.data.salaryValue == -1) {
+    } else if (this.data.salaryValue == -1) {
       return app.showToast('请选薪资范围')
     }
     return true
   },
   onSubmit() {
     if (this.valid()) {
-      const { form } = this.data
+      const {
+        form,
+        experience,
+        experienceValue,
+        education,
+        educationValue,
+        salary,
+        salaryValue,
+      } = this.data
       postReleaseJop({
-        action: 'add',
-        id: 0,
+        action: this.data.id == -1 ? 'add' : 'modify',
+        id: this.data.id,
         name: form.position.Name,
         desc: form.desc,
-        address: '深圳',
-        housenumber: '1107',
+        address: form.address.address,
+        housenumber: form.housenumber,
+        latitude: form.address.latitude,
+        longitude: form.address.longitude,
         type: form.type,
-        experience: '1-3年',
-        educat: '本科',
-        salary: '3-5K',
-      }).then((res) => {
-        // app.showToast(res.data.msg, () => {
-        //   wx.navigateBack({
-        //     delta: 2,
-        //   })
-        // })
+        workplace: form.address.name,
+        experience: experience[experienceValue],
+        educat: education[educationValue],
+        salary: salary[salaryValue],
       })
+        .then((res) => {
+          app.showToast(res.data.msg, () => {
+            if (res.data.ret == 'success') {
+              wx.navigateBack({
+                delta: 2,
+              })
+              app.globalData.isRef = true
+            }
+          })
+        })
+        .catch((err, options) => {
+          console.error(err, options)
+        })
     }
+  },
+  getDetail(id) {
+    requestDetailById(id).then((res) => {
+      console.log('详情', res)
+      const data = res.data
+      this.setData({
+        data: res.data,
+        experienceValue: this.data.experience.indexOf(data.Experience),
+        educationValue: this.data.education.indexOf(data.Educat),
+        salaryValue: this.data.salary.indexOf(data.Salary),
+      })
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -75,6 +107,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       form: JSON.parse(options.formData),
+      id: options.id || -1,
     })
     requestResumeFilter().then((res) => {
       console.log('筛选', res)
@@ -82,6 +115,10 @@ Page({
         experience: res.data[2].keyvalue,
         education: res.data[0].keyvalue,
         salary: res.data[1].keyvalue,
+      }, () => {
+        if (options.id != -1) {
+            this.getDetail(options.id)
+        }
       })
     })
   },
@@ -99,7 +136,9 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () {
+    app.globalData.selectPostion = []
+  },
 
   /**
    * 生命周期函数--监听页面卸载

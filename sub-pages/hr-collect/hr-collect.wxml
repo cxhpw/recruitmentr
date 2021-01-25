@@ -2,7 +2,7 @@
   <van-tabs sticky active="{{ active }}" bind:change="onChange" line-width="{{ 15 }}" color="#0866FF">
     <van-tab wx:for="{{ tabs }}" title="{{item.title}}">
       <view class='prey-list'>
-        <view class='item' wx:for="{{lists[index].data}}" wx:key="{{cell.AutoID}}" wx:for-item="cell">
+        <view class='item' wx:for="{{lists[index].data}}" wx:key="{{cell.AutoID}}" wx:for-item="cell" catch:tap="onNavTo" data-uid="{{ item.UserID }}" data-cid="{{ item.AutoID }}">
           <view class='flex-box align-center'>
             <view class='image-wrapper'>
               <image src='{{ cell.HeaderPhoto }}' class='avatar'></image>
@@ -19,15 +19,15 @@
                   <text>{{ cell.Salary }}</text>
                 </view>
               </view>
-              <view class='f28'>
-                <text wx:for="{{cell.JobList}}" wx:for-item="jop">{{jop}}</text>
-                <!-- <text class='dot'>·</text> -->
+              <view class='target flex-box align-center'>
+                <view wx:for="{{ item.JobList }}" wx:for-item="jop">
+                  <text>{{jop.JobName}}</text>
+                  <text class='dot' wx:if="{{ index <  item.JobList.length - 1}}">·</text>
+                </view>
               </view>
             </view>
           </view>
-          <view class='summary'>
-            {{ cell.Advantage }}
-          </view>
+          <view class='summary'>{{ cell.Advantage }}</view>
           <view class='date'>
             {{ cell.AutoTimeStamp }}
             <view class='fr'>{{ cell.Status }}</view>

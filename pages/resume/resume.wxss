@@ -14,6 +14,7 @@
     display: flex;
     flex: 0 0 auto; }
     .button-group .action-wrapper .action-item {
+      position: relative;
       min-width: 55px;
       height: 80rpx;
       display: flex;
@@ -71,8 +72,9 @@
     margin-bottom: 30rpx; }
   .seeker-section .info {
     font-size: 29rpx; }
-    .seeker-section .info .dot {
-      margin: 0 10rpx; }
+
+.dot {
+  margin: 0 10rpx; }
 
 .desc-section {
   padding: 40rpx;
@@ -108,7 +110,7 @@
 
 .expect-section {
   background: #fff;
-  padding: 40rpx;
+  padding: 40rpx 40rpx 0rpx 40rpx;
   position: relative; }
   .expect-section:after {
     position: absolute;
@@ -127,7 +129,23 @@
     font-size: 31rpx;
     border-left: 2px solid #0866FF;
     padding-left: 14rpx;
-    margin-bottom: 50rpx; }
+    margin-bottom: 10rpx; }
+  .expect-section .bd .item {
+    padding: 40rpx 0; }
+    .expect-section .bd .item + .item {
+      position: relative; }
+      .expect-section .bd .item + .item::before {
+        position: absolute;
+        box-sizing: border-box;
+        transform-origin: center;
+        content: ' ';
+        pointer-events: none;
+        bottom: auto;
+        right: 0rpx;
+        top: 0;
+        left: 0rpx;
+        border-bottom: 1px solid #EBEBEB;
+        transform: scaleY(0.5); }
   .expect-section .bd .target {
     font-size: 29rpx; }
     .expect-section .bd .target text {

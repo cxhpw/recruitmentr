@@ -17,7 +17,7 @@ if (!page) {
 }
 let dir = path.join(pageRoot, page)
 //  E:\companyFile\珠海美容\project\zhuhai-shop\pages\my\my
-
+console.log(dir)
 if (fs.existsSync(dir)) {
   log.error(`已存在页面${page}`)
   shell.exit(1)

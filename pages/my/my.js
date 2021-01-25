@@ -1,5 +1,6 @@
 const app = getApp()
 import { auth, getRoleInfos, togglerRole } from '../../api/user'
+import { requestUserInfo } from '../../api/user/user'
 Page({
   /**
    * 页面的初始数据
@@ -33,6 +34,7 @@ Page({
             getRoleInfos().then((res) => {
               console.log('会员信息', res)
               app.globalData.roleInfo = res
+              this.getUser()
             })
           }
         })
@@ -108,14 +110,19 @@ Page({
         })
       },
     })
-    // app
-    //   .getUserInfos()
-    //   .then((res) => {
-    //     console.log('个人信息', res)
-    //   })
-    //   .catch(() => {
-    //     console.error('未授权')
-    //   })
+    this.getUser()
+  },
+  getUser() {
+    requestUserInfo()
+      .then((res) => {
+        console.log('求职者信息', res)
+      })
+      .catch((err) => {
+        console.error(err)
+        wx.reLaunch({
+          url: '/pages/register/register'
+        })
+      })
   },
 
   /**
@@ -143,7 +150,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '柯城人家',
+      title: '柯城就业创业招聘网',
       path: '/pages/index/index',
       imageUrl: 'https://s3.ax1x.com/2021/01/21/sh67FI.jpg',
     }

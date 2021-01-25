@@ -1,7 +1,7 @@
 <view class="page {{safeArea}}">
   <view class='seeker-section'>
     <view class="fl">
-      <view class='name'>林志玲</view>
+      <view class='name'>{{ data.Name }}</view>
       <view class='info'>
         <text>.NET</text>
         <text class='dot'>·</text>
@@ -10,29 +10,29 @@
     </view>
     <view class="fr">
       <view class="image-wrapper">
-        <image class='avatar' src='/assets/images/首页_03.jpg'></image>
-        <image class='sex-icon' src='/assets/images/girl.png'></image>
+        <image class='avatar' src='{{ data.HeaderPhoto }}'></image>
+        <image class='sex-icon' src='{{ data.Gende == "男"  ? "/assets/images/boy.png" : "/assets/images/girl.png" }}'></image>
       </view>
     </view>
   </view>
   <view class='desc-section'>
-    <view class="status">在职-考虑机会</view>
+    <view class="status">{{ data.JobStatus }}</view>
     <view class='desc'>
       <view class='flex-box align-center'>
         <icon custom-class='icon iconfont icon-gongzuo'></icon>
-        <text>1-3年</text>
+        <text>{{ data.Experience }}</text>
       </view>
       <view class='flex-box align-center'>
         <icon custom-class='icon iconfont icon-xueli'></icon>
-        <text>本科</text>
+        <text>{{ data.Educat }}</text>
       </view>
       <view class='flex-box align-center'>
         <icon custom-class='icon iconfont icon-shengridangao'></icon>
-        <text>21岁</text>
+        <text>{{ data.Age }}</text>
       </view>
     </view>
     <view class='summary'>
-      <wxParamComponent html="{{ html }}"></wxParamComponent>
+      <wxParamComponent html="{{ data.Advantage }}"></wxParamComponent>
     </view>
   </view>
   <view class='expect-section'>
@@ -40,21 +40,23 @@
       <text>求职期望</text>
     </view>
     <view class='bd'>
-      <view class='flex-box target'>
-        <view class='fl'>
-          <text class=''>.NET</text>
-          <text class=''>深圳</text>
+      <view class='item' wx:for="{{ data.JobExpectList }}" wx:key="JobExpectList">
+        <view class='flex-box target'>
+          <view class='fl'>
+            <text class=''>{{ item.Job }}</text>
+            <text class=''>{{ item.City }}</text>
+          </view>
+          <view class='fr'>
+            <text class='price'>{{ item.Salary }}</text>
+          </view>
         </view>
-        <view class='fr'>
-          <text class='price'>12-22k</text>
+        <view class='category'>
+          <text>{{ item.Industry }}</text>
+          <!-- <text>·</text>
+          <text>计算机软件</text>
+          <text>·</text>
+          <text>媒体</text> -->
         </view>
-      </view>
-      <view class='category'>
-        <text>互联网</text>
-        <text>·</text>
-        <text>计算机软件</text>
-        <text>·</text>
-        <text>媒体</text>
       </view>
     </view>
   </view>
@@ -64,7 +66,18 @@
     </view>
     <view class='bd'>
       <view class='skill-list'>
-        <view class='skill-item'>
+        <view class='skill-item' wx:for="{{ data.WorkExList }}" wx:key="skill">
+          <view class='flex-box align-center'>
+            <view class='fl'>{{ item.CompanyName }}</view>
+            <view class='fr'>{{ item.StartTime }}- {{ item.EndTime }}</view>
+          </view>
+          <view class='position'>
+            <text>{{ item.Department }}</text>
+            <text class='label' wx:if="{{ item.IsInternEx == '是' }}">实习</text>
+          </view>
+          <view class='summary'>{{ item.WorkContent }}</view>
+        </view>
+        <!-- <view class='skill-item no-border'>
           <view class='flex-box align-center'>
             <view class='fl'>云顶房屋租赁系统</view>
             <view class='fr'>2020.07-2020.10</view>
@@ -78,22 +91,7 @@
                 信息、角色、员工等等的一些基本信息，客户入住登记、收
               费、抄表、报损等等等
           </view>
-        </view>
-        <view class='skill-item no-border'>
-          <view class='flex-box align-center'>
-            <view class='fl'>云顶房屋租赁系统</view>
-            <view class='fr'>2020.07-2020.10</view>
-          </view>
-          <view class='position'>
-            <text>.NET开发工程师</text>
-            <text class='label'>实习</text>
-          </view>
-          <view class='summary'>
-            用来给管理员管理出租房屋的网站，包括登录与注册，部门
-                信息、角色、员工等等的一些基本信息，客户入住登记、收
-              费、抄表、报损等等等
-          </view>
-        </view>
+        </view> -->
       </view>
     </view>
   </view>
@@ -102,7 +100,7 @@
       <text>教育经历</text>
     </view>
     <view class='bd'>
-      <view class='item'>
+      <!-- <view class='item' wx:for="{{EducatExList}}" wx:key="education">
         <view class='flex-box align-center'>
           <view class='fl'>长沙理工大学</view>
           <view class='fr'>2019-2021</view>
@@ -112,16 +110,16 @@
           <text>·</text>
           <text>计算机技术</text>
         </view>
-      </view>
-      <view class='item no-border'>
+      </view> -->
+      <view class='item {{index ==  data.EducatExList.length - 1  ? "no-border" : "" }}' wx:for="{{data.EducatExList}}" wx:key="education">
         <view class='flex-box align-center'>
-          <view class='fl'>长沙理工大学</view>
-          <view class='fr'>2019-2021</view>
+          <view class='fl'>{{ item.School }}</view>
+          <view class='fr'>{{ item.TimePart }}</view>
         </view>
         <view class='text'>
-          <text>本科</text>
-          <text>·</text>
-          <text>计算机技术</text>
+          <text>{{ item.Educat }}</text>
+          <text class="dot">·</text>
+          <text>{{ item.Specialty }}</text>
         </view>
       </view>
     </view>
@@ -132,9 +130,10 @@
         <view class='action-item'>
           <icon custom-class='icon iconfont icon-share'></icon>
           <view class='text'>分享</view>
+          <button open-type="share" class='contact-button'></button>
         </view>
-        <view class='action-item'>
-          <icon custom-class='icon' name="like-o"></icon>
+        <view class='action-item' catch:tap="onCollect" data-id="{{ data.AutoID }}">
+          <icon custom-class='icon' color="{{ data.FavStatus == 1 ? '#666666' : 'red' }}" name="{{ data.FavStatus == 1 ? 'like-o' : 'like' }}"></icon>
           <view class='text'>收藏</view>
         </view>
       </view>

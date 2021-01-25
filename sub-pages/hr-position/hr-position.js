@@ -8,8 +8,8 @@ Page({
     active: 0,
     tabs: [
       { title: '全部', value: 0 },
-      { title: '开放中', value: 1 },
-      { title: '已关闭', value: 99 },
+      { title: '开放中', value: 99 },
+      { title: '已关闭', value: 1 },
     ],
     lists: [],
     safeArea: app.globalData.safeArea ? 'safeArea' : '',
@@ -17,7 +17,13 @@ Page({
   },
   onRelease() {
     wx.navigateTo({
-      url: "/sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo"
+      url: '/sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo',
+    })
+  },
+  onNavTo(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/sub-pages/hr-positionDetail/hr-positionDetail?id=${id}`
     })
   },
   onChange(e) {
@@ -130,7 +136,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    app.globalData.isRef && this.getLists() && (app.globalData.isRef = false)
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

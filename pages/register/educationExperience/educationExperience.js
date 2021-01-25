@@ -39,10 +39,32 @@ Page({
       [`timeRangeValue[1]`]: 2
     })
   },
+  valid(value) {
+    if (!value.school) {
+      return app.showToast("请输入学校")
+    } else if( !value.education ) {
+      return app.showToast('请输入学历')
+    } else if (!value.profession) {
+      return app.showToast('请输入专业')
+    } else if (this.data.timeRangeValue.indexOf(-1) !== -1) {
+      return app.showToast('请选择时间段')
+    }
+    return true
+  },
+  onSubmit(e) {
+    const { value } = e.detail
+    console.log(value)
+    if (this.valid(value)) {
+
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      form: JSON.parse(options.formData)
+    })
     const nowYear = new Date().getFullYear()
     let startYear = 1990
     const { timeRange } = this.data

@@ -9,8 +9,10 @@ import request from '../../utils/request'
 export function postMessage(id) {
   return request({
     url: '/include/getdata',
+    method: "post",
     data: {
       apiname: 'immediatelychat',
+      id
     },
   })
 }

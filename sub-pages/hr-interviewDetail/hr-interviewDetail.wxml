@@ -3,26 +3,31 @@
     <view class='top-section'>
       <view class='flex-box align-center'>
         <view class='con'>
-          <view class='name'>与 林志玲 的面试</view>
-          <view class='summary'>面试完成</view>
+          <view class='name'>与 {{ data.Name }} 的面试</view>
+          <view class='summary'>
+            <text wx:if="{{ data.Status === 99 }}">面试完成</text>
+            <text wx:if="{{ data.Status === 100 }}">已拒绝</text>
+            <text wx:if="{{ data.Status === 1 }}">待接受</text>
+            <text wx:if="{{ data.Status === 10 }}">待面试</text>
+          </view>
         </view>
         <view class='image-wrapper'>
-          <image src='/assets/images/首页_03.jpg' class='avatar'></image>
-          <image src='/assets/images/girl.png' class='sex'></image>
+          <image src='{{ data.HeaderPhoto }}' class='avatar'></image>
+          <image src='{{ data.Gender === "男" ? "/assets/images/boy.png" : "/assets/images/girl.png" }}' class='sex'></image>
         </view>
       </view>
     </view>
     <view class='nav-section'>
       <view class='flex-box'>
-        <view class='flex-item'>
+        <view class='flex-item' catch:tap="onNavTo" data-url="/pages/resume/resume?id={{ data.UserID }}">
           <image class="icon" src="/assets/images/icon-resume.jpg"></image>
           <view class='text'>在线简历</view>
         </view>
-        <view class='flex-item'>
+        <view class='flex-item' catch:tap="onPhoneCall">
           <image class="icon" src="/assets/images/icon-phone.jpg"></image>
           <view class='text'>电话</view>
         </view>
-        <view class='flex-item'>
+        <view class='flex-item' catch:tap="onNavTo" data-url="/pages/chatroom/chatroom?id={{ data.ChatRoomID }}">
           <image class="icon" src="/assets/images/icon-liantian.jpg"></image>
           <view class='text'>聊天</view>
         </view>
@@ -33,7 +38,7 @@
         <view slot='title' class='f24'>
           <view class='flex-box align-center'>
             <icon custom-class='iconfont    icon-shijian' size='18' color='#BFBFBF'></icon>
-            <view class='f24'>2020-12-29 10:00</view>
+            <view class='f24'>{{ data.InterviewTime }}</view>
           </view>
         </view>
       </van-cell>
@@ -41,7 +46,7 @@
         <view slot='title' class='f24'>
           <view class='flex-box align-center'>
             <icon custom-class='iconfont icon-bangongbao' size='18' color='#BFBFBF'></icon>
-            <view class='f24'>php，3-4K</view>
+            <view class='f24'>{{ data.Job }}，{{ data.Salary }}</view>
           </view>
         </view>
       </van-cell>
@@ -49,7 +54,7 @@
         <view slot='title' class='f24'>
           <view class='flex-box align-center'>
             <icon custom-class='iconfont icon-ditu_dingwei' size='18' color='#BFBFBF'></icon>
-            <view class='f24'>深圳市 龙华新区 蓝坤大厦 1107</view>
+            <view class='f24'>{{ data.Address }}{{ data.WorkPlace }}{{ data.HouseNumber }}</view>
           </view>
         </view>
       </van-cell>
@@ -57,7 +62,7 @@
   </view>
   <view class='fixed-bottom'>
     <view class='button-group'>
-      <button class='button button-cancel' catch:tap="onClick">重新邀约</button>
+      <button class='button button-cancel' catch:tap="onClick" wx:if="{{ data.Status == 100 || data.Status == 99 }}">重新邀约</button>
       <button class='button button-normal' catch:tap="onRemarkTap">编辑牛人备注</button>
     </view>
   </view>
@@ -67,7 +72,7 @@
       <view class='body'>
         <view class='title'>选择标签</view>
         <view class='checkbox-list'>
-          <van-checkbox-group custom-class='checkbox-group' value="{{  labelsSelected }}" bind:change="onLabelsChange">
+          <van-checkbox-group custom-class='checkbox-group' value="{{ labelsSelected }}" bind:change="onLabelsChange">
             <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ labels }}" wx:key="{{ index }}">
               {{ item }}
             </van-checkbox>
@@ -75,9 +80,9 @@
         </view>
         <view class='wrapper'>
           <view class='title'>添加备注</view>
-          <textarea maxlength="140" class='textarea-control' placeholder-style="color: #BCBCBC" placeholder="请补充其他说明" disable-default-padding></textarea>
+          <textarea maxlength="140" value="{{content}}" bindinput="onInput" class='textarea-control' placeholder-style="color: #BCBCBC" placeholder="请补充其他说明" disable-default-padding></textarea>
         </view>
-        <view class='button button-normal button-block'>确定</view>
+        <view class='button button-normal button-block' catch:tap="onConfirm">确定</view>
       </view>
     </view>
   </van-popup>

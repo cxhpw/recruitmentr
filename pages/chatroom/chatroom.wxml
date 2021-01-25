@@ -7,11 +7,11 @@
             <image class='image' src='/assets/images/icon-resume.jpg'></image>
             <view class='text'>看简历</view>
           </view>
-          <view class='flex-item'>
+          <view class='flex-item' catch:tap="onPhoneCall">
             <image class='image' src='/assets/images/icon-phone.jpg'></image>
             <view class='text'>打电话</view>
           </view>
-          <view class='flex-item'>
+          <view class='flex-item' catch:tap="onNavTo" data-url="/sub-pages/hr-invitePage/hr-invitePage?type=invite&id={{ card.JSID }}">
             <image class='image' src='/assets/images/icon-user.jpg'></image>
             <view class='text'>约面试</view>
           </view>
@@ -19,53 +19,53 @@
       </view>
     </van-sticky>
     <view class='chatroom-wrapper'>
-      <view class='chatroom-time'>12月28日 15:20</view>
+      <view class='chatroom-time'>{{ card.AutoTimeStamp }}</view>
       <view class='resume-card'>
         <view class='resume-card__top'>
           <view class="flex-box align-center">
-            <image class='avatar' src='/assets/images/首页_03.jpg'></image>
+            <image class='avatar' src='{{ card.HeaderPhoto }}'></image>
             <view class='con'>
               <view class='flex-box align-center'>
-                <text class='name'>林志玲</text>
-                <text class='price'>3-4K</text>
+                <text class='name'>{{ card.JSName }}</text>
+                <text class='price'>{{ card.Salary }}</text>
               </view>
-              <view class='c666 f22'>求职期望 .NET</view>
+              <view class='c666 f22'>求职期望 {{  card.JobList[0].JobName }}</view>
             </view>
           </view>
           <view class='info'>
             <view class='fl'>
               <view class='info-item'>
                 <image class='icon' src="/assets/images/icon-work.jpg"></image>
-                <text>1-3年</text>
+                <text>{{ card.Experience }}</text>
               </view>
               <view class='info-item'>
                 <image class='icon' src="/assets/images/icon-xueli.jpg"></image>
-                <text>本科</text>
+                <text>{{ card.Educat }}</text>
               </view>
               <view class='info-item'>
                 <image class='icon' src="/assets/images/icon-cake.jpg"></image>
-                <text>21岁</text>
+                <text>{{ card.Age }}</text>
               </view>
             </view>
-            <view class='fr'>离职-随时到岗</view>
+            <view class='fr'>{{ card.JobStatus }}</view>
           </view>
         </view>
         <view class='resume-card__bottom'>
-          <view class='date'>12月28日 15:20 向您就以下职位发起沟通</view>
+          <view class='date'>{{ card.AutoTimeStamp }} 向您就以下职位发起沟通</view>
           <view class='info'>
-            <text>.NET</text>
-            <text class='price'>3-4K</text>
+            <text>{{ card.JobList[0].JobName }}</text>
+            <text class='price'>{{ card.Salary }}</text>
           </view>
         </view>
       </view>
-      <view class='chatroom-item'>
+      <view class='chatroom-item {{ role.Role == item.UserType ? "my" : ""}}' wx:for="{{ list }}" wx:key="message">
         <image src='/assets/images/首页_03.jpg' class='chatroom-item__avatar'></image>
         <view class='chatroom-item__content'>您好！我对您发布的职位十分感兴趣，期待加入！！！</view>
       </view>
-      <view class='chatroom-item my'>
+      <!-- <view class='chatroom-item {{ role.Role ==  }}'>
         <image src='/assets/images/首页_03.jpg' class='chatroom-item__avatar'></image>
         <view class='chatroom-item__content'>13245</view>
-      </view>
+      </view> -->
     </view>
   </view>
     <comment-input id="comment" show 

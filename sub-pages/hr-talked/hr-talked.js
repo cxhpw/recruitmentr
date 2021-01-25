@@ -12,6 +12,12 @@ Page({
     list: [],
     buttontext: '加载中',
   },
+  onNavTo(e) {
+    const { chatid, uid } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/resume/resume?id=${uid}`,
+    })
+  },
   getList: function (pageNum = 1) {
     this.setData({
       loading: true,

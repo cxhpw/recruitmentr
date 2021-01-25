@@ -24,37 +24,10 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "柯城人社",
+    "navigationBarTitleText": "柯城就业创业招聘网",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "tabBar": {
-    "custom": false,
-    "color": "#999999",
-    "selectedColor": "#0866ff",
-    "borderStyle": "white",
-    "backgroundColor": "#ffffff",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "找工作",
-        "iconPath": "/assets/images/index.jpg",
-        "selectedIconPath": "/assets/images/index-select.jpg"
-      },
-      {
-        "pagePath": "pages/message/message",
-        "text": "消息",
-        "iconPath": "/assets/images/message.jpg",
-        "selectedIconPath": "/assets/images/message-select.jpg"
-      },
-      {
-        "pagePath": "pages/my/my",
-        "text": "我的",
-        "iconPath": "/assets/images/my.jpg",
-        "selectedIconPath": "/assets/images/my-select.jpg"
-      }
-    ]
-  },
   "usingComponents": {
     "nomore": "/components/nomore/nomore",
     "loadButton": "/components/loadButton/loadButton",
@@ -103,7 +76,8 @@
         "hr-register/hr-register",
         "hr-collect/hr-collect",
         "hr-talked/hr-talked",
-        "map/map"
+        "map/map",
+        "hr-editMobile/hr-editMobile"
       ]
     }
   ]

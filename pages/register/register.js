@@ -10,10 +10,11 @@ Page({
     identity: ['职场人', '学生'],
     identityValue: 1,
     date: '',
+    avatar: '',
   },
   bindDateChange(e) {
     this.setData({
-      date: e.detail.value
+      date: e.detail.value,
     })
   },
   onSexChange(e) {
@@ -27,26 +28,37 @@ Page({
     })
   },
   onSwitch(e) {
-    const { index } =e.currentTarget.dataset
+    const { index } = e.currentTarget.dataset
     this.setData({
-      identityValue: index
+      identityValue: index,
     })
   },
   valid(value) {
-    if (!value) {
+    if (!this.data.avatar) {
+      return app.showToast('请上传头像')
+    } else if (!value.name) {
       return app.showToast('请输入姓名')
     } else if (this.data.sexValue == -1) {
       return app.showToast('请选择性别')
     } else if (this.data.identityValue == -1) {
       return app.showToast('请选择性别')
+    } else if (!this.data.date) {
+      return app.showToast('请选择出生日期')
     }
     return true
   },
   onSubmit(e) {
     console.log('提交', e)
     const { value } = e.detail
-    let formData = {}
+
     if (this.valid(value)) {
+      let formData = {
+        avatar: this.data.avatar,
+        name: value.name,
+        sex: this.data.sex[this.data.sexValue],
+        date: this.data.date,
+        identity: this.data.identity[this.data.identityValue],
+      }
       wx.navigateTo({
         url: `./educationExperience/educationExperience?formData=${JSON.stringify(
           formData
@@ -104,7 +116,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {},
+  onLoad: function (options) {
+    wx.hideHomeButton()
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

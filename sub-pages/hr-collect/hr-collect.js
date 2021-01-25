@@ -1,5 +1,5 @@
 const app = getApp()
-import { requestList } from '../../api/hr/collect'
+import { requestList, postCollect } from '../../api/hr/collect'
 Page({
   /**
    * 页面的初始数据
@@ -15,16 +15,32 @@ Page({
     lists: [],
     active: 0,
   },
-  onChange(e) {
-    console.log(e)
-    this.setData({
-      active: e.detail.index
-    }, () => {
-      this.getLists(1)
+  onNavTo(e) {
+    const { cid, uid } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/resume/resume?id=${uid}`,
     })
   },
+  onCollect(e) {
+    const { id } = e.currentTarget.dataset
+    postCollect(id).then((res) => {
+      app.showToast(res.data.msg, () => {
+        this.getLists()
+      })
+    })
+  },
+  onChange(e) {
+    console.log(e)
+    this.setData(
+      {
+        active: e.detail.index,
+      },
+      () => {
+        this.getLists(1)
+      }
+    )
+  },
   initList() {
-    
     var listTemp = []
     for (var i = 0; i < this.data.tabs.length; i++) {
       listTemp[i] = {}
@@ -61,7 +77,7 @@ Page({
         if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
           this.setData({
             [`lists[${active}].moreButton`]: true,
-            [`lists[${active}].buttontext`]: '已经没有更多订单了',
+            [`lists[${active}].buttontext`]: '暂无更多数据',
             [`lists[${active}].loading`]: false,
             [`lists[${active}].pageNum`]: 0,
             [`lists[${active}].loadData`]: true,
@@ -112,7 +128,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    app.globalData.isRef && this.getLists() && (app.globalData.isRef = false)
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -133,7 +151,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.data.lists[this.data.active].pageNum != 0 && this.getLists(this.data.lists[this.data.active].pageNum + 1)
+    this.data.lists[this.data.active].pageNum != 0 &&
+      this.getLists(this.data.lists[this.data.active].pageNum + 1)
   },
 
   /**

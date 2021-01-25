@@ -20,6 +20,7 @@
     display: flex;
     flex: 0 0 auto;
     .action-item {
+      position: relative;
       min-width: 55px;
       height: 80rpx;
       display: flex;
@@ -75,12 +76,11 @@
   }
   .info {
     font-size: 29rpx;
-    .dot {
-      margin: 0 10rpx;
-    }
   }
 }
-
+.dot {
+margin: 0 10rpx;
+}
 .desc-section {
   padding: 40rpx;
   background: #fff;
@@ -109,16 +109,22 @@
 
 .expect-section {
   background: #fff;
-  padding: 40rpx;
+  padding: 40rpx 40rpx 0rpx 40rpx;
   @include border-bottom($borderColor, 40rpx, 40rpx);
   .hd {
     line-height: 1;
     font-size: 31rpx;
     border-left: 2px solid $bodycolor;
     padding-left: 14rpx;
-    margin-bottom: 50rpx;
+    margin-bottom: 10rpx;
   }
   .bd {
+    .item {
+      padding: 40rpx 0;
+      & + .item {
+        @include border-top($borderColor, 0rpx, 0rpx);
+      }
+    }
     .target {
       font-size: 29rpx;
       text {

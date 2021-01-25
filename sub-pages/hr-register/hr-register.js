@@ -14,6 +14,7 @@ Page({
     } else if (!value.company) {
       return app.showToast('请输入公司名称')
     } else if (!value.jop) {
+
       return app.showToast('请输入职位')
     }
     return true
@@ -52,7 +53,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // wx.hideHomeButton()
+    wx.hideHomeButton()
   },
 
   /**
@@ -68,7 +69,8 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {},
+  onHide: function () {
+  },
 
   /**
    * 生命周期函数--监听页面卸载

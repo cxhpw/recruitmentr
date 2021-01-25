@@ -96,10 +96,14 @@ Page({
       })
       .catch((err) => {
         // 未填写企业信息
-        console.error(err)
-        wx.reLaunch({
-          url: '/sub-pages/hr-register/hr-register',
-        })
+        console.error('--',err)
+        if (err.reponsive.msg == '请授权登录！') {
+          
+        } else {
+          wx.reLaunch({
+            url: '/sub-pages/hr-register/hr-register',
+          })
+        }
       })
   },
   onPullDownRefresh: function () {
@@ -127,7 +131,7 @@ Page({
     switch (tabIndex) {
       case 0:
         this.selectComponent('#index').onReachBottom()
-        break;
+        break
     }
   },
 })

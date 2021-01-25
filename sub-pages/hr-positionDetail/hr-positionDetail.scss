@@ -7,7 +7,7 @@ page {
   padding-bottom: 160rpx;
 }
 .top-section {
-  padding: 40rpx 0;
+  padding: 40rpx 0 calc(40rpx - 10px);
   @include border-bottom($borderColor, 0, 0);
   .name {
     font-size: 36rpx;
@@ -24,10 +24,13 @@ page {
     display: flex;
     align-items: center;
     margin-top: 20rpx;
+    flex-wrap: wrap;
     .icon-item {
       display: flex;
       align-items: center;
       margin-right: 40rpx;
+      white-space: nowrap;
+      margin-bottom: 10px;
     }
     .icon {
       width: 30rpx;

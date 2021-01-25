@@ -2,6 +2,8 @@
 import { getTimeStr, encrypt } from './utils/util'
 import { togglerRole } from './api/user'
 import './utils/es6-promise.min.js'
+const Wxmap = require('./utils/qqmap-wx-jssdk.min.js')
+var mapInstance
 global.Promise && (Promise = global.Promise)
 var timer
 App({
@@ -9,6 +11,9 @@ App({
     // 展示本地存储能力
     // wx.clearStorage()
 
+    // wx.reLaunch({
+    //   url: '/sub-pages/main/main'
+    // })
     this.updateAppHandle()
     // 登录
     this.getRoleInfos()
@@ -19,7 +24,9 @@ App({
         }
       })
       .catch((error) => {
+        // 未授权
         console.error(error)
+        
       })
 
     wx.getSystemInfo({
@@ -32,6 +39,26 @@ App({
         }
       },
     })
+    mapInstance = new Wxmap({
+      key: 'Z4OBZ-DSDCQ-32Y5R-GLXXC-CFEBO-5DBL3',
+    })
+    // 获取当前定位，无需微信定位授权
+    this.getLocation()
+      .then((res) => {
+        this.globalData.location = res
+        mapInstance.reverseGeocoder({
+          success: (res) => {
+            console.log('reverseGeocoder', res)
+            this.globalData.currentLocation = res.result
+          },
+          fail: (err) => {
+            console.error(err)
+          },
+        })
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   },
   onShow: function () {
     console.log('App show')
@@ -96,6 +123,8 @@ App({
     this.globalData.filterData = data
   },
   globalData: {
+    isRef: false,
+    location: null,
     roleInfo: null,
     userInfo: {},
     hrInfo: {},
@@ -107,11 +136,50 @@ App({
       { RegionName: '北京市辖区', RegionCode: '110100000000' },
     ],
     userType: 'user', // 'user'|'hr'
-    selectPostion: []
+    selectPostion: [],
   },
   api: {
-    host: 'http://daf10181.hk2.ue.net.cn',
+    // host: 'http://daf10181.hk2.ue.net.cn',
+    host: 'https://job.729.cn',
     // host: 'http://192.168.1.18:8088',
+  },
+  getLocation: function name() {
+    return new Promise((resolve, reject) => {
+      wx.getLocation({
+        success: (res) => {
+          console.log('开启定位成功', res)
+          resolve(res)
+        },
+        fail: () => {
+          console.log('用户未授权定位权限')
+          this.showModal({
+            title: '开启定位',
+            content: '你的位置信息将用于小程序位置接口的效果展示',
+            success: (res) => {
+              console.log(res)
+              if (res.confirm) {
+                wx.openSetting({
+                  success: (res) => {
+                    console.log('openSetting', res)
+                    if (res.authSetting['scope.userLocation']) {
+                      this.getLocation().then((res) => {
+                        resolve(res)
+                      })
+                    } else {
+                      console.log('定位失败')
+                      reject('定位失败')
+                    }
+                  },
+                })
+              } else {
+                console.log('定位失败')
+                reject('定位失败')
+              }
+            },
+          })
+        },
+      })
+    })
   },
   updataOptions: function (t, a) {
     ;(null != this.globalData.nextOptions &&

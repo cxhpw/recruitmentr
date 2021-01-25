@@ -84,7 +84,7 @@
 .chatroom-time {
   font-size: 24rpx;
   color: #999999;
-  margin-bottom: 45rpx;
+  margin: 45rpx 0;
   text-align: center; }
 
 .chatroom-item {

@@ -45,7 +45,7 @@ export function requestDetailById(id) {
 }
 
 /**
- * 管理面试
+ * 管理面试, 邀请面试
  * @param {{
  *  action: 'add'|'modify',
  *  id: Number,

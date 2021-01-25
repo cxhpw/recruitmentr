@@ -2,7 +2,7 @@ import request from '../utils/request'
 
 /**
  * 获取基本配置信息
- * @param {'bzgzsj'|'gsfl'|'zwlx'} params
+ * @param {'bzgzsj'|'gsfl'|'zwlx'|'msbz'} params
  * @summary identy bzgzsj：标准工作时间 gsfl：公司福利 zwlx：职位类型
  */
 export function requestConfig(params) {
