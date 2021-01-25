@@ -1,4 +1,5 @@
 const app = getApp()
+import { requestResumeFilter } from '../../../api/config'
 Page({
   /**
    * 页面的初始数据
@@ -6,6 +7,8 @@ Page({
   data: {
     timeRange: [['1990以前'], []],
     timeRangeValue: [-1, -1],
+    education: [],
+    educationValue: -1
   },
   onTimeRangeColChange(e) {
     console.log(e)
@@ -19,13 +22,19 @@ Page({
     const { value } = e.detail
     if (value.indexOf('-1') === -1) {
       this.setData({
-        timeRangeValue: value
+        timeRangeValue: value,
       })
     }
   },
+  onTimeRangeCancel(e) {
+    console.log(e)
+    this.setData({
+      timeRangeValue: this.data.timeRangeValue
+    })
+  },
   initCol(year) {
     const count = 5
-    const { timeRange, timeRangeValue } = this.data
+    const { timeRange } = this.data
     timeRange[1] = []
     if (!year || year == '1990以前') {
       year = 1990
@@ -36,13 +45,12 @@ Page({
     }
     this.setData({
       timeRange,
-      [`timeRangeValue[1]`]: 2
     })
   },
   valid(value) {
     if (!value.school) {
-      return app.showToast("请输入学校")
-    } else if( !value.education ) {
+      return app.showToast('请输入学校')
+    } else if (this.data.educationValue == -1) {
       return app.showToast('请输入学历')
     } else if (!value.profession) {
       return app.showToast('请输入专业')
@@ -55,16 +63,36 @@ Page({
     const { value } = e.detail
     console.log(value)
     if (this.valid(value)) {
-
+      const formData = Object.assign({}, {
+        school: value.school,
+        profession: value.profession,
+        education: this.data.education[this.data.educationValue],
+        timeRange: `${this.data.timeRange[0][this.data.timeRangeValue[0]]}-${this.data.timeRange[1][this.data.timeRangeValue[1]]}`
+      }, this.data.form)
+      wx.navigateTo({
+        url: `../advantage/advantage?formData=${JSON.stringify(formData)}`,
+      })
     }
+  },
+  onEducationChange(e) {
+    this.setData({
+      educationValue: e.detail.value
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      form: JSON.parse(options.formData)
+    requestResumeFilter().then((res) => {
+      console.log('====', res)
+      this.setData({
+        education:res.data[0].keyvalue.slice(1)
+      })
     })
+    this.setData({
+      form: options.formData ? JSON.parse(options.formData) : {},
+    })
+
     const nowYear = new Date().getFullYear()
     let startYear = 1990
     const { timeRange } = this.data

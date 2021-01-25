@@ -15,7 +15,10 @@
         <view class='form-group'>
           <view class='label'>学历</view>
           <view class='form-group__input'>
-            <input type="text" name="education" class='form-control' placeholder-class="placeholder" placeholder="请填写学历" />
+            <picker class='form-control' mode="selector" range="{{ education }}" value="{{educationValue}}" bindchange="onEducationChange">
+              <view wx:if="{{ educationValue == -1 }}" class="placeholder">请填写学历</view>
+              <view wx:else class="f30" style="line-height: 24px">{{ education[educationValue] }}</view>
+            </picker>
           </view>
         </view>
         <view class='form-group'>
@@ -27,10 +30,10 @@
         <view class='form-group'>
           <view class='label'>时间段</view>
           <view class='form-group__input'>
-            <picker mode="multiSelector" range="{{timeRange}}" value="{{timeRangeValue}}" bindcolumnchange="onTimeRangeColChange" bindchange="onTimeRangeChange">
-              <view wx:if="{{timeRangeValue.indexOf(-1) !== - 1}}" class='placeholder'>请填写时间段</view>
-              <view wx:else class='placeholder'>
-                {{ timeRange[0][timeRangeValue] }}-{{ timeRange[1][timeRangeValue] }}
+            <picker mode="multiSelector" range="{{timeRange}}" value="{{ timeRangeValue }}" bindcolumnchange="onTimeRangeColChange" bindchange="onTimeRangeChange" bindcancel="onTimeRangeCancel">
+              <view wx:if="{{ timeRangeValue[0] == -1 || timeRangeValue[1] == -1 }}" class='placeholder'>请填写时间段</view>
+              <view wx:else style="line-height: 24px" class="f30">
+                {{ timeRange[0][timeRangeValue[0]] }}-{{ timeRange[1][timeRangeValue[1]] }}
               </view>
             </picker>
           </view>

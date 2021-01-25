@@ -1,327 +1,332 @@
 {
-    "description": "项目配置文件",
-    "packOptions": {
-        "ignore": [
-            {
-                "type": "folder",
-                "value": "script"
-            },
-            {
-                "type": "file",
-                "value": "gulpfile.js"
-            }
-        ]
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "folder",
+        "value": "script"
+      },
+      {
+        "type": "file",
+        "value": "gulpfile.js"
+      }
+    ]
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
     },
-    "setting": {
-        "urlCheck": false,
-        "es6": true,
-        "enhance": false,
-        "postcss": true,
-        "preloadBackgroundData": false,
-        "minified": true,
-        "newFeature": false,
-        "coverView": true,
-        "nodeModules": false,
-        "autoAudits": false,
-        "showShadowRootInWxmlPanel": true,
-        "scopeDataCheck": false,
-        "uglifyFileName": false,
-        "checkInvalidKey": true,
-        "checkSiteMap": true,
-        "uploadWithSourceMap": true,
-        "compileHotReLoad": false,
-        "useMultiFrameRuntime": false,
-        "useApiHook": true,
-        "babelSetting": {
-            "ignore": [],
-            "disablePlugins": [],
-            "outputPath": ""
-        },
-        "enableEngineNative": false,
-        "bundle": false,
-        "useIsolateContext": true,
-        "useCompilerModule": true,
-        "userConfirmedUseCompilerModuleSwitch": false,
-        "packNpmManually": false,
-        "packNpmRelationList": [],
-        "minifyWXSS": true
+    "enableEngineNative": false,
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.14.4",
+  "appid": "wxabc2ae5bcff8777b",
+  "projectname": "app",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
     },
-    "compileType": "miniprogram",
-    "libVersion": "2.14.4",
-    "appid": "wxabc2ae5bcff8777b",
-    "projectname": "app",
-    "debugOptions": {
-        "hidedInDevtools": []
+    "game": {
+      "list": []
     },
-    "scripts": {},
-    "isGameTourist": false,
-    "simulatorType": "wechat",
-    "simulatorPluginLibVersion": {},
-    "condition": {
-        "plugin": {
-            "list": []
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/fiter/fiter",
+          "pathName": "pages/fiter/fiter",
+          "query": "",
+          "scene": null
         },
-        "game": {
-            "list": []
+        {
+          "name": "pages/resume/resume",
+          "pathName": "pages/resume/resume",
+          "query": "",
+          "scene": null
         },
-        "gamePlugin": {
-            "list": []
+        {
+          "name": "pages/search/search",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
         },
-        "miniprogram": {
-            "list": [
-                {
-                    "name": "pages/fiter/fiter",
-                    "pathName": "pages/fiter/fiter",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/resume/resume",
-                    "pathName": "pages/resume/resume",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/search/search",
-                    "pathName": "pages/search/search",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/activity/activity",
-                    "pathName": "pages/activity/activity",
-                    "query": "id=2",
-                    "scene": null
-                },
-                {
-                    "name": "pages/activity/detail/detail",
-                    "pathName": "pages/activity/detail/detail",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/register/register",
-                    "pathName": "pages/register/register",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/account/account",
-                    "pathName": "pages/account/account",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/message/message",
-                    "pathName": "pages/message/message",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/chatroom/chatroom",
-                    "pathName": "pages/chatroom/chatroom",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/my/my",
-                    "pathName": "pages/my/my",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/talked/talked",
-                    "pathName": "pages/talked/talked",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/collect/collect",
-                    "pathName": "pages/collect/collect",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-companyWelfare/hr-companyWelfare",
-                    "pathName": "sub-pages/hr-companyWelfare/hr-companyWelfare",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-releaseWorkPlace/hr-releaseWorkPlace",
-                    "pathName": "sub-pages/hr-releaseWorkPlace/hr-releaseWorkPlace",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
-                    "pathName": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
-                    "query": "id=2",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-releaseJopName/hr-releaseJopName",
-                    "pathName": "sub-pages/hr-releaseJopName/hr-releaseJopName",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
-                    "pathName": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-companyCertification/hr-companyCertification",
-                    "pathName": "sub-pages/hr-companyCertification/hr-companyCertification",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-interview/hr-interview",
-                    "pathName": "sub-pages/hr-interview/hr-interview",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-interviewDetail/hr-interviewDetail",
-                    "pathName": "sub-pages/hr-interviewDetail/hr-interviewDetail",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-invitePage/hr-invitePage",
-                    "pathName": "sub-pages/hr-invitePage/hr-invitePage",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-index/hr-index",
-                    "pathName": "sub-pages/hr-index/hr-index",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-my/hr-my",
-                    "pathName": "sub-pages/hr-my/hr-my",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/register/register",
-                    "pathName": "pages/register/register",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-userInfo/hr-userInfo",
-                    "pathName": "sub-pages/hr-userInfo/hr-userInfo",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/main/main",
-                    "pathName": "sub-pages/main/main",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-positionDetail/hr-positionDetail",
-                    "pathName": "sub-pages/hr-positionDetail/hr-positionDetail",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/main/main",
-                    "pathName": "sub-pages/main/main",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/area/area",
-                    "pathName": "pages/area/area",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-collect/hr-collect",
-                    "pathName": "sub-pages/hr-collect/hr-collect",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-company/hr-company",
-                    "pathName": "sub-pages/hr-company/hr-company",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-position/hr-position",
-                    "pathName": "sub-pages/hr-position/hr-position",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-releaseJopName/hr-releaseJopName",
-                    "pathName": "sub-pages/hr-releaseJopName/hr-releaseJopName",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
-                    "pathName": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
-                    "pathName": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
-                    "query": "formData={\"position\":{\"AutoID\":785,\"Name\":\"地产项目总监\",\"NavJob\":\"房地产/建筑>高端房地产职位\"},\"desc\":\"中心城中心城中心\",\"type\":\"社招\"}",
-                    "scene": null
-                },
-                {
-                    "name": "pages/register/educationExperience/educationExperience",
-                    "pathName": "pages/register/educationExperience/educationExperience",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/register/advantage/advantage",
-                    "pathName": "pages/register/advantage/advantage",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/register/intention/intention",
-                    "pathName": "pages/register/intention/intention",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/companyDetail/companyDetail",
-                    "pathName": "pages/companyDetail/companyDetail",
-                    "query": "id=2",
-                    "scene": null
-                },
-                {
-                    "name": "sub-pages/hr-message/hr-message",
-                    "pathName": "sub-pages/hr-message/hr-message",
-                    "query": "",
-                    "scene": null
-                },
-                {
-                    "name": "pages/resume/resume",
-                    "pathName": "pages/resume/resume",
-                    "query": "id=1",
-                    "scene": null
-                },
-                {
-                    "name": "pages/chatroom/chatroom",
-                    "pathName": "pages/chatroom/chatroom",
-                    "query": "id=3",
-                    "scene": null
-                }
-            ]
+        {
+          "name": "pages/activity/activity",
+          "pathName": "pages/activity/activity",
+          "query": "id=2",
+          "scene": null
+        },
+        {
+          "name": "pages/activity/detail/detail",
+          "pathName": "pages/activity/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/register/register",
+          "pathName": "pages/register/register",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/account/account",
+          "pathName": "pages/account/account",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/message/message",
+          "pathName": "pages/message/message",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/chatroom/chatroom",
+          "pathName": "pages/chatroom/chatroom",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my/my",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/talked/talked",
+          "pathName": "pages/talked/talked",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/collect/collect",
+          "pathName": "pages/collect/collect",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-companyWelfare/hr-companyWelfare",
+          "pathName": "sub-pages/hr-companyWelfare/hr-companyWelfare",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-releaseWorkPlace/hr-releaseWorkPlace",
+          "pathName": "sub-pages/hr-releaseWorkPlace/hr-releaseWorkPlace",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
+          "pathName": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
+          "query": "id=2",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-releaseJopName/hr-releaseJopName",
+          "pathName": "sub-pages/hr-releaseJopName/hr-releaseJopName",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
+          "pathName": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-companyCertification/hr-companyCertification",
+          "pathName": "sub-pages/hr-companyCertification/hr-companyCertification",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-interview/hr-interview",
+          "pathName": "sub-pages/hr-interview/hr-interview",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-interviewDetail/hr-interviewDetail",
+          "pathName": "sub-pages/hr-interviewDetail/hr-interviewDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-invitePage/hr-invitePage",
+          "pathName": "sub-pages/hr-invitePage/hr-invitePage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-index/hr-index",
+          "pathName": "sub-pages/hr-index/hr-index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-my/hr-my",
+          "pathName": "sub-pages/hr-my/hr-my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/register/register",
+          "pathName": "pages/register/register",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-userInfo/hr-userInfo",
+          "pathName": "sub-pages/hr-userInfo/hr-userInfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/main/main",
+          "pathName": "sub-pages/main/main",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-positionDetail/hr-positionDetail",
+          "pathName": "sub-pages/hr-positionDetail/hr-positionDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/main/main",
+          "pathName": "sub-pages/main/main",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/area/area",
+          "pathName": "pages/area/area",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-collect/hr-collect",
+          "pathName": "sub-pages/hr-collect/hr-collect",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-company/hr-company",
+          "pathName": "sub-pages/hr-company/hr-company",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-position/hr-position",
+          "pathName": "sub-pages/hr-position/hr-position",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-releaseJopName/hr-releaseJopName",
+          "pathName": "sub-pages/hr-releaseJopName/hr-releaseJopName",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
+          "pathName": "sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
+          "pathName": "sub-pages/hr-releaseJopRequire/hr-releaseJopRequire",
+          "query": "formData={\"position\":{\"AutoID\":785,\"Name\":\"地产项目总监\",\"NavJob\":\"房地产/建筑>高端房地产职位\"},\"desc\":\"中心城中心城中心\",\"type\":\"社招\"}",
+          "scene": null
+        },
+        {
+          "name": "pages/register/educationExperience/educationExperience",
+          "pathName": "pages/register/educationExperience/educationExperience",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/register/advantage/advantage",
+          "pathName": "pages/register/advantage/advantage",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/register/intention/intention",
+          "pathName": "pages/register/intention/intention",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/companyDetail/companyDetail",
+          "pathName": "pages/companyDetail/companyDetail",
+          "query": "id=2",
+          "scene": null
+        },
+        {
+          "name": "sub-pages/hr-message/hr-message",
+          "pathName": "sub-pages/hr-message/hr-message",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/resume/resume",
+          "pathName": "pages/resume/resume",
+          "query": "id=1",
+          "scene": null
+        },
+        {
+          "name": "pages/chatroom/chatroom",
+          "pathName": "pages/chatroom/chatroom",
+          "query": "id=3",
+          "scene": null
+        },
+        {
+          "name": "pages/register/advantage/advantage",
+          "pathName": "pages/register/advantage/advantage",
+          "scene": null
         }
+      ]
     }
+  }
 }

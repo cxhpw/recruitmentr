@@ -2,12 +2,13 @@
   <view class='container'>
     <view class='title'>我的优势</view>
     <view class='content'>
-      <textarea  placeholder="可以从性格、技能、亮点经历等方面介绍自己" placeholder-class="placeholder" disable-default-padding></textarea>
+      <editor id="editor" class='ql-container' placeholder="可以从性格、技能、亮点经历等方面介绍自己" bindready="onEditorReady"></editor>
+      <!-- <textarea  placeholder="可以从性格、技能、亮点经历等方面介绍自己" placeholder-class="placeholder" disable-default-padding></textarea> -->
     </view>
   </view>
   <view class='fixed-bottom'>
     <view class='confirm-group'>
-      <button class='button button-block button-normal'>下一步</button>
+      <button class='button button-block button-normal' catch:tap="onSubmit">下一步</button>
     </view>
   </view>
 </view>
