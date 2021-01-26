@@ -211,6 +211,12 @@ button:after {
   width: 100%;
   box-sizing: border-box; }
 
+.dot {
+  margin: 0 10rpx; }
+
+.picker {
+  line-height: 24px; }
+
 #picker {
   line-height: 24px; }
 
@@ -494,3 +500,14 @@ button:after {
 
 .rela {
   position: relative; }
+
+.ql-container {
+  display: block;
+  padding: 10px 0;
+  font-size: 30rpx;
+  width: 100%;
+  font-style: normal !important; }
+  .ql-container::placeholder {
+    font-style: normal !important; }
+  .ql-container:before {
+    font-style: normal; }

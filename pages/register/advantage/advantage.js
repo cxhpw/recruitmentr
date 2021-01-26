@@ -4,18 +4,48 @@ Page({
    * 页面的初始数据
    */
   data: {
+    type: '',
     form: {
       content: '',
     },
+    content: '',
+  },
+  onConfirm() {
+    this.editorCtx.getContents({
+      success: (res) => {
+        const html = res.html
+        getCurrentPages()[getCurrentPages().length - 2].setData({
+          advantage: res.html
+        })
+        wx.navigateBack()
+      },
+    })
   },
   onSubmit(e) {
-    console.log(this.editorCtx.getContents())
+    this.editorCtx.getContents({
+      success: (res) => {
+        console.log(res)
+        const formData = Object.assign(
+          {},
+          {
+            advantage: res.html,
+          },
+          this.data.form
+        )
+        wx.navigateTo({
+          url: `../intention/intention?formData=${JSON.stringify(formData)}`,
+        })
+      },
+    })
   },
   onEditorReady() {
     wx.createSelectorQuery()
       .select('#editor')
-      .context( (res) => {
+      .context((res) => {
         this.editorCtx = res.context
+        this.editorCtx.setContents({
+          html: this.data.content,
+        })
       })
       .exec()
   },
@@ -23,9 +53,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.setData({
-    //   form: JSON.parse(options.formData)
-    // })
+    this.setData({
+      form: options.formData ? JSON.parse(options.formData) : null,
+      content: options.content || '',
+      type: options.type || '',
+    })
   },
 
   /**

@@ -2,13 +2,13 @@
   <view class='top-section'>
     <view class='flex-box align-center rela' catch:tap="onNavTo" data-url="/pages/userInfo/userInfo">
       <view class='con'>
-        <view class='name'>{{ mylogin ? '郑小姐' : '登录/注册' }}</view>
-        <view class='info' wx:if="{{ mylogin }}">
+        <view class='name'>{{ mylogin ? user.Name  : '登录/注册' }}</view>
+        <view class='info' wx:if="{{ mylogin }}" catch:tap="onNavTo" data-url="/pages/userResume/userResume">
           <image class='icon' src="/assets/images/icon_edit.png"></image>
           <text>我的在线简历</text>
         </view>
       </view>
-      <image class='avatar' src='{{mylogin ? "/assets/images/首页_03.jpg" : "/assets/images/avatar.png" }}'></image>
+      <image class='avatar' src='{{mylogin ? user.HeaderPhoto : "/assets/images/avatar.png" }}'></image>
       <button wx:if="{{!mylogin}}" class='contact-button' open-type='getPhoneNumber' bindgetphonenumber="onPhone"></button>
     </view>
   </view>
@@ -56,7 +56,7 @@
       <view slot="title">
         <view class="flex-box align-center">
           <image class='icon' src='/assets/images/icon_uneye.png'></image>
-          <view class="van-cell-text f28">屏幕公司</view>
+          <view class="van-cell-text f28">屏蔽公司</view>
         </view>
       </view>
     </van-cell>

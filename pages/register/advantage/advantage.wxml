@@ -1,6 +1,7 @@
 <view class="page">
   <view class='container'>
     <view class='title'>我的优势</view>
+    <view class="summary" wx:if="{{ type == 'edit'}}">一句话介绍自己，突出核心优势</view>
     <view class='content'>
       <editor id="editor" class='ql-container' placeholder="可以从性格、技能、亮点经历等方面介绍自己" bindready="onEditorReady"></editor>
       <!-- <textarea  placeholder="可以从性格、技能、亮点经历等方面介绍自己" placeholder-class="placeholder" disable-default-padding></textarea> -->
@@ -8,7 +9,8 @@
   </view>
   <view class='fixed-bottom'>
     <view class='confirm-group'>
-      <button class='button button-block button-normal' catch:tap="onSubmit">下一步</button>
+      <button wx:if="{{type == 'edit'}}" class='button button-block button-normal' catch:tap="onConfirm">保存</button>
+      <button wx:else class='button button-block button-normal' catch:tap="onSubmit">下一步</button>
     </view>
   </view>
 </view>

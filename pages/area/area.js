@@ -35,6 +35,9 @@ Page({
     const { code, index } = e.currentTarget.dataset
     const { province, pindex, city } = this.data
     app.globalData.filterArea = [province[pindex], city[index]]
+    getCurrentPages()[getCurrentPages().length - 2].setData({
+      city: [province[pindex], city[index]],
+    })
     this.setData(
       {
         Ccode: code,

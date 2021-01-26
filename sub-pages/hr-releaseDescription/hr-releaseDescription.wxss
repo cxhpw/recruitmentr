@@ -5,3 +5,12 @@ page {
   height: 500rpx;
   font-size: 30rpx;
   color: #333; }
+
+.ql-container {
+  display: block;
+  padding: 10px 0;
+  font-size: 30rpx;
+  width: 100%;
+  font-style: normal !important; }
+  .ql-container::placeholder {
+    font-style: normal !important; }

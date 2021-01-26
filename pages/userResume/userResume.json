@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "wxParseComponent": "../../components/wxParseComponent"
+  },
+  "navigationBarTitleText": "我的在线简历"
+}

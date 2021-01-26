@@ -26,7 +26,6 @@ App({
       .catch((error) => {
         // 未授权
         console.error(error)
-        
       })
 
     wx.getSystemInfo({
@@ -43,6 +42,12 @@ App({
       key: 'Z4OBZ-DSDCQ-32Y5R-GLXXC-CFEBO-5DBL3',
     })
     // 获取当前定位，无需微信定位授权
+    // mapInstance.getCityList({
+    //   success: (res) => {
+    //     console.log("城市列表", res)
+    //     this.globalData.allCityList = res.
+    //   }
+    // })
     this.getLocation()
       .then((res) => {
         this.globalData.location = res
@@ -50,6 +55,11 @@ App({
           success: (res) => {
             console.log('reverseGeocoder', res)
             this.globalData.currentLocation = res.result
+            this.globalData.filterArea = this.globalData.staticArea
+            // this.globalData.filterArea = [
+            //   { RegionName: res.result.ad_info.province },
+            //   { RegionName: res.result.ad_info.city },
+            // ]
           },
           fail: (err) => {
             console.error(err)
@@ -57,6 +67,7 @@ App({
         })
       })
       .catch((err) => {
+        this.globalData.filterArea = this.globalData.staticArea
         console.error(err)
       })
   },
@@ -107,7 +118,7 @@ App({
         success: (res) => {
           if (res.data.ret == 'success') {
             this.globalData.roleInfo = res.data
-            this.globalData.mylogin = true
+            this.globalData.auth = true
             resolve(res)
             if (typeof this.mylogin == 'function') {
               this.mylogin()
@@ -123,6 +134,7 @@ App({
     this.globalData.filterData = data
   },
   globalData: {
+    auth: false,
     isRef: false,
     location: null,
     roleInfo: null,
@@ -131,17 +143,20 @@ App({
     mylogin: false,
     safeArea: false,
     filterData: null,
-    filterArea: [
+    filterArea: [],
+    staticArea: [
       { RegionName: '北京', RegionCode: '11' },
       { RegionName: '北京市辖区', RegionCode: '110100000000' },
     ],
     userType: 'user', // 'user'|'hr'
     selectPostion: [],
+    currentLocation: null,
+    allCityList: []
   },
   api: {
     // host: 'http://daf10181.hk2.ue.net.cn',
-    host: 'https://job.729.cn',
-    // host: 'http://192.168.1.18:8088',
+    // host: 'https://job.729.cn',
+    host: 'http://192.168.1.18:8088',
   },
   getLocation: function name() {
     return new Promise((resolve, reject) => {

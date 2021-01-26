@@ -11,6 +11,7 @@ Page({
     identityValue: 1,
     date: '',
     avatar: '',
+    end: new Date().toLocaleDateString().replace(/\//ig,'-')
   },
   bindDateChange(e) {
     this.setData({

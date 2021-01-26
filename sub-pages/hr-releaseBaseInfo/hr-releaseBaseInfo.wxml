@@ -32,7 +32,9 @@
       <view slot='title' class='title'>职位描述</view>
       <view slot='label' class='form-group'>
         <view class='placeholder' wx:if="{{ !content.length }}">介绍工作内容、职位要求、加分项</view>
-        <view class='form-control' wx:else>{{ content }}</view>
+        <view class='form-control  ellipsis' wx:else>
+          已填写
+        </view>
       </view>
     </van-cell>
     <van-cell is-link custom-class='my-cell' use-label-slot catch:tap="onMap">
@@ -44,9 +46,8 @@
     </van-cell>
     <van-cell is-link custom-class='my-cell' use-label-slot>
       <view slot='title' class='title'>门牌号</view>
-      <view  slot='label' class='form-group'>
-        <input value="{{ housenumber }}" bindinput="onInput" name="housenumber" type="text" 
-        class='form-control' placeholder="请输入门牌号" placeholder-class="placeholder" />
+      <view slot='label' class='form-group'>
+        <input value="{{ housenumber }}" bindinput="onInput" name="housenumber" type="text" class='form-control' placeholder="请输入门牌号" placeholder-class="placeholder" />
       </view>
     </van-cell>
   </view>

@@ -9,42 +9,39 @@
     <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName?search={{ searchKey }}">
       <view slot='title' class='title'>期望职位</view>
       <view slot='label' class='form-group'>
-        <view class='placeholder' wx:if="{{ !position && !searchKey }}">
-          请选择期望职位
-        </view>
-        <view class='form-control' wx:else>
-          {{ position.Name || searchKey }}
-        </view>
+        <view class='placeholder' wx:if="{{ !position && !searchKey }}">请选择期望职位</view>
+        <view class='form-control' wx:else>{{ position.Name || searchKey }}</view>
       </view>
     </van-cell>
-    <van-cell is-link custom-class='my-cell' center use-label-slot>
+    <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/pages/area/area">
       <view slot='title' class='title'>工作城市</view>
       <view slot='label' class='form-group'>
-        <view class='placeholder' wx:if="{{ !content.length }}">
-          请选择工作城市
-        </view>
-        <view class='form-control' wx:else>
-          {{ content }}
-        </view>
+        <view class='placeholder' wx:if="{{ !city.length }}">请选择工作城市</view>
+        <view class='form-control' wx:else>{{  city[1].RegionName }}</view>
       </view>
     </van-cell>
     <van-cell is-link custom-class='my-cell' center use-label-slot>
       <view slot='title' class='title'>薪资要求</view>
       <view slot='label' class='form-group'>
-        <view class='placeholder' wx:if="{{ !address.length }}">
-          请选择薪资要求
-        </view>
-        <view class='form-control' wx:else>
-          {{ content }}
-        </view>
+        <picker mode="selector" range="{{ salary }}" value="{{ salaryValue }}" bindchange="onSalaryChange">
+          <view class='placeholder' wx:if="{{  salaryValue == -1 }}">请选择薪资要求</view>
+          <view class='f30 picker  c333' wx:else>{{ salary[salaryValue] }}</view>
+        </picker>
+      </view>
+    </van-cell>
+    <van-cell is-link custom-class='my-cell' center use-label-slot>
+      <view slot='title' class='title'>期望行业</view>
+      <view slot='label' class='form-group'>
+        <picker mode="selector" range="{{  industry }}" value="{{  industryValue }}" bindchange="onIndustryChange">
+          <view class='placeholder' wx:if="{{ industryValue == -1 }}">请选择期望行业</view>
+          <view class='f30 picker c333' wx:else>{{ industry[industryValue] }}</view>
+        </picker>
       </view>
     </van-cell>
   </view>
   <view class='fixed-bottom'>
     <view class='confirm-group'>
-      <button class="button button-normal button-block" catch:tap="onSubmit">
-        完成
-      </button>
+      <button class="button button-normal button-block" catch:tap="onSubmit">完成</button>
     </view>
   </view>
 </view>

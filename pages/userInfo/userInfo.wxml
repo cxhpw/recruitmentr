@@ -1,1 +1,52 @@
-<view class="page">pages/userInfo/userInfo</view>
+<wxs module="format" src="../../utils/index.wxs"></wxs>
+<view class="page">
+  <view class='container'>
+    <form bindsubmit="onSubmit" class='form'>
+      <view class='form-group'>
+        <view class='flex-box align-center' catch:tap="onUpload">
+          <view class='label'>头像</view>
+          <view class='fr'>
+            <image class="avatar-placeholider" src='{{avatar || user.HeaderPhoto || "/assets/images/avatar-placegolider.jpg"}}'></image>
+          </view>
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>姓名</view>
+        <view class='form-group__input'>
+          <input name="name" type="text" value="{{user.Name}}" class='form-control ' placeholder-class="placeholder" placeholder="请输入姓名" />
+          <icon custom-class='my-icon' name="arrow" size="16"></icon>
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>性别</view>
+        <view class='form-group__input'>
+          <picker mode="selector" range="{{sex}}" value='{{sexValue}}' bindchange="onSexChange">
+            <view wx:if="{{sexValue === -1}}" class='placeholder'>请选择性别</view>
+            <view wx:else id='picker'>{{sex[sexValue]}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>出生年月</view>
+        <view class='form-group__input'>
+          <picker mode="date" fields="month" value="{{date}}" bindchange="bindDateChange" end="">
+            <view wx:if="{{date}}" class='f30' id="picker">{{date}}</view>
+            <view wx:else class="placeholder">请选择出生日期</view>
+          </picker>
+        </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>邮箱</view>
+        <view class='form-group__input'>
+          <input name="email" type="text" value="{{user.Email}}" class='form-control' placeholder-class="placeholder" placeholder="真实的职务，更能赢得牛人信任" />
+          <icon custom-class='my-icon' name="arrow" size="16"></icon>
+        </view>
+      </view>
+      <view class="fixed-bottom">
+        <view class='confirm-group'>
+          <button class='button button-normal button-block' form-type="submit">确定</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>

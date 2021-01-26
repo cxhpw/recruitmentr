@@ -11,6 +11,7 @@
     display: none !important;
   }
 }
+
 .mb0 {
   margin-bottom: 0 !important;
 }
@@ -245,7 +246,12 @@ button:after {
   width: 100%;
   box-sizing: border-box;
 }
-
+.dot {
+  margin: 0 10rpx;
+}
+.picker {
+  line-height: 24px;
+}
 #picker {
   // background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAQCAYAAAABOs/SAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3MUMxQTAwRkUwMkQxMUU5OEFDQ0MzNDg3NEE4MkZCNyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo3MUMxQTAxMEUwMkQxMUU5OEFDQ0MzNDg3NEE4MkZCNyI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjcxQzFBMDBERTAyRDExRTk4QUNDQzM0ODc0QTgyRkI3IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjcxQzFBMDBFRTAyRDExRTk4QUNDQzM0ODc0QTgyRkI3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+f/KQegAAANdJREFUeNq01EEKwjAQBdAYvEM33YSC4iWkEOhGr5kb6M5i8RKCGzeCeAtnYAJhTGymJB/+ok3oIyXJyjl3VUo10AP0qerGQM/QjyZ0B71Bu8roSFaD8AB9QFvoVAn3qKG/OiD8gtqKOEf3aGoarIVHURzQwaTSeBLlcEnc0GaNojG4BN4R2tI3ftAU7PGe4ZtMdApQG0P/wZg3w8cZPBudgyW4CM2BQ/yewMVoLuxxy/DtUhSzFuxWj/v79kLvPdrTnKxo4fnkK1+ESlfM8RM9H6Uo5ivAAE1IVIzvoTGtAAAAAElFTkSuQmCC');
   // background-repeat: no-repeat;
@@ -528,6 +534,7 @@ button:after {
     }
   }
 }
+
 .placeholder {
   font-size: 30rpx;
 }
@@ -555,5 +562,19 @@ button:after {
 }
 .rela {
   position: relative;
+}
+
+.ql-container {
+  display: block;
+  padding: 10px 0;
+  font-size: 30rpx;
+  width: 100%;
+  font-style: normal !important;
+  &::placeholder {
+    font-style: normal !important;
+  }
+  &:before {
+    font-style: normal;
+  }
 }
 

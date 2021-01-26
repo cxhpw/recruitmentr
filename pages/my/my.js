@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mylogin: app.globalData.mylogin,
+    mylogin: false,
     user: {},
     isRegister: false,
     code: -1,
@@ -17,6 +17,7 @@ Page({
     const { user, code } = this.data
     if (detail.errMsg.indexOf('fail') > -1) {
       console.log('授权手机失败')
+      app.showToast('未授权')
     } else {
       auth({
         encryptedData: encodeURIComponent(detail.encryptedData),
@@ -27,52 +28,33 @@ Page({
           console.log(res)
           if (res.data.ret == 'success') {
             wx.setStorageSync('LogiSessionKey', res.data.rdsession)
-            app.globalData.mylogin = true
-            this.setData({
-              mylogin: true,
-            })
+            app.globalData.auth = true
             getRoleInfos().then((res) => {
-              console.log('会员信息', res)
+              console.log('授权信息', res)
               app.globalData.roleInfo = res
-              this.getUser()
+
+              this.getUser().catch((err) => {
+                console.error('求职者信息', err)
+                if (err.reponsive.msg == '请注册求职者信息！') {
+                  wx.reLaunch({
+                    url: '/pages/register/register',
+                  })
+                  return
+                }
+              })
             })
           }
         })
         .catch((err) => {
           console.error(err)
         })
-      // var temp = {}
-      // temp.type = 'wechat'
-      // temp.apiname = 'bindmobile'
-      // temp.iv = encodeURIComponent(e.detail.iv)
-      // temp.encryptedData = encodeURIComponent(e.detail.encryptedData)
-      // temp.code = code
-      // console.log(temp)
-      // app.request({
-      //   url: app.api.host + '/Include/Weixin/wechatdata',
-      //   data: temp,
-      //   method: 'POST',
-      //   success: (resp) => {
-      //     console.log('微信绑定手机', resp)
-      //     user.Mobile = resp.data.mobile
-      //     user.bindphone = true
-      //     this.setState({
-      //       user,
-      //     })
-      //     if (resp.data.ret != 'success') {
-      //       return app.showToast('绑定失败')
-      //     }
-      //   },
-      // })
     }
   },
   onNavTo(e) {
     let { url } = e.currentTarget.dataset
     const { mylogin, isRegister } = this.data
-    if (!mylogin) {
-      url = '/pages/login/login'
-    } else if (!isRegister) {
-      url = '/pages/register/register'
+    if (!this.data.mylogin) {
+      return
     }
     wx.navigateTo({
       url,
@@ -110,19 +92,36 @@ Page({
         })
       },
     })
-    this.getUser()
+    this.getUser().catch(() => {
+      wx.removeStorageSync('LogiSessionKey')
+    })
   },
   getUser() {
-    requestUserInfo()
-      .then((res) => {
-        console.log('求职者信息', res)
-      })
-      .catch((err) => {
-        console.error(err)
-        wx.reLaunch({
-          url: '/pages/register/register'
+    return new Promise((resolve, reject) => {
+      requestUserInfo()
+        .then((res) => {
+          console.log('求职者信息', res)
+          app.globalData.mylogin = true
+          app.globalData.userInfo = res.data
+          this.setData({
+            user: res.data,
+            mylogin: true,
+          })
         })
-      })
+        .catch((err) => {
+          // console.error('求职者信息', err)
+          reject(err)
+          // if (err.reponsive.msg == '请注册求职者信息！') {
+          //   wx.reLaunch({
+          //     url: '/pages/register/register',
+          //   })
+          //   return
+          // }
+          // wx.reLaunch({
+          //   url: '/pages/register/register'
+          // })
+        })
+    })
   },
 
   /**

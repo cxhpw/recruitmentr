@@ -6,7 +6,8 @@
     </view>
     <form bindsubmit="onSubmit">
       <view class='form'>
-        <textarea name='content' value="{{  content }}" class='textarea-control' placeholder-class="placeholder" disable-default-padding placeholder="工作内容，任务要求，特别说明"></textarea>
+        <editor id="editor" class='ql-container' placeholder="工作内容，任务要求，特别说明" bindready="onEditorReady"></editor>
+        <!-- <textarea name='content' value="{{  content }}" class='textarea-control' placeholder-class="placeholder" disable-default-padding placeholder=""></textarea> -->
       </view>
       <view class='fixed-bottom'>
         <view class='confirm-group'>

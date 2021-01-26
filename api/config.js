@@ -45,6 +45,7 @@ export function requestAllPositionName() {
 
 /**
  * 简历筛选条件
+ * @summary 学历要求, 薪资待遇, 经验要求, 求职意向
  */
 export function requestResumeFilter() {
   return request({
@@ -55,6 +56,8 @@ export function requestResumeFilter() {
 
 /**
  * 公司筛选条件
+ * @summary 公司规模
+ * @summary 行业分类
  */
 export function requestCompanyFilter() {
   return request({

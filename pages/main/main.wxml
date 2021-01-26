@@ -1,0 +1,28 @@
+<!-- sub-pages/main/main.wxml -->
+<view class='page'>
+  <view class="page-bd" hidden="{{  tabIndex != 0 }}">
+    <index id="index" isShow="{{tabIndex==0}}"></index>
+  </view>
+  <view class="page-bd" wx:if="{{tabIndex==1}}">
+    <messgae id="messgae" isShow="{{tabIndex==1}}"></messgae>
+  </view>
+  <view class="page-bd" hidden="{{tabIndex!=2}}">
+    <my id="my" isShow="{{tabIndex==2}}" currentIndex="{{currentIndex}}"></my>
+  </view>
+  <view class="page-ft">
+    <view class="tab-bar02" hidden="{{hidden}}">
+      <view wx:key="index" class="tab-bar-item" data-index="{{0}}" data-path="/sub-pages/hr-index/hr-index" catchtap="tabSwitch">
+        <image class="mb" src="{{tabIndex == 0 ? '/assets/images/hr-index-select.jpg' : '/assets/images/hr-index.jpg'}}"></image>
+        <view class='text  {{  tabIndex == 0 ? "active" : "" }}'>推荐</view>
+      </view>
+      <view wx:key="index" class="tab-bar-item" data-index="{{1}}" data-path="/sub-pages/hr-message/hr-message" catchtap="tabSwitch" data-url="/pages/arms/arms">
+        <image class="mb" src="{{tabIndex == 1 ? '/assets/images/hr-message-select.jpg' : '/assets/images/hr-message.jpg'}}"></image>
+        <view class='text {{  tabIndex == 1 ? "active" : "" }}'>消息</view>
+      </view>
+      <view wx:key="index" class="tab-bar-item" data-index="{{2}}" data-path="/sub-pages/hr-my/hr-my" catchtap="tabSwitch">
+        <image class="mb" src="{{tabIndex ==2 ? '/assets/images/hr-my-select.jpg' : '/assets/images/hr-my.jpg' }}"></image>
+        <view class='text  {{  tabIndex == 2 ? "active" : "" }}'>我的</view>
+      </view>
+    </view>
+  </view>
+</view>

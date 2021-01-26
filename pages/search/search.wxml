@@ -7,7 +7,7 @@
           <image class='arrow' src='/assets/images/icon-arrow-down.png'></image>
         </view>
         <view class='search-wrapper__input'>
-          <input class='form-control' type="text" placeholder="搜索职位、公司" placeholder-class="placeholder" />
+          <input class='form-control' value="{{ searchKey }}" bindinput="onSearch" type="text" placeholder="搜索职位、公司" placeholder-class="placeholder" />
           <view class='search-wrapper__icon'>
             <icon name='search' size='16' color='#999'></icon>
           </view>

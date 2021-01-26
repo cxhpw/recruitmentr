@@ -2,7 +2,8 @@
   "usingComponents": {
     "van-popup": "@vant/weapp/popup/index",
     "van-checkbox": "@vant/weapp/checkbox/index",
-    "van-checkbox-group": "@vant/weapp/checkbox-group/index"
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "wxParseComponent": "../../components/wxParseComponent"
   },
   "navigationBarTitleText": "基本信息"
 }

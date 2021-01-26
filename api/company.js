@@ -11,6 +11,7 @@ import request from '../utils/request'
  * staffsize: String,
  * industry: String
  * }} params
+ * @summary name 关键词
  * @summary action 非必填
  * @staffsize 公司规模
  * @industry 行业分类

@@ -1,5 +1,5 @@
-@import "../../../scss/minxi/minxi.scss";
-@import "../../../scss/variable/variable.scss";
+@import '../../../scss/minxi/minxi.scss';
+@import '../../../scss/variable/variable.scss';
 page {
   background: #fff;
 }
@@ -22,7 +22,19 @@ textarea {
 .ql-container {
   display: block;
   padding: 10px 0;
-  font-size: 24rpx;
+  font-size: 30rpx;
   width: 100%;
-  font-style: initial;
+  font-style: normal !important;
+  &::placeholder {
+    font-style: normal !important;
+  }
+  &:before {
+    font-style: normal;
+  }
+}
+
+.summary {
+  font-size: 26rpx;
+  color: #666;
+  margin: 0 0 50rpx;
 }

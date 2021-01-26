@@ -6,21 +6,44 @@ Page({
   data: {
     content: '',
   },
+  onEditorReady() {
+    wx.createSelectorQuery()
+      .select('#editor')
+      .context((res) => {
+        this.editorCtx = res.context
+        this.editorCtx.setContents({
+          html: this.data.content,
+        })
+      })
+      .exec()
+  },
   onSubmit(e) {
     console.log(e)
     const page = getCurrentPages()[getCurrentPages().length - 2]
-    page.setData({
-      content: e.detail.value.content,
+    const content = this.editorCtx.getContents({
+      success: (res) => {
+        console.log(res.html)
+        page.setData({
+          content: res.html,
+        })
+        wx.navigateBack()
+      },
     })
-    wx.navigateBack()
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      content: options.content || '',
-    })
+    this.setData(
+      {
+        content: options.content || '',
+      },
+      () => {
+        // this.editorCtx.setContents({
+        //   html: this.data.content
+        // })
+      }
+    )
   },
 
   /**

@@ -143,6 +143,9 @@ Page({
     console.log(value)
     if (this.valid(value)) {
       const { form, industry, companySize, fileList } = this.data
+      wx.showLoading({
+        mask: true,
+      })
       let temp = {
         headerphoto: form.avatar,
         name: form.name,
@@ -159,6 +162,7 @@ Page({
       postCompanyRegister(temp)
         .then((res) => {
           console.log(res)
+          wx.hideLoading()
           app.showToast(res.data.msg, () => {
             wx.reLaunch({
               url: `/sub-pages/main/main?tabIndex=${2}`,
@@ -200,8 +204,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载

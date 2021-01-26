@@ -18,6 +18,14 @@ Page({
     searchList: [],
     searchKey: '',
   },
+  onConfirm(e) {
+    const page = getCurrentPages()[getCurrentPages().length - 2]
+    page.setData({
+      searchKey: e.detail,
+    })
+    app.globalData.selectPostion = []
+    wx.navigateBack()
+  },
   onChange(e) {
     this.setData({
       value: e.detail,
@@ -30,7 +38,11 @@ Page({
   },
   onSearch: Debounce(function (e) {
     console.log(e)
-    app.globalData.searchKey = e.detail
+    // app.globalData.searchKey = e.detail
+    // const page = getCurrentPages()[getCurrentPages().length - 2]
+    // page.setData({
+    //   searchKey: e.detail,
+    // })
     if (!e.detail) {
       this.setData({
         showSearch: false,
@@ -38,7 +50,6 @@ Page({
       })
       return
     }
-
     this.getSingleLists(e.detail)
   }, 250),
   onCancel() {
@@ -49,7 +60,7 @@ Page({
   },
   getSingleLists: function (searchkey) {
     wx.showLoading({
-      mask: true
+      mask: true,
     })
     requestPositionNameById({
       name: searchkey,

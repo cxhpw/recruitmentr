@@ -1,0 +1,156 @@
+<view class="page">
+  <view class='top-section'>
+    <view class='flex-box align-center'>
+      <view class='fl'>
+        <view class='name'>
+          {{ user.Name }}
+          <icon catch:tap="onNavTo" data-url="/pages/userInfo/userInfo" custom-class="my-icon" name='/assets/images/icon-edit.png' color="#444444" size="16"></icon>
+        </view>
+        <view class='infos'>
+          <text>{{ user.Experience }}</text>
+          <text class='dot'>·</text>
+          <text>{{ user.Experience }}</text>
+          <text class='dot'>·</text>
+          <text>{{ user.Educat }}</text>
+        </view>
+      </view>
+      <view class='fr'>
+        <image src="{{ user.HeaderPhoto }}" class="avatar"></image>
+      </view>
+    </view>
+  </view>
+  <!-- 个人优势 -->
+  <view class='section' catch:tap="onNavTo" data-url="/pages/register/advantage/advantage?type=edit&content={{advantage || user.Advantage }}">
+    <view class='title'>
+      个人优势
+      <view class='fr'>
+        <icon name='/assets/images/icon-edit.png' color="#444444" size="16"></icon>
+      </view>
+    </view>
+    <view class='a-content'>
+      <wxParseComponent html="{{  advantage || user.Advantage }}"></wxParseComponent>
+    </view>
+  </view>
+  <!-- 求职状态 -->
+  <view class='section no-border'>
+    <view class='title'>
+      求职状态
+      <view class='fr'>
+        <picker class='picker' mode="selector" value="{{ statusValue }}" range="{{ status }}" bindchange="onStatusChange">
+          <view wx:if="{{statusValue == -1 }}">请选择求职状态</view>
+          <view else class=''>{{ status[statusValue] }}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+  <view class='section'>
+    <view class='title' catch:tap="onNavTo" data-url="/pages/userResume/hopePage/hopePage">
+      求职期望
+      <view class='fr'>
+        <icon name='/assets/images/icon-add.png' color="#444444" size="16"></icon>
+      </view>
+    </view>
+    <view class='inner'>
+      <view class='hope-list'>
+        <view class='item' catch:tap="onNavTo" data-url="/pages/userResume/hopePage/hopePage?formDa={{}}">
+          <view class='name'>
+            <text>PHP 10-11K</text>
+            <view class='fr arrow'></view>
+          </view>
+          <view class='summary'>
+            <text>深圳</text>
+            <text>行业不限</text>
+          </view>
+        </view>
+        <view class='item'>
+          <view class='name'>
+            <text>PHP 10-11K</text>
+            <view class='fr arrow'></view>
+          </view>
+          <view class='summary'>
+            <text>深圳</text>
+            <text>行业不限</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 工作经历 -->
+  <view class="section">
+    <view class='title'>
+      工作经历
+      <view class='fr'>
+        <icon name='/assets/images/icon-add.png' color="#444444" size="16"></icon>
+      </view>
+    </view>
+    <view class='inner'>
+      <view class='jops-list'>
+        <view class='item'>
+          <view class='name'>
+            联华
+            <view class='fr'>2020.09-至今</view>
+            <text class='arrow'></text>
+          </view>
+          <view class='infos'>
+            <text>PHP</text>
+            <text>IT部</text>
+          </view>
+          <view class="content">
+            <view class='row'>内容：项目沟通策划</view>
+            <view class='row'>业绩：散打冠军</view>
+          </view>
+        </view>
+        <view class='item'>
+          <view class='name'>
+            联华
+            <view class='fr'>2020.09-至今</view>
+            <text class='arrow'></text>
+          </view>
+          <view class='infos'>
+            <text>PHP</text>
+            <text>IT部</text>
+          </view>
+          <view class="content">
+            <view class='row'>内容：项目沟通策划</view>
+            <view class='row'>业绩：散打冠军</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 教育经历 -->
+  <view class='section'>
+    <view class='title'>
+      教育经历
+      <view class='fr'>
+        <icon name='/assets/images/icon-add.png' color="#444444" size="16"></icon>
+      </view>
+    </view>
+    <view class='inner'>
+      <view class='education-list'>
+        <view class='item'>
+          <view class='name'>
+            深圳大学
+            <view class='fr'>2012-2013</view>
+            <view class='arrow'></view>
+          </view>
+          <view class='summary'>
+            <text>法律专业</text>
+            <text>本科</text>
+          </view>
+        </view>
+        <view class='item'>
+          <view class='name'>
+            深圳大学
+            <view class='fr'>2012-2013</view>
+            <view class='arrow'></view>
+          </view>
+          <view class='summary'>
+            <text>法律专业</text>
+            <text>本科</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,10 +1,13 @@
 const app = getApp()
 import { Debounce } from '../../utils/util'
+import { requestCompanyList } from '../../api/company'
+import { requestJopsList } from '../../api/jobs'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    searchKey: '',
     type: ['搜职位', '搜公司'],
     typeIndex: 0,
     list: [{}, {}, {}, {}],
@@ -25,7 +28,7 @@ Page({
     console.log(e)
     this.setData(
       {
-        key: e.detail,
+        searchKey: e.detail,
       },
       () => {
         this.getSingleLists(1)
@@ -33,8 +36,8 @@ Page({
     )
   }, 250),
   getSingleLists: function (pageNum = 1) {
-    const { type } = this.data
-    if (this.data.key == '') {
+    const { typeIndex } = this.data
+    if (this.data.searchKey == '') {
       this.setData({
         list: [],
         nomore: false,
@@ -42,61 +45,73 @@ Page({
       })
       return
     }
-    var temp = {
-      apiname: 'getworkslist',
-      pageNum: pageNum,
-      pageSize: 10,
-    }
     this.setData({
       loading: true,
       showLoadButton: true,
     })
-    app.request({
-      url: app.api.host + 'Include/Weixin/wechatdata',
-      data: temp,
-      success: (res) => {
-        console.log('=======', res)
-        if (res.data.ret == 'success') {
-          var data = res.data.datalist
-          this.setData({
-            init: true,
-            previewImage: data.map((item) => item.CertImgUrl),
-          })
-
-          if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
-            this.setData({
-              nomore: true,
-              buttontext: '暂无更多数据',
-              loading: false,
-              pageNum: 0,
-            })
-          } else {
-            this.setData({
-              buttontext: '加载中..',
-              loading: true,
-              pageNum: pageNum,
-            })
-          }
-
-          if (res.data.TotalCount > 0) {
-            this.setData({
-              list: pageNum == 1 ? data : this.data.list.concat(data),
-              nomore: false,
-            })
-          } else {
-            this.setData({
-              list: [],
-              nomore: true,
-            })
-          }
-        } else {
-          this.setData({
-            list: [],
-            nomore: true,
-          })
-        }
-      },
+    let requestList = () => {}
+    let temp = {
+      pageindex: pageNum,
+      pagesize: 10,
+      name: this.data.searchKey
+    }
+    if (typeIndex == 0) {
+      requestList = requestJopsList
+      temp = Object.assign(temp, {
+      })
+    } else {
+      requestList = requestCompanyList
+      temp = Object.assign(temp, {})
+    }
+    requestList(temp).then((res) => {
+      console.log('搜索结果')
     })
+    // app.request({
+    //   url: app.api.host + 'Include/Weixin/wechatdata',
+    //   data: temp,
+    //   success: (res) => {
+    //     console.log('=======', res)
+    //     if (res.data.ret == 'success') {
+    //       var data = res.data.datalist
+    //       this.setData({
+    //         init: true,
+    //         previewImage: data.map((item) => item.CertImgUrl),
+    //       })
+
+    //       if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
+    //         this.setData({
+    //           nomore: true,
+    //           buttontext: '暂无更多数据',
+    //           loading: false,
+    //           pageNum: 0,
+    //         })
+    //       } else {
+    //         this.setData({
+    //           buttontext: '加载中..',
+    //           loading: true,
+    //           pageNum: pageNum,
+    //         })
+    //       }
+
+    //       if (res.data.TotalCount > 0) {
+    //         this.setData({
+    //           list: pageNum == 1 ? data : this.data.list.concat(data),
+    //           nomore: false,
+    //         })
+    //       } else {
+    //         this.setData({
+    //           list: [],
+    //           nomore: true,
+    //         })
+    //       }
+    //     } else {
+    //       this.setData({
+    //         list: [],
+    //         nomore: true,
+    //       })
+    //     }
+    //   },
+    // })
   },
   onNavTo(e) {
     const { id } = e.currentTarget.dataset
@@ -105,9 +120,18 @@ Page({
     })
   },
   onFilterTap() {
-    wx.navigateTo({
-      url: `/pages/filter/filter`,
-    })
+    if (this.data.typeIndex) {
+      // 公司筛选
+      // wx.navigateTo({
+      //   url: `/pages/filter/filter`,
+      // })
+    } else {
+      // 职位筛选
+      wx.navigateTo({
+        url: `/pages/filter/filter`,
+      })
+    }
+    
   },
   onAreaTap() {
     wx.navigateTo({

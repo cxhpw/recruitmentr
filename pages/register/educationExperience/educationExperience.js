@@ -33,7 +33,7 @@ Page({
     })
   },
   initCol(year) {
-    const count = 5
+    const count = 8
     const { timeRange } = this.data
     timeRange[1] = []
     if (!year || year == '1990以前') {
@@ -67,6 +67,7 @@ Page({
         school: value.school,
         profession: value.profession,
         education: this.data.education[this.data.educationValue],
+        experience:value.experience,
         timeRange: `${this.data.timeRange[0][this.data.timeRangeValue[0]]}-${this.data.timeRange[1][this.data.timeRangeValue[1]]}`
       }, this.data.form)
       wx.navigateTo({

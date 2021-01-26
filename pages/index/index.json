@@ -1,8 +1,6 @@
 {
   "usingComponents": {
-    "index": "../../components/hr-index/hr-index",
-    "messgae": "../../components/hr-message/hr-message",
-    "my": "../../components/hr-my/hr-my"
+    "van-search": "@vant/weapp/search/index"
   },
   "navigationBarBackgroundColor": "#0866ff",
   "navigationBarTextStyle": "white"

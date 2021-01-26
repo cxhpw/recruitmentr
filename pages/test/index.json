@@ -1,7 +1,0 @@
-{
-  "usingComponents": {
-    "van-search": "@vant/weapp/search/index"
-  },
-  "navigationBarBackgroundColor": "#0866ff",
-  "navigationBarTextStyle": "white"
-}

@@ -1,137 +1,78 @@
-// sub-pages/main/main.js
-var app = getApp()
-import { requestHRInfo } from '../../api/hr/company'
-import { togglerRole } from '../../api/user'
+import { togglerRole  } from '../../api/user'
+// index.js
+// 获取应用实例
+const app = getApp()
 Page({
-  /**
-   * 页面的初始数据
-   */
   data: {
+    tabs: [{ title: '推荐' }, { title: '最新' }],
     tabIndex: 0,
-    shouldHandleScroll: true,
-    scrollHandle: [0, 0, 0, 0],
-    canClick: true,
-    loadData: false,
+    list: [{}, {}, {}, {}, {}, {}, {}],
+    loading: true,
+    buttontext: '加载中',
+    nomore: false,
+    pageNum: 1,
   },
-  onPageScroll: function (e) {
-    var _self = this
-    for (
-      var i = 0, scrollHandle = _self.data.scrollHandle;
-      i < scrollHandle.length;
-      i++
-    ) {
-      if (_self.data.tabIndex == i) {
-        scrollHandle[_self.data.tabIndex] = e.scrollTop
-      }
-    }
-    _self.setData({
-      scrollHandle: scrollHandle,
-    })
-  },
-  onShareAppMessage: function (e) {
-    return {
-      title: `柯城就业创业招聘网`,
-      // path: `/pages/selectSeat/selectSeat?code=${
-      //   this.data.Codes[e.target.dataset.index]
-      // }`,
-      // imageUrl: '/assets/images/main.jpg',
-    }
-  },
-  cameraTap: function () {
-    wx.navigateTo({
-      url: '/pages/selectSeat/selectSeat',
-    })
-  },
-  tabSwitch: function (e) {
-    var { index } = e.currentTarget.dataset
-    switch (index) {
-      case 0:
-        wx.setNavigationBarTitle({
-          title: '柯城就业创业招聘网',
-        })
-        break
-      case 1:
-        wx.setNavigationBarTitle({
-          title: '消息',
-        })
-        break
-      case 2:
-        wx.setNavigationBarTitle({
-          title: '我的',
-        })
-        break
-    }
-    this.data.tabIndex !== e.currentTarget.dataset.index &&
-      this.setData({
-        tabIndex: e.currentTarget.dataset.index,
-      })
-    console.log(e)
-    // wx.setNavigationBarTitle({
-    //   title: pages[e.currentTarget.dataset.tabIndex]
-    // })
-    wx.pageScrollTo({
-      scrollTop: this.data.scrollHandle[this.data.tabIndex],
-      duration: 0,
-    })
-  },
-  indexCompententReachBottomHandle: function () {
-    // this.selectComponent("#index").reachBottomHandle();
-  },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    wx.hideHomeButton()
+  // 事件处理函数
+  getList: function (pageNum = 1) {
+    var temp = {}
+    temp.apiname = 'getchilduserlist'
+    temp.pageNum = pageNum
+    temp.pageSize = 10
     this.setData({
-      tabIndex: options.tabIndex || this.data.tabIndex,
-      mylogin: app.globalData.mylogin,
-      loadData: true,
-      currentIndex: options.currentIndex || 0,
+      loading: true,
     })
-    togglerRole(1)
-    requestHRInfo()
-      .then((res) => {
-        console.log('hr 信息', res)
-        app.globalData.hrInfo = res.data
-      })
-      .catch((err) => {
-        // 未填写企业信息
-        console.error('--',err)
-        if (err.reponsive.msg == '请授权登录！') {
-          
-        } else {
-          wx.reLaunch({
-            url: '/sub-pages/hr-register/hr-register',
+    app.request({
+      url: app.api.host + 'Include/Weixin/wechatdata',
+      data: temp,
+      success: (res) => {
+        console.log('=======', res)
+        if (res.data.ret == 'success') {
+          var data = res.data.datalist
+          this.setData({
+            init: true,
           })
+          if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
+            this.setData({
+              nomore: true,
+              buttontext: '暂无更多数据',
+              loading: false,
+              pageNum: 0,
+            })
+          } else {
+            this.setData({
+              buttontext: '加载中..',
+              loading: true,
+              pageNum: pageNum,
+            })
+          }
+          if (res.data.TotalCount > 0) {
+            this.setData({
+              list: pageNum == 1 ? data : this.data.list.concat(data),
+              nomore: false,
+            })
+          } else {
+            this.setData({
+              nomore: true,
+              loadData: false,
+            })
+          }
         }
-      })
+      },
+    })
   },
-  onPullDownRefresh: function () {
-    console.log(213)
-    this.selectComponent('#my').onPullDownRefresh()
+  onAreaTap() {
+    wx.navigateTo({
+      url: '/pages/area/area',
+    })
   },
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {},
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {},
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    var tabIndex = parseInt(this.data.tabIndex)
-    switch (tabIndex) {
-      case 0:
-        this.selectComponent('#index').onReachBottom()
-        break
-    }
+  onNavTo(e) {
+    const { url } = e.currentTarget.dataset
+    wx.navigateTo({
+      url,
+    })
+  },
+  onLoad() {
+    
+    togglerRole(99)
   },
 })
