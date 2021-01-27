@@ -13,7 +13,7 @@ Page({
     salary: [],
     salaryValue: -1,
     industry: [],
-    industryValue: -1
+    industryValue: -1,
   },
   onNavTo(e) {
     const { url } = e.currentTarget.dataset
@@ -28,7 +28,7 @@ Page({
       return app.showToast('请选择工作城市')
     } else if (this.data.salaryValue == -1) {
       return app.showToast('请选择薪资要求')
-    } else if (this.data.industryValue == -1 ) {
+    } else if (this.data.industryValue == -1) {
       return app.showToast('请选择期望行业')
     }
     return true
@@ -46,25 +46,31 @@ Page({
         birthday: form.date,
         experience: form.identity,
         advantage: form.advantage,
-        educatex: JSON.stringify([{
-          School: form.school,
-          Educat: form.education,
-          Specialty: form.profession,
-          TimePart: form.timeRange,
-          SchoolEx: form.experience,
-        }]),
-        jobexpect: JSON.stringify([{
-          City: this.data.city[1].RegionName,
-          Job: this.data.position.Name || this.data.searchKey,
-          Industry: this.data.industry[this.data.industryValue],
-          Salary: this.data.salary[this.data.salaryValue],
-        }]),
+        educatex: JSON.stringify([
+          {
+            School: form.school,
+            Educat: form.education,
+            Specialty: form.profession,
+            TimePart: form.timeRange,
+            SchoolEx: form.experience,
+          },
+        ]),
+        jobexpect: JSON.stringify([
+          {
+            TypeID: 26,
+            City: this.data.city[1].RegionName,
+            JobID: this.data.position.AotoID,
+            Job: this.data.position.Name || this.data.searchKey,
+            Industry: this.data.industry[this.data.industryValue],
+            Salary: this.data.salary[this.data.salaryValue],
+          },
+        ]),
       })
         .then((res) => {
           console.log(res)
           app.globalData.selectPostion = []
           wx.switchTab({
-            url: "/pages/my/my"
+            url: '/pages/my/my',
           })
         })
         .finally(() => {
@@ -79,7 +85,7 @@ Page({
   },
   onIndustryChange(e) {
     this.setData({
-      industryValue: e.detail.value
+      industryValue: e.detail.value,
     })
   },
   /**

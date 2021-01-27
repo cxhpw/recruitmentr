@@ -1,6 +1,12 @@
 //app.js
 import { getTimeStr, encrypt } from './utils/util'
 import { togglerRole } from './api/user'
+import { requestUserInfo } from './api/user/user'
+import {
+  requestResumeFilter,
+  requestCompanyFilter,
+  requestConfig,
+} from './api/config'
 import './utils/es6-promise.min.js'
 const Wxmap = require('./utils/qqmap-wx-jssdk.min.js')
 var mapInstance
@@ -18,9 +24,36 @@ App({
     // 登录
     this.getRoleInfos()
       .then((res) => {
-        console.log('会员信息', res)
+        console.log('授权信息', res)
+        requestResumeFilter().then((res) => {
+          this.globalData.educationOptions = res.data[0].keyvalue
+          this.globalData.salaryOptions = res.data[1].keyvalue
+          this.globalData.experienceOptions = res.data[2].keyvalue
+          this.globalData.jopStatusOptions = res.data[3].keyvalue
+        })
+        requestCompanyFilter().then((res) => {
+          this.globalData.industryOptions = res.data[1].keyvalue
+          this.globalData.companySizeOptions = res.data[0].keyvalue
+        })
+        Promise.all([
+          requestConfig('bzgzsj'), // 公司工作时长
+          requestConfig('gsfl'),   // 公司福利
+          requestConfig('zwlx'),   // 求职者类型，全职，实习，兼职
+        ]).then(([a, b, c]) => {
+          
+          this.globalData.workTimeOptions = a.data.dataList
+          this.globalData.welfareOptions = b.data.dataList
+          this.globalData.jopTypeOptions = c.data.dataList
+        })
+        requestConfig('zwlx').then((res) => {
+          console.log('职位类型', res)
+        })
         if (res.data.Role === 1) {
           // togglerRole(99)
+        } else {
+          requestUserInfo().then((res) => {
+            this.globalData.userInfo = res.data
+          })
         }
       })
       .catch((error) => {
@@ -151,7 +184,16 @@ App({
     userType: 'user', // 'user'|'hr'
     selectPostion: [],
     currentLocation: null,
-    allCityList: []
+    allCityList: [],
+    educationOptions: [],
+    experienceOptions: [],
+    salaryOptions: [],
+    jopStatusOptions: [],
+    industryOptions: [],
+    companySizeOptions: [],
+    welfareOptions: [],
+    workTimeOptions: [],
+    jopTypeOptions: []
   },
   api: {
     // host: 'http://daf10181.hk2.ue.net.cn',

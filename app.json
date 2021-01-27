@@ -22,8 +22,10 @@
     "pages/register/intention/intention",
     "pages/userResume/userResume",
     "pages/userResume/hopePage/hopePage",
-    "pages/userResume/jopsPage/jopsPage",
-    "pages/userResume/educationPage/educationPage"
+    "pages/userResume/educationPage/educationPage",
+    "pages/userResume/workExperiencePage/workExperiencePage",
+    "pages/editor/editor",
+    "pages/userResume/project/project"
   ],
   "window": {
     "backgroundTextStyle": "light",

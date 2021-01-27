@@ -43,6 +43,9 @@ Page({
     // page.setData({
     //   searchKey: e.detail,
     // })
+    this.setData({
+      show: false
+    })
     if (!e.detail) {
       this.setData({
         showSearch: false,
@@ -105,12 +108,17 @@ Page({
   },
   onLastTap(e) {
     const { id, index } = e.currentTarget.dataset
+    const page = getCurrentPages()[getCurrentPages().length - 2]
+    
     this.setData(
       {
         [`selected[2]`]: this.data.last[index],
       },
       () => {
         app.globalData.selectPostion = this.data.selected
+        page.setData({
+          position: this.data.last[index]
+        })
         wx.navigateBack()
       }
     )
@@ -118,6 +126,9 @@ Page({
   onSelect(e) {
     const { index } = e.currentTarget.dataset
     app.globalData.selectPostion[2] = this.data.searchList[index]
+    getCurrentPages()[getCurrentPages().length - 2].setData({
+      position: this.data.searchList[index]
+    })
     wx.navigateBack()
   },
   /**

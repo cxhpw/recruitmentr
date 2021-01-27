@@ -40,8 +40,17 @@ Page({
     const { value } = e.detail
     if (this.valid(value)) {
       postUserInfo({
-        
-      })
+        name: user.Name,
+        headerphoto: user.HeaderPhoto,
+        gender: user.Gender,
+        birthday: user.Birthday,
+        email: user.Email,
+        advantage: user.Advantage,
+        jobstatus: user.JobStatus,
+        jobexpect: user.JobExpectList,
+        workex: user.WorkExList,
+        educatex: user.EducatExList,
+      }).then((res) => {})
     }
   },
   /**

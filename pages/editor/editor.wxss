@@ -1,0 +1,26 @@
+page {
+  background: #fff; }
+
+.title {
+  font-size: 48rpx;
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+  margin-top: 70rpx;
+  line-height: 1; }
+
+.placeholder {
+  font-size: 24rpx; }
+
+.ql-container {
+  display: block;
+  padding: 10px 0;
+  font-size: 30rpx;
+  width: 100%;
+  font-style: normal !important;
+  height: calc(100vh - 140rpx - 140rpx); }
+
+.summary {
+  font-size: 26rpx;
+  color: #666;
+  margin: 0 0 50rpx; }

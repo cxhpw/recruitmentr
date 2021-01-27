@@ -1,5 +1,31 @@
-@import "../../../scss/minxi/minxi.scss";
-@import "../../../scss/variable/variable.scss";
+@import '../../../scss/minxi/minxi.scss';
+@import '../../../scss/variable/variable.scss';
 page {
   background: #fff;
+}
+.top-section__release {
+  padding: 70rpx 0 60rpx;
+}
+.switch-control {
+  display: flex;
+  width: 260rpx;
+  border: 1px solid $bodycolor;
+  border-radius: 4px;
+  .switch-item {
+    flex: 1;
+    height: 57rpx;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24rpx;
+    color: $bodycolor;
+    &.active {
+      background: $bodycolor;
+      color: #fff;
+    }
+  }
+}
+
+.my-cell {
+  padding: 40rpx !important;
 }

@@ -121,8 +121,11 @@ page {
     .jops-list .item .content {
       font-size: 27rpx;
       color: #999; }
-      .jops-list .item .content .row + .row {
-        margin-top: 30rpx; }
+      .jops-list .item .content .row {
+        display: flex;
+        flex-wrap: wrap; }
+        .jops-list .item .content .row + .row {
+          margin-top: 30rpx; }
 
 .education-list {
   margin: 30rpx 0 -30rpx; }

@@ -1,7 +1,7 @@
 <view class="page">
   <van-sticky>
     <view class='rela'>
-      <van-search placeholder="请输入搜索关键词" value="{{searchKey}}" maxlength="20"  bind:search="onConfirm" bind:change="onSearch"  clearable bind:cancel="onCancel"  bind:clear="onClear" clearable="{{ false }}" ></van-search>
+      <van-search placeholder="请输入搜索关键词" value="{{searchKey}}" maxlength="20"  bind:change="onSearch"  clearable bind:cancel="onCancel"  bind:clear="onClear" clearable="{{ false }}" ></van-search>
       <!-- <view class="count">
         <text>{{ value.length }}</text>
         <text>/</text>

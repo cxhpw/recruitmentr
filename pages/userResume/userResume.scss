@@ -113,6 +113,8 @@ page {
       font-size: 27rpx;
       color: #999;
       .row {
+        display: flex;
+        flex-wrap: wrap;
         & + .row {
           margin-top: 30rpx;
         }

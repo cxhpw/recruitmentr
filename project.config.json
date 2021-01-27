@@ -344,6 +344,29 @@
                     "pathName": "pages/userResume/userResume",
                     "query": "formData={\"advantage\":\"<p>撒打撒打撒</p><p>啊实打实大苏打撒旦</p><p>撒大撒大撒大撒大撒大撒的</p>\",\"school\":\"社会大学\",\"profession\":\"考古\",\"education\":\"大专\",\"timeRange\":\"2019-2024\",\"avatar\":\"http://job.729.cn/Upload/2021/01/202101264079278.png\",\"name\":\"行政村\",\"sex\":\"女\",\"date\":\"2015-01-26\",\"identity\":\"学生\"}",
                     "scene": null
+                },
+                {
+                    "name": "pages/userResume/hopePage/hopePage",
+                    "pathName": "pages/userResume/hopePage/hopePage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/userResume/workExperiencePage/workExperiencePage",
+                    "pathName": "pages/userResume/workExperiencePage/workExperiencePage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/userResume/educationPage/educationPage",
+                    "pathName": "pages/userResume/educationPage/educationPage",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/userResume/project/project",
+                    "pathName": "pages/userResume/project/project",
+                    "scene": null
                 }
             ]
         }

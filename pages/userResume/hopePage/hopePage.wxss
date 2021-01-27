@@ -1,2 +1,25 @@
 page {
   background: #fff; }
+
+.top-section__release {
+  padding: 70rpx 0 60rpx; }
+
+.switch-control {
+  display: flex;
+  width: 260rpx;
+  border: 1px solid #0866FF;
+  border-radius: 4px; }
+  .switch-control .switch-item {
+    flex: 1;
+    height: 57rpx;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24rpx;
+    color: #0866FF; }
+    .switch-control .switch-item.active {
+      background: #0866FF;
+      color: #fff; }
+
+.my-cell {
+  padding: 40rpx !important; }

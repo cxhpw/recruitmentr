@@ -18,16 +18,16 @@
   -moz-osx-font-smoothing: grayscale; }
 
 .icon-bianjibiaoge:before {
-  content: "\eabc"; }
+  content: '\eabc'; }
 
 .icon-bangongbao:before {
-  content: "\eac4"; }
+  content: '\eac4'; }
 
 .icon-shijian:before {
-  content: "\eb2a"; }
+  content: '\eb2a'; }
 
 .icon-ditu_dingwei:before {
-  content: "\eb33"; }
+  content: '\eb33'; }
 
 .icon-suoding_o:before {
   content: '\eb50'; }
@@ -261,7 +261,7 @@ button:after {
   font-size: 36rpx; }
 
 .text-success {
-  color: #5985F6; }
+  color: #5985f6; }
 
 .text-wait {
   color: #009944; }
@@ -511,3 +511,22 @@ button:after {
     font-style: normal !important; }
   .ql-container:before {
     font-style: normal; }
+
+.ql-editor.ql-blank:before {
+  color: rgba(0, 0, 0, 0.5);
+  font-style: normal;
+  font-size: 28rpx; }
+
+.form-wrapper {
+  display: block;
+  padding-bottom: 140rpx; }
+  .form-wrapper .form-group {
+    min-height: 24px;
+    line-height: 24px; }
+  .form-wrapper .form-control {
+    font-size: 30rpx;
+    color: #333;
+    height: 24px;
+    line-height: initial; }
+  .form-wrapper .title {
+    margin-bottom: 10px; }

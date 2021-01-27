@@ -1,0 +1,80 @@
+<view class="page">
+  <form bindsubmit="onSubmit">
+    <view class="form-wrapper">
+      <view class='cell-wrapper'>
+        <van-cell custom-class='my-cell' center use-label-slot>
+          <view slot='title' class='title'>项目名称</view>
+          <view slot="label" class='form-group'>
+            <input name="name" type="text" class='form-control' placeholder="请输入" placeholder-class="placeholder" />
+          </view>
+        </van-cell>
+        <van-cell custom-class='my-cell' center use-label-slot>
+          <view slot='title' class='title'>担任角色</view>
+          <view slot='label' class='form-group'>
+            <input name="role" type="text" class='form-control' placeholder="请输入" placeholder-class="placeholder" />
+          </view>
+        </van-cell>
+        <van-cell custom-class='my-cell' center use-label-slot>
+          <view slot='title' class='title'>项目时间</view>
+          <view slot='label' class='form-group'>
+            <view class='flex-box align-center'>
+              <view class='flex-item'>
+                <picker mode="multiSelector" range="{{  startTimeRange }}" value="{{ startTimeRangeValue }}" bindchange="onStartTimeRangeChange">
+                  <view class='placeholder' wx:if="{{ startTimeRangeValue[0] == -1 ||  startTimeRangeValue[1] == -1 }}">
+                    开始时间
+                  </view>
+                  <view class='f30 picker c333' wx:else>
+                    {{ startTimeRange[0][startTimeRangeValue[0]] }}.{{startTimeRange[1][startTimeRangeValue[1]]}}
+                  </view>
+                </picker>
+              </view>
+              <view class="">——</view>
+              <view class='flex-item text-right'>
+                <picker mode="multiSelector" range="{{ endTimeRange }}" value="{{  endTimeRangeValue }}" bindcolumnchange="onEndTimeRangeColChange" bindchange="onEndTimeRangeChange">
+                  <view class='placeholder' wx:if="{{  endTimeRangeValue[0] == -1 && endTimeRangeValue[1] == -1 }}">
+                    结束时间
+                  </view>
+                  <view class='f30 picker c333' wx:elif="{{ endTimeRangeValue[0] == 0 || !endTimeRange[1].length }}">
+                    至今
+                  </view>
+                  <view class='f30 picker c333' wx:else>
+                    {{  endTimeRange[0][endTimeRangeValue[0]] }}{{endTimeRange[1][endTimeRangeValue[1]] ? '.' : ''}}{{endTimeRange[1][endTimeRangeValue[1]]}}
+                  </view>
+                </picker>
+              </view>
+            </view>
+          </view>
+        </van-cell>
+        <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/pages/editor/editor?title=项目描述&field=projectDesc&content={{  projectDesc }}&placeholder=描述该项目，展示项目经验">
+          <view slot='title' class='title'>项目描述</view>
+          <view slot='label' class='form-group'>
+            <view class='placeholder' wx:if="{{ !projectDesc.length }}">请输入</view>
+            <view class='c333 f30    editor' wx:else>
+              <wxParseComponent html="{{  projectDesc }}"></wxParseComponent>
+            </view>
+          </view>
+        </van-cell>
+        <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/pages/editor/editor?title=项目业绩&field=projectScore&content={{ projectScore }}&placeholder=描述你的项目业绩，展示您的工作能力">
+          <view slot='title' class='title'>项目业绩</view>
+          <view slot='label' class='form-group'>
+            <view class='placeholder' wx:if="{{ !projectScore.length }}">选填 请输入</view>
+            <view class='c333 f30    editor' wx:else>
+              <wxParseComponent html="{{ projectScore }}"></wxParseComponent>
+            </view>
+          </view>
+        </van-cell>
+        <van-cell custom-class='my-cell' center use-label-slot>
+          <view slot='title' class='title'>项目链接</view>
+          <view slot='label' class='form-group'>
+            <input name="link" type="text" class='form-control' placeholder="选填 请输入" placeholder-class="placeholder" />
+          </view>
+        </van-cell>
+      </view>
+    </view>
+    <view class='fixed-bottom'>
+      <view class='confirm-group'>
+        <button class="button button-normal button-block" form-type="submit">保存</button>
+      </view>
+    </view>
+  </form>
+</view>

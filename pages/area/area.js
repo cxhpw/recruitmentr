@@ -52,9 +52,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log('areaLoad', options)
     requestRegionById().then((res) => {
       console.log(res)
-      if (app.globalData.filterArea) {
+      let pindex = -1
+      let Pcode = this.data.Pcode
+      if (app.globalData.filterArea.length) {
         requestRegionById(app.globalData.filterArea[0].RegionCode).then(
           (res) => {
             this.setData({
@@ -63,17 +66,18 @@ Page({
             })
           }
         )
-      }
-      let pindex = 0
-      for (let i = 0; i < res.data.dataList.length; i++) {
-        const element = res.data.dataList[i]
-        if (element.RegionCode === app.globalData.filterArea[0].RegionCode) {
-          pindex = i
+        for (let i = 0; i < res.data.dataList.length; i++) {
+          const element = res.data.dataList[i]
+          if (element.RegionCode === app.globalData.filterArea[0].RegionCode) {
+            pindex = i
+          }
         }
+        Pcode = app.globalData.filterArea[0].RegionCode
       }
+
       this.setData({
         province: res.data.dataList,
-        Pcode: app.globalData.filterArea[0].RegionCode,
+        Pcode,
         pindex,
       })
     })

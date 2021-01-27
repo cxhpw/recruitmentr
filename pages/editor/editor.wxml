@@ -1,0 +1,16 @@
+<view class="page">
+  <view class='container'>
+    <view class='title'>{{title}}</view>
+    <view class='form'>
+      <editor id="editor" class='ql-container' placeholder="{{placeholder}}" bindready="onEditorReady"></editor>
+    </view>
+    <view class='fixed-bottom'>
+      <view class='confirm-group'>
+        <button wx:if="{{type == 'edit'}}" class='button button-block button-normal' catch:tap="onConfirm">
+          保存
+        </button>
+        <button wx:else class='button button-block button-normal' catch:tap="onSubmit">保存</button>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,100 @@
+<view class="page">
+  <form bindsubmit="onSubmit">
+    <view class="form-wrapper">
+      <view class='cell-wrapper'>
+        <van-cell custom-class='my-cell' center use-label-slot>
+          <view slot='title' class='title'>公司名称</view>
+          <view slot="label" class='form-group'>
+            <input name="name" value="{{ form.name }}" type="text" class='form-control' placeholder="请输入" placeholder-class="placeholder" />
+          </view>
+        </van-cell>
+        <van-cell is-link custom-class='my-cell' center use-label-slot>
+          <view slot='title' class='title'>所在行业</view>
+          <view slot='label' class='form-group'>
+            <picker mode="selector" range="{{ industry }}" value="{{  industryValue }}" bindchange="onIndustryChange">
+              <view class='placeholder' wx:if="{{ industryValue == -1 }}">请选择期望行业</view>
+              <view class='f30 picker c333' wx:else>{{ industry[industryValue] }}</view>
+            </picker>
+          </view>
+        </van-cell>
+        <van-cell custom-class='my-cell' center use-label-slot>
+          <view slot='title' class='title'>在职时间</view>
+          <view slot='label' class='form-group'>
+            <view class='flex-box align-center'>
+              <view class='flex-item'>
+                <picker mode="multiSelector" range="{{  startTimeRange }}" value="{{ startTimeRangeValue }}" bindchange="onStartTimeRangeChange">
+                  <view class='placeholder' wx:if="{{ startTimeRangeValue[0] == -1 ||  startTimeRangeValue[1] == -1 }}">
+                    入职时间
+                  </view>
+                  <view class='f30 picker c333' wx:else>
+                    {{ startTimeRange[0][startTimeRangeValue[0]] }}.{{startTimeRange[1][startTimeRangeValue[1]]}}
+                  </view>
+                </picker>
+              </view>
+              <view class="">——</view>
+              <view class='flex-item text-right'>
+                <picker mode="multiSelector" range="{{ endTimeRange }}" value="{{  endTimeRangeValue }}" bindcolumnchange="onEndTimeRangeColChange" bindchange="onEndTimeRangeChange">
+                  <view class='f30 picker c333' wx:if="{{ endTimeRangeValue[0] == 0 || endTimeRangeValue[1] == -1 }}">
+                    至今
+                  </view>
+                  <view class='f30 picker c333' wx:else>
+                    {{  endTimeRange[0][endTimeRangeValue[0]] }}{{endTimeRange[1][endTimeRangeValue[1]] ? '.' : ''}}{{endTimeRange[1][endTimeRangeValue[1]]}}
+                  </view>
+                </picker>
+              </view>
+            </view>
+          </view>
+        </van-cell>
+        <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName?search={{ searchKey }}">
+          <view slot='title' class='title'>职位名称</view>
+          <view slot='label' class='form-group'>
+            <view class='placeholder' wx:if="{{ !position && !searchKey }}">请选择</view>
+            <view class='c333 f30' wx:else>{{ position.Name || searchKey }}</view>
+          </view>
+        </van-cell>
+        <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/pages/editor/editor?title=工作内容&field=workContent&content={{ workContent }}">
+          <view slot='title' class='title'>工作内容</view>
+          <view slot='label' class='form-group'>
+            <view class='placeholder' wx:if="{{ !workContent.length }}">请输入</view>
+            <view class='c333 f30    editor' wx:else>
+              <wxParseComponent html="{{ workContent }}"></wxParseComponent>
+            </view>
+          </view>
+        </van-cell>
+        <van-cell custom-class='my-cell' center use-label-slot>
+          <view slot='title' class='title'>拥有技能</view>
+          <view slot='label' class='form-group'>
+            <input name="skills" value="{{ form.skills }}" type="text" class='form-control' placeholder="请输入" placeholder-class="placeholder" />
+          </view>
+        </van-cell>
+        <view class='tip'>以下为选填项</view>
+        <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/pages/editor/editor?title=工作业绩&field=workScore&content={{ workScore }}">
+          <view slot='title' class='title'>工作业绩</view>
+          <view slot='label' class='form-group'>
+            <view class='placeholder' wx:if="{{ !workScore.length }}">请输入</view>
+            <view class='c333 f30  editor' wx:else>
+              <wxParseComponent html="{{ workScore }}"></wxParseComponent>
+            </view>
+          </view>
+        </van-cell>
+        <van-cell custom-class='my-cell' center use-label-slot>
+          <view slot='title' class='title'>所属部门</view>
+          <view slot='label' class='form-group'>
+            <input name="department" value="{{ form.department }}" type="text" class='form-control' placeholder="选填 请输入" placeholder-class="placeholder" />
+          </view>
+        </van-cell>
+        <view class='flex-box align-center  switch-box'>
+          <view class='fl'>本段经历是实习经历</view>
+          <view class='fr'>
+            <switch checked="{{ checked }}" bindchange="onSwitchChange" />
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='fixed-bottom'>
+      <view class='confirm-group'>
+        <button class="button button-normal button-block" form-type="submit">保存</button>
+      </view>
+    </view>
+  </form>
+</view>

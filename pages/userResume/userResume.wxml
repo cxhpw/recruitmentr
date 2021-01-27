@@ -44,7 +44,7 @@
     </view>
   </view>
   <view class='section'>
-    <view class='title' catch:tap="onNavTo" data-url="/pages/userResume/hopePage/hopePage">
+    <view class='title' catch:tap="onNavTo" data-url="/pages/userResume/hopePage/hopePage?type=add">
       求职期望
       <view class='fr'>
         <icon name='/assets/images/icon-add.png' color="#444444" size="16"></icon>
@@ -52,24 +52,14 @@
     </view>
     <view class='inner'>
       <view class='hope-list'>
-        <view class='item' catch:tap="onNavTo" data-url="/pages/userResume/hopePage/hopePage?formDa={{}}">
+        <view class='item' wx:for="{{ user.JobExpectList }}" wx:key="hope" catch:tap="onNavTo" data-url="/pages/userResume/hopePage/hopePage?type=edit&index={{index}}">
           <view class='name'>
-            <text>PHP 10-11K</text>
+            <text space="nbsp">{{item.Job}} {{item.Salary}}</text>
             <view class='fr arrow'></view>
           </view>
           <view class='summary'>
-            <text>深圳</text>
-            <text>行业不限</text>
-          </view>
-        </view>
-        <view class='item'>
-          <view class='name'>
-            <text>PHP 10-11K</text>
-            <view class='fr arrow'></view>
-          </view>
-          <view class='summary'>
-            <text>深圳</text>
-            <text>行业不限</text>
+            <text>{{ item.City }}</text>
+            <text>{{ item.Industry }}</text>
           </view>
         </view>
       </view>
@@ -79,40 +69,32 @@
   <view class="section">
     <view class='title'>
       工作经历
-      <view class='fr'>
+      <view class='fr' catch:tap="oNavTo" data-url="./workExperiencePage/workExperiencePage?type=add">
         <icon name='/assets/images/icon-add.png' color="#444444" size="16"></icon>
       </view>
     </view>
     <view class='inner'>
       <view class='jops-list'>
-        <view class='item'>
+        <view class='item' wx:for="{{ user.WorkExList }}" wx:key="WorkExList"  catch:tap="oNavTo" data-url="./workExperiencePage/workExperiencePage?type=edit&index={{index}}">
           <view class='name'>
-            联华
-            <view class='fr'>2020.09-至今</view>
+            {{ item.CompanyName }}
+            <view class='fr'>{{ item.StartTime}}-{{ item.EndTime }}</view>
             <text class='arrow'></text>
           </view>
           <view class='infos'>
-            <text>PHP</text>
-            <text>IT部</text>
+            <text>{{ item.JobName }}</text>
+            <text space="nbsp"> </text>
+            <text>{{ item.Department }}</text>
           </view>
           <view class="content">
-            <view class='row'>内容：项目沟通策划</view>
-            <view class='row'>业绩：散打冠军</view>
-          </view>
-        </view>
-        <view class='item'>
-          <view class='name'>
-            联华
-            <view class='fr'>2020.09-至今</view>
-            <text class='arrow'></text>
-          </view>
-          <view class='infos'>
-            <text>PHP</text>
-            <text>IT部</text>
-          </view>
-          <view class="content">
-            <view class='row'>内容：项目沟通策划</view>
-            <view class='row'>业绩：散打冠军</view>
+            <view class='row'>
+              内容：
+              <wxParseComponent html="{{ item.WorkContent }}"></wxParseComponent>
+            </view>
+            <view class='row' wx:if="{{ item.Performance }}">
+              业绩：
+              <wxParseComponent html="{{ item.Performance }}"></wxParseComponent>
+            </view>
           </view>
         </view>
       </view>
@@ -122,32 +104,21 @@
   <view class='section'>
     <view class='title'>
       教育经历
-      <view class='fr'>
+      <view class='fr' catch:tap="onNavTo" data-url="./educationPage/educationPage?type=add">
         <icon name='/assets/images/icon-add.png' color="#444444" size="16"></icon>
       </view>
     </view>
     <view class='inner'>
       <view class='education-list'>
-        <view class='item'>
+        <view class='item' wx:for="{{ user.EducatExList }}" wx:key="EducatExList" catch:tap="onNavTo" data-url="./educationPage/educationPage?type=add&index={{ index }}">
           <view class='name'>
-            深圳大学
-            <view class='fr'>2012-2013</view>
+            {{ item.School }}
+            <view class='fr'>{{ item.TimePart }}</view>
             <view class='arrow'></view>
           </view>
           <view class='summary'>
-            <text>法律专业</text>
-            <text>本科</text>
-          </view>
-        </view>
-        <view class='item'>
-          <view class='name'>
-            深圳大学
-            <view class='fr'>2012-2013</view>
-            <view class='arrow'></view>
-          </view>
-          <view class='summary'>
-            <text>法律专业</text>
-            <text>本科</text>
+            <text>{{ item.Specialty }}</text>
+            <text>{{ item.Educat }}</text>
           </view>
         </view>
       </view>
