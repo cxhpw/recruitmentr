@@ -32,6 +32,7 @@ Page({
           },
           this.data.form
         )
+        console.log(formData)
         wx.navigateTo({
           url: `../intention/intention?formData=${JSON.stringify(formData)}`,
         })

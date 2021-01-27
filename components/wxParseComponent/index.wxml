@@ -1,5 +1,5 @@
 <!--components/wxParseComponent/index.wxml-->
-<view wx:if="{{wxParseLoaded}}">
+<block wx:if="{{wxParseLoaded}}">
   <import src="/wxParse/wxParse.wxml" />
   <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-</view>
+</block>

@@ -1,33 +1,44 @@
 const app = getApp()
-import { postUserInfo } from '../../../api/user/user'
+import { postUserInfo, editResumeInfo } from '../../../api/user/user'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    id: 0,
     index: -1,
     user: null,
     type: 'add',
-    form: {},
+    form: {
+      name: '',
+      specialty: '',
+    },
     education: [],
     educationValue: -1,
     timeRange: [['1990以前'], []],
     timeRangeValue: [-1, -1],
     experience: '',
   },
+  onNavTo(e) {
+    const { url } = e.currentTarget.dataset
+    wx.navigateTo({
+      url,
+    })
+  },
   valid(value) {
-    const { timeRangeValue } = this.data
+    const { timeRangeValue, educationValue } = this.data
     if (!value.name) {
       return app.showToast('请输入学校名称')
-    } else if (industryValue == -1) {
+    } else if (educationValue == -1) {
       return app.showToast('请选择学历')
-    } else if (startTimeRangeValue.indexOf(-1) >= 0) {
+    } else if (!value.specialty) {
       return app.showToast('请输入专业')
-    } else if (timeRangeValue[0] == -1 || timeRangeValue[1] == -1 ) {
+    } else if (timeRangeValue[0] == -1 || timeRangeValue[1] == -1) {
       return app.showToast('请输入时间段')
     }
     return true
   },
+
   onSubmit(e) {
     const { value } = e.detail
     console.log(value)
@@ -48,37 +59,37 @@ Page({
         }`,
         SchoolEx: experience,
       }
-      type == 'add'
-        ? user.EducatExList.push(result)
-        : user.EducatExList.splice(index, 1, result)
-      const options = {
-        name: user.Name,
-        headerphoto: user.HeaderPhoto,
-        gender: user.Gender,
-        birthday: user.Birthday,
-        email: user.Email,
-        advantage: user.Advantage,
-        jobstatus: user.JobStatus,
-        jobexpect: JSON.stringify(user.JobExpectList),
-        workex: JSON.stringify(user.WorkExList),
-        educatex: JSON.stringify(user.EducatExList),
-      }
-      console.log(options)
-      postUserInfo(options).then((res) => {
-        if (res.data.ret == 'fail') {
-          app.showToast(res.data.msg)
-        } else {
-          wx.navigateBack()
-        }
+      editResumeInfo({
+        action: 'educatex',
+        id: this.data.id,
+        json: JSON.stringify(result),
+      }).then(() => {
+        wx.navigateBack()
       })
+      // type == 'add'
+      //   ? user.EducatExList.push(result)
+      //   : user.EducatExList.splice(index, 1, result)
+      // const options = {
+      //   name: user.Name,
+      //   headerphoto: user.HeaderPhoto,
+      //   gender: user.Gender,
+      //   birthday: user.Birthday,
+      //   email: user.Email,
+      //   advantage: user.Advantage,
+      //   jobstatus: user.JobStatus,
+      //   jobexpect: JSON.stringify(user.JobExpectList),
+      //   workex: JSON.stringify(user.WorkExList),
+      //   educatex: JSON.stringify(user.EducatExList),
+      // }
+      // console.log(options)
+      // postUserInfo(options).then((res) => {
+      //   if (res.data.ret == 'fail') {
+      //     app.showToast(res.data.msg)
+      //   } else {
+      //     wx.navigateBack()
+      //   }
+      // })
     }
-  },
-  restorePageData(index) {
-    const { user } = this.data
-    const work = user.WorkExList[index]
-    this.setData({
-      // workContent: user.
-    })
   },
   onEducationChange(e) {
     this.setData({
@@ -122,6 +133,23 @@ Page({
       timeRange,
     })
   },
+  restorePageData(index) {
+    const data = this.data.user.EducatExList[index]
+    const { education, timeRange } = this.data
+    const [start, end] = data.TimePart.split('-')
+    console.log(start, end)
+    this.initCol(Number(start))
+    this.setData({
+      id: data.AutoID,
+      form: {
+        name: data.School,
+        specialty: data.Specialty,
+      },
+      educationValue: education.indexOf(data.Educat),
+      experience: data.SchoolEx,
+      timeRangeValue: [timeRange[0].indexOf(Number(start)), timeRange[1].indexOf(Number(end))],
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -141,12 +169,19 @@ Page({
       timeRange,
     })
     this.initCol()
-    this.setData({
-      index: options.index || this.data.index,
-      user: app.globalData.userInfo,
-      type: options.type || this.data.type,
-      education: app.globalData.educationOptions,
-    })
+    this.setData(
+      {
+        index: options.index || this.data.index,
+        user: app.globalData.userInfo,
+        type: options.type || this.data.type,
+        education: app.globalData.educationOptions,
+      },
+      () => {
+        if (options.index != undefined) {
+          this.restorePageData(options.index)
+        }
+      }
+    )
   },
 
   /**

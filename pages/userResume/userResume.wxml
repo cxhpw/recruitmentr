@@ -7,9 +7,9 @@
           <icon catch:tap="onNavTo" data-url="/pages/userInfo/userInfo" custom-class="my-icon" name='/assets/images/icon-edit.png' color="#444444" size="16"></icon>
         </view>
         <view class='infos'>
-          <text>{{ user.Experience }}</text>
+          <text>{{ time }}年经验</text>
           <text class='dot'>·</text>
-          <text>{{ user.Experience }}</text>
+          <text>{{ user.Age }}</text>
           <text class='dot'>·</text>
           <text>{{ user.Educat }}</text>
         </view>
@@ -37,16 +37,20 @@
       求职状态
       <view class='fr'>
         <picker class='picker' mode="selector" value="{{ statusValue }}" range="{{ status }}" bindchange="onStatusChange">
-          <view wx:if="{{statusValue == -1 }}">请选择求职状态</view>
-          <view else class=''>{{ status[statusValue] }}</view>
+          <view wx:if="{{statusValue == -1 }}">
+            请选择求职状态
+          </view>
+          <view else class=''>
+            {{ status[statusValue] }}
+          </view>
         </picker>
       </view>
     </view>
   </view>
   <view class='section'>
-    <view class='title' catch:tap="onNavTo" data-url="/pages/userResume/hopePage/hopePage?type=add">
+    <view class='title'>
       求职期望
-      <view class='fr'>
+      <view class='fr' wx:if="{{ user.JobExpectList.length < 3 }}" catch:tap="onNavTo" data-url="/pages/userResume/hopePage/hopePage?type=add">
         <icon name='/assets/images/icon-add.png' color="#444444" size="16"></icon>
       </view>
     </view>
@@ -75,24 +79,26 @@
     </view>
     <view class='inner'>
       <view class='jops-list'>
-        <view class='item' wx:for="{{ user.WorkExList }}" wx:key="WorkExList"  catch:tap="oNavTo" data-url="./workExperiencePage/workExperiencePage?type=edit&index={{index}}">
+        <view class='item' wx:for="{{ user.WorkExList }}" wx:key="WorkExList" catch:tap="oNavTo" data-url="./workExperiencePage/workExperiencePage?type=edit&index={{index}}">
           <view class='name'>
             {{ item.CompanyName }}
-            <view class='fr'>{{ item.StartTime}}-{{ item.EndTime }}</view>
+            <view class='fr'>
+              {{ item.StartTime}}-{{ item.EndTime }}
+            </view>
             <text class='arrow'></text>
           </view>
           <view class='infos'>
             <text>{{ item.JobName }}</text>
-            <text space="nbsp"> </text>
+            <text space="nbsp" decode>&nbsp;&nbsp;</text>
             <text>{{ item.Department }}</text>
           </view>
           <view class="content">
             <view class='row'>
-              内容：
+              内容:
               <wxParseComponent html="{{ item.WorkContent }}"></wxParseComponent>
             </view>
             <view class='row' wx:if="{{ item.Performance }}">
-              业绩：
+              业绩:
               <wxParseComponent html="{{ item.Performance }}"></wxParseComponent>
             </view>
           </view>
@@ -110,7 +116,7 @@
     </view>
     <view class='inner'>
       <view class='education-list'>
-        <view class='item' wx:for="{{ user.EducatExList }}" wx:key="EducatExList" catch:tap="onNavTo" data-url="./educationPage/educationPage?type=add&index={{ index }}">
+        <view class='item' wx:for="{{ user.EducatExList }}" wx:key="EducatExList" catch:tap="onNavTo" data-url="./educationPage/educationPage?type=edit&index={{ index }}">
           <view class='name'>
             {{ item.School }}
             <view class='fr'>{{ item.TimePart }}</view>

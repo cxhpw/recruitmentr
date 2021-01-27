@@ -7,7 +7,7 @@ Page({
    */
   data: {
     mylogin: false,
-    user: {},
+    user: app.globalData.userInfo,
     isRegister: false,
     code: -1,
   },

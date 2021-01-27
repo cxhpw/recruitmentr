@@ -122,8 +122,13 @@ page {
       font-size: 27rpx;
       color: #999; }
       .jops-list .item .content .row {
-        display: flex;
-        flex-wrap: wrap; }
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical; }
+        .jops-list .item .content .row .wxParse-p {
+          display: inline; }
         .jops-list .item .content .row + .row {
           margin-top: 30rpx; }
 
@@ -131,6 +136,8 @@ page {
   margin: 30rpx 0 -30rpx; }
   .education-list .item {
     padding: 30rpx 0; }
+    .education-list .item .summary text {
+      margin-right: 20rpx; }
     .education-list .item .name {
       font-size: 29rpx;
       font-weight: 700;

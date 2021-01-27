@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id: 0,
     checked: false,
     position: null,
     index: -1,
@@ -13,10 +14,9 @@ Page({
     form: {
       name: '',
       skills: '',
-      department: ''
+      department: '',
+      jopName: '',
     },
-    salary: [],
-    salaryValue: -1,
     industry: [],
     industryValue: -1,
     identity: ['全职', '兼职'],
@@ -93,11 +93,6 @@ Page({
       industryValue: e.detail.value,
     })
   },
-  onSalaryChange(e) {
-    this.setData({
-      salaryValue: e.detail.value,
-    })
-  },
   valid(value) {
     const {
       position,
@@ -130,9 +125,6 @@ Page({
     console.log(value)
     if (this.valid(value)) {
       const {
-        user,
-        index,
-        type,
         position,
         industry,
         industryValue,
@@ -147,7 +139,7 @@ Page({
         Industry: industry[industryValue],
         StartTime: start,
         EndTime: end.search(/[至今|undefind]/) >= 0 ? '至今' : end,
-        JobName: position.Name,
+        JobName: value.jopName || position.Name,
         WorkContent: workContent,
         HaveSkill: value.skills,
         Performance: workScore,
@@ -169,7 +161,7 @@ Page({
       //   workex: JSON.stringify(user.WorkExList),
       //   educatex: JSON.stringify(user.EducatExList),
       // }
-      console.log(options)
+      // console.log(options)
       editResumeInfo({
         action: 'workex',
         id: this.data.id,
@@ -206,13 +198,42 @@ Page({
     })
   },
   restorePageData(index) {
-    const { user } = this.data
-    const work = user.WorkExList[index]
+    const {
+      user,
+      industry,
+      startTimeRange,
+      startTimeRangeValue,
+      endTimeRange,
+      endTimeRangeValue,
+      month
+    } = this.data
+    const data = user.WorkExList[index]
+    // data.StartTime
+    // data.EndTime
+    const [ syear, smonth ] = data.StartTime.split('.')
+    const [ eyear, emonth ] = data.EndTime.split('.')
+    console.log( eyear, emonth)
+    eyear != '至今' && (endTimeRange[1] = month)
     this.setData({
-      salaryValue: '',
-      name: '',
-
-      // workContent: user.
+      form: {
+        name: data.CompanyName,
+        skills: data.HaveSkill,
+        department: data.Department,
+        jopName: data.JobName,
+      },
+      position: {
+        Name: data.JobName,
+      },
+      workContent: data.WorkContent,
+      workScore: data.Performance,
+      industryValue: industry.indexOf(data.Industry),
+      id: data.AutoID,
+      checked: data.IsInternEx == '是',
+      startTimeRangeValue: [startTimeRange[0].indexOf(Number(syear)), startTimeRange[1].indexOf(Number(smonth))],
+      endTimeRangeValue: eyear == '至今' ? [0,-1]: [endTimeRange[0].indexOf(Number(eyear)), month.indexOf(Number(emonth))],
+      endTimeRange,
+      start: `${syear}.${emonth}`,
+      end: `${eyear}.${emonth}`
     })
   },
   /**
@@ -229,7 +250,6 @@ Page({
       {
         index: options.index || this.data.index,
         user: app.globalData.userInfo,
-        salary: app.globalData.salaryOptions,
         industry: app.globalData.industryOptions,
         type: options.type || this.data.type,
       },

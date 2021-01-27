@@ -113,8 +113,10 @@ page {
       font-size: 27rpx;
       color: #999;
       .row {
-        display: flex;
-        flex-wrap: wrap;
+        @include clamp(2);
+        .wxParse-p {
+          display: inline;
+        }
         & + .row {
           margin-top: 30rpx;
         }
@@ -127,6 +129,11 @@ page {
   margin: 30rpx 0 -30rpx;
   .item {
     padding: 30rpx 0;
+    .summary {
+      text {
+        margin-right: 20rpx;
+      }
+    }
     .name {
       font-size: 29rpx;
       font-weight: 700;

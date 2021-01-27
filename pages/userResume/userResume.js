@@ -1,5 +1,5 @@
 const app = getApp()
-import { requestUserInfo } from '../../api/user/user'
+import { requestUserInfo, postJopStatus } from '../../api/user/user'
 Page({
   /**
    * 页面的初始数据
@@ -10,11 +10,13 @@ Page({
     status: [],
     statusValue: -1,
     advantage: '',
+    time: '',
   },
   onStatusChange(e) {
     this.setData({
       statusValue: e.detail.value,
     })
+    postJopStatus(this.data.status[e.detail.value])
   },
   onNavTo(e) {
     const { url } = e.currentTarget.dataset
@@ -48,12 +50,20 @@ Page({
     requestUserInfo()
       .then((res) => {
         app.globalData.userInfo = res.data
+        const works = app.globalData.userInfo.WorkExList.slice()
+        works.sort((a, b) => {
+          return (
+            new Date(a.StartTime).getTime() - new Date(b.StartTime).getTime()
+          )
+        })
+        console.log('2153', works)
         this.setData({
           user: res.data,
           status: app.globalData.jopStatusOptions,
           statusValue: app.globalData.jopStatusOptions.indexOf(
             res.data.JobStatus
           ),
+          time: new Date().getFullYear() - works[0].StartTime.split('.')[0],
         })
       })
       .finally(() => {

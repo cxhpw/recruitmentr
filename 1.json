@@ -2,23 +2,25 @@
   "ret": "success",
   "msg": "获取成功！",
   "AutoID": 1,
-  "Name": "\u5976\u74F6",
-  "HeaderPhoto": "http: //192.168.1.18:8088/Upload/2021/01/202101266088964.png",
-  "Gender": "女",
-  "Birthday": "2016-01",
+  "Name": "\u519C\u59D4\u7528",
+  "HeaderPhoto": "http://192.168.1.18:8088/Upload/2021/01/202101271897533.png",
+  "Gender": "男",
+  "Birthday": "2015-01",
   "Email": "",
-  "Experience": "学生",
-  "Age": "5岁",
-  "Educat": "",
-  "Advantage": "\u003C\u0070\u003E\u5B9E\u6253\u5B9E\u5927\u82CF\u6253\u5B9E\u6253\u5B9E\u003C\u002F\u0070\u003E\u003C\u0070\u003E\u6492\u5012\u8428\u5012\u8428\u5012\u8428\u5012\u8428\u5012\u8428\u5012\u8428\u003C\u002F\u0070\u003E\u003C\u0070\u003E\u8428\u8FBE\u8428\u8FBE\u8428\u8FBE\u8428\u8FBE\u8428\u8FBE\u003C\u002F\u0070\u003E",
+  "Experience": "职场人",
+  "Age": "6岁",
+  "Educat": "本科",
+  "Advantage": "\u003C\u0070\u003E\u0061\u5B9E\u6253\u5B9E\u6253\u7B97\u003C\u002F\u0070\u003E\u003C\u0070\u003E\u963F\u4E09\u5927\u82CF\u6253\u5B9E\u6253\u5B9E\u003C\u002F\u0070\u003E\u003C\u0070\u003E\u963F\u4E09\u5927\u82CF\u6253\u5B9E\u6253\u5B9E\u7684\u003C\u002F\u0070\u003E",
   "JobStatus": "",
   "JobExpectList": [
-    {
-      "City": "唐山市"
-    [-p09oi78654321`345`],
-      "Job": "会计",  
-      "Industry": "游戏",
-      "Salary": "3-5K"
-    }
+    [
+      {
+        "TypeID": 26,
+        "City": "邯郸市",
+        "Job": "Java",
+        "Industry": "数据服务",
+        "Salary": "5-10K"
+      }
+    ]
   ],
-  "WorkExList": "],"EducatExList":[{"School":"社会大学","Educat":"高中","Specialty":"考古","TimePart":"2020-2026","SchoolEx":"撒大撒大撒大撒"}]}6578
+  "WorkExList": "],"EducatExList":[[{"School":"社会大学","Educat":"本科","Specialty":"考古","TimePart":"2017-2023","SchoolEx":""}]]}

@@ -14,6 +14,7 @@ Page({
     salaryValue: -1,
     industry: [],
     industryValue: -1,
+    jopName: '',
   },
   onNavTo(e) {
     const { url } = e.currentTarget.dataset
@@ -23,7 +24,7 @@ Page({
   },
   valid() {
     if (!this.data.position && !this.data.searchKey) {
-      return app.showToast('请选择期望职位')
+      return app.showToast('请选择职位类型')
     } else if (!this.data.city.length) {
       return app.showToast('请选择工作城市')
     } else if (this.data.salaryValue == -1) {
@@ -60,7 +61,7 @@ Page({
             TypeID: 26,
             City: this.data.city[1].RegionName,
             JobID: this.data.position.AotoID,
-            Job: this.data.position.Name || this.data.searchKey,
+            Job: this.data.jopName || this.data.position.Name,
             Industry: this.data.industry[this.data.industryValue],
             Salary: this.data.salary[this.data.salaryValue],
           },
@@ -86,6 +87,11 @@ Page({
   onIndustryChange(e) {
     this.setData({
       industryValue: e.detail.value,
+    })
+  },
+  onInput(e) {
+    this.setData({
+      jopName: e.detail.value
     })
   },
   /**
@@ -119,19 +125,19 @@ Page({
    */
   onShow: function () {
     console.log('app.globalData.selectPostion', app.globalData.selectPostion)
-    if (
-      app.globalData.selectPostion.length &&
-      app.globalData.selectPostion[2]
-    ) {
-      this.setData({
-        position: app.globalData.selectPostion[2],
-        searchKey: '',
-      })
-    } else {
-      this.setData({
-        position: null,
-      })
-    }
+    // if (
+    //   app.globalData.selectPostion.length &&
+    //   app.globalData.selectPostion[2]
+    // ) {
+    //   this.setData({
+    //     position: app.globalData.selectPostion[2],
+    //     searchKey: '',
+    //   })
+    // } else {
+    //   this.setData({
+    //     position: null,
+    //   })
+    // }
   },
 
   /**

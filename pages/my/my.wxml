@@ -14,7 +14,7 @@
   </view>
   <view class='nav-section'>
     <view class='flex-box'>
-      <view class='flex-item' catch:tap='onNavTo' data-url='/sub-pages/hr-interview/hr-interview'>
+      <view class='flex-item' catch:tap='onNavTo' data-url='/pages/userResume/userResume'>
         <image class='image' src="/assets/images/jianli.png"></image>
         <view class='text'>在线简历</view>
       </view>

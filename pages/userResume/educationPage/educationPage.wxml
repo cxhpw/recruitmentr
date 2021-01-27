@@ -5,7 +5,7 @@
         <van-cell custom-class='my-cell' center use-label-slot>
           <view slot='title' class='title'>学校名称</view>
           <view slot="label" class='form-group'>
-            <input name="name" type="text" class='form-control' placeholder="请输入" placeholder-class="placeholder" />
+            <input name="name" value="{{ form.name }}" type="text" class='form-control' placeholder="请输入" placeholder-class="placeholder" />
           </view>
         </van-cell>
         <van-cell is-link custom-class='my-cell' center use-label-slot>
@@ -20,10 +20,10 @@
         <van-cell custom-class='my-cell' center use-label-slot>
           <view slot='title' class='title'>专业</view>
           <view slot='label' class='form-group'>
-            <input type="text" name="specialty" class='form-control' placeholder-class="placeholder" placeholder="请填写专业" />
+            <input type="text" name="specialty" value="{{ form.specialty }}" class='form-control' placeholder-class="placeholder" placeholder="请填写专业" />
           </view>
         </van-cell>
-        <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName?search={{ searchKey }}">
+        <van-cell is-link custom-class='my-cell' center use-label-slot >
           <view slot='title' class='title'>时间段</view>
           <view slot='label' class='form-group'>
             <picker mode="multiSelector" range="{{timeRange}}" value="{{ timeRangeValue }}" bindcolumnchange="onTimeRangeColChange" bindchange="onTimeRangeChange" bindcancel="onTimeRangeCancel">
@@ -36,7 +36,7 @@
             </picker>
           </view>
         </van-cell>
-        <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/pages/editor/editor?title=在校经历&field=experience&content={{ experience }}">
+        <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/pages/editor/editor?title=在校经历&field=experience&content={{ experience }}&placeholder=1、在校担任职务...\n2、获得荣誉...\n3、所学主要课程">
           <view slot='title' class='title'>在校经历</view>
           <view slot='label' class='form-group'>
             <view class='placeholder' wx:if="{{ !experience.length }}">请输入</view>

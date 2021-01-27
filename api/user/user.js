@@ -66,3 +66,18 @@ export function editResumeInfo(params) {
     },
   })
 }
+
+/**
+ * 求职状态
+ * @param {String} params 
+ */
+export function postJopStatus(params) {
+  return request({
+    url: "/include/getdata",
+    method: "post",
+    data: {
+      apiname: "updatejobstatus",
+      jobstatus: params
+    }
+  })
+}
