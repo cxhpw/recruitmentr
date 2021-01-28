@@ -1,4 +1,4 @@
-import { togglerRole  } from '../../api/user'
+import { togglerRole } from '../../api/user'
 // index.js
 // 获取应用实例
 const app = getApp()
@@ -11,6 +11,7 @@ Page({
     buttontext: '加载中',
     nomore: false,
     pageNum: 1,
+    user: null,
   },
   // 事件处理函数
   getList: function (pageNum = 1) {
@@ -72,7 +73,14 @@ Page({
     })
   },
   onLoad() {
-    
+    this.setData({
+      user: app.globalData.userInfo,
+    })
+    app.mylogin = () => {
+      this.setData({
+        user: app.globalData.userInfo,
+      })
+    }
     togglerRole(99)
   },
 })
