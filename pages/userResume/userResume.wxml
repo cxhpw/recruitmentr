@@ -7,8 +7,8 @@
           <icon catch:tap="onNavTo" data-url="/pages/userInfo/userInfo" custom-class="my-icon" name='/assets/images/icon-edit.png' color="#444444" size="16"></icon>
         </view>
         <view class='infos'>
-          <text>{{ time }}年经验</text>
-          <text class='dot'>·</text>
+          <text wx:if="{{ time }}">{{ time }}年经验</text>
+          <text class='dot' wx:if="{{ time }}">·</text>
           <text>{{ user.Age }}</text>
           <text class='dot'>·</text>
           <text>{{ user.Educat }}</text>

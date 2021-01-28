@@ -62,7 +62,7 @@
       <view class='form-group'>
         <view class='label'>出生年月</view>
         <view class='form-group__input'>
-          <picker mode="date" value="{{date}}" bindchange="bindDateChange" end="">
+          <picker mode="date" value="{{date}}"  fields="month" bindchange="bindDateChange" end="">
             <view wx:if="{{date}}" class='f30' id="picker">{{date}}</view>
             <view wx:else class="placeholder">请选择出生日期</view>
           </picker>

@@ -73,6 +73,9 @@
     </view>
     <view class='fixed-bottom'>
       <view class='confirm-group'>
+        <button class="button button-cancel" wx:if="{{ user.JobExpectList.length > 1 }}" catch:tap="onDelete">
+          删除
+        </button>
         <button class="button button-normal button-block" form-type="submit">保存</button>
       </view>
     </view>

@@ -105,13 +105,29 @@ Page({
       // postUserInfo(options).then((res) => {})
     }
   },
+  onDelete() {
+    app.showModal({
+      content: '是否删除?',
+      success: (res) => {
+        if (res.confirm) {
+          editResumeInfo({
+            action: 'jobexpect',
+            delete: 'delete',
+            id: this.data.id,
+          }).then(() => {
+            wx.navigateBack()
+          })
+        }
+      },
+    })
+  },
   restorePageData(index) {
     const data = this.data.user.JobExpectList[index]
     const { salary, industry, identity } = this.data
     console.log(data)
     let identityValue = 0
     for (let index = 0; index < identity.length; index++) {
-      const element = identity[index];
+      const element = identity[index]
       if (element.id == data.TypeID) {
         identityValue = index
       }
@@ -122,7 +138,7 @@ Page({
       city: [, { RegionName: data.City }],
       position: { Name: data.Job, AutoID: data.JobID },
       id: data.AutoID,
-      identityValue
+      identityValue,
     })
   },
   /**

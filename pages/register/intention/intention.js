@@ -60,7 +60,7 @@ Page({
           {
             TypeID: 26,
             City: this.data.city[1].RegionName,
-            JobID: this.data.position.AotoID,
+            JobID: this.data.position.AutoID,
             Job: this.data.jopName || this.data.position.Name,
             Industry: this.data.industry[this.data.industryValue],
             Salary: this.data.salary[this.data.salaryValue],

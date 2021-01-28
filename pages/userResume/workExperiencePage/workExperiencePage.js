@@ -16,6 +16,7 @@ Page({
       skills: '',
       department: '',
       jopName: '',
+      jobType: '',
     },
     industry: [],
     industryValue: -1,
@@ -31,6 +32,22 @@ Page({
     workScore: '',
     start: '',
     end: '至今',
+  },
+  onDelete() {
+    app.showModal({
+      content: '是否删除?',
+      success: (res) => {
+        if (res.confirm) {
+          editResumeInfo({
+            action: 'workex',
+            delete: 'delete',
+            id: this.data.id,
+          }).then(() => {
+            wx.navigateBack()
+          })
+        }
+      },
+    })
   },
   onSwitchChange(e) {
     this.setData({
@@ -140,28 +157,15 @@ Page({
         StartTime: start,
         EndTime: end.search(/[至今|undefind]/) >= 0 ? '至今' : end,
         JobName: value.jopName || position.Name,
+        JobType: position.Name,
+        JobID: position.AutoID,
         WorkContent: workContent,
         HaveSkill: value.skills,
         Performance: workScore,
         Department: value.department,
         IsInternEx: checked ? '是' : '否',
       }
-      // type == 'add'
-      //   ? user.WorkExList.push(result)
-      //   : user.WorkExList.splice(index, 1, result)
-      // const options = {
-      //   name: user.Name,
-      //   headerphoto: user.HeaderPhoto,
-      //   gender: user.Gender,
-      //   birthday: user.Birthday,
-      //   email: user.Email,
-      //   advantage: user.Advantage,
-      //   jobstatus: user.JobStatus,
-      //   jobexpect: JSON.stringify(user.JobExpectList),
-      //   workex: JSON.stringify(user.WorkExList),
-      //   educatex: JSON.stringify(user.EducatExList),
-      // }
-      // console.log(options)
+
       editResumeInfo({
         action: 'workex',
         id: this.data.id,
@@ -169,13 +173,6 @@ Page({
       }).then(() => {
         wx.navigateBack()
       })
-      // postUserInfo(options).then((res) => {
-      //   if (res.data.ret == 'fail') {
-      //     app.showToast(res.data.msg)
-      //   } else {
-      //     wx.navigateBack()
-      //   }
-      // })
     }
   },
   initTimeRange(isEnd) {
@@ -205,14 +202,14 @@ Page({
       startTimeRangeValue,
       endTimeRange,
       endTimeRangeValue,
-      month
+      month,
     } = this.data
     const data = user.WorkExList[index]
     // data.StartTime
     // data.EndTime
-    const [ syear, smonth ] = data.StartTime.split('.')
-    const [ eyear, emonth ] = data.EndTime.split('.')
-    console.log( eyear, emonth)
+    const [syear, smonth] = data.StartTime.split('.')
+    const [eyear, emonth] = data.EndTime.split('.')
+    console.log(eyear, emonth)
     eyear != '至今' && (endTimeRange[1] = month)
     this.setData({
       form: {
@@ -223,17 +220,27 @@ Page({
       },
       position: {
         Name: data.JobName,
+        AutoID: data.JobID,
       },
       workContent: data.WorkContent,
       workScore: data.Performance,
       industryValue: industry.indexOf(data.Industry),
       id: data.AutoID,
       checked: data.IsInternEx == '是',
-      startTimeRangeValue: [startTimeRange[0].indexOf(Number(syear)), startTimeRange[1].indexOf(Number(smonth))],
-      endTimeRangeValue: eyear == '至今' ? [0,-1]: [endTimeRange[0].indexOf(Number(eyear)), month.indexOf(Number(emonth))],
+      startTimeRangeValue: [
+        startTimeRange[0].indexOf(Number(syear)),
+        startTimeRange[1].indexOf(Number(smonth)),
+      ],
+      endTimeRangeValue:
+        eyear == '至今'
+          ? [0, -1]
+          : [
+              endTimeRange[0].indexOf(Number(eyear)),
+              month.indexOf(Number(emonth)),
+            ],
       endTimeRange,
       start: `${syear}.${emonth}`,
-      end: `${eyear}.${emonth}`
+      end: `${eyear}.${emonth}`,
     })
   },
   /**
@@ -243,7 +250,7 @@ Page({
     this.initTimeRange()
     this.initTimeRange(true)
     wx.setNavigationBarTitle({
-      title: options.type == 'edit' ? '编辑工作尽力' : '添加工作经历',
+      title: options.type == 'edit' ? '编辑工作经历' : '添加工作经历',
     })
 
     this.setData(

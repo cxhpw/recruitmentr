@@ -66,30 +66,23 @@ Page({
       }).then(() => {
         wx.navigateBack()
       })
-      // type == 'add'
-      //   ? user.EducatExList.push(result)
-      //   : user.EducatExList.splice(index, 1, result)
-      // const options = {
-      //   name: user.Name,
-      //   headerphoto: user.HeaderPhoto,
-      //   gender: user.Gender,
-      //   birthday: user.Birthday,
-      //   email: user.Email,
-      //   advantage: user.Advantage,
-      //   jobstatus: user.JobStatus,
-      //   jobexpect: JSON.stringify(user.JobExpectList),
-      //   workex: JSON.stringify(user.WorkExList),
-      //   educatex: JSON.stringify(user.EducatExList),
-      // }
-      // console.log(options)
-      // postUserInfo(options).then((res) => {
-      //   if (res.data.ret == 'fail') {
-      //     app.showToast(res.data.msg)
-      //   } else {
-      //     wx.navigateBack()
-      //   }
-      // })
     }
+  },
+  onDelete() {
+    app.showModal({
+      content: '是否删除?',
+      success: (res) => {
+        if (res.confirm) {
+          editResumeInfo({
+            action: 'educatex',
+            delete: 'delete',
+            id: this.data.id,
+          }).then(() => {
+            wx.navigateBack()
+          })
+        }
+      },
+    })
   },
   onEducationChange(e) {
     this.setData({
@@ -147,7 +140,10 @@ Page({
       },
       educationValue: education.indexOf(data.Educat),
       experience: data.SchoolEx,
-      timeRangeValue: [timeRange[0].indexOf(Number(start)), timeRange[1].indexOf(Number(end))],
+      timeRangeValue: [
+        timeRange[0].indexOf(Number(start)),
+        timeRange[1].indexOf(Number(end)),
+      ],
     })
   },
   /**

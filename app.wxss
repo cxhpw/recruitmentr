@@ -318,7 +318,11 @@ button:after {
   min-height: 120rpx;
   padding: 20rpx 40rpx;
   box-sizing: border-box;
-  background: #fff; }
+  background: #fff;
+  display: flex; }
+  .confirm-group .button-cancel {
+    flex: 0 0 200rpx;
+    margin-right: 40rpx; }
 
 .form .form-group {
   position: relative;

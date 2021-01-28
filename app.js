@@ -197,8 +197,8 @@ App({
   },
   api: {
     // host: 'http://daf10181.hk2.ue.net.cn',
-    host: 'https://job.729.cn',
-    // host: 'http://192.168.1.18:8088',
+    // host: 'https://job.729.cn',
+    host: 'http://192.168.1.18:8088',
   },
   getLocation: function name() {
     return new Promise((resolve, reject) => {

@@ -98,18 +98,30 @@ Page({
     })
   },
   valid(value) {
-    const {
-      projectDesc,
-      projectScore
-    } = this.data
+    const { projectDesc, projectScore } = this.data
     if (!value.name) {
       return app.showToast('请输入项目名称')
     } else if (!value.role) {
       return app.showToast('请输入项目担任角色')
     } else if (!projectDesc.length) {
       return app.showToast('请输入项目描述')
-    } 
+    }
     return true
+  },
+  onDelete() {
+    app.showModal({
+      content: '是否删除?',
+      success: (res) => {
+        if (res.confirm) {
+          editResumeInfo({
+            delete: 'delete',
+            id: this.data.id,
+          }).then(() => {
+            wx.navigateBack()
+          })
+        }
+      },
+    })
   },
   onSubmit(e) {
     const { value } = e.detail
