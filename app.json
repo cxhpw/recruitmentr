@@ -25,7 +25,9 @@
     "pages/userResume/educationPage/educationPage",
     "pages/userResume/workExperiencePage/workExperiencePage",
     "pages/editor/editor",
-    "pages/userResume/project/project"
+    "pages/userResume/project/project",
+    "pages/hopeJopPage/hopeJopPage",
+    "pages/detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

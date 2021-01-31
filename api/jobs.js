@@ -28,6 +28,21 @@ export function requestJopsList(params) {
     url: '/include/getdata',
     data: {
       apiname: 'getjoblist',
+      ...params
     },
+  })
+}
+
+/**
+ * 获取职位详情
+ * @param { Number } id 
+ */
+export function requestJopDetailById(id) {
+  return request({
+    url: "/include/getdata",
+    data: {
+      apiname: "getjobdetial",
+      id
+    }
   })
 }

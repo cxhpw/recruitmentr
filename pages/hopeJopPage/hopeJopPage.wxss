@@ -1,0 +1,39 @@
+page {
+  background: #fff; }
+
+.top-section__release {
+  padding: 70rpx 0 35rpx; }
+  .top-section__release .title {
+    margin-bottom: 30rpx; }
+
+.list .item {
+  padding: 25rpx 0; }
+  .list .item text {
+    margin-right: 10rpx; }
+  .list .item .title {
+    font-size: 25rpx;
+    margin-bottom: 10rpx; }
+  .list .item .infos {
+    font-size: 20rpx;
+    color: #999; }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90rpx;
+  border: 1px solid #2351d3;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 24rpx;
+  color: #2351d3;
+  margin-top: 25rpx; }
+  .btn .my-icon {
+    margin-right: 10rpx;
+    font-weight: 700; }
+
+.fr {
+  font-size: 25rpx;
+  color: #333333; }
+  .fr text {
+    color: #0866FF; }

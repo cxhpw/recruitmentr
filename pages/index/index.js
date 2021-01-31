@@ -1,4 +1,5 @@
 import { togglerRole } from '../../api/user'
+import { requestJopsList } from '../../api/jobs'
 // index.js
 // 获取应用实例
 const app = getApp()
@@ -6,29 +7,41 @@ Page({
   data: {
     tabs: [{ title: '推荐' }, { title: '最新' }],
     tabIndex: 0,
-    list: [{}, {}, {}, {}, {}, {}, {}],
+    list: [],
     loading: true,
     buttontext: '加载中',
     nomore: false,
     pageNum: 1,
     user: null,
+    activeIndex: 0,
+    jobExpectList: [],
+  },
+  onTap(e) {
+    const { index } = e.currentTarget.dataset
+    this.setData(
+      {
+        activeIndex: index,
+      },
+      () => {
+        this.getList()
+      }
+    )
   },
   // 事件处理函数
   getList: function (pageNum = 1) {
-    var temp = {}
-    temp.apiname = 'getchilduserlist'
-    temp.pageNum = pageNum
-    temp.pageSize = 10
     this.setData({
       loading: true,
     })
-    app.request({
-      url: app.api.host + 'Include/Weixin/wechatdata',
-      data: temp,
-      success: (res) => {
-        console.log('=======', res)
+    console.log(this.data.jobExpectList)
+    requestJopsList({
+      pageindex: pageNum,
+      pageindex: 10,
+      jid: this.data.jobExpectList.length ? this.data.jobExpectList[this.data.activeIndex].JobID : '',
+    })
+      .then((res) => {
+        console.log('职位列表', res)
         if (res.data.ret == 'success') {
-          var data = res.data.datalist
+          var data = res.data.dataList
           this.setData({
             init: true,
           })
@@ -58,8 +71,10 @@ Page({
             })
           }
         }
-      },
-    })
+      })
+      .finally(() => {
+        wx.hideLoading()
+      })
   },
   onAreaTap() {
     wx.navigateTo({
@@ -73,14 +88,28 @@ Page({
     })
   },
   onLoad() {
-    this.setData({
-      user: app.globalData.userInfo,
-    })
-    app.mylogin = () => {
-      this.setData({
-        user: app.globalData.userInfo,
-      })
-    }
     togglerRole(99)
+  },
+  onShow() {
+    this.setData(
+      {
+        user: app.globalData.userInfo,
+        jobExpectList: app.globalData.userInfo.JobExpectList || [],
+      }
+    )
+    app.mylogin = () => {
+      this.setData(
+        {
+          user: app.globalData.userInfo,
+          jobExpectList: app.globalData.userInfo.JobExpectList,
+        },
+        () => {
+          this.getList()
+        }
+      )
+    }
+  },
+  onReachBottom() {
+    this.data.pageNum != 0 && this.getList(this.data.pageNum + 1)
   },
 })

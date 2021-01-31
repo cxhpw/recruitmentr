@@ -1,3 +1,6 @@
+page {
+  background: #fff; }
+
 .nav-section {
   padding: 0 40rpx;
   background: #fff; }

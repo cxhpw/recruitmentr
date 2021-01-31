@@ -21,6 +21,12 @@ Page({
     ],
     identityValue: 0,
     city: null,
+    from: ''
+  },
+  onIdentityChange(e) {
+    this.setData({
+      identityValue: e.detail.value
+    })
   },
   onNavTo(e) {
     const { url } = e.currentTarget.dataset
@@ -152,6 +158,7 @@ Page({
         salary: app.globalData.salaryOptions,
         industry: app.globalData.industryOptions,
         type: options.type || this.data.type,
+        from: options.from || ''
       },
       () => {
         if (options.index != undefined) {

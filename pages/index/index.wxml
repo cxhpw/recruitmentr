@@ -48,33 +48,33 @@
   <van-sticky>
     <view class='edit-section'>
       <view class='type-tabs'>
-        <view class='item active'>PHP</view>
-        <view class='item'>生产组长/拉长</view>
-        <view class='item'>餐饮</view>
+        <view class='item {{ activeIndex == index ? "active" : "" }}' catch:tap="onTap" data-index="{{ index }}" wx:for="{{ jobExpectList }}" data-id="{{ item.JobID }}">
+          {{ item.Job }}
+        </view>
       </view>
-      <view class='btn'>
+      <view class='btn' catch:tap="onNavTo" data-url="/pages/hopeJopPage/hopeJopPage">
         <icon custom-class="iconfont  icon-bianjibiaoge" size="18"></icon>
       </view>
     </view>
   </van-sticky>
   <view class='recruitment-list'>
-    <view class='card' wx:for="{{ list }}" wx:key="{{ index }}">
+    <view class='card' wx:for="{{ list }}" wx:key="{{ index }}" catch:tap="onNavTo" data-url="/pages/detail/detail?id={{item.AutoID}}">
       <view class='company-base flex-box align-center'>
-        <view class='name'>PHP高级工程师（跨境电商）</view>
-        <view class='price'>12-22K</view>
+        <view class='name'>{{ item.JName }}</view>
+        <view class='price'>{{ item.Salary }}</view>
       </view>
       <view class='company-info'>
-        <text>阿里巴巴</text>
-        <text>20-99人</text>
+        <text>{{ item.CName }}</text>
+        <text>{{ item.CStaffSize }}</text>
       </view>
       <view class='company-hr'>
-        <image class='avatar' src="/assets/images/avatar.png"></image>
-        <text>刘女士</text>
-        <text>人力资源经理</text>
-        <text class='fr'>深圳</text>
+        <image class='avatar' src="{{ item.RHeaderPhoto }}"></image>
+        <text>{{ item.RName }}</text>
+        <text>{{ item.RJob }}</text>
+        <text class='fr'>{{ item.Address }}</text>
       </view>
     </view>
   </view>
-  <loadButton loading="{{ false }}" text="暂无更多数据"></loadButton>
   <nomore wx:if="{{nomore}}"></nomore>
+  <loadButton wx:else loading="{{ loading }}" text="{{ buttontext }}"></loadButton>
 </view>

@@ -53,8 +53,8 @@ App({
         } else {
           requestUserInfo().then((res) => {
             console.log('用户信息')
-            this.mylogin()
             this.globalData.userInfo = res.data
+            this.mylogin()
           })
         }
       })

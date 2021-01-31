@@ -361,6 +361,9 @@ button:after {
   left: 0;
   z-index: 999;
 }
+.none {
+  background: initial !important;
+}
 .confirm-group {
   box-sizing: border-box;
   min-height: 120rpx;

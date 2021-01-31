@@ -1,13 +1,15 @@
 <view class="page">
   <view class='container'>
     <view class='top-section__release'>
-      <view class='title'>{{ type == "add" ? "添加" : "编辑" }}求职期望</view>
+      <view class='title'>
+        {{ type == "add" ? "添加" : "编辑" }}求职期望
+      </view>
       <view class='summary'>求职期望的不同，推荐的职位也会不同</view>
     </view>
   </view>
   <view class="form-wrapper">
     <view class='cell-wrapper'>
-      <van-cell custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/pages/area/area">
+      <van-cell wx:if="{{!from}}" custom-class='my-cell' center use-label-slot >
         <view slot='title' class='title'>求职类型</view>
         <view class='fr'>
           <view class='switch-control'>
@@ -17,26 +19,51 @@
           </view>
         </view>
       </van-cell>
+      <van-cell wx:else custom-class='my-cell' center use-label-slot >
+        <view slot='title' class='title'>求职类型</view>
+        <view slot="label">
+          <picker mode="selector" range="{{ identity }}" range-key="name" value="{{ identityValue }}" bindchange="onIdentityChange">
+            <view class='placeholder' wx:if="{{  identityValue == -1 }}">
+              请选择求职类型
+            </view>
+            <view class='f30 picker  c333' wx:else>
+              {{ identity[identityValue].name }}
+            </view>
+          </picker>
+        </view>
+      </van-cell>
       <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/pages/area/area">
         <view slot='title' class='title'>工作城市</view>
         <view slot='label' class='form-group'>
-          <view class='placeholder' wx:if="{{ !city.length }}">请选择工作城市</view>
-          <view class='f30 c333' wx:else>{{  city[1].RegionName }}</view>
+          <view class='placeholder' wx:if="{{ !city.length }}">
+            请选择工作城市
+          </view>
+          <view class='f30 c333' wx:else>
+            {{  city[1].RegionName }}
+          </view>
         </view>
       </van-cell>
       <van-cell is-link custom-class='my-cell' center use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName?search={{ searchKey }}">
         <view slot='title' class='title'>期望职位</view>
         <view slot='label' class='form-group'>
-          <view class='placeholder' wx:if="{{ !position && !searchKey }}">请选择期望职位</view>
-          <view class='c333 f30' wx:else>{{ position.Name || searchKey }}</view>
+          <view class='placeholder' wx:if="{{ !position && !searchKey }}">
+            请选择期望职位
+          </view>
+          <view class='c333 f30' wx:else>
+            {{ position.Name || searchKey }}
+          </view>
         </view>
       </van-cell>
       <van-cell is-link custom-class='my-cell' center use-label-slot>
         <view slot='title' class='title'>期望行业</view>
         <view slot='label' class='form-group'>
           <picker mode="selector" range="{{ industry }}" value="{{  industryValue }}" bindchange="onIndustryChange">
-            <view class='placeholder' wx:if="{{ industryValue == -1 }}">请选择期望行业</view>
-            <view class='f30 picker c333' wx:else>{{ industry[industryValue] }}</view>
+            <view class='placeholder' wx:if="{{ industryValue == -1 }}">
+              请选择期望行业
+            </view>
+            <view class='f30 picker c333' wx:else>
+              {{ industry[industryValue] }}
+            </view>
           </picker>
         </view>
       </van-cell>
@@ -44,8 +71,12 @@
         <view slot='title' class='title'>薪资要求</view>
         <view slot='label' class='form-group'>
           <picker mode="selector" range="{{ salary }}" value="{{ salaryValue }}" bindchange="onSalaryChange">
-            <view class='placeholder' wx:if="{{  salaryValue == -1 }}">请选择薪资要求</view>
-            <view class='f30 picker  c333' wx:else>{{ salary[salaryValue] }}</view>
+            <view class='placeholder' wx:if="{{  salaryValue == -1 }}">
+              请选择薪资要求
+            </view>
+            <view class='f30 picker  c333' wx:else>
+              {{ salary[salaryValue] }}
+            </view>
           </picker>
         </view>
       </van-cell>
@@ -53,8 +84,12 @@
   </view>
   <view class='fixed-bottom'>
     <view class='confirm-group'>
-      <button class="button button-cancel" wx:if="{{ user.JobExpectList.length > 1 }}" catch:tap="onDelete">删除</button>
-      <button class="button button-normal button-block" catch:tap="onSubmit">保存</button>
+      <button class="button button-cancel" wx:if="{{ user.JobExpectList.length > 1 }}" catch:tap="onDelete">
+        删除
+      </button>
+      <button class="button button-normal button-block" catch:tap="onSubmit">
+        保存
+      </button>
     </view>
   </view>
 </view>

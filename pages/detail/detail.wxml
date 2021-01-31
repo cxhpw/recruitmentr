@@ -1,0 +1,75 @@
+<view class="page">
+  <view class='container'>
+    <view class='top-section'>
+      <view class='flex-box'>
+        <view class='name'>{{ data.JName}}</view>
+        <view class='price'>{{ data.Salary }}</view>
+      </view>
+      <view class='base'>
+        <view class='icon-item'>
+          <image class='icon' src='/assets/images/icon_address.jpg'></image>
+          <view class='text'>
+            <text>{{ data.Address }}</text>
+            <!-- <text class='dot'>·</text>
+            <text>南山区</text>
+            <text class='dot'>·</text>
+            <text>科技园</text> -->
+          </view>
+        </view>
+        <view class='icon-item'>
+          <image class='icon' src='/assets/images/icon-work.jpg'></image>
+          <view class='text'>
+            <text>{{ data.Experience }}</text>
+          </view>
+        </view>
+        <view class='icon-item'>
+          <image class='icon' src='/assets/images/icon_xueli.jpg'></image>
+          <view class='text'>
+            <text>{{ data.Educat }}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='detail-section'>
+      <view class='title'>职位详情</view>
+      <view class='content'>
+        <wxParamComponent html="{{ data.Desc }}"></wxParamComponent>
+      </view>
+    </view>
+    <view class='company-section'>
+      <view class='flex-box align-center' catch:tap="on">
+        <image class='logo' mode="aspectFill" src="{{data.CLogo}}"></image>
+        <view class='flex-item'>
+          <view class="name">{{ data.CAbbreviat }}</view>
+          <view class="info">
+            <text>{{ data.CIndustry }}</text>
+            <text>·</text>
+            <text>{{ data.CStaffSize }}</text>
+          </view>
+        </view>
+        <icon name='arrow' size="{{16}}" color='#999'></icon>
+      </view>
+      <view class='map' catch:tap="onMapTap">
+        <image src='{{ data.MapImage }}' class='image'></image>
+      </view>
+    </view>
+  </view>
+  <view class="fixed-bottom">
+    <view class='button-group'>
+      <view class="action-wrapper">
+        <view class='action-item'>
+          <icon custom-class='icon iconfont icon-share'></icon>
+          <view class='text'>分享</view>
+          <button open-type="share" class='contact-button'></button>
+        </view>
+        <view class='action-item' catch:tap="onCollect" data-id="{{ data.AutoID }}">
+          <icon custom-class='icon' color="{{ data.FavStatus == 1 ? '#666666' : 'red' }}" name="{{ data.FavStatus == 1 ? 'like-o' : 'like' }}"></icon>
+          <view class='text'>收藏</view>
+        </view>
+      </view>
+      <button class="button button-normal" catch:tap="onClick">
+        立即沟通
+      </button>
+    </view>
+  </view>
+</view>
