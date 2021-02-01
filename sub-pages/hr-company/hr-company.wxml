@@ -95,9 +95,9 @@
         </view>
       </view>
       <view class='value'>
-        <text wx:if="{{!user.AlbumList.length}}">
+        <block wx:if="{{!user.AlbumList.length}}">
           未添加
-        </text>
+        </block>
         <view wx:else class='photo-wrapper' catch:tap="onPreview1">
           <image class="image" src="{{item.Img}}" wx:for="{{user.AlbumList}}" mode="aspectFill"></image>
         </view>

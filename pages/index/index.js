@@ -36,7 +36,9 @@ Page({
     requestJopsList({
       pageindex: pageNum,
       pageindex: 10,
-      jid: this.data.jobExpectList.length ? this.data.jobExpectList[this.data.activeIndex].JobID : '',
+      jid: this.data.jobExpectList.length
+        ? this.data.jobExpectList[this.data.activeIndex].JobID
+        : '',
     })
       .then((res) => {
         console.log('职位列表', res)
@@ -95,6 +97,9 @@ Page({
       {
         user: app.globalData.userInfo,
         jobExpectList: app.globalData.userInfo.JobExpectList || [],
+      },
+      () => {
+        this.getList()
       }
     )
     app.mylogin = () => {

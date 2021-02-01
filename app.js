@@ -1,6 +1,5 @@
 //app.js
 import { getTimeStr, encrypt } from './utils/util'
-import { togglerRole } from './api/user'
 import { requestUserInfo } from './api/user/user'
 import {
   requestResumeFilter,
@@ -49,11 +48,12 @@ App({
           console.log('职位类型', res)
         })
         if (res.data.Role === 1) {
-          // togglerRole(99)
+
         } else {
           requestUserInfo().then((res) => {
             console.log('用户信息')
             this.globalData.userInfo = res.data
+            this.globalData.mylogin = true
             this.mylogin()
           })
         }
@@ -73,7 +73,7 @@ App({
         }
       },
     })
-    mapInstance = new Wxmap({
+    this.mapInstance = new Wxmap({
       key: 'Z4OBZ-DSDCQ-32Y5R-GLXXC-CFEBO-5DBL3',
     })
     // 获取当前定位，无需微信定位授权
@@ -86,7 +86,7 @@ App({
     this.getLocation()
       .then((res) => {
         this.globalData.location = res
-        mapInstance.reverseGeocoder({
+        this.mapInstance.reverseGeocoder({
           success: (res) => {
             console.log('reverseGeocoder', res)
             this.globalData.currentLocation = res.result
@@ -199,8 +199,8 @@ App({
   },
   api: {
     // host: 'http://daf10181.hk2.ue.net.cn',
-    host: 'https://job.729.cn',
-    // host: 'http://192.168.1.18:8088',
+    // host: 'https://job.729.cn',
+    host: 'http://192.168.1.18:8088',
   },
   getLocation: function name() {
     return new Promise((resolve, reject) => {

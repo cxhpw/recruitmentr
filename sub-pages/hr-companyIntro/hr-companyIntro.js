@@ -9,6 +9,17 @@ Page({
     content: '',
     user: app.globalData.hrInfo,
   },
+  onEditorReady() {
+    wx.createSelectorQuery()
+      .select('#editor')
+      .context((res) => {
+        this.editorCtx = res.context
+        this.editorCtx.setContents({
+          html: this.data.content,
+        })
+      })
+      .exec()
+  },
   onInput(e) {
     this.setData({
       content: e.detail.value,
@@ -16,22 +27,30 @@ Page({
   },
   onSubmit() {
     const { user } = this.data
-    updateCompanyInfo({
-      name: user.Name,
-      headerphoto: user.HeaderPhoto,
-      job: user.Job,
-      logo: user.Logo,
-      staffsize: user.StaffSize,
-      intro: this.data.content,
-      workhours: user.WorkHours,
-      resttime: user.RestTime,
-      overtime: user.OverTime,
-      welfare: user.WelfareList.join(','),
-      album: user.AlbumList.map((item) => item.Img).join(','),
-    }).then((res) => {
-      app.showToast(res.data.msg, () => {
-        wx.navigateBack()
-      })
+    this.editorCtx.getContents({
+      success: (res) => {
+        console.log(res.html)
+        this.setData({
+          content: res.html,
+        })
+        updateCompanyInfo({
+          name: user.Name,
+          headerphoto: user.HeaderPhoto,
+          job: user.Job,
+          logo: user.Logo,
+          staffsize: user.StaffSize,
+          intro: res.html,
+          workhours: user.WorkHours,
+          resttime: user.RestTime,
+          overtime: user.OverTime,
+          welfare: user.WelfareList.join(','),
+          album: user.AlbumList.map((item) => item.Img).join(','),
+        }).then((res) => {
+          app.showToast(res.data.msg, () => {
+            wx.navigateBack()
+          })
+        })
+      },
     })
   },
   /**

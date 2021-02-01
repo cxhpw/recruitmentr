@@ -22,6 +22,20 @@
           <input name="company" type="text" class='form-control' placeholder-class="placeholder" placeholder="您当前就职的公司" />
         </view>
       </view>
+      <view class='form-group' catch:tap="onMap">
+        <view class='label'>公司地点</view>
+        <view class='form-group__input'>
+          <view class='placeholder' wx:if="{{  !address || !address.address }}">请选择公司地点</view>
+          <view class='form-control' wx:else style="max-width: calc(100% - 24px)">
+            {{ address.address }}
+            <text class="dot">·</text>
+            {{address.name}}
+          </view>
+        </view>
+        <view class="icon">
+          <icon name='arrow' class="my-icon" color="#999" size="16"></icon>
+        </view>
+      </view>
       <view class='form-group'>
         <view class='label'>我的职位</view>
         <view class='form-group__input'>

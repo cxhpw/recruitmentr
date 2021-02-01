@@ -7,11 +7,13 @@
         <view class='label'>工作时间</view>
         <view class='time-rang__picker'>
           <picker mode="selector" range="{{ams}}" value="{{am}}" bindchange="onAmChange">
-            <view class='pciker'>{{ ams[am] }}</view>
+            <view wx:if="{{  am == -1 }}" class="placeholder">上班时间</view>
+            <view wx:else class='pciker'>{{ ams[am] }}</view>
           </picker>
           <view class='fat'>-</view>
           <picker mode="selector" range="{{pms}}" value="{{pm}}" bindchange="onPmChange">
-            <view class='pciker'>{{ pms[pm] }}</view>
+            <view wx:if="{{ pm == -1 }}" class="placeholder">下班时间</view>
+            <view wx:else class='pciker'>{{ pms[pm] }}</view>
           </picker>
         </view>
       </view>

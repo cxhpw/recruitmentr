@@ -1,5 +1,6 @@
 const app = getApp()
 import { requestMessageDetailById } from '../../api/message'
+import { postResumeToHr } from '../../api/user/resume'
 Page({
   /**
    * 页面的初始数据
@@ -9,6 +10,19 @@ Page({
     id: -1,
     message: [],
     card: [],
+    init: false
+  },
+  onSubmitResume() {
+    if (this.data.card.IsSendResume == 'True') {
+      return
+    }
+    postResumeToHr({
+      rid: this.data.card.RID,
+      status: 99,
+    }).then((res) => {
+      console.log('发送简历', res)
+      app.showToast(res.data.msg, () => {})
+    })
   },
   onNavTo(e) {
     const { url } = e.currentTarget.dataset
@@ -31,7 +45,7 @@ Page({
       id: this.data.id,
     })
       .then((res) => {
-        console.log(res)
+        console.log('聊天室信息', res)
         if (res.data.ret == 'success') {
           var data = res.data.dataList
           if (pageNum == 1) {
@@ -76,6 +90,10 @@ Page({
         this.setData({
           list: [],
           nomore: true,
+        })
+      }).finally(() => {
+        this.setData({
+          init: true
         })
       })
   },

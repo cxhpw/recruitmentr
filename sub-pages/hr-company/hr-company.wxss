@@ -52,8 +52,6 @@ page {
 .my-cell {
   padding: 15px 40rpx !important;
   align-items: center; }
-  .my-cell .van-cell__title {
-    flex: 0 0 auto !important; }
 
 .iconfont {
   color: #999999; }

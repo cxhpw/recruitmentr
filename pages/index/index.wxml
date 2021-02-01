@@ -45,18 +45,20 @@
       </view>
     </view>
   </view>
-  <van-sticky>
-    <view class='edit-section'>
-      <view class='type-tabs'>
-        <view class='item {{ activeIndex == index ? "active" : "" }}' catch:tap="onTap" data-index="{{ index }}" wx:for="{{ jobExpectList }}" data-id="{{ item.JobID }}">
-          {{ item.Job }}
+  <block wx:if="{{ jobExpectList.length }}">
+    <van-sticky>
+      <view class='edit-section'>
+        <view class='type-tabs'>
+          <view class='item {{ activeIndex == index ? "active" : "" }}' catch:tap="onTap" data-index="{{ index }}" wx:for="{{ jobExpectList }}" data-id="{{ item.JobID }}">
+            {{ item.Job }}
+          </view>
+        </view>
+        <view class='btn' catch:tap="onNavTo" data-url="/pages/hopeJopPage/hopeJopPage">
+          <icon custom-class="iconfont  icon-bianjibiaoge" size="18"></icon>
         </view>
       </view>
-      <view class='btn' catch:tap="onNavTo" data-url="/pages/hopeJopPage/hopeJopPage">
-        <icon custom-class="iconfont  icon-bianjibiaoge" size="18"></icon>
-      </view>
-    </view>
-  </van-sticky>
+    </van-sticky>
+  </block>
   <view class='recruitment-list'>
     <view class='card' wx:for="{{ list }}" wx:key="{{ index }}" catch:tap="onNavTo" data-url="/pages/detail/detail?id={{item.AutoID}}">
       <view class='company-base flex-box align-center'>

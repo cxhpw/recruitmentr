@@ -1,6 +1,7 @@
 // components/wxParseComponent/index.js
 var WxParse = require('../../wxParse/wxParse')
 Component({
+  externalClasses: ['custom-class'],
   options: {
     styleIsolation: 'apply-shared',
   },
@@ -17,8 +18,12 @@ Component({
     html: function (newValue) {
       WxParse.wxParse('article', 'html', newValue, this, 20)
     },
+    wxParseLoaded: function (value) {
+      if (value) {
+        this.triggerEvent('load')
+      }
+    },
   },
-
   /**
    * 组件的初始数据
    */

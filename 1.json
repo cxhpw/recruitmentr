@@ -1,26 +1,27 @@
 {
   "ret": "success",
-  "msg": "获取成功！",
-  "AutoID": 1,
-  "Name": "\u519C\u59D4\u7528",
-  "HeaderPhoto": "http://192.168.1.18:8088/Upload/2021/01/202101271897533.png",
-  "Gender": "男",
-  "Birthday": "2015-01",
-  "Email": "",
-  "Experience": "职场人",
-  "Age": "6岁",
-  "Educat": "本科",
-  "Advantage": "\u003C\u0070\u003E\u0061\u5B9E\u6253\u5B9E\u6253\u7B97\u003C\u002F\u0070\u003E\u003C\u0070\u003E\u963F\u4E09\u5927\u82CF\u6253\u5B9E\u6253\u5B9E\u003C\u002F\u0070\u003E\u003C\u0070\u003E\u963F\u4E09\u5927\u82CF\u6253\u5B9E\u6253\u5B9E\u7684\u003C\u002F\u0070\u003E",
-  "JobStatus": "",
-  "JobExpectList": [
-    [
-      {
-        "TypeID": 26,
-        "City": "邯郸市",
-        "Job": "Java",
-        "Industry": "数据服务",
-        "Salary": "5-10K"
-      }
-    ]
-  ],
-  "WorkExList": "],"EducatExList":[[{"School":"社会大学","Educat":"本科","Specialty":"考古","TimePart":"2017-2023","SchoolEx":""}]]}
+  "data": {
+    "IsSendResume":False,
+    "CName": "\u963F\u62C9\u77F3\u6CB9",
+    "CID": 8,
+    "Phone": "13590101067",
+    "JID": 5,
+    "JName": "\u0069\u004F\u0053",
+    "Salary": "\u0032\u0030\u002D\u0033\u0030\u004B",
+    "Address": "\u5E7F\u4E1C\u7701\u6DF1\u5733\u5E02\u9F99\u534E\u533A\u6C11\u5EB7\u8DEF\u0032\u0031\u0033\u53F7",
+    "WorkPlace": "\u84DD\u5764\u5927\u53A6",
+    "HouseNumber": "\u0031\u0035\u0031\u0036",
+    "Experience": "\u0033\u002D\u0035\u5E74",
+    "Educat": "\u7855\u58EB",
+    "RID": 12,
+    "RName": "\u9648\u5148\u751F",
+    "HeaderPhoto": "http://192.168.1.18:8088/Upload/2021/02/202102016395473.png",
+    "RJob": "\u603B\u76D1",
+    "AutoTimeStamp": "2月1日 04:22"
+  },
+  "PageIndex": 1,
+  "PageSize": 10,
+  "TotalCount": 0,
+  "TotalPage": 1,
+  "dataList": []
+}

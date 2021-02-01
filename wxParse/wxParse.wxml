@@ -1576,4 +1576,6 @@
     <!-- 如果是，直接进行 -->
     <template is="WxEmojiView" data="{{item}}" />
   </block>
+
+  
 </template>

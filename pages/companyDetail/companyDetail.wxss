@@ -40,33 +40,38 @@ page {
   .my-tabs .van-tab + .van-tab {
     padding: 0 70rpx; }
 
-.welfare-wrapper {
-  margin-bottom: 80rpx; }
-  .welfare-wrapper .row {
-    font-size: 27rpx;
-    color: #333;
+.welfare-wrapper .row {
+  font-size: 27rpx;
+  color: #333;
+  display: flex;
+  padding: 48rpx 0; }
+  .welfare-wrapper .row .cell {
     display: flex;
-    padding: 48rpx 0; }
-    .welfare-wrapper .row .cell {
-      margin-right: 60rpx; }
-  .welfare-wrapper .icon {
-    margin-left: auto; }
-  .welfare-wrapper .list {
-    display: flex;
-    flex-wrap: nowrap; }
-    .welfare-wrapper .list .item {
-      display: inline-flex;
-      align-items: center;
-      height: 110rpx;
-      padding: 0 60rpx;
-      flex: 0 0 223rpx;
-      box-sizing: border-box;
-      border: 1px solid #EBEBEB;
-      border-radius: 6px;
-      margin-right: 20rpx; }
+    align-items: center;
+    margin-right: 60rpx;
+    white-space: nowrap; }
+    .welfare-wrapper .row .cell .iconfont {
+      margin-right: 6rpx; }
+
+.welfare-wrapper .icon {
+  margin-left: auto; }
+
+.welfare-wrapper .list {
+  display: flex;
+  flex-wrap: nowrap; }
+  .welfare-wrapper .list .item {
+    display: inline-flex;
+    align-items: center;
+    height: 110rpx;
+    padding: 0 60rpx;
+    flex: 0 0 223rpx;
+    box-sizing: border-box;
+    border: 1px solid #ebebeb;
+    border-radius: 6px;
+    margin-right: 20rpx; }
 
 .address-wrapper {
-  margin-bottom: 80rpx; }
+  margin: 80rpx 0; }
   .address-wrapper .hd {
     margin-bottom: 35rpx;
     display: flex;
@@ -105,12 +110,7 @@ page {
 .intro-wrapper .summary {
   font-size: 27rpx;
   color: #666;
-  line-height: 200%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical; }
+  line-height: 24px; }
 
 .intro-wrapper .more {
   position: absolute;
@@ -122,3 +122,34 @@ page {
   color: #0866FF; }
   .intro-wrapper .more text {
     color: #666; }
+
+.album-wrapper {
+  margin-top: 80rpx;
+  padding-bottom: 50rpx; }
+  .album-wrapper .album-list {
+    display: inline-flex;
+    flex-wrap: nowrap; }
+  .album-wrapper .title {
+    font-size: 35rpx;
+    font-weight: 500;
+    margin-bottom: 35rpx;
+    color: #333;
+    padding: 0 40rpx; }
+  .album-wrapper .album {
+    flex: 0 0 300rpx;
+    width: 300rpx;
+    height: 185rpx;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-right: 20rpx; }
+    .album-wrapper .album:first-child {
+      margin-left: 40rpx; }
+    .album-wrapper .album:last-child {
+      margin-right: 40rpx; }
+
+.my-wxParse .wxParse-p {
+  color: red; }
+  .my-wxParse .wxParse-p:nth-child(3n+3) {
+    color: green; }
+  .my-wxParse .wxParse-p:last-child {
+    color: blue; }

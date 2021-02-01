@@ -5,6 +5,43 @@ Page({
    */
   data: {
     avatar: '',
+    address: null,
+    ad_info: null,
+    business_area: null,
+  },
+  onMap() {
+    const temp = {
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          address: res,
+        })
+        app.mapInstance.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude,
+          },
+          success: (res) => {
+            console.log('工作地点解析', res)
+            this.setData({
+              ad_info: res.result.address_component,
+              business_area: res.result.address_reference.business_area,
+            })
+          },
+        })
+      },
+      fail: () => {
+        console.log('fail')
+        app.getLocation().then((res) => {
+          console.log(res)
+        })
+      },
+    }
+    if (this.data.address) {
+      temp.latitude = this.data.address.latitude
+      temp.longitude = this.data.address.longitude
+    }
+    wx.chooseLocation(temp)
   },
   valid(value) {
     if (!this.data.avatar) {
@@ -14,7 +51,6 @@ Page({
     } else if (!value.company) {
       return app.showToast('请输入公司名称')
     } else if (!value.jop) {
-
       return app.showToast('请输入职位')
     }
     return true
@@ -43,9 +79,18 @@ Page({
         name: value.name,
         longCompany: value.company,
         jop: value.jop,
+        latitude: this.data.address.latitude,
+        longitude: this.data.address.longitude,
+        address: this.data.address.address,
+        province: this.data.ad_info.province,
+        city: this.data.ad_info.city,
+        district: this.data.ad_info.district,
+        business_area: this.data.business_area.title
       }
       wx.navigateTo({
-        url: `/sub-pages/hr-account/hr-account?formData=${JSON.stringify(formData)}`,
+        url: `/sub-pages/hr-account/hr-account?formData=${JSON.stringify(
+          formData
+        )}`,
       })
     }
   },
@@ -69,8 +114,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-  },
+  onHide: function () {},
 
   /**
    * 生命周期函数--监听页面卸载

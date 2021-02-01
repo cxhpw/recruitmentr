@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "wxParseComponent": "../../components/wxParseComponent"
+  },
   "navigationBarTitleText": "职位详情"
 }

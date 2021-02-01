@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'iconfont';
-  src: url("data:application/x-font-woff2;charset=utf-8;base64,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") format("woff2"); }
+  src: url("data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAARUAAsAAAAACOgAAAQFAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDQAqEZIQeATYCJAMYCw4ABCAFhG0HWBvMB1GUL0qc7EeBu6eIxMKhbWlbsuBxMeX/D3gJOx6e9vt27sy8+SptN4nGrWJRk9JFE42QSNACnVTIHqotTdvxawkdfLd8xVpq+o5cm64rafrDMZ1GKYQE4Th67202qVPjy+CmFA927p2Ai0vT1PGA1bWzuNReKBPAcIACVEq3JhL+F3lBfwXxbDqfE3ieQNcqy8H5xd2jmijkaYF4TWmoJgGVkpEd2kJNWFvEJ2DXTh+Ic6B8tH4/fkMQE5Imk+fePD1P1NE36dfq5Ov/KhEGCtjNGcBvImOPUoh3iaa3+k5oT1/3c/nAKaWrLUnfpF/EvLr5Wv3/f74YNd6EJF3lXx5ZERqJqOTMPrigisbSsTWEzI8YhMKvmwjBbzWEht/qKgmy2mDllPIZ+AP83pqsLWR50K/9Ig+cHK5WrX7//Qy6oT0mumn0ZCA4nMnHYgUzTCAfL1W90rKUzocooOImUoiK5ScEkoAH8aE1wLsjPmml+mCrYmLyYuv+KpWEuZZ4hlHf22rquywEfPq28VyXDwmqnpTwX21V9V2v0lhi6KFde1BMXsuGjcrM04AqipZGLQyiGCY3MCCIh6QiJPZAlNeu2Qw/HfwA5BlsUZo3oU2wNteYnt8zgHer5g2KIufwcGedjzg6Bol+xFJ39e5C6BmPAgctXMi7sGCCP8wPfBzYVY1pLIqx5qfx7TlaNojSGHT0BVZnRydoCmkqJCUrAgWbD8HvEdCCkl82Vony+vxBAmcNjAwK3neKuxF7io4fL9pDuIn/+PfM3sh+34egB/ryiQ3SHAUNEmzrz56ts0mkJMdcYhcV3XJJoqGAA0VXVESjmOQUiRpibQ2MiutqPT0mJ9lFsdHAHrafP8seSjcYep0Xl9pK7N1LgN/KMMBjJkMZAAD8/5v3kGbWYhIAgDxFVAP835+PkvZEdCLrLxAAIICylLGKaAGLrz5MqAK+Wr7UgPP//gLFWVda7MN+JNgFW8qXK6treTfXJgpUByYcTfb1r3sUbFN/TUkWhQmEZOFB0rICWdsauuD3oNGzD1XbEXTtutzcM8P6onSw44tAGPuGZOgLZGM/6IL/hcbSP1Tj6EPXbYjs2bMRNLNnDAUTiPZAsam1qpWZnX2PaVeG7OdaxGfklrzgO144eok1chML2k0aiGjQbCq4IJdhWRpo2OQYi5OJNGvX1UkfcmJTqZkzDIUESoDIHiAxo6aNzmIW+fl7KNUphTij6Yf2GWIt6h34HF4B9KWoLtR0KINbG6mAEJqZpDGjAi5gQKUSMkCTPCqHYsKRVQg01lzaThcVOd1Lqr3cBV3yM2qkyFGiiRot7Wem23ZJSIMceqFpLLPZJuoR9SgrMzXa4zajnMJaKQAAAA==") format("woff2"); }
 
 .no-border {
   border: none !important; }
@@ -16,6 +16,15 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
+
+.icon-gouwudai:before {
+  content: '\ead9'; }
+
+.icon-riqi:before {
+  content: '\eb2b'; }
+
+.icon-arrowdown:before {
+  content: '\e61a'; }
 
 .icon-bianjibiaoge:before {
   content: '\eabc'; }
@@ -499,7 +508,7 @@ button:after {
     font-size: 25rpx; }
 
 .my-cell .van-icon {
-  color: #bfbfbf; }
+  color: #bfbfbf !important; }
 
 .my-cell:after {
   left: 40rpx !important;
@@ -537,3 +546,38 @@ button:after {
     line-height: initial; }
   .form-wrapper .title {
     margin-bottom: 10px; }
+
+.recruitment-list .card {
+  background: #fff;
+  padding: 30rpx 40rpx;
+  border-bottom: 12rpx solid #f8f8f8; }
+  .recruitment-list .card .company-base {
+    margin-bottom: 20rpx; }
+    .recruitment-list .card .company-base .name {
+      font-weight: 500;
+      font-size: 33rpx;
+      color: #000; }
+    .recruitment-list .card .company-base .price {
+      font-size: 29rpx;
+      color: #0866ff;
+      font-weight: 500;
+      margin-left: auto; }
+  .recruitment-list .card .company-info {
+    font-size: 25rpx;
+    color: #666; }
+    .recruitment-list .card .company-info text {
+      margin-right: 30rpx; }
+  .recruitment-list .card .company-hr {
+    display: flex;
+    align-items: center;
+    font-size: 24rpx;
+    margin-top: 30rpx; }
+    .recruitment-list .card .company-hr .avatar {
+      width: 45rpx;
+      height: 45rpx;
+      border-radius: 50%;
+      margin-right: 16rpx; }
+    .recruitment-list .card .company-hr text {
+      margin-right: 12rpx; }
+    .recruitment-list .card .company-hr .fr {
+      color: #999; }

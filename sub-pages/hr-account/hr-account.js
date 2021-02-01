@@ -158,6 +158,12 @@ Page({
         creditcode: value.creditNumber,
         identifier: value.taxpayerNumber,
         regnumber: value.businessNumber,
+        Province: form.province,
+        City: form.City,
+        District: form.district,
+        Address: form.address,
+        Longitude: form.longitude,
+        Latitude: form.latitude,
       }
       postCompanyRegister(temp)
         .then((res) => {

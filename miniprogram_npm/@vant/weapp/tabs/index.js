@@ -218,7 +218,6 @@ component_1.VantComponent({
                     .slice(0, currentIndex)
                     .reduce(function (prev, curr) { return prev + curr.width; }, 0);
                 left += (rect.width - width) / 2;
-                console.log('valuevalue',width,utils_1.addUnit(width))
                 var transition = skipTransition
                     ? ''
                     : "transition-duration: " + duration + "s; -webkit-transition-duration: " + duration + "s;";

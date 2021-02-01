@@ -13,3 +13,6 @@ page {
   height: 250rpx;
   width: 100%;
   font-size: 26rpx; }
+
+.ql-container {
+  min-height: calc(100vh - 70rpx - 52rpx - 30rpx - 140rpx - 20rpx); }

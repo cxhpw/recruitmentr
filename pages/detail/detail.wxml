@@ -30,15 +30,29 @@
         </view>
       </view>
     </view>
-    <view class='detail-section'>
-      <view class='title'>职位详情</view>
-      <view class='content'>
-        <wxParamComponent html="{{ data.Desc }}"></wxParamComponent>
+    <view class="he-section">
+      <view class="flex-box align-center">
+        <image class="avatar" src="{{data.RHeaderPhoto}}"></image>
+        <view class="con">
+          <view class="name">{{ data.RName }}</view>
+          <view class="infos">
+            <text>{{ data.CAbbreviat }}</text>
+            <text class="dot">·</text>
+            <text>{{ data.RJob }}</text>
+          </view>
+        </view>
       </view>
     </view>
+    <view class='detail-section'>
+      <view class='title'>职位详情</view>
+      <view class='content {{ isMore ? "hide" : ""}}'>
+        <wxParseComponent bind:load="onParseLoad" html="{{ data.Desc }}"></wxParseComponent>
+      </view>
+      <view class="more" catch:tap="onMore" wx:if="{{isMore}}">查看更多</view>
+    </view>
     <view class='company-section'>
-      <view class='flex-box align-center' catch:tap="on">
-        <image class='logo' mode="aspectFill" src="{{data.CLogo}}"></image>
+      <view class='flex-box align-center' catch:tap="onNavToCom">
+        <image-placeholder src="{{data.CLogo}}" custom-class="logo" fit="aspectFill"></image-placeholder>
         <view class='flex-item'>
           <view class="name">{{ data.CAbbreviat }}</view>
           <view class="info">
@@ -50,7 +64,21 @@
         <icon name='arrow' size="{{16}}" color='#999'></icon>
       </view>
       <view class='map' catch:tap="onMapTap">
-        <image src='{{ data.MapImage }}' class='image'></image>
+        <image-placeholder src="{{data.MapImage}}" custom-class="image"></image-placeholder>
+        <!-- <image src='{{ data.MapImage }}' class='image'></image> -->
+      </view>
+      <view class="title-v2">该公司其他岗位</view>
+      <view class='recruitment-list'>
+        <view class='card' wx:for="{{ data.CJList }}" wx:key="{{ index }}" catch:tap="onNavTo" data-url="/pages/detail/detail?id={{item.JID}}">
+          <view class='company-base flex-box align-center'>
+            <view class='name'>{{ item.JName }}</view>
+            <view class='price'>{{ item.Salary }}</view>
+          </view>
+          <view class='company-info'>
+            <text>{{ data.CAbbreviat }}</text>
+            <text>{{ data.CStaffSize }}</text>
+          </view>
+        </view>
       </view>
     </view>
   </view>
@@ -67,9 +95,8 @@
           <view class='text'>收藏</view>
         </view>
       </view>
-      <button class="button button-normal" catch:tap="onClick">
-        立即沟通
-      </button>
+      <button class="button button-normal" catch:tap="onSubmit">立即沟通</button>
+      <button wx:if="{{!mylogin}}" class='contact-button' open-type='getPhoneNumber' bindgetphonenumber="onPhone"></button>
     </view>
   </view>
 </view>

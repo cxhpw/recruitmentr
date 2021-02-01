@@ -15,6 +15,8 @@ Page({
     typeSelected: ['社招'],
     searchKey: '',
     address: null,
+    ad_info: null,
+    business_area: null,
     housenumber: '',
   },
   onInput(e) {
@@ -41,6 +43,19 @@ Page({
         console.log(res)
         this.setData({
           address: res,
+        })
+        app.mapInstance.reverseGeocoder({
+          location: {
+            latitude: res.latitude,
+            longitude: res.longitude,
+          },
+          success: (res) => {
+            console.log('工作地点解析' ,res)
+            this.setData({
+              ad_info: res.result.address_component,
+              business_area: res.result.address_reference.business_area,
+            })
+          }
         })
       },
       fail: () => {
@@ -77,6 +92,9 @@ Page({
         type: this.data.typeSelected[0],
         address: this.data.address,
         housenumber: this.data.housenumber,
+        province: this.data.ad_info.province,
+        city: this.data.ad_info.city,
+        district: this.data.ad_info.district,
       }
       wx.navigateTo({
         url: `/sub-pages/hr-releaseJopRequire/hr-releaseJopRequire?id=${id}&formData=${JSON.stringify(

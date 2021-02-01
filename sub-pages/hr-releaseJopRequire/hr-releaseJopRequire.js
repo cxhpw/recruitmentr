@@ -73,6 +73,10 @@ Page({
         experience: experience[experienceValue],
         educat: education[educationValue],
         salary: salary[salaryValue],
+        province: form.province,
+        city: form.city,
+        district: form.district,
+        business_area: form.business_area,
       })
         .then((res) => {
           app.showToast(res.data.msg, () => {

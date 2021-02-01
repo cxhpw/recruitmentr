@@ -1,0 +1,9 @@
+<view class="custom-class image-placeholder {{!loaded ? 'loaded' : ''}}">
+  <block wx:if="{{useErrorSlot}}">
+    <slot name="error"></slot>
+  </block>
+  <block wx:else>
+    <text wx:if="{{error}}" class='load_error'>图片加载失败</text>
+  </block>
+  <image class='load_image' mode="{{fit}}" src="{{src}}" bindload="imageOnLoad" binderror="onError"></image>
+</view>

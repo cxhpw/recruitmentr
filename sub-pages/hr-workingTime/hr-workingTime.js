@@ -73,8 +73,14 @@ Page({
       user: app.globalData.hrInfo,
       breakTimeSelected: [app.globalData.hrInfo.RestTime],
       overtimeSelected: [app.globalData.hrInfo.OverTime],
-      am: this.data.ams.indexOf(amValue),
-      pm: this.data.pms.indexOf(pmValue),
+      am:
+        this.data.ams.indexOf(amValue) == -1
+          ? 0
+          : this.data.pms.indexOf(pmValue),
+      pm:
+        this.data.pms.indexOf(pmValue) == -1
+          ? 0
+          : this.data.pms.indexOf(pmValue),
     })
   },
 
