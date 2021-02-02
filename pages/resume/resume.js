@@ -34,10 +34,15 @@ Page({
     })
   },
   onClick() {
+    const works = this.data.data.WorkExList.slice()
+    works.sort((a, b) => {
+      return new Date(a.StartTime).getTime() - new Date(b.StartTime).getTime()
+    })
+    const time = works.length ? new Date().getFullYear() - works[0].StartTime.split('.')[0] : '';
     postMessage(this.data.id).then((res) => {
       console.log(res)
       wx.navigateTo({
-        url: `/pages/chatroom/chatroom?id=${res.data.ChatRoomID}`,
+        url: `/pages/chatroom/chatroom?id=${res.data.ChatRoomID}&time=${time}`,
       })
     })
   },
@@ -88,7 +93,7 @@ Page({
     const { data } = this.data
     return {
       title: `${data.Name}的简历`,
-      path: `/pages/resume/resume?id=${data.AutoID}`,
+      path: `/pages/resume/resume?id=${data.AutoID}&`,
     }
   },
 })

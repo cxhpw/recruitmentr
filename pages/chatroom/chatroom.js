@@ -10,7 +10,8 @@ Page({
     id: -1,
     message: [],
     card: [],
-    init: false
+    init: false,
+    time: '',
   },
   onSubmitResume() {
     if (this.data.card.IsSendResume == 'True') {
@@ -91,9 +92,10 @@ Page({
           list: [],
           nomore: true,
         })
-      }).finally(() => {
+      })
+      .finally(() => {
         this.setData({
-          init: true
+          init: true,
         })
       })
   },
@@ -111,6 +113,7 @@ Page({
     this.setData(
       {
         id: options.id,
+        time: options.time,
       },
       () => {
         this.getList()

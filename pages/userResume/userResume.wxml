@@ -94,12 +94,16 @@
           </view>
           <view class="content">
             <view class='row'>
-              内容:
-              <wxParseComponent html="{{ item.WorkContent }}"></wxParseComponent>
+              <view class="title-v2">
+                内容:
+              </view>
+              <wxParseComponent custom-class="inline" html="{{ item.WorkContent }}"></wxParseComponent>
             </view>
             <view class='row' wx:if="{{ item.Performance }}">
-              业绩:
-              <wxParseComponent html="{{ item.Performance }}"></wxParseComponent>
+              <view class="title-v2">
+                业绩:
+              </view>
+              <wxParseComponent custom-class="inline" html="{{ item.Performance }}"></wxParseComponent>
             </view>
           </view>
         </view>

@@ -35,22 +35,34 @@ Page({
       },
     })
   },
-  valid() {},
+  valid(value) {
+    if (!value.name) {
+      return app.showToast('请输入姓名')
+    }
+    return true
+  },
   onSubmit(e) {
+    console.log(213)
     const { value } = e.detail
+    console.log(value)
     if (this.valid(value)) {
+      const { avatar, user, date, sex, sexValue } = this.data
       postUserInfo({
-        name: user.Name,
-        headerphoto: user.HeaderPhoto,
-        gender: user.Gender,
-        birthday: user.Birthday,
-        email: user.Email,
+        name: value.name,
+        headerphoto: avatar,
+        gender: sex[sexValue],
+        birthday: date,
+        email: value.email,
         advantage: user.Advantage,
         jobstatus: user.JobStatus,
-        jobexpect: user.JobExpectList,
-        workex: user.WorkExList,
-        educatex: user.EducatExList,
-      }).then((res) => {})
+        jobexpect: JSON.stringify(user.JobExpectList),
+        workex: JSON.stringify(user.WorkExList),
+        educatex: JSON.stringify(user.EducatExList),
+      }).then((res) => {
+        app.showToast(res.data.msg, () => {
+          wx.navigateBack()
+        })
+      })
     }
   },
   /**
@@ -61,6 +73,7 @@ Page({
       user: app.globalData.userInfo,
       sexValue: this.data.sex.indexOf(app.globalData.userInfo.Gender.trim()),
       date: app.globalData.userInfo.Birthday,
+      avatar: app.globalData.userInfo.HeaderPhoto,
     })
   },
 

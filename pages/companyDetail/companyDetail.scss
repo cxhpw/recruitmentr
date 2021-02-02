@@ -5,7 +5,7 @@ page {
   background: #fff;
 }
 .top-section {
-  padding: 50rpx 0;
+  padding: 50rpx 0 20rpx;
   overflow: hidden;
   .fl {
     .name {
@@ -20,7 +20,6 @@ page {
     }
   }
   .fr {
-    margin-left: 30rpx;
     .image {
       width: 110rpx;
       height: 110rpx;
@@ -30,8 +29,13 @@ page {
 }
 
 .my-tabs {
+  .van-tabs__wrap {
+    padding-left: 40rpx;
+    background-color: #fff;
+  }
   .van-tabs__nav {
     @include border-bottom($borderColor, 0, 0);
+    box-sizing: border-box;
   }
   .van-tab {
     flex: 0 0 auto !important;
@@ -47,7 +51,7 @@ page {
     font-size: 27rpx;
     color: #333;
     display: flex;
-    padding: 48rpx 0;
+    padding: 48rpx 40rpx;
     .cell {
       display: flex;
       align-items: center;
@@ -62,7 +66,7 @@ page {
     margin-left: auto;
   }
   .list {
-    display: flex;
+    display: inline-flex;
     flex-wrap: nowrap;
     .item {
       display: inline-flex;
@@ -74,6 +78,12 @@ page {
       border: 1px solid #ebebeb;
       border-radius: 6px;
       margin-right: 20rpx;
+      &:first-child {
+        margin-left: 40rpx;
+      }
+      &:last-child {
+        margin-right: 40rpx;
+      }
     }
   }
 }
@@ -101,9 +111,15 @@ page {
       font-size: 29rpx;
     }
     .fr {
+      flex: 0 0 auto;
+      margin-left: 30rpx;
+      .image {
+        width: 22rpx;
+        height: 22rpx;
+        margin-right: 10rpx;
+      }
       .btn {
-        font-size: 27rpx;
-        border: 1px solid $borderColor;
+        font-size: 26rpx;
         border-radius: 68rpx;
         height: 68rpx;
         padding: 0 28rpx;
@@ -111,6 +127,7 @@ page {
         align-items: center;
         justify-content: center;
         line-height: 1;
+        border: 1px solid #ebebeb;
       }
     }
   }
@@ -126,7 +143,7 @@ page {
     position: relative;
   }
   .summary {
-    font-size: 27rpx;
+    font-size: 28rpx;
     color: #666;
     line-height: 24px;
   }
@@ -147,6 +164,7 @@ page {
 .album-wrapper {
   margin-top: 80rpx;
   padding-bottom: 50rpx;
+  overflow: hidden;
   .album-list {
     display: inline-flex;
     flex-wrap: nowrap;
@@ -173,15 +191,121 @@ page {
     }
   }
 }
-.my-wxParse {
-  .wxParse-p {
-    color: red;
-    &:nth-child(3n+3) {
-      color: green
+.my-parse {
+  // overflow: hidden;
+  view {
+    &:nth-last-of-type(2) {
+      display: inline !important;
     }
-    &:last-child {
-      color: blue;
+  }
+  .more-v2 {
+    display: inline !important;
+    color: #0866ff;
+  }
+}
+.my-tab-active {
+  font-weight: 500 !important;
+}
+.my-menu {
+  height: 44px !important;
+  font-size: 24rpx;
+  @include border-bottom($borderColor, 0, 0);
+  .van-dropdown-menu__title {
+    font-size: 24rpx;
+    padding: 0 10px 0 0;
+    color: #666666;
+    font-weight: 500;
+    &:after {
+      display: none;
     }
-    
+    &::before {
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      right: 0;
+      top: 50%;
+      transform: rotate(45deg);
+      border-bottom: 1px solid #666;
+      border-right: 1px solid #666;
+      margin-top: -8rpx;
+      transform-origin: center;
+    }
+    &.van-dropdown-menu__title--down {
+      color: #333 !important;
+      &::before {
+        margin-top: -4rpx;
+        transform: rotate(-135deg);
+      }
+    }
+  }
+  .van-dropdown-menu__item {
+    justify-content: flex-start;
+  }
+  .van-ellipsis {
+    width: 96rpx;
+  }
+}
+.jop-filter-bar {
+  padding: 0 40rpx;
+}
+// .van-sticky {
+//   .van-sticky-wrap--fixed {
+//     padding-left: 40rpx;
+//   }
+// }
+.popup-wrapper {
+  box-sizing: border-box;
+  height: 100%;
+  .title {
+    font-size: 60rpx;
+    font-weight: 500;
+    margin-bottom: 20rpx;
+    padding-top: 100rpx;
+  }
+  .summary {
+    font-size: 30rpx;
+    color: #999;
+  }
+  .section {
+    margin-top: 60rpx;
+    line-height: 1;
+    .section-hd {
+      font-weight: 500;
+      font-size: 36rpx;
+      margin-bottom: 35rpx;
+    }
+    .section-bd {
+      color: #727272;
+      font-size: 30rpx;
+      line-height: 150%;
+      text {
+        margin-right: 20rpx;
+      }
+    }
+  }
+  .cell {
+    line-height: 1;
+    display: flex;
+    & + .cell {
+      margin-top: 60rpx;
+    }
+    .image {
+      flex: 0 0 70rpx;
+      width: 70rpx;
+      height: 70rpx;
+      margin-right: 30rpx;
+    }
+    .con {
+      flex: 1;
+      .cell-title {
+        font-size: 32rpx;
+        margin-bottom: 20rpx;
+        color: #333;
+      }
+      .cell-summary {
+        color: #999;
+      }
+    }
   }
 }

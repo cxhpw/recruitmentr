@@ -1,6 +1,7 @@
 //app.js
 import { getTimeStr, encrypt } from './utils/util'
 import { requestUserInfo } from './api/user/user'
+import { togglerRole } from './api/user'
 import {
   requestResumeFilter,
   requestCompanyFilter,
@@ -44,11 +45,8 @@ App({
           this.globalData.welfareOptions = b.data.dataList
           this.globalData.jopTypeOptions = c.data.dataList
         })
-        requestConfig('zwlx').then((res) => {
-          console.log('职位类型', res)
-        })
         if (res.data.Role === 1) {
-
+          togglerRole(99)
         } else {
           requestUserInfo().then((res) => {
             console.log('用户信息')

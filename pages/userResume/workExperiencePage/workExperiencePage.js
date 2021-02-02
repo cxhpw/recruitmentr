@@ -219,7 +219,7 @@ Page({
         jopName: data.JobName,
       },
       position: {
-        Name: data.JobName,
+        Name: data.JobType,
         AutoID: data.JobID,
       },
       workContent: data.WorkContent,
@@ -239,7 +239,7 @@ Page({
               month.indexOf(Number(emonth)),
             ],
       endTimeRange,
-      start: `${syear}.${emonth}`,
+      start: `${syear}.${smonth}`,
       end: `${eyear}.${emonth}`,
     })
   },

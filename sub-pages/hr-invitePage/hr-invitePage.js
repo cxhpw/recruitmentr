@@ -2,21 +2,29 @@ const app = getApp()
 import { postResumeRemark } from '../../api/hr/resume'
 import { requestDetailById } from '../../api/interviewRecord'
 import { requestDetailById as requestResumeDetailById } from '../../api/hr/resume'
-
+import { requestJopDetailById } from '../../api/jobs'
+import { getTimeStr } from '../../utils/util'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    type: '',
     position: null,
     data: {},
     date: '',
-    id: -1,
+    initDate: '',
+    id: -1, //求职ID
     activeDate: [],
     remark: '',
     show: false,
     mobile: '',
+    jopID: 0, // 岗位ID
+    resumeDetail: null,
+    jopDetail: null,
+    address: '',
+    workPlace: '',
+    houseNumber: '',
+    time: '00:00',
   },
   onNavToMobile() {
     wx.navigateTo({
@@ -46,15 +54,37 @@ Page({
   },
   onSubmit(e) {
     if (this.valid()) {
-      const { data, position, date, remark } = this.data
-      postResumeRemark({
-        action: 'add',
-        jid: position.AutoID || data.JID,
-        jsid: data.UserID,
-        phone: mobile || data.Phone,
-        time: date,
-        remark: remark,
-      }).then((res) => {
+      const {
+        data,
+        position,
+        date,
+        remark,
+        jopDetail,
+        resumeDetail,
+        time,
+        mobile,
+      } = this.data
+      let temp = {}
+      if (!this.data.type) {
+        temp = {
+          action: 'add',
+          jid: position ? position.AutoID : data.JID,
+          jsid: data.UserID,
+          phone: mobile || data.Phone,
+          time: `${date} ${time}`,
+          remark: remark,
+        }
+      } else {
+        temp = {
+          action: 'add',
+          jid: position ? position.AutoID : jopDetail.AutoID,
+          jsid: resumeDetail.AutoID,
+          phone: mobile,
+          time: `${date} ${time}`,
+          remark: remark,
+        }
+      }
+      postResumeRemark(temp).then((res) => {
         if (res.data.ret == 'success') {
           this.setData({
             show: true,
@@ -82,10 +112,19 @@ Page({
       date: e.detail.date,
     })
   },
+  bindTimeChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      time: e.detail.value,
+    })
+  },
   getDetail(id) {
     requestDetailById(id).then((res) => {
       this.setData({
         data: res.data,
+        address: res.data.Address,
+        workPlace: res.data.WorkPlace,
+        houseNumber: res.data.HouseNumber,
         mobile: app.globalData.roleInfo.Phone,
       })
     })
@@ -97,14 +136,30 @@ Page({
     this.setData(
       {
         id: options.id,
+        jopID: options.jopID,
         type: options.type || this.data.type,
+        date: getTimeStr(Date.now(), 'date'),
       },
       () => {
         if (!this.data.type) {
           this.getDetail(options.id)
         } else {
-          requestResumeDetailById(this.data.id).then((res) => {
-            console.log('简历详情', res)
+          this.setData({
+            mobile: app.globalData.roleInfo.Phone,
+          })
+          Promise.all([
+            requestResumeDetailById(this.data.id),
+            requestJopDetailById(this.data.jopID),
+          ]).then(([resumeDetail, jopDetail]) => {
+            console.log('简历信息', resumeDetail)
+            console.log('岗位信息', jopDetail)
+            this.setData({
+              resumeDetail: resumeDetail.data,
+              jopDetail: jopDetail.data,
+              address: jopDetail.data.Address,
+              workPlace: jopDetail.data.WorkPlace,
+              houseNumber: jopDetail.data.HouseNumber,
+            })
           })
         }
       }

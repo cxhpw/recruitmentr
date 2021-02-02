@@ -25,7 +25,9 @@
           </view>
         </view>
       </view>
-      <view class='summary'>{{ item.Advantage }}</view>
+      <view class='summary'>
+        <wxParseComponent html="{{item.Advantage}}"></wxParseComponent>
+      </view>
       <view class='date'>{{ item.AutoTimeStamp }}</view>
     </view>
   </view>

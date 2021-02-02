@@ -14,7 +14,6 @@
         <view class='label'>姓名</view>
         <view class='form-group__input'>
           <input name="name" type="text" value="{{user.Name}}" class='form-control ' placeholder-class="placeholder" placeholder="请输入姓名" />
-          <icon custom-class='my-icon' name="arrow" size="16"></icon>
         </view>
       </view>
       <view class='form-group'>
@@ -39,7 +38,6 @@
         <view class='label'>邮箱</view>
         <view class='form-group__input'>
           <input name="email" type="text" value="{{user.Email}}" class='form-control' placeholder-class="placeholder" placeholder="真实的职务，更能赢得牛人信任" />
-          <icon custom-class='my-icon' name="arrow" size="16"></icon>
         </view>
       </view>
       <view class="fixed-bottom">

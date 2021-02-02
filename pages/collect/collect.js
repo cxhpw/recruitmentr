@@ -1,5 +1,5 @@
 const app = getApp()
-import { requestList } from '../../api/user/collect'
+import { requestList, postCollectById } from '../../api/user/collect'
 Page({
   /**
    * 页面的初始数据
@@ -11,6 +11,37 @@ Page({
     nomore: false,
     list: [],
     buttontext: '加载中',
+  },
+  onClose(event) {
+    console.log(event)
+    const { id } = event.currentTarget
+    const { position, instance } = event.detail
+    switch (position) {
+      case 'left':
+      case 'cell':
+        instance.close()
+        break
+      case 'right':
+        app.showModal({
+          content: '确定删除吗？',
+          success: (res) => {
+            if (res.confirm) {
+              postCollectById(id).then((res) => {
+                app.showToast(res.data.msg)
+                instance.close()
+                this.getList()
+              })
+            }
+          },
+        })
+        break
+    }
+  },
+  onNavTo(e) {
+    const { url } = e.currentTarget.dataset
+    wx.navigateTo({
+      url,
+    })
   },
   getList: function (pageNum = 1) {
     this.setData({

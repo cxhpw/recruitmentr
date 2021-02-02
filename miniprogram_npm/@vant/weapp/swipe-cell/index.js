@@ -125,7 +125,7 @@ component_1.VantComponent({
         return
       }
       this.dragging = true
-      if (leftWidth == 0 && offset > 0) {
+      if (this.data.leftWidth == 0 && this.offset > 0) {
         return
       }
       ARRAY.filter(function(item) {

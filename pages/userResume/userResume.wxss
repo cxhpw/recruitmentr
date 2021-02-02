@@ -127,6 +127,12 @@ page {
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical; }
+        .jops-list .item .content .row .title-v2 {
+          display: inline; }
+        .jops-list .item .content .row wxParseComponent {
+          display: inline; }
+        .jops-list .item .content .row .inline {
+          display: inline; }
         .jops-list .item .content .row .wxParse-p {
           display: inline; }
         .jops-list .item .content .row + .row {

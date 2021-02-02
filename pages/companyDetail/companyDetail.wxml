@@ -1,27 +1,40 @@
 <view class="page">
-  <view class='container'>
-    <view class='top-section'>
-      <view class='fl'>
-        <view class="name">{{ data.Abbreviat }}</view>
-        <view class="summary">
-          <text>{{ data.StaffSize }}</text>
-          <text class="dot">·</text>
-          <text>{{ data.Industry }}</text>
+  <view class='top-section'>
+    <view class='container'>
+      <view class="flex-box">
+        <view class='fl'>
+          <view class="name">{{ data.Abbreviat }}</view>
+          <view class="summary">
+            <text>{{ data.StaffSize }}</text>
+            <text class="dot">·</text>
+            <text>{{ data.Industry }}</text>
+          </view>
+        </view>
+        <view class='fr'>
+          <image class='image' mode="aspectFit" src="{{ data.Logo }}"></image>
         </view>
       </view>
-      <view class='fr'>
-        <image class='image' mode="aspectFit" src="{{ data.Logo }}"></image>
-      </view>
     </view>
-    <view class='content-section'>
-      <van-tabs active="{{ active }}" bind:change="onChange" border="{{ false }}" line-width="15" color="#2351D3" custom-class="my-tabs" title-active-color="#333" title-inactive-color="#666">
-        <van-tab title="公司介绍">
-          <view class='intro-section'>
-            <view class='welfare-wrapper'>
+  </view>
+  <view class='content-section'>
+    <van-tabs sticky tab-active-class="my-tab-active"  animated active="{{ active }}" bind:change="onChange" border="{{ false }}" line-width="15" color="#2351D3" custom-class="my-tabs" title-active-color="#333" title-inactive-color="#666">
+      <van-tab title="公司介绍">
+        <view class='intro-section'>
+          <view class="">
+            <view class='welfare-wrapper' catch:tap="onOpen">
               <view class='row' wx:if="{{ data.WorkHours.length ||  data.RestTime.length ||  data.OverTime.length}}">
-                <view class='cell'><icon custom-class="iconfont icon-shijian" color="#CCCCCC" size="16"></icon>{{ data.WorkHours }}</view>
-                <view class='cell'><icon custom-class="iconfont icon-riqi" color="#CCCCCC" size="16"></icon>{{ data.RestTime }}</view>
-                <view class='cell'><icon custom-class="iconfont icon-gouwudai" color="#CCCCCC" size="16"></icon>{{ data.OverTime }}</view>
+                <view class='cell'>
+                  <icon custom-class="iconfont icon-shijian" color="#CCCCCC" size="16"></icon>
+                  {{ data.WorkHours }}
+                </view>
+                <view class='cell'>
+                  <icon custom-class="iconfont icon-riqi" color="#CCCCCC" size="16"></icon>
+                  {{ data.RestTime }}
+                </view>
+                <view class='cell'>
+                  <icon custom-class="iconfont icon-gouwudai" color="#CCCCCC" size="16"></icon>
+                  {{ data.OverTime }}
+                </view>
                 <view class='icon'>
                   <icon name='arrow ' color="#CCCCCC" size="16"></icon>
                 </view>
@@ -33,42 +46,100 @@
               </scroll-view>
             </view>
             <view class='address-wrapper'>
-              <view class='hd'>
-                <view class='fl'>公司地址</view>
-                <!-- <view class='fr'>
+              <view class="container">
+                <view class='hd'>
+                  <view class='fl'>公司地址</view>
+                  <!-- <view class='fr'>
                   <text>查看全部</text>
                   <icon name="arrow" color="#999999" size="14"></icon>
                 </view> -->
-              </view>
-              <view class='bd'>
-                <view class='fl'>{{ form.Address }} {{ form.WorkPlace }}</view>
-                <view class='fr'>
-                  <view class='btn' catch:tap="onMap">导航</view>
+                </view>
+                <view class='bd'>
+                  <view class='fl'>{{ form.Address }} {{ form.WorkPlace }}</view>
+                  <view class='fr'>
+                    <view class='btn' catch:tap="onMap"> <image src="/assets/images/icon-map.jpg" class="image"></image>导航</view>
+                  </view>
                 </view>
               </view>
             </view>
             <view class='intro-wrapper'>
-              <view class='hd'>
-                <view class='title'>公司介绍</view>
-              </view>
-              <view class='hd'>
-                <view class='summary'>
-                  <wxParseComponent html="{{html}}" custom-class="my-wxParse"><view class="fl">查看更多</view></wxParseComponent>
+              <view class="container">
+                <view class='hd'>
+                  <view class='title'>公司介绍</view>
+                </view>
+                <view class='hd'>
+                  <view class='summary'>
+                    <wxParseComponent html="{{html}}" custom-class="my-parse">
+                      <view class="more-v2" catch:tap="oMore" wx:if="{{isMore}}">查看更多</view>
+                    </wxParseComponent>
+                  </view>
                 </view>
               </view>
             </view>
           </view>
-        </van-tab>
-        <van-tab title="在招职位（9947）">内容 2</van-tab>
-      </van-tabs>
+        </view>
+        <view class="album-wrapper">
+          <view class="title">公司照片</view>
+          <scroll-view style="width: 100%;" scroll-x="{{true}}">
+            <view class="album-list">
+              <image src="{{ item.Img }}" wx:for="{{data.AlbumList}}" class="album" catch:tap="onPreview" data-url="{{ item.Img }}"></image>
+            </view>
+          </scroll-view>
+        </view>
+      </van-tab>
+      <van-tab title="在招职位（{{data.JobCount}}）">
+        <view class="jop-wrapper">
+          <view class="jop-filter-bar">
+            <van-dropdown-menu custom-class="my-menu">
+              <van-dropdown-item id="recommend" title="{{  recommendValue == -1 ? '推荐职位' :  recommendOptions[recommendValue].text }}" options="{{recommendOptions}}" value="{{ recommendValue }}" popup-style="max-height: 500rpx" bind:change="onRecommendChange"></van-dropdown-item>
+              <van-dropdown-item id="experience" title="{{ experienceValue == -1 ? '经验' : experienceOptions[experienceValue].text }}" popup-style="max-height: 500rpx" options="{{experienceOptions}}" value="{{experienceValue}}" bind:change="onExperienceChange"></van-dropdown-item>
+              <van-dropdown-item id="salary" title="{{ salaryValue == -1 ? '薪资' : salaryOptions[salaryValue].text }}" popup-style="max-height: 500rpx" options="{{salaryOptions}}" value="{{  salaryValue }}" catch:change="onSalaryChange"></van-dropdown-item>
+            </van-dropdown-menu>
+          </view>
+          <view class='recruitment-list'>
+            <view class='card' wx:for="{{ list }}" wx:key="{{ index }}" catch:tap="onNavTo" data-url="/pages/detail/detail?id={{item.AutoID}}">
+              <view class='company-base flex-box align-center'>
+                <view class='name'>{{ item.JName }}</view>
+                <view class='price'>{{ item.Salary }}</view>
+              </view>
+              <view class='company-info'>
+                <text>{{ item.CName }}</text>
+                <text>{{ item.CStaffSize }}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </van-tab>
+    </van-tabs>
+  </view>
+  <van-popup show="{{ show }}" position="bottom" round closeable custom-style="height: 980rpx;padding: 20rpx 0rpx" bind:close="onClose">
+    <view class="popup-wrapper">
+      <scroll-view scroll-y style="height: 100%" enhanced show-scrollbar="{{ false }}">
+        <view style="padding: 0 40rpx">
+          <view class="title">工作时间与福利待遇</view>
+          <div class="summary">福利信息有公司提供、可能根据实际岗位有所不同。具体岗位可与BOSS或HR确认</div>
+          <view class="section" wx:if="{{ data.WorkHours ||  data.RestTime ||  data.OverTime }}">
+            <view class="section-hd">工作时间</view>
+            <view class="section-bd">
+              <text wx:if="{{ data.WorkHours }}">{{ data.WorkHours }}</text>
+              <text wx:if="{{ data.RestTime }}">{{ data.RestTime }}</text>
+              <text wx:if="{{ data.OverTime }}">{{ data.OverTime }}</text>
+            </view>
+          </view>
+          <view class="section" wx:if="{{ data.WelfareList.length > 0 }}">
+            <view class="section-hd">福利待遇</view>
+            <view class="section-bd">
+              <view class="cell" wx:for="{{ data.WelfareList }}">
+                <!-- <image></image> -->
+                <view class="con">
+                  <view class="cell-title">{{ item.Title }}</view>
+                  <view class="cell-summary">{{ item.Content }}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
     </view>
-  </view>
-  <view class="album-wrapper" wx:if="{{ active == 0 }}">
-    <view class="title">公司照片</view>
-    <scroll-view style="width: 100%;" scroll-x="{{true}}">
-      <view class="album-list">
-        <image src="{{ item.Img }}" wx:for="{{data.AlbumList}}" class="album"></image>
-      </view>
-    </scroll-view>
-  </view>
+  </van-popup>
 </view>

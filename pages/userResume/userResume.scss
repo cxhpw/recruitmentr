@@ -113,6 +113,15 @@ page {
       font-size: 27rpx;
       color: #999;
       .row {
+        .title-v2 {
+          display: inline;
+        }
+        wxParseComponent {
+          display: inline;
+        }
+        .inline {
+          display: inline;
+        }
         @include clamp(2);
         .wxParse-p {
           display: inline;

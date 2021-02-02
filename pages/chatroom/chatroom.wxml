@@ -12,7 +12,7 @@
             <image class='image' src='/assets/images/icon-phone.jpg'></image>
             <view class='text'>打电话</view>
           </view>
-          <view class='flex-item' catch:tap="onNavTo" data-url="/sub-pages/hr-invitePage/hr-invitePage?type=invite&id={{ card.JSID }}">
+          <view class='flex-item' catch:tap="onNavTo" data-url="/sub-pages/hr-invitePage/hr-invitePage?type=invite&id={{ card.JSID }}&jopID={{ card.JID }}">
             <image class='image' src='/assets/images/icon-user.jpg'></image>
             <view class='text'>约面试</view>
           </view>
@@ -54,9 +54,9 @@
           </view>
           <view class='info'>
             <view class='fl'>
-              <view class='info-item'>
+              <view class='info-item' wx:if="{{ time }}">
                 <image class='icon' src="/assets/images/icon-work.jpg"></image>
-                <text>{{ card.Experience }}</text>
+                <text>{{ time }}年经验</text>
               </view>
               <view class='info-item'>
                 <image class='icon' src="/assets/images/icon-xueli.jpg"></image>
@@ -81,8 +81,8 @@
       <!-- 求职者卡片 -->
       <view class="resume-card" wx:if="{{  role.Role == 99 }}">
         <view class="jop-top">
-          <view class='name'>{{  card.JName }}</view>
-          <view class="price">{{  card.Salary }}</view>
+          <view class='name'>{{ card.JName }}</view>
+          <view class="price">{{ card.Salary }}</view>
         </view>
         <view class="jop-labels">
           <text>{{ card.Address }}</text>

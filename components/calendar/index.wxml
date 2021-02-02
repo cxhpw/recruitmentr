@@ -28,7 +28,7 @@
          data-date="{{ date.date }}" 
          data-monthindex="{{monthIndex}}" 
          data-dateindex="{{dateIndex}}" 
-         class="date {{ date.activity ? 'activity' : ''}} {{ date.fade ? 'fade' : ''}} {{date.past ? 'past' : ''}} {{ date.current ? 'selected' : ''}}">
+         class="date {{ date.activity ? 'activity' : ''}} {{ date.fade ? 'fade' : ''}} {{date.past ? 'past' : ''}} {{ date.current ? 'selected' : ''}} {{ date.today ? 'today' : ''}}">
             <view class="num">{{date.str}}</view>
           </view>
         </block>

@@ -124,9 +124,9 @@ Component({
         this.data._currentDate,
         switcher
       )
+      
       this.setActivities(array)
 
-      
 
       // this.setData(
       //   {

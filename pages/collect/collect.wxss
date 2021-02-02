@@ -1,2 +1,11 @@
 page {
   background: #fff; }
+
+.del-btn {
+  width: 65px;
+  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #fff; }

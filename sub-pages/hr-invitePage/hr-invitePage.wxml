@@ -1,31 +1,49 @@
 <view class="page">
   <view class='top-section'>
-    <view class='title'>邀请林志玲参加面试</view>
+    <view class='title'>邀请{{ resumeDetail.Name }}参加面试</view>
   </view>
   <view class='container'>
     <view class='cell-section'>
       <van-cell is-link custom-class='my-cell' border="{{ false }}" catch:click="onNavToJop">
-        <view slot='title' class='title'>{{ position.Name || data.Job }}</view>
+        <view slot='title' class='title'>
+          <!-- <input type="text" placeholder="请输入职位名称" value="{{ position.Name || data.Job || jopDetail.JName }}"/> -->
+          {{ position.Name || data.Job || jopDetail.JName }}
+        </view>
         <view class='value'>修改职位</view>
       </van-cell>
-      <van-cell is-link custom-class='my-cell' border="{{ false }}"  catch:click="onNavToMobile">
+      <van-cell is-link custom-class='my-cell' border="{{ false }}" catch:click="onNavToMobile">
         <view slot='title' class='title'>{{ mobile || data.Phone }}</view>
         <view class='value'>修改电话</view>
       </van-cell>
       <van-cell custom-class='my-cell' border="{{ false }}">
-        <view slot='title' class='title'>{{ data.Address}}{{ data.WorkPlace }}{{ data.HouseNumber }}</view>
+        <view slot='title' class='title'>{{ address }}{{ workPlace }}{{ houseNumber }}</view>
       </van-cell>
     </view>
     <view class='date-section'>
-      <view class='title'>请选择时间</view>
+      <view class='title'>请选择日期</view>
       <view class='date-wrapper'>
-        <calendar id="calendar" bind:select="onSelect" activities="{{ activeDate }}" beforeMonth='3'></calendar>
+        <calendar id="calendar" bind:select="onSelect" activities="{{ activeDate }}" beforeMonth='3' dateValueFormat="YYYY-MM-DD"></calendar>
+      </view>
+      <view class='time-wrapper'>
+        <van-cell>
+          <view slot='title'>时间</view>
+          <view>
+            <!-- <picker mode="time" value="{{ time }}" start="00:00" end="00:00" bindchange="bindTimeChange">
+              <view wx:if="{{ !time }}">请选择时间</view>
+              <view wx:else>{{ time }}</view>
+            </picker> -->
+            <picker mode="time" value="{{time}}" start="00:00" end="23:59" bindchange="bindTimeChange">
+              <view class="picker" wx:if="{{ time == '00:00'}}">请选择时间</view>
+              <view class="picker" wx:else>{{ time }}</view>
+            </picker>
+          </view>
+        </van-cell>
       </view>
     </view>
     <view class='remark-section'>
       <view class='title'>添加备注</view>
       <view class='rela'>
-        <textarea maxlength="140" value="{{  remark }}"  class='textarea-control' value="{{ remark }}" bindinput="onInput" placeholder-style="color: #BCBCBC" placeholder="请输入告知牛人的其他内容，例如具体路线，所需材料。" disable-default-padding></textarea>
+        <textarea maxlength="140" value="{{  remark }}" class='textarea-control' value="{{ remark }}" bindinput="onInput" placeholder-style="color: #BCBCBC" placeholder="请输入告知牛人的其他内容，例如具体路线，所需材料。" disable-default-padding></textarea>
         <view class='count'>
           <text>{{ remark.length }}</text>
           <text>/</text>

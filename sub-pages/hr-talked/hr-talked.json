@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "wxParseComponent": "/components/wxParseComponent/index"
+  },
   "navigationBarTitleText": "沟通过的牛人"
 }
