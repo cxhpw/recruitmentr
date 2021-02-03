@@ -90,7 +90,10 @@ Page({
     })
   },
   onLoad() {
-    togglerRole(99)
+    togglerRole(99).then((res) => {
+      app.globalData.userType = 'user'
+      app.globalData.roleInfo.Role = res.data.Role
+    })
   },
   onShow() {
     this.setData(

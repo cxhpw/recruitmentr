@@ -61,7 +61,9 @@ Page({
     })
   },
   onNavToHr() {
-    togglerRole(1).then(() => {
+    togglerRole(1).then((res) => {
+      app.globalData.userType = 'Hr'
+      app.globalData.roleInfo.Role = res.data.Role
       wx.reLaunch({
         url: '/sub-pages/main/main',
       })

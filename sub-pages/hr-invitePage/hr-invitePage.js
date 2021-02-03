@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    type: '',
     position: null,
     data: {},
     date: '',
@@ -24,6 +25,7 @@ Page({
     address: '',
     workPlace: '',
     houseNumber: '',
+    lastAddress: '',
     time: '00:00',
   },
   onNavToMobile() {
@@ -42,15 +44,27 @@ Page({
   },
   onNavToJop() {
     console.log(123)
+    // wx.navigateTo({
+    //   url: `/sub-pages/hr-releaseJopName/hr-releaseJopName`,
+    // })
     wx.navigateTo({
-      url: `/sub-pages/hr-releaseJopName/hr-releaseJopName`,
+      url: "/sub-pages/hr-position/hr-position?type=select"
     })
   },
   valid() {
     if (!this.data.date) {
+      return app.showToast('请选择面试日期')
+    } else if (this.data.time == '00:00') {
       return app.showToast('请选择面试时间')
+    } else if (!this.data.lastAddress) {
+      return app.showToast('请输入面试地点')
     }
     return true
+  },
+  onAddressInput(e) {
+    this.setData({
+      lastAddress: e.detail.value,
+    })
   },
   onSubmit(e) {
     if (this.valid()) {
@@ -63,6 +77,10 @@ Page({
         resumeDetail,
         time,
         mobile,
+        address,
+        workPlace,
+        houseNumber,
+        lastAddress,
       } = this.data
       let temp = {}
       if (!this.data.type) {
@@ -73,6 +91,7 @@ Page({
           phone: mobile || data.Phone,
           time: `${date} ${time}`,
           remark: remark,
+          address: lastAddress,
         }
       } else {
         temp = {
@@ -82,6 +101,7 @@ Page({
           phone: mobile,
           time: `${date} ${time}`,
           remark: remark,
+          address: lastAddress,
         }
       }
       postResumeRemark(temp).then((res) => {
@@ -90,7 +110,7 @@ Page({
             show: true,
           })
         } else {
-          app.showToast(res.data.msg)
+          app.showToast(res.data.msg) 
         }
       })
     }
@@ -99,7 +119,9 @@ Page({
     this.setData({
       show: false,
     })
-    wx.navigateBack()
+    wx.navigateBack({
+      delta: !this.data.type ? 2 : 1
+    })
   },
   onInput(e) {
     this.setData({
@@ -126,6 +148,8 @@ Page({
         workPlace: res.data.WorkPlace,
         houseNumber: res.data.HouseNumber,
         mobile: app.globalData.roleInfo.Phone,
+        lastAddress:
+          res.data.Address + res.data.WorkPlace + res.data.HouseNumber,
       })
     })
   },
@@ -159,6 +183,10 @@ Page({
               address: jopDetail.data.Address,
               workPlace: jopDetail.data.WorkPlace,
               houseNumber: jopDetail.data.HouseNumber,
+              lastAddress:
+                jopDetail.data.Address +
+                jopDetail.data.WorkPlace +
+                jopDetail.data.HouseNumber,
             })
           })
         }
@@ -175,14 +203,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (
-      app.globalData.selectPostion.length &&
-      app.globalData.selectPostion[2]
-    ) {
-      this.setData({
-        position: app.globalData.selectPostion[2],
-      })
-    }
+    // if (
+    //   app.globalData.selectPostion.length &&
+    //   app.globalData.selectPostion[2]
+    // ) {
+    //   this.setData({
+    //     position: app.globalData.selectPostion[2],
+    //   })
+    // }
   },
 
   /**

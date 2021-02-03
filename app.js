@@ -46,7 +46,10 @@ App({
           this.globalData.jopTypeOptions = c.data.dataList
         })
         if (res.data.Role === 1) {
-          togglerRole(99)
+          togglerRole(99).then((res) => {
+            this.globalData.userType = 'user'
+            this.globalData.roleInfo.Role = res.data.Role
+          })
         } else {
           requestUserInfo().then((res) => {
             console.log('用户信息')
@@ -87,7 +90,7 @@ App({
         this.mapInstance.reverseGeocoder({
           success: (res) => {
             console.log('reverseGeocoder', res)
-            this.globalData.currentLocation = res.result
+            this.globalData.currentLocation = res.result.ad_info
             this.globalData.filterArea = this.globalData.staticArea
             // this.globalData.filterArea = [
             //   { RegionName: res.result.ad_info.province },

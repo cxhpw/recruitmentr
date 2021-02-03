@@ -14,6 +14,7 @@ Page({
       { title: '已拒绝', value: 100 },
     ],
     lists: [],
+
   },
   onChange(e) {
     console.log(e)
@@ -111,6 +112,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      role: app.globalData.roleInfo
+    })
     this.initList().then(() => {
       this.getLists()
     })
@@ -124,7 +128,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

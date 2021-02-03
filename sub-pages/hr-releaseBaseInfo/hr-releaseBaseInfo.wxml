@@ -21,27 +21,37 @@
     </view>
   </view>
   <view class='cell-wrapper'>
-    <van-cell  center is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName?search={{ searchKey }}">
-      <view slot='title' class='title'>职位名称</view>
+    <van-cell wx:if="{{ action != 'edit' }}" center is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName?search={{ searchKey }}">
+      <view slot='title' class='title'>职位类型</view>
       <view slot='label' class='form-group'>
-        <view class='placeholder' wx:if="{{ !position && !searchKey }}">请填写职位名称，如“销售专员”</view>
+        <view class='placeholder' wx:if="{{ !position && !searchKey }}">请选择职位类型</view>
         <view class='form-control' wx:else>{{ position.Name || searchKey }}</view>
       </view>
     </van-cell>
-    <van-cell  center is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseDescription/hr-releaseDescription?content={{content}}">
+    <van-cell center custom-class='my-cell' use-label-slot>
+      <view slot='title' class='title'>职位名称</view>
+      <view slot='label' class='form-group'>
+        <input type="text" bindinput="onJopNameInput" value="{{ position ? position.Name : jopName }}" class='form-control' placeholder-class="placeholder" placeholder="选填 请输入" />
+        <!-- <view class='placeholder' wx:if="{{ !position && !searchKey }}">请填写职位名称，如“销售专员”</view>
+        <view class='form-control' wx:else>{{ position.Name || searchKey }}</view> -->
+      </view>
+    </van-cell>
+    <van-cell center is-link custom-class='my-cell' use-label-slot catch:tap="onNavTo" data-url="/sub-pages/hr-releaseDescription/hr-releaseDescription?content={{content}}">
       <view slot='title' class='title'>职位描述</view>
       <view slot='label' class='form-group'>
         <view class='placeholder' wx:if="{{ !content.length }}">介绍工作内容、职位要求、加分项</view>
-        <view class='form-control  ellipsis' wx:else>
-          已填写
-        </view>
+        <view class='form-control  ellipsis' wx:else>已填写</view>
       </view>
     </van-cell>
     <van-cell center is-link custom-class='my-cell' use-label-slot catch:tap="onMap">
       <view slot='title' class='title'>工作地点</view>
       <view slot='label' class='form-group'>
         <view class='placeholder' wx:if="{{  !address || !address.address }}">请选择工作地点</view>
-        <view class='form-control' wx:else>{{ address.address }}<text class="dot">·</text>{{address.name}}</view>
+        <view class='form-control' wx:else>
+          {{ address.address }}
+          <text class="dot">·</text>
+          {{address.name}}
+        </view>
       </view>
     </van-cell>
     <van-cell custom-class='my-cell' use-label-slot>
@@ -61,9 +71,9 @@
     <view class='popup-body'>
       <view class='checkbox-list'>
         <view class='checkbox-list'>
-          <van-checkbox-group custom-class='checkbox-group' value="{{  typeSelected }}" bind:change="onTypeChange">
-            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ type }}" wx:key="{{ index }}">
-              {{ item }}
+          <van-checkbox-group custom-class='checkbox-group' value="{{ typeSelected }}" bind:change="onTypeChange">
+            <van-checkbox custom-class='item checkbox' name="{{ item.Title }}" wx:for="{{ type }}" wx:key="type">
+              {{ item.Title }}
             </van-checkbox>
           </van-checkbox-group>
         </view>

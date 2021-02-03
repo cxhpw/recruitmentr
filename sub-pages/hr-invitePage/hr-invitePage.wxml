@@ -1,6 +1,6 @@
 <view class="page">
   <view class='top-section'>
-    <view class='title'>邀请{{ resumeDetail.Name }}参加面试</view>
+    <view class='title'>邀请{{ resumeDetail.Name || data.Name }}参加面试</view>
   </view>
   <view class='container'>
     <view class='cell-section'>
@@ -16,7 +16,8 @@
         <view class='value'>修改电话</view>
       </van-cell>
       <van-cell custom-class='my-cell' border="{{ false }}">
-        <view slot='title' class='title'>{{ address }}{{ workPlace }}{{ houseNumber }}</view>
+        <input class="form-control" bindinput="onAddressInput" type="text" placeholder="请输入面试地址" value="{{lastAddress}}" placeholder-class="placeholder" placeholder-style="font-size: 25rpx" />
+        <!-- <view slot='title' class='title'>{{ address }}{{ workPlace }}{{ houseNumber }}</view> -->
       </van-cell>
     </view>
     <view class='date-section'>

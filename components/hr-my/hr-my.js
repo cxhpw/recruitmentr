@@ -103,7 +103,9 @@ Component({
                 console.log('会员信息', res)
                 app.globalData.roleInfo = res.data
               })
-              togglerRole(1).then(() => {
+              togglerRole(1).then((res) => {
+                app.globalData.userType = 'Hr'
+                app.globalData.roleInfo.Role = res.data.Role
                 requestHRInfo()
                   .then((res) => {
                     console.log('hr 信息', res)
@@ -134,7 +136,9 @@ Component({
       })
     },
     onToggler() {
-      togglerRole(99).then(() => {
+      togglerRole(99).then((res) => {
+        app.globalData.userType = 'user'
+        app.globalData.roleInfo.Role = res.data.Role
         wx.switchTab({
           url: '/pages/my/my',
         })

@@ -62,13 +62,15 @@ Page({
       postReleaseJop({
         action: this.data.id == -1 ? 'add' : 'modify',
         id: this.data.id,
-        name: form.position.Name,
+        classid: form.position.AutoID || '',
+        name: form.jopName || form.position.Name,
         desc: form.desc,
         address: form.address.address,
         housenumber: form.housenumber,
         latitude: form.address.latitude,
         longitude: form.address.longitude,
-        type: form.type,
+        type: form.type.Title,
+        typeid: form.type.ContID,
         workplace: form.address.name,
         experience: experience[experienceValue],
         educat: education[educationValue],
@@ -84,6 +86,7 @@ Page({
               wx.navigateBack({
                 delta: 2,
               })
+              app.globalData.selectPostion = []
               app.globalData.isRef = true
             }
           })

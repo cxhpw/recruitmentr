@@ -2,7 +2,7 @@ page {
   background: #fff; }
 
 .top-section {
-  padding: 10px 30rpx 0;
+  padding: 10px 30rpx 10px;
   border-bottom: 1px solid #EBEBEB;
   background: #fff; }
 
@@ -39,7 +39,7 @@ page {
     padding-left: 15px; }
 
 .filter-wrapper {
-  padding: 10px 0;
+  padding: 10px 0 0;
   overflow: hidden;
   display: flex;
   align-items: center; }
@@ -169,3 +169,32 @@ page {
   color: #0866FF;
   text-align: center;
   height: 120rpx; }
+
+.search-quick-wrapper {
+  padding: 40rpx; }
+  .search-quick-wrapper .section + .section {
+    margin-top: 30rpx; }
+  .search-quick-wrapper .section .title {
+    font-size: 31rpx;
+    font-weight: 500;
+    color: #000;
+    margin-bottom: 25rpx; }
+  .search-quick-wrapper .section .list {
+    display: flex;
+    flex-wrap: wrap; }
+    .search-quick-wrapper .section .list .cell {
+      height: 40rpx;
+      padding: 0 20rpx;
+      background: #f5f5f5;
+      color: #666666;
+      margin-right: 30rpx;
+      margin-bottom: 30rpx;
+      display: inline-flex;
+      align-items: center;
+      border-radius: 4px; }
+
+.nomore {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  padding: 20vh 0; }

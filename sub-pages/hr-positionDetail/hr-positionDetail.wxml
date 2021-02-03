@@ -33,7 +33,9 @@
     <view class='detail-section'>
       <view class='title'>职位详情</view>
       <view class='content'>
-        <wxParamComponent html="{{ data.Desc }}"></wxParamComponent>
+        <wxParamComponent html="{{  html }}"  custom-class="my-parse">
+          <view class="more-v2" catch:tap="onMore" wx:if="{{isMore}}">查看更多</view>
+        </wxParamComponent>
       </view>
     </view>
     <view class='company-section'>
@@ -57,7 +59,9 @@
   <view class='fixed-bottom'>
     <view class='button-group'>
       <button class='button button-normal-reverse' catch:tap="onEdit">编辑</button>
-      <button class='button button-normal' catch:tap="onClose" wx:if="{{ data.Status === 99 }}">关闭职位</button>
+      <button class='button button-normal' catch:tap="onClose" wx:if="{{ data.Status === 99 }}">
+        关闭职位
+      </button>
       <button class='button button-normal' catch:tap="onOpen" wx:else>开启职位</button>
     </view>
   </view>

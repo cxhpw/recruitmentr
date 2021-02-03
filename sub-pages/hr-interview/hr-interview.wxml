@@ -3,13 +3,13 @@
     <van-tab title="{{ item.title }}" wx:for="{{ tabs }}" wx:key="{{index}}">
       <view class="list">
         <view class="inner">
-          <block wx:for="{{ lists[index].data }}" wx:key="{{ index }}" wx:for-item="item" wx:for-index="index">
-            <view class="item" data-id="{{ item.AutoID }}" catch:tap="onNavTo">
+          <block wx:if="{{ role.Role == 1 }}">
+            <view class="item" data-id="{{ item.AutoID }}" catch:tap="onNavTo" wx:for="{{ lists[index].data }}" wx:key="{{ index }}" wx:for-item="item" wx:for-index="index">
               <view class='item-header'>
                 <view class='flex-box align-center'>
-                  <view class='fl'>面试职位：{{ item.Job }}</view>
+                  <view class='fl'>面试职位：{{ item.CJob }}</view>
                   <view class='fr'>
-                    <text class='text-success'>{{ item.Status }}</text>
+                    <text class='{{  item.Status == "待接受" ? "" : "text-success" }}'>{{ item.Status }}</text>
                   </view>
                 </view>
               </view>
@@ -18,6 +18,32 @@
                   <view class='image-wrapper'>
                     <image src="{{ item.HeaderPhoto }}" class='avatar'></image>
                     <image src="{{ item.Gender == '男' ? '/assets/images/boy.png' : '/assets/images/girl.png' }}" class='sex'></image>
+                  </view>
+                  <view class='con'>
+                    <view class='name'>{{ item.Name }}</view>
+                    <view class='summary'>{{ item.CJob }}</view>
+                  </view>
+                </view>
+              </view>
+              <view class='item-footer'>
+                <view class='date'>面试时间：{{ item.InterviewTime }}</view>
+              </view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="item" data-id="{{ item.AutoID }}" catch:tap="onNavTo" wx:for="{{ lists[index].data }}" wx:key="{{ index }}" wx:for-item="item" wx:for-index="index">
+              <view class='item-header'>
+                <view class='flex-box align-center'>
+                  <view class='fl'>公司名称：{{ item.CName }}</view>
+                  <view class='fr'>
+                    <text class='{{ item.Status == "待接受" ? "" : "text-success" }}'>{{ item.Status }}</text>
+                  </view>
+                </view>
+              </view>
+              <view class='item-body'>
+                <view class='flex-box align-center'>
+                  <view class='image-wrapper'>
+                    <image src="{{ item.HeaderPhoto }}" class='avatar'></image>
                   </view>
                   <view class='con'>
                     <view class='name'>{{ item.Name }}</view>

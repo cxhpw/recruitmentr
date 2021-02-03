@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    type: '',
     value: '',
     show: false,
     top: [],
@@ -44,7 +45,7 @@ Page({
     //   searchKey: e.detail,
     // })
     this.setData({
-      show: false
+      show: false,
     })
     if (!e.detail) {
       this.setData({
@@ -109,15 +110,21 @@ Page({
   onLastTap(e) {
     const { id, index } = e.currentTarget.dataset
     const page = getCurrentPages()[getCurrentPages().length - 2]
-    
+
     this.setData(
       {
         [`selected[2]`]: this.data.last[index],
       },
       () => {
+        if (this.data.type == 'search') {
+          wx.navigateTo({
+            url: `/pages/search/search?searchKey=${this.data.last[index].Name}`,
+          })
+          return
+        }
         app.globalData.selectPostion = this.data.selected
         page.setData({
-          position: this.data.last[index]
+          position: this.data.last[index],
         })
         wx.navigateBack()
       }
@@ -125,9 +132,15 @@ Page({
   },
   onSelect(e) {
     const { index } = e.currentTarget.dataset
+    if (this.data.type == 'search') {
+      wx.navigateTo({
+        url: `/pages/search/search?searchKey=${this.data.searchList[index].Name}`,
+      })
+      return
+    }
     app.globalData.selectPostion[2] = this.data.searchList[index]
     getCurrentPages()[getCurrentPages().length - 2].setData({
-      position: this.data.searchList[index]
+      position: this.data.searchList[index],
     })
     wx.navigateBack()
   },
@@ -135,6 +148,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      type: options.type || '',
+    })
     this.getPostionListById(0, 'top')
     if (options.search) {
       this.setData({

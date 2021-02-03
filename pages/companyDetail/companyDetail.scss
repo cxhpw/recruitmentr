@@ -109,10 +109,11 @@ page {
     align-items: center;
     .fl {
       font-size: 29rpx;
+      margin-right: 30rpx;
     }
     .fr {
       flex: 0 0 auto;
-      margin-left: 30rpx;
+      // margin-left: 30rpx;
       .image {
         width: 22rpx;
         height: 22rpx;

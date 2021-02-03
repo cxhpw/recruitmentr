@@ -131,11 +131,11 @@ Page({
     })
   },
   onMap() {
-    const { Latitude, Longitude, WorkPlace, Address } = this.data.form
+    // const { Latitude, Longitude, WorkPlace, Address } = this.data.form
+    const { Latitude, Longitude, Address } = this.data.data
     wx.openLocation({
       latitude: Number(Latitude),
       longitude: Number(Longitude),
-      name: WorkPlace,
       address: Address,
       scale: 18,
     })
@@ -243,38 +243,9 @@ Page({
         this.getList()
       }
     )
-    // requestAllPositionName().then((res) => {
-    //   console.log('职位类型', res)
-    //   this.setData({
-    //     recommendOptions: res.data.dataList.map((item, index) => {
-    //       return {
-    //         id: item.AutoID,
-    //         text: item.Name,
-    //         value: index,
-    //       }
-    //     }),
-    //   })
-    // })
     this.setData({
-      form: JSON.parse(options.formData),
-      // salaryOptions: app.globalData.salaryOptions.map((item, index) => {
-      //   return {
-      //     text: item == '不限' ? '全部' : item,
-      //     value: index,
-      //   }
-      // }),
-      // experienceOptions: app.globalData.experienceOptions.map((item, index) => {
-      //   return {
-      //     text: item == '不限' ? '全部' : item,
-      //     value: index,
-      //   }
-      // }),
-      // industryOptions: app.globalData.industryOptions.map((item, index) => {
-      //   return {
-      //     text: item == '不限' ? '全部' : item,
-      //     value: index,
-      //   }
-      // }),
+      form: options.formData ? JSON.parse(options.formData) : null,
+     
     })
   },
 

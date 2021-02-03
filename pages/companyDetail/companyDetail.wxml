@@ -55,7 +55,7 @@
                 </view> -->
                 </view>
                 <view class='bd'>
-                  <view class='fl'>{{ form.Address }} {{ form.WorkPlace }}</view>
+                  <view class='fl'>{{ data.Address }} </view>
                   <view class='fr'>
                     <view class='btn' catch:tap="onMap"> <image src="/assets/images/icon-map.jpg" class="image"></image>导航</view>
                   </view>

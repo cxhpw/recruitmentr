@@ -26,7 +26,7 @@ page {
     flex: 1; }
   .top-section .price {
     font-weight: 500;
-    color: #0866FF;
+    color: #0866ff;
     font-size: 34rpx; }
   .top-section .base {
     display: flex;
@@ -106,3 +106,10 @@ page {
   .fixed-bottom .button-group .button-normal-reverse {
     flex: 0 0 170rpx;
     margin-right: 30rpx; }
+
+.my-parse view:nth-last-of-type(2) {
+  display: inline !important; }
+
+.my-parse .more-v2 {
+  display: inline !important;
+  color: #0866ff; }

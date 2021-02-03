@@ -19,7 +19,7 @@
       <view class='name'>{{ item.Name }}</view>
       <view class='summary'>{{item.NavJob}}>{{item.Name}}</view>
     </view>
-    <view class="resutl">搜索结果为空</view>
+    <view class="resutl" wx:if="{{ !searchList.length }}">搜索结果为空</view>
   </view>
   <van-overlay show="{{ show }}" bind:click="onClose" custom-style='top: 54px'>
     <view class="popup-body {{ show ? 'active' : ''}}">

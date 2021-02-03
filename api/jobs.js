@@ -14,7 +14,7 @@ import request from '../utils/request'
  * experience: String,
  * staffsize: String,
  * industry: String
- * }} params 
+ * }} params
  * @summary name 搜索关键词
  * @summary area 城市
  * @summary educat 学历
@@ -28,21 +28,30 @@ export function requestJopsList(params) {
     url: '/include/getdata',
     data: {
       apiname: 'getjoblist',
-      ...params
+      ...params,
     },
   })
 }
 
 /**
  * 获取职位详情
- * @param { Number } id 
+ * @param { Number } id
  */
 export function requestJopDetailById(id) {
   return request({
-    url: "/include/getdata",
+    url: '/include/getdata',
     data: {
-      apiname: "getjobdetial",
-      id
-    }
+      apiname: 'getjobdetial',
+      id,
+    },
+  })
+}
+
+export function requestRecommendSearch() {
+  return request({
+    url: '/include/getdata',
+    data: {
+      apiname: 'getrecommendsearch',
+    },
   })
 }

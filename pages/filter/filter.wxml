@@ -1,59 +1,92 @@
 <view class="page {{ safeArea }}">
   <view class="container">
-    <view class='section'>
+    <view class='section' wx:if="{{ educationOptions.length }}">
       <view class='title'>学历要求</view>
       <view class='content'>
         <view class='list'>
-          <van-checkbox-group custom-class='checkbox-group' value="{{ educations }}" bind:change="onEducationsChange">
-            <View class="item {{  educations.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='educations'>
+          <van-checkbox-group custom-class='checkbox-group' value="{{ educationValue }}" bind:change="onEducationsChange">
+            <View class="item {{ educationValue.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='educationValue'>
               不限
             </View>
-            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ educationSelector }}" wx:key="{{ index }}">
+            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ educationOptions }}" wx:key="educations">
               {{ item }}
             </van-checkbox>
           </van-checkbox-group>
         </view>
       </view>
     </view>
-    <view class='section'>
-      <view class='title'>薪资待遇 <text>（单选）</text></view>
+    <view class='section' wx:if="{{ salaryOptions.length }}">
+      <view class='title'>
+        薪资待遇
+        <text>（单选）</text>
+      </view>
       <view class='content'>
         <view class='list'>
-          <van-checkbox-group custom-class='checkbox-group' value="{{  wages }}" bind:change="onWageChange">
-            <View class="item {{ wages.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='wages'>
+          <van-checkbox-group custom-class='checkbox-group' value="{{ salaryValue }}" bind:change="onWageChange">
+            <View class="item {{ salaryValue.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='salaryValue'>
               不限
             </View>
-            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ wageSelector }}" wx:key="{{ index }}">
+            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ salaryOptions }}" wx:key="wage">
               {{ item }}
             </van-checkbox>
           </van-checkbox-group>
         </view>
       </view>
     </view>
-    <view class='section'>
+    <view class='section' wx:if="{{ experienceOptions.length }}">
       <view class='title'>经验要求</view>
       <view class='content'>
         <view class='list'>
-          <van-checkbox-group custom-class='checkbox-group' value="{{ experiences }}" bind:change="onExperiencesChange">
-            <View class="item {{    experiences.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='experiences'>
+          <van-checkbox-group custom-class='checkbox-group' value="{{ experienceValue }}" bind:change="onExperiencesChange">
+            <View class="item {{ experienceValue.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='experienceValue'>
               不限
             </View>
-            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{  experienceSelector }}" wx:key="{{ index }}">
+            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{  experienceOptions }}" wx:key="experiences">
               {{ item }}
             </van-checkbox>
           </van-checkbox-group>
         </view>
       </view>
     </view>
-    <view class='section'>
+    <view class='section' wx:if="{{ typesOptions.length }}">
       <view class='title'>求职意向</view>
       <view class='content'>
         <view class='list'>
           <van-checkbox-group custom-class='checkbox-group' value="{{ types }}" bind:change="onTypesChange">
-            <View class="item {{ types.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='types'>
+            <View class="item {{ typesValue.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='typesValue'>
               不限
             </View>
-            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ typeSelector }}" wx:key="{{ index }}">
+            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ typesOptions }}" wx:key="types">
+              {{ item }}
+            </van-checkbox>
+          </van-checkbox-group>
+        </view>
+      </view>
+    </view>
+    <view class='section' wx:if="{{ sizeOptions.length }}">
+      <view class='title'>公司规模</view>
+      <view class='content'>
+        <view class='list'>
+          <van-checkbox-group custom-class='checkbox-group' value="{{ sizeValue }}" bind:change="onSizeChange">
+            <View class="item {{ sizeValue.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='sizeValue'>
+              不限
+            </View>
+            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ sizeOptions }}" wx:key="size">
+              {{ item }}
+            </van-checkbox>
+          </van-checkbox-group>
+        </view>
+      </view>
+    </view>
+    <view class='section' wx:if="{{ industryOptions.length }}">
+      <view class='title'>行业分类</view>
+      <view class='content'>
+        <view class='list'>
+          <van-checkbox-group custom-class='checkbox-group' value="{{ industryValue }}" bind:change="onindustryChange">
+            <View class="item {{ industryValue.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='industryValue'>
+              不限
+            </View>
+            <van-checkbox custom-class='item checkbox' name="{{ item }}" wx:for="{{ industryOptions }}" wx:key="industry">
               {{ item }}
             </van-checkbox>
           </van-checkbox-group>

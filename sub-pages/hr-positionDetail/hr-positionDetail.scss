@@ -1,5 +1,5 @@
-@import "../../scss/minxi/minxi.scss";
-@import "../../scss/variable/variable.scss";
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
 page {
   background: #fff;
 }
@@ -17,7 +17,7 @@ page {
   }
   .price {
     font-weight: 500;
-    color: #0866FF;
+    color: #0866ff;
     font-size: 34rpx;
   }
   .base {
@@ -98,11 +98,23 @@ page {
       font-size: 28rpx;
     }
     .button-normal {
-      flex: 1
+      flex: 1;
     }
     .button-normal-reverse {
       flex: 0 0 170rpx;
       margin-right: 30rpx;
     }
+  }
+}
+
+.my-parse {
+  view {
+    &:nth-last-of-type(2) {
+      display: inline !important;
+    }
+  }
+  .more-v2 {
+    display: inline !important;
+    color: #0866ff;
   }
 }

@@ -1,40 +1,51 @@
 const app = getApp()
-import { requestResumeFilter } from '../../api/config'
+import {
+  requestResumeFilter,
+  requestJopFilter,
+  requestCompanyFilter,
+} from '../../api/config'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    type: '',
     safeArea: app.globalData.safeArea ? 'safeArea' : '',
-    educationSelector: [
-      '初中及以下',
-      '中专/中技',
-      '高中',
-      '大专',
-      '本科',
-      '硕士',
-      '博士',
+    educationOptions: [
+      // '初中及以下',
+      // '中专/中技',
+      // '高中',
+      // '大专',
+      // '本科',
+      // '硕士',
+      // '博士',
     ],
-    educations: [],
-    experienceSelector: [
-      '在校生',
-      '应届生',
-      '1年以内',
-      '1-3年',
-      '3-5年',
-      '5-10年',
-      '10年以上',
+    educationValue: [],
+    experienceOptions: [
+      // '在校生',
+      // '应届生',
+      // '1年以内',
+      // '1-3年',
+      // '3-5年',
+      // '5-10年',
+      // '10年以上',
     ],
-    experiences: [],
-    typeSelector: [
-      '离职-随时到岗',
-      '在职-暂不考虑',
-      '在职-考虑机会',
-      '在职-月内到岗',
+    experienceValue: [],
+    typesOptions: [
+      // '离职-随时到岗',
+      // '在职-暂不考虑',
+      // '在职-考虑机会',
+      // '在职-月内到岗',
     ],
-    types: [],
-    wageSelector: ['3K以下', '3-5K', '5-10K', '10-20K', '20-50K', '50K以上'],
-    wages: [],
+    typesValue: [],
+    salaryOptions: [
+      // '3K以下', '3-5K', '5-10K', '10-20K', '20-50K', '50K以上'
+    ],
+    salaryValue: [],
+    sizeOptions: [],
+    sizeValue: [],
+    industryOptions: [],
+    industryValue: [],
   },
   onCancel(e) {
     const { target } = e.currentTarget.dataset
@@ -42,53 +53,162 @@ Page({
       [`${target}`]: [],
     })
   },
+  onSizeChange(event) {
+    this.setData({
+      sizeValue: event.detail,
+    })
+  },
+  onindustryChange(event) {
+    this.setData({
+      industryValue: event.detail,
+    })
+  },
   onEducationsChange(event) {
     console.log(event)
     this.setData({
-      educations: event.detail,
+      educationValue: event.detail,
     })
   },
   onExperiencesChange(event) {
     this.setData({
-      experiences: event.detail,
+      experienceValue: event.detail,
     })
   },
   onTypesChange(event) {
     this.setData({
-      types: event.detail,
+      typesValue: event.detail,
     })
   },
   onWageChange(event) {
     const value = event.detail
     this.setData({
-      wages: value.length ? [value[value.length - 1]] : [],
+      salaryValue: value.length ? [value[value.length - 1]] : [],
     })
   },
   onClear() {
-    this.setData({
-      wages: [],
-      types: [],
-      experiences: [],
-      educations: [],
-    })
+    this.setData(
+      {
+        salaryValue: [],
+        typesValue: [],
+        experienceValue: [],
+        educationValue: [],
+        sizeValue: [],
+        industryValue: [],
+      },
+      () => {
+        const {
+          salaryValue,
+          typesValue,
+          experienceValue,
+          educationValue,
+          sizeValue,
+          industryValue,
+        } = this.data
+        const page = getCurrentPages()[getCurrentPages().length - 2]
+        page.setData({
+          salaryValue,
+          typesValue,
+          experienceValue,
+          educationValue,
+          sizeValue,
+          industryValue,
+        })
+      }
+    )
     app.globalData.filterData = null
   },
   onConfirm() {
-    const { wages, types, experiences, educations } = this.data
-    app.setFilterData({wages, types, experiences, educations})
+    const {
+      salaryValue,
+      typesValue,
+      experienceValue,
+      educationValue,
+      sizeValue,
+      industryValue,
+    } = this.data
+    app.setFilterData({
+      salaryValue,
+      typesValue,
+      experienceValue,
+      educationValue,
+      sizeValue,
+      industryValue,
+    })
+    const page = getCurrentPages()[getCurrentPages().length - 2]
+    page.setData({
+      salaryValue,
+      typesValue,
+      experienceValue,
+      educationValue,
+      sizeValue,
+      industryValue,
+    })
     wx.navigateBack()
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    requestResumeFilter().then((res) => {
-      console.log('筛选条件' ,res)
+    this.setData({
+      type: options.type || '',
+    })
+    switch (options.type) {
+      case 'jop':
+        this.setData({
+          educationOptions: app.globalData.educationOptions.slice(1),
+          salaryOptions: app.globalData.salaryOptions.slice(1),
+          experienceOptions: app.globalData.experienceOptions.slice(1),
+          sizeOptions: app.globalData.companySizeOptions.slice(1),
+          industryOptions: app.globalData.industryOptions.slice(1),
+        })
+        // requestJopFilter().then((res) => {
+        //   console.log('职位筛选', res)
+        //   this.setData({
+        //     educationOptions: res.data[0].keyvalue.slice(1),
+        //     salaryOptions: res.data[1].keyvalue.slice(1),
+        //     experienceOptions: res.data[2].keyvalue.slice(1),
+        //     sizeOptions: res.data[3].keyvalue.slice(1),
+        //     industryOptions: res.data[4].keyvalue.slice(1),
+        //   })
+        // })
+        break
+      case 'company':
+        this.setData({
+          sizeOptions: app.globalData.companySizeOptions.slice(1),
+          industryOptions: app.globalData.industryOptions.slice(1),
+        })
+        // requestCompanyFilter().then((res) => {
+        //   console.log('公司筛选', res)
+        //   this.setData({
+        //     sizeOptions: res.data[0].keyvalue.slice(1),
+        //     industryOptions: res.data[1].keyvalue.slice(1),
+        //   })
+        // })
+        break
+      default:
+        this.setData({
+          educationOptions: app.globalData.educationOptions.slice(1),
+          salaryOptions: app.globalData.salaryOptions.slice(1),
+          experienceOptions: app.globalData.experienceOptions.slice(1),
+          typesOptions: app.globalData.jopStatusOptions.slice(1),
+        })
+        // requestResumeFilter().then((res) => {
+        //   console.log('筛选条件', res)
+        //   this.setData({
+        //     educationOptions: res.data[0].keyvalue.slice(1),
+        //     salaryOptions: res.data[1].keyvalue.slice(1),
+        //     experienceOptions: res.data[2].keyvalue.slice(1),
+        //     typesOptions: res.data[3].keyvalue.slice(1),
+        //   })
+        // })
+        break
+    }
+    // 简历筛选
+    const eventChannel = this.getOpenerEventChannel()
+    eventChannel.on('filterValue', (data) => {
+      console.log('参数', data)
       this.setData({
-        educationSelector: res.data[0].keyvalue.slice(1),
-        wageSelector: res.data[1].keyvalue.slice(1),
-        experienceSelector: res.data[2].keyvalue.slice(1),
-        typeSelector: res.data[3].keyvalue.slice(1)
+        ...data,
       })
     })
   },
@@ -102,14 +222,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if(app.globalData.filterData) {
-      this.setData({
-        educations: app.globalData.filterData.educations,
-        experiences:  app.globalData.filterData.experiences,
-        types:  app.globalData.filterData.types,
-        wages:  app.globalData.filterData.wages
-      })
-    }
+    // if (app.globalData.filterData) {
+    //   this.setData({
+    //     educationValue: app.globalData.filterData.educationValue,
+    //     experienceValue: app.globalData.filterData.experienceValue,
+    //     typesValue: app.globalData.filterData.typesValue,
+    //     salaryValue: app.globalData.filterData.salaryValue,
+    //   })
+    // }
   },
 
   /**

@@ -5,19 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
+    action: '',
+    jopName: '',
     initData: false,
     data: null,
     id: -1,
     content: '',
     position: null,
     show: false,
-    type: ['社招', '实习生招聘', '兼职招聘'],
+    type: [],
     typeSelected: ['社招'],
     searchKey: '',
     address: null,
     ad_info: null,
     business_area: null,
     housenumber: '',
+    selectedtype: [],
+  },
+  onJopNameInput(e) {
+    this.setData({
+      jopName: e.detail.value,
+    })
   },
   onInput(e) {
     this.setData({
@@ -29,6 +37,9 @@ Page({
     const value = e.detail
     this.setData({
       typeSelected: value.length ? [value[value.length - 1]] : [],
+      selectedtype: this.data.type.filter((item) => {
+        return item.Title == value[value.length - 1]
+      }),
     })
   },
   onNavTo(e) {
@@ -50,12 +61,12 @@ Page({
             longitude: res.longitude,
           },
           success: (res) => {
-            console.log('工作地点解析' ,res)
+            console.log('工作地点解析', res)
             this.setData({
               ad_info: res.result.address_component,
               business_area: res.result.address_reference.business_area,
             })
-          }
+          },
         })
       },
       fail: () => {
@@ -87,14 +98,16 @@ Page({
     const { id } = this.data
     if (this.valid()) {
       const formData = {
+        jopName: this.data.jopName,
         position: this.data.position,
         desc: this.data.content,
-        type: this.data.typeSelected[0],
+        type: this.data.selectedtype[0],
         address: this.data.address,
         housenumber: this.data.housenumber,
         province: this.data.ad_info.province,
         city: this.data.ad_info.city,
         district: this.data.ad_info.district,
+        business_area: this.data.business_area.title,
       }
       wx.navigateTo({
         url: `/sub-pages/hr-releaseJopRequire/hr-releaseJopRequire?id=${id}&formData=${JSON.stringify(
@@ -117,19 +130,41 @@ Page({
   onLoad: function (options) {
     this.setData({
       id: options.id || -1,
+      action: options.type || '',
+      type: app.globalData.jopTypeOptions,
     })
     if (options.id) {
       this.getDetail(options.id)
     }
   },
+  getAdInfo(location) {
+    app.mapInstance.reverseGeocoder({
+      location: {
+        latitude: location.latitude,
+        longitude: location.longitude,
+      },
+      success: (res) => {
+        console.log('工作地点解析', res)
+        this.setData({
+          ad_info: res.result.address_component,
+          business_area: res.result.address_reference.business_area,
+        })
+      },
+    })
+  },
   getDetail(id) {
     requestDetailById(id).then((res) => {
       console.log('详情', res)
       const data = res.data
+      this.getAdInfo({
+        latitude: Number(data.Latitude),
+        longitude: Number(data.Longitude),
+      })
       this.setData({
         data: res.data,
         position: {
           Name: data.JName,
+          AutoID: data.ClassID,
         },
         content: data.Desc,
         address: {
@@ -139,7 +174,10 @@ Page({
           longitude: Number(data.Longitude),
         },
         housenumber: data.HouseNumber,
-        typeSelected: [data.Type]
+        typeSelected: [data.Type],
+        selectedtype: this.data.type.filter((item) => {
+          return item.Title == data.Type
+        }),
       })
     })
   },
@@ -152,19 +190,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (
-      app.globalData.selectPostion.length &&
-      app.globalData.selectPostion[2]
-    ) {
-      this.setData({
-        position: app.globalData.selectPostion[2],
-        searchKey: '',
-      })
-    } else if (app.globalData.searchKey) {
-      this.setData({
-        searchKey: app.globalData.searchKey || '',
-      })
-    }
+    // if (
+    //   app.globalData.selectPostion.length &&
+    //   app.globalData.selectPostion[2]
+    // ) {
+    //   this.setData({
+    //     position: app.globalData.selectPostion[2],
+    //     searchKey: '',
+    //   })
+    // } else if (app.globalData.searchKey) {
+    //   this.setData({
+    //     searchKey: app.globalData.searchKey || '',
+    //   })
+    // }
   },
 
   /**

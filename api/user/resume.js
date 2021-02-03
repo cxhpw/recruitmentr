@@ -1,4 +1,4 @@
-import request from "../../utils/request";
+import request from '../../utils/request'
 
 /**
  * 投递简历
@@ -6,30 +6,33 @@ import request from "../../utils/request";
  * cid: Number,
  * jid: Number,
  * rid: Number
- * }} params 
+ * }} params
  */
 export function postResumeToHr(params) {
   return request({
-    url: "/include/getdata",
-    method: "post",
+    url: '/include/getdata',
+    method: 'post',
     data: {
-      apiname: "sendresume",
-      ...params
-    }
+      apiname: 'sendresume',
+      ...params,
+    },
   })
 }
 
 /**
  * 同意或拒绝面试
- * @param {Number} id 
+ * @param {{
+ * action: String,
+ * id: Number
+ * }} params
  */
-export function postInterviewApply(id) {
+export function postInterviewApply(params) {
   return request({
-    url: "/include/getdata",
-    mthod: "post",
+    url: '/include/getdata',
+    method: 'post',
     data: {
-      apiname: "updateinterview",
-      id
-    }
+      apiname: 'updateinterview',
+      ...params
+    },
   })
 }

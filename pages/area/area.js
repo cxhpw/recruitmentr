@@ -57,23 +57,23 @@ Page({
       console.log(res)
       let pindex = -1
       let Pcode = this.data.Pcode
-      if (app.globalData.filterArea.length) {
-        requestRegionById(app.globalData.filterArea[0].RegionCode).then(
-          (res) => {
-            this.setData({
-              city: res.data.dataList,
-              Ccode: app.globalData.filterArea[1].RegionCode,
-            })
-          }
-        )
-        for (let i = 0; i < res.data.dataList.length; i++) {
-          const element = res.data.dataList[i]
-          if (element.RegionCode === app.globalData.filterArea[0].RegionCode) {
-            pindex = i
-          }
-        }
-        Pcode = app.globalData.filterArea[0].RegionCode
-      }
+      // if (app.globalData.filterArea.length) {
+      //   requestRegionById(app.globalData.filterArea[0].RegionCode).then(
+      //     (res) => {
+      //       this.setData({
+      //         city: res.data.dataList,
+      //         Ccode: app.globalData.filterArea[1].RegionCode,
+      //       })
+      //     }
+      //   )
+      //   for (let i = 0; i < res.data.dataList.length; i++) {
+      //     const element = res.data.dataList[i]
+      //     if (element.RegionCode === app.globalData.filterArea[0].RegionCode) {
+      //       pindex = i
+      //     }
+      //   }
+      //   Pcode = app.globalData.filterArea[0].RegionCode
+      // }
 
       this.setData({
         province: res.data.dataList,

@@ -88,7 +88,10 @@ Page({
       loadData: true,
       currentIndex: options.currentIndex || 0,
     })
-    togglerRole(1)
+    togglerRole(1).then((res) => {
+      app.globalData.userType = 'Hr'
+      app.globalData.roleInfo.Role = res.data.Role
+    })
     requestHRInfo()
       .then((res) => {
         console.log('hr 信息', res)
@@ -96,9 +99,8 @@ Page({
       })
       .catch((err) => {
         // 未填写企业信息
-        console.error('--',err)
+        console.error('--', err)
         if (err.reponsive.msg == '请授权登录！') {
-          
         } else {
           wx.reLaunch({
             url: '/sub-pages/hr-register/hr-register',

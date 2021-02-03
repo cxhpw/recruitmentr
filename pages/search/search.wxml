@@ -3,7 +3,7 @@
     <view class='top-section'>
       <view class='search-wrapper'>
         <view class="search-wrapper__region" catch:tap="onAreaTap">
-          <text>深圳</text>
+          <text>{{city[1].RegionName}}</text>
           <image class='arrow' src='/assets/images/icon-arrow-down.png'></image>
         </view>
         <view class='search-wrapper__input'>
@@ -13,117 +13,100 @@
           </view>
         </view>
       </view>
-      <view class="filter-wrapper">
+      <view class="filter-wrapper" wx:if="{{ searchKey.length }}">
         <view class='fl'>
-          <view catch:tap="onTypeTap" data-index="{{ index }}" class="item {{  typeIndex=== index ? 'active' : ''}}" wx:for="{{ type }}">
+          <view catch:tap="onTypeTap" data-index="{{ index }}" class="item {{  typeIndex=== index ? 'active' : ''}}" wx:key="searchType" wx:for="{{ searchType }}">
             {{ item }}
           </view>
         </view>
         <view class='fr'>
-          <view class='item' catch:tap='onAreaTap'>区域搜索</view>
-          <view class='item' catch:tap='onFilterTap'>筛选</view>
+          <!-- <view class='item' catch:tap='onAreaTap'>区域搜索</view> -->
+          <view class='item' catch:tap='onFilterTap'>
+            <text>筛选</text>
+            <text class="dot" wx:if="{{totalFilterCount > 0}}">·</text>
+            <text wx:if="{{ totalFilterCount > 0 }}">{{totalFilterCount}}</text>
+          </view>
         </view>
       </view>
     </view>
   </van-sticky>
   <view class='content'>
-    <view class='search-list'>
-      <view class='search-item'>
-        <image class='image' mode='aspectFill' src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
-        <view class='con'>
-          <view class='name'>腾讯</view>
-          <view class='info'>
-            <text>10000人以上</text>
-            <text>|</text>
-            <text>互联网</text>
-          </view>
-          <view class='summary'>
-            热招
-            <text class='label'>IOS工程师</text>
-            等1个职位
-            <icon custom-class="my-icon" name='arrow' size='15' color='#BFBFBF'></icon>
-          </view>
-        </view>
-      </view>
-      <view class='search-item'>
-        <image class='image' mode='aspectFill' src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
-        <view class='con'>
-          <view class='name'>腾讯</view>
-          <view class='info'>
-            <text>10000人以上</text>
-            <text>|</text>
-            <text>互联网</text>
-          </view>
-          <view class='summary'>
-            热招
-            <text class='label'>IOS工程师</text>
-            等1个职位
-            <icon custom-class="my-icon" name='arrow' size='15' color='#BFBFBF'></icon>
-          </view>
-        </view>
-      </view>
-      <view class='search-item_work'>
-        <view class='con'>
-          <view class='name'>
-            <text>java engineer</text>
-            <text class='salary'>20-40K·16薪</text>
-          </view>
-          <view class='info'>
-            <text>阿里巴巴</text>
-            <text>10000人以上</text>
-            <text>已上市</text>
-          </view>
-          <view class="hr">
-            <view class="flex-box align-center">
-              <view class='fl'>
-                <image class="avatar" src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
-                <view class='con'>
-                  <text>刘女士</text>
-                  <text>高级研发工程师</text>
-                </view>
-              </view>
-              <view class='fr'>
-                <text>南山区</text>
-                <text>海岸城</text>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class='search-item_work'>
-        <view class='con'>
-          <view class='name'>
-            <text>java engineer</text>
-            <text class='salary'>20-40K·16薪</text>
-          </view>
-          <view class='info'>
-            <text>阿里巴巴</text>
-            <text>10000人以上</text>
-            <text>已上市</text>
-          </view>
-          <view class="hr">
-            <view class="flex-box align-center">
-              <view class='fl'>
-                <image class="avatar" src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
-                <view class='con'>
-                  <text>刘女士</text>
-                  <text>高级研发工程师</text>
-                </view>
-              </view>
-              <view class='fr'>
-                <text>南山区</text>
-                <text>海岸城</text>
-              </view>
-            </view>
-          </view>
+    <!-- 历史记录 -->
+    <view class="search-quick-wrapper" wx:if="{{ !searchKey.length }}">
+      <view class="section">
+        <view class="title">推荐搜索</view>
+        <view class="list">
+          <view class="cell" wx:for="{{recommentSearch}}" catch:tap="onSelect" data-key="{{ item.SearchKey }}">{{ item.SearchKey }}</view>
         </view>
       </view>
     </view>
-    <view class='more'>
-      <Button class='button button-block'>
-        查看更多职位
-        <icon name='arrow' size='15' color='#0866FF'></icon>
-      </Button>
+    <!-- 历史记录 -->
+    <view class="search-result-wrapper" wx:else>
+      <view class='search-list'>
+        <!-- 企业 -->
+        <block wx:if="{{ typeIndex == 1 }}">
+          <view class='search-item' wx:for="{{ list }}" catch:tap="onNavTo" data-url="/pages/companyDetail/companyDetail?id={{ item.AutoID }}">
+            <image class='image' mode='aspectFill' src="{{ item.Logo }}"></image>
+            <view class='con'>
+              <view class='name'>{{ item.Name }}</view>
+              <view class='info'>
+                <text>{{ item.StaffSize }}</text>
+                <text class="dot">|</text>
+                <text>{{ item.Industry }}</text>
+              </view>
+              <view class='summary'>
+                热招
+                <text class='label'>{{ item.CJName }}</text>
+                等{{ item.JobCount }}个职位
+                <icon custom-class="my-icon" name='arrow' size='15' color='#BFBFBF'></icon>
+              </view>
+            </view>
+          </view>
+        </block>
+        <!-- 岗位 -->
+        <block wx:if="{{ typeIndex == 0 }}">
+          <view class='search-item_work' wx:for="{{ list }}" catch:tap="onNavTo" data-url="/pages/detail/detail?id={{ item.AutoID }}">
+            <view class='con'>
+              <view class='name'>
+                <text>{{ item.JName }}</text>
+                <text class='salary'>{{ item.Salary }}</text>
+              </view>
+              <view class='info'>
+                <text>{{ item.CName }}</text>
+                <text>{{ item.CStaffSize }}</text>
+              </view>
+              <view class="hr">
+                <view class="flex-box align-center">
+                  <view class='fl'>
+                    <image class="avatar" src="{{ item.RHeaderPhoto }}"></image>
+                    <view class='con'>
+                      <text>{{ item.RName }}</text>
+                      <text>{{ item.RJob }}</text>
+                    </view>
+                  </view>
+                  <view class='fr'>
+                    <text>{{ item.Address }}</text>
+                    <text>{{ item.WorkPlace }}</text>
+                    <text>{{ item.HouseNumber }}</text>
+                    <!-- <text>南山区</text>
+                  <text>海岸城</text> -->
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <loadButton wx:if="{{ showLoadButton }}" loading text="搜索中"></loadButton>
+      <view class="nomore" wx:if="{{ nomore }}">
+        没有匹配的{{typeIndex == 0 ? "职位" : "公司"}}，修改搜索条件再试试
+      </view>
+      <view class='more' wx:if="{{ list.length > 5 }}">
+        <Button class='button button-block'>
+          查看更多职位
+          <icon name='arrow' size='15' color='#0866FF'></icon>
+        </Button>
+      </view>
     </view>
   </view>
 </view>

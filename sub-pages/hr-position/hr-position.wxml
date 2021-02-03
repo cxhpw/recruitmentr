@@ -1,36 +1,65 @@
 <view class="page">
-  <van-tabs sticky active="{{ active }}" bind:change="onChange" line-width="{{ 15 }}" color="#0866FF">
-    <van-tab wx:for="{{ tabs }}" title="{{item.title}}">
-      <view class="list">
-        <view class="inner">
-          <block wx:for="{{ lists[index].data }}" wx:key="{{ index }}" wx:for-item="item" wx:for-index="index">
-            <view class="item" data-id="{{ item.AutoID }}" catch:tap="onNavTo">
-              <view class="flex-box align-center">
-                <view class='fl'>{{ item.Name }}</view>
-                <view class='fr'>{{ item.Status }}</view>
-              </view>
-              <view class='info'>
-                <text>{{ item.Address }}</text>
-                <!-- <text class='dot'>·</text>
+  <block wx:if="{{!type}}">
+    <van-tabs sticky active="{{ active }}" bind:change="onChange" line-width="{{ 15 }}" color="#0866FF">
+      <van-tab wx:for="{{ tabs }}" title="{{item.title}}">
+        <view class="list">
+          <view class="inner">
+            <block wx:for="{{ lists[index].data }}" wx:key="{{ index }}" wx:for-item="item" wx:for-index="index">
+              <view class="item" data-id="{{ item.AutoID }}" catch:tap="onNavTo">
+                <view class="flex-box align-center">
+                  <view class='fl'>{{ item.Name }}</view>
+                  <view class='fr'>{{ item.Status }}</view>
+                </view>
+                <view class='info'>
+                  <text>{{ item.Address }}</text>
+                  <!-- <text class='dot'>·</text>
                 <text>{{ item. }}</text> -->
-                <text class='dot'>|</text>
-                <text>{{ item.Educat }}</text>
-                <text class='dot'>|</text>
-                <text>{{ item.Experience }}</text>
-                <text class='dot'>|</text>
-                <text>{{ item.Salary }}</text>
+                  <text class='dot'>|</text>
+                  <text>{{ item.Educat }}</text>
+                  <text class='dot'>|</text>
+                  <text>{{ item.Experience }}</text>
+                  <text class='dot'>|</text>
+                  <text>{{ item.Salary }}</text>
+                </view>
               </view>
-            </view>
-          </block>
+            </block>
+          </view>
+          <nomore wx:if="{{lists[index].nomore}}" />
+          <loadButton wx:if="{{!lists[index].nomore}}" loading="{{lists[index].loading}}" text="{{lists[index].buttontext}}" />
         </view>
-        <nomore wx:if="{{lists[index].nomore}}" />
-        <loadButton wx:if="{{!lists[index].nomore}}" loading="{{lists[index].loading}}" text="{{lists[index].buttontext}}" />
+      </van-tab>
+    </van-tabs>
+    <view class='fixed-bottom'>
+      <view class='confirm-group'>
+        <button class='button button-normal button-block' catch:tap="onRelease">发布新职位</button>
       </view>
-    </van-tab>
-  </van-tabs>
-  <view class='fixed-bottom'>
-    <view class='confirm-group'>
-      <button class='button button-normal button-block' catch:tap="onRelease">发布新职位</button>
     </view>
-  </view>
+  </block>
+  <block wx:else>
+    <view class="list">
+      <view class="inner">
+        <block wx:for="{{ lists[active].data }}" wx:key="kaifang" wx:for-item="item" wx:for-index="index">
+          <view class="item" data-id="{{ item.AutoID }}" catch:tap="onSelectJop" data-index="{{ index }}">
+            <view class="flex-box align-center">
+              <view class='fl'>{{ item.Name }}</view>
+              <view class='fr'>{{ item.Status }}</view>
+            </view>
+            <view class='info'>
+              <text>{{ item.Address }}</text>
+              <!-- <text class='dot'>·</text>
+                <text>{{ item. }}</text> -->
+              <text class='dot'>|</text>
+              <text>{{ item.Educat }}</text>
+              <text class='dot'>|</text>
+              <text>{{ item.Experience }}</text>
+              <text class='dot'>|</text>
+              <text>{{ item.Salary }}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+      <nomore wx:if="{{lists[active].nomore}}" />
+      <loadButton wx:if="{{!lists[active].nomore}}" loading="{{lists[active].loading}}" text="{{lists[active].buttontext}}" />
+    </view>
+  </block>
 </view>

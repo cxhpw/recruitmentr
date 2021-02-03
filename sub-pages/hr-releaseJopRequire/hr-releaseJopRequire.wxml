@@ -19,7 +19,7 @@
     <van-cell custom-class='my-cell' use-label-slot>
       <view slot='title' class='title'>职位类型</view>
       <view slot='label' class='form-group'>
-        <view class="f30 c333">{{form.type}}</view>
+        <view class="f30 c333">{{form.type.Title}}</view>
       </view>
     </van-cell>
     <van-cell is-link custom-class='my-cell' use-label-slot>

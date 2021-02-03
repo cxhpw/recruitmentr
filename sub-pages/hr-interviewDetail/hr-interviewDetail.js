@@ -2,11 +2,13 @@ const app = getApp()
 import { requestDetailById } from '../../api/interviewRecord'
 import { postResumeRemark } from '../../api/hr/resume'
 import { requestConfig } from '../../api/config'
+import { postInterviewApply } from '../../api/user/resume'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    role: null,
     id: -1,
     data: {},
     show: false,
@@ -39,8 +41,12 @@ Page({
     })
   },
   onLabelsChange(e) {
+    // this.setData({
+    //   labelsSelected: e.detail,
+    // })
+    const value = e.detail
     this.setData({
-      labelsSelected: e.detail,
+      labelsSelected: value.length ? [value[value.length - 1]] : [],
     })
   },
   onRemarkTap() {
@@ -53,7 +59,7 @@ Page({
       this.setData({
         data: res.data,
         content: res.data.Remark,
-        labelsSelected: res.data.Result.split(',')
+        labelsSelected: res.data.Result.split(','),
       })
     })
   },
@@ -78,21 +84,42 @@ Page({
     postResumeRemark({
       action: 'modify',
       id: data.AutoID,
+      jid: data.JID,
+      jsid: data.UserID,
       remark: content,
       result: this.data.labelsSelected.join(','),
-    }).then((res) => {
-      console.log(res)
-      this.getDetail(this.data.id)
-    }).finally(() => {
-      this.setData({
-        show: false,
+    })
+      .then((res) => {
+        console.log(res)
+        this.getDetail(this.data.id)
       })
+      .finally(() => {
+        this.setData({
+          show: false,
+        })
+      })
+  },
+  onUserConfirm(e) {
+    console.log(e)
+    const { isagree } = e.currentTarget.dataset
+    postInterviewApply({
+      action: isagree ? 'agree' : 'refuse',
+      id: this.data.id,
+    }).then((res) => {
+      console.log('结果', res)
+      if (res.data.ret == 'success') {
+        getCurrentPages()[getCurrentPages().length - 2].getLists()
+        wx.navigateBack()
+      }
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      role: app.globalData.roleInfo,
+    })
     requestConfig('msbz').then((res) => {
       console.log('===', res)
       this.getDetail(options.id)
@@ -100,7 +127,6 @@ Page({
         labels: res.data.dataList.map((item) => item.Title),
       })
     })
-    // this.getDetail(options.id)
     this.setData({
       id: options.id,
     })

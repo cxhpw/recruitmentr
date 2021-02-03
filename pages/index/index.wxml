@@ -2,7 +2,7 @@
 <view class="page">
   <!-- <image style="width: 750rpx;height: 100vh" src="/assets/images/9789a6583b0e6ccfa6ea3fb650da526.jpg" mode="aspectFill"></image> -->
   <image class='bd' src="/assets/images/index-top.png"></image>
-  <view class='search-section'>
+  <view class='search-section' catch:tap="onNavTo" data-url="/pages/search/search">
     <view class='search-wrapper'>
       <image class='icon' src='/assets/images/icon_search.png'></image>
       <text>搜索职位、公司</text>
@@ -23,15 +23,15 @@
   </view>
   <view class='nav-section'>
     <view class='flex-box'>
-      <view class='flex-item'>
+      <view class='flex-item' catch:tap="onNavTo" data-url="/pages/search/search?type=nearby">
         <image src="/assets/images/index_1.png" class='image'></image>
         <view class='text'>附近工作</view>
       </view>
-      <view class='flex-item'>
+      <view class='flex-item' catch:tap="onNavTo" data-url="/pages/search/search?type=fieldwork">
         <image src="/assets/images/index_2.png" class='image'></image>
         <view class='text'>找实习</view>
       </view>
-      <view class='flex-item'>
+      <view class='flex-item' catch:tap="onNavTo" data-url="/pages/search/search?type=pluralism">
         <image src="/assets/images/index_3.png" class='image'></image>
         <view class='text'>找兼职</view>
       </view>
@@ -39,7 +39,7 @@
         <image src="/assets/images/index_4.png" class='image'></image>
         <view class='text'>热门公司</view>
       </view>
-      <view class='flex-item'>
+      <view class='flex-item' catch:tap="onNavTo" data-url="/sub-pages/hr-releaseJopName/hr-releaseJopName?type=search">
         <image src="/assets/images/index_5.png" class='image'></image>
         <view class='text'>职位分类</view>
       </view>

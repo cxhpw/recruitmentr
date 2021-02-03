@@ -13,15 +13,19 @@
         </view>
         <view class='image-wrapper'>
           <image src='{{ data.HeaderPhoto }}' class='avatar'></image>
-          <image src='{{ data.Gender === "男" ? "/assets/images/boy.png" : "/assets/images/girl.png" }}' class='sex'></image>
+          <image wx:if="{{ role.Role == 1 }}" src='{{ data.Gender === "男" ? "/assets/images/boy.png" : "/assets/images/girl.png" }}' class='sex'></image>
         </view>
       </view>
     </view>
     <view class='nav-section'>
       <view class='flex-box'>
-        <view class='flex-item' catch:tap="onNavTo" data-url="/pages/resume/resume?id={{ data.UserID }}">
+        <view wx:if="{{ role.Role == 1 }}" class='flex-item' catch:tap="onNavTo" data-url="/pages/resume/resume?id={{ data.UserID }}">
           <image class="icon" src="/assets/images/icon-resume.jpg"></image>
           <view class='text'>在线简历</view>
+        </view>
+        <view wx:else  class='flex-item' catch:tap="onNavTo" data-url="/pages/companyDetail/companyDetail?id={{ data.UserID }}">
+          <image class="icon" src="/assets/images/icon-resume.jpg"></image>
+          <view class='text'>公司主页</view>
         </view>
         <view class='flex-item' catch:tap="onPhoneCall">
           <image class="icon" src="/assets/images/icon-phone.jpg"></image>
@@ -61,9 +65,19 @@
     </view>
   </view>
   <view class='fixed-bottom'>
-    <view class='button-group'>
-      <button class='button button-cancel' catch:tap="onClick" wx:if="{{ data.Status == 100 || data.Status == 99 }}">重新邀约</button>
+    <view class='button-group' wx:if="{{ role.Role == 1 }}">
+      <button class='button button-cancel' catch:tap="onClick" wx:if="{{ data.Status == 100 || data.Status == 99 }}">
+        重新邀约
+      </button>
       <button class='button button-normal' catch:tap="onRemarkTap">编辑牛人备注</button>
+    </view>
+    <view wx:if="{{ role.Role == 99 && data.Status == 1 }}" class="button-group">
+      <button class='button button-cancel' catch:tap="onUserConfirm" data-isagree="{{ false }}">
+        拒绝面试
+      </button>
+      <button class='button button-normal' catch:tap="onUserConfirm" data-isagree="{{ true }}">
+        同意面试
+      </button>
     </view>
   </view>
   <van-popup show="{{ show }}" bind:close="onClose" position="bottom" round closeable>

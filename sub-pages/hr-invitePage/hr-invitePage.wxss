@@ -8,6 +8,12 @@
     color: #fff;
     padding-top: 90rpx; }
 
+.form-control {
+  height: 24px;
+  color: #333;
+  font-size: 25rpx;
+  text-align: left; }
+
 .cell-section {
   border-radius: 6px;
   margin-top: -75rpx;

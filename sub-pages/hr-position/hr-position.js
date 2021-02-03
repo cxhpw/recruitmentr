@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    type: '',
     active: 0,
     tabs: [
       { title: '全部', value: 0 },
@@ -23,7 +24,7 @@ Page({
   onNavTo(e) {
     const { id } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/sub-pages/hr-positionDetail/hr-positionDetail?id=${id}`
+      url: `/sub-pages/hr-positionDetail/hr-positionDetail?id=${id}`,
     })
   },
   onChange(e) {
@@ -119,10 +120,28 @@ Page({
         })
       })
   },
+  onSelectJop(e) {
+    const { lists, active } = this.data
+    const { index } = e.currentTarget.dataset
+    const result = lists[active].data[index]
+    const page = getCurrentPages()[getCurrentPages().length - 2]
+    page.setData({
+      position: {
+        AutoID: result.AutoID,
+        Name: result.Name,
+      },
+      lastAddress: result.Address + result.WorkPlace + result.HouseNumber,
+    })
+    wx.navigateBack()
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      type: options.type || this.data.type,
+      active: options.type ? 1 : this.data.active
+    })
     this.initList().then(() => {
       console.log(123123)
       this.getLists(1)
