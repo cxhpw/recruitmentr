@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "wxParseComponent": "../../components/wxParseComponent/index"
+  },
   "navigationBarBackgroundColor": "#0866ff",
   "navigationBarTextStyle": "white"
 }

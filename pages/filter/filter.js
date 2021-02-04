@@ -75,6 +75,7 @@ Page({
     })
   },
   onTypesChange(event) {
+    console.log(event)
     this.setData({
       typesValue: event.detail,
     })

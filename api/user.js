@@ -36,7 +36,7 @@ export function postUserInfo(params) {
 export function togglerRole(params) {
   return request({
     url: '/include/getdata',
-    method: "post",
+    method: 'post',
     data: {
       apiname: 'updaterole',
       roletype: params,
@@ -49,8 +49,8 @@ export function togglerRole(params) {
  */
 export function getRoleInfos(isRef = false, context = getApp()) {
   console.log(context)
-  if (!isRef && Object.keys(context.globalData.userInfo).length) {
-    return context.globalData.userInfo
+  if (!isRef && Object.keys(context.globalData.roleInfo).length) {
+    return Promise.resolve(context.globalData.roleInfo)
   }
   return request({
     url: '/include/getdata',

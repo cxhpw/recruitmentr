@@ -4,7 +4,7 @@
   height: 44px;
   background: #fff;
   padding: 0 30rpx;
-  @include border-bottom(#EBEBEB, 30rpx, 30rpx);
+  @include border-bottom(#ebebeb, 30rpx, 30rpx);
   .flex-box {
     height: 100%;
   }
@@ -37,11 +37,11 @@
       max-width: 200rpx;
       @include nowrap();
       &:after {
-        content: "";
+        content: '';
         display: inline-block;
         border-width: 7rpx;
         border-style: solid;
-        border-color: transparent #C7C7C7 #C7C7C7 transparent;
+        border-color: transparent #c7c7c7 #c7c7c7 transparent;
         margin-left: 5rpx;
         margin-top: 10rpx;
       }
@@ -53,7 +53,7 @@
   .item {
     background: #fff;
     padding: 35rpx 30rpx;
-    border-bottom: 15rpx solid $borderColor;
+    border-bottom: 15rpx solid #f8f8f8;
     .flex-box {
       margin-bottom: 30rpx;
     }
@@ -76,7 +76,7 @@
       }
     }
     .dot {
-      margin: 0 5rpx;
+      margin: 0 10rpx;
     }
     .icon {
       width: 30rpx;
@@ -100,6 +100,18 @@
     .summary {
       font-size: 25rpx;
       color: #666;
+      @include clamp(2);
     }
+  }
+}
+
+.summary {
+  .wxParse-p {
+    display: inline;
+  }
+}
+.inline {
+  .wxParse-p {
+    display: inline;
   }
 }

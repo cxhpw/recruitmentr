@@ -1,4 +1,4 @@
-<!--components/loadButton/loadButton.wxml-->
-<button  class="custom-class loadButton {{loading ? 'loading' : ''}}"  loading="{{loading}}" disabled="{{true}}">
-  <text class="text">{{text}}</text>
+<!-- components/loadButton/loadButton.wxml -->
+<button class="custom-class loadButton {{loading ? 'loading' : ''}}" loading="{{loading}}" disabled="{{true}}">
+  <text class="text">{{loading ? "加载中" : text}}</text>
 </button>

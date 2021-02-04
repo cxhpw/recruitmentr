@@ -4,7 +4,44 @@ import { requestList } from '../../api/hr/resume'
 const app = getApp()
 
 Component({
+  properties: {
+    isShow: {
+      type: Boolean,
+      value: false,
+    },
+    educationValue: {
+      type: Array,
+      value: [],
+    },
+    experienceValue: {
+      type: Array,
+      value: [],
+    },
+    salaryValue: {
+      type: Array,
+      value: [],
+    },
+    typesValue: {
+      type: Array,
+      value: [],
+    },
+  },
+  observers: {
+    'isShow, educationValue, experienceValue, salaryValue, typesValue': function (
+      value
+    ) {
+      console.log('观察值改变了', value)
+      if (value && this.data.attached) {
+        this.getList()
+      }
+    },
+  },
   data: {
+    // educationValue: [],
+    // experienceValue: [],
+    // salaryValue: [],
+    // typesValue: [],
+    attached: false,
     tabs: [
       { title: '推荐', value: 'recommend' },
       { title: '最新', value: 'new' },
@@ -12,39 +49,37 @@ Component({
     tabIndex: 0,
     list: [],
     filterText: '',
+    loading: true,
+    nomore: false,
+    buttontext: '加载中',
   },
   options: {
     addGlobalClass: true,
   },
-
   lifetimes: {
     attached: function () {
-      console.log('首页')
+      console.log('首页挂载')
+      this.setData(
+        {
+          city: !app.globalData.currentLocation
+            ? app.globalData.staticArea
+            : [
+                { RegionName: app.globalData.currentLocation.province },
+                { RegionName: app.globalData.currentLocation.city },
+              ],
+          attached: true,
+        },
+        () => {
+          this.getList()
+        }
+      )
     },
     moved: function () {},
     detached: function () {},
   },
   pageLifetimes: {
     show: function () {
-      console.log('首页show')
-      let result = []
-      if (app.globalData.filterData) {
-        app.globalData.filterData.educations.length &&
-          result.push(app.globalData.filterData.educations[0])
-        app.globalData.filterData.experiences.length &&
-          result.push(app.globalData.filterData.experiences[0])
-        app.globalData.filterData.types.length &&
-          result.push(app.globalData.filterData.types[0])
-        app.globalData.filterData.wages.length &&
-          result.push(app.globalData.filterData.wages[0])
-      }
-
-      this.setData({
-        filterArea: app.globalData.filterArea,
-        filterData: app.globalData.filterData,
-        filterText: result.join(','),
-      })
-      this.getList()
+      console.log(this)
     },
     hide: function () {},
     resize: function () {},
@@ -66,27 +101,25 @@ Component({
     },
     // 事件处理函数
     getList: function (pageNum = 1) {
-      const { tabIndex, tabs } = this.data
+      const {
+        tabIndex,
+        tabs,
+        salaryValue,
+        educationValue,
+        experienceValue,
+        typesValue,
+        city,
+      } = this.data
       requestList({
         pageindex: pageNum,
         pagesize: 10,
         action: tabs[tabIndex].value,
         name: '',
-        area: app.globalData.filterArea
-          ? app.globalData.filterArea[1].RegionName
-          : '',
-        educat: app.globalData.filterData
-          ? app.globalData.filterData.educations.join(',')
-          : '',
-        salary: app.globalData.filterData
-          ? app.globalData.filterData.wages.join(',')
-          : '',
-        experience: app.globalData.filterData
-          ? app.globalData.filterData.experiences.join(',')
-          : '',
-        status: app.globalData.filterData
-          ? app.globalData.filterData.types.join(',')
-          : '',
+        area: city[1].RegionName,
+        educat: educationValue.join(','),
+        salary: salaryValue.join(','),
+        experience: experienceValue.join(','),
+        status: typesValue.join(','),
       })
         .then((res) => {
           console.log('简历列表', res)
@@ -129,7 +162,7 @@ Component({
             buttontext: '暂无更多数据',
             nomore: true,
             list: [],
-            pageNum: 0
+            pageNum: 0,
           })
         })
     },
@@ -159,6 +192,26 @@ Component({
       const { url } = e.currentTarget.dataset
       wx.navigateTo({
         url,
+      })
+    },
+    onNavToFilter() {
+      const {
+        educationValue,
+        experienceValue,
+        salaryValue,
+        typesValue,
+      } = this.data
+      console.log(educationValue, experienceValue, salaryValue, typesValue)
+      wx.navigateTo({
+        url: '/pages/filter/filter',
+        success: function (res) {
+          res.eventChannel.emit('filterValue', {
+            educationValue,
+            experienceValue,
+            salaryValue,
+            typesValue,
+          })
+        },
       })
     },
   },

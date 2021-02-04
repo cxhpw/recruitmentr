@@ -1,7 +1,9 @@
 {
   "usingComponents": {
     "van-tab": "@vant/weapp/tab/index",
-    "van-tabs": "@vant/weapp/tabs/index"
+    "van-tabs": "@vant/weapp/tabs/index",
+    "wxParseComponent": "../../components/wxParseComponent/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
   },
   "navigationBarTitleText": ""
 }

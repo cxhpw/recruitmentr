@@ -1,57 +1,38 @@
 <view class="page">
-  <van-tabs  sticky active="{{ active }}" bind:change="onChange" type='' custom-class='my-tabs' border="{{ false }}" title-active-color='#fff' title-inactive-color='#fff' bind:disabled="onTabsClick">
+  <van-tabs sticky active="{{ active }}" bind:change="onChange" type='' custom-class='my-tabs' border="{{ false }}" title-active-color='#fff' title-inactive-color='#fff' bind:disabled="onTabsClick">
     <van-tab title="消息">
       <view class='chatroom-list'>
-        <view class='chatroom-item' catch:tap='onChatRoomTap'>
-          <image src='https://s3.ax1x.com/2021/01/18/syDJ74.png' class='image'></image>
+        <view class='chatroom-item' catch:tap='onChatRoomTap' data-id="{{ item.AutoID }}" wx:for="{{lists[0].data}}">
+          <image src='{{ item.HeaderPhoto }}' class='image'></image>
           <view class='con'>
             <view class='flex-box align-center'>
-              <text class='name'>郑小姐</text>
-              <text class='f24 c666'>.net</text>
-              <text class='f23 c999 fr'>15:24</text>
+              <text class='name'>{{ item.Name }}</text>
+              <text class='f24 c666'>{{item.Job }}</text>
+              <text class='f23 c999 fr'>{{ item.SendTime }}</text>
             </view>
-            <view class='content'>您好，我可以把我的简历发给您看看吗？</view>
-          </view>
-        </view>
-        <view class='chatroom-item'>
-          <image src='https://s3.ax1x.com/2021/01/18/syDJ74.png' class='image'></image>
-          <view class='con'>
-            <view class='flex-box align-center'>
-              <text class='name'>郑小姐</text>
-              <text class='f24 c666'>.net</text>
-              <text class='f23 c999 fr'>15:24</text>
-            </view>
-            <view class='content'>您好，我可以把我的简历发给您看看吗？</view>
+            <view class='content' wx:if="{{ item.Content.length }}">{{ item.Content }}</view>
           </view>
         </view>
       </view>
+      <nomore wx:if="{{ lists[0].nomore }}"></nomore>
+      <loadButton wx:else loading="{{lists[0].loading}}" text="{{lists[1].buttontext}}"></loadButton>
     </van-tab>
     <van-tab title="站内信">
       <view class=''>
         <view class='msg-list'>
-          <view class='item'>
-            <view class='date'>12月30日</view>
+          <view class='item' wx:for="{{ lists[1].data }}" wx:key="msg" data-id="{{ item.AutoID }}">
+            <view class='date'>{{ item.AutoTimeStamp }}</view>
             <view class='content'>
-              <image src="https://s3.ax1x.com/2021/01/18/s6LVeO.jpg" class='image' mode='widthFix'></image>
-              本文以电商和医疗行业为例，看工作台和消息系统是如
-              何设计的，既能满足用户使用，又能节省开发成本...
-            </view>
-            <view class='button-group'>
-              <text>查看详情</text>
-            </view>
-          </view>
-          <view class='item'>
-            <view class='date'>12月30日</view>
-            <view class='content'>
-              <image src="https://s3.ax1x.com/2021/01/18/s6LVeO.jpg" class='image' mode='widthFix'></image>
-              本文以电商和医疗行业为例，看工作台和消息系统是如
-              何设计的，既能满足用户使用，又能节省开发成本...
+              <image src="{{ item.ContentImage }}" class='image' mode='widthFix'></image>
+              {{ item.Title }}
             </view>
             <view class='button-group'>
               <text>查看详情</text>
             </view>
           </view>
         </view>
+        <nomore wx:if="{{ lists[1].nomore }}"></nomore>
+        <loadButton wx:else loading="{{lists[1].loading}}" text="{{lists[1].buttontext}}"></loadButton>
       </view>
     </van-tab>
     <van-tab title="面试邀请" disabled></van-tab>

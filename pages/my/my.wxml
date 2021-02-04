@@ -52,24 +52,8 @@
       </view>
       <button open-type="share" class='contact-button'></button>
     </van-cell>
-    <van-cell border="{{ false }}" custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/main/main">
-      <view slot="title">
-        <view class="flex-box align-center">
-          <image class='icon' src='/assets/images/icon_uneye.png'></image>
-          <view class="van-cell-text f28">屏蔽公司</view>
-        </view>
-      </view>
-    </van-cell>
   </view>
-  <!-- <swiper class='my-swiper' indicator-dots indicator-active-color="#2351D3">
-    <swiper-item>
-      <image class='image' src='/assets/images/https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
-    </swiper-item>
-    <swiper-item>
-      <image class='image' src='/assets/images/https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
-    </swiper-item>
-    <swiper-item>
-      <image class='image' src='/assets/images/https://s3.ax1x.com/2021/01/19/s2S9Et.jpg'></image>
-    </swiper-item>
-  </swiper> -->
+  <view class="button-group" wx:if="{{mylogin}}">
+    <button class="button-block button" catch:tap="onLayout">退出登录</button>
+  </view>
 </view>

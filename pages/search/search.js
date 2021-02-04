@@ -7,6 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nearby: '',
+    initParams: null,
+    mylogin: false,
     recommentSearch: [],
     totalFilterCount: 0,
     city: null,
@@ -19,7 +22,7 @@ Page({
     searchKey: '',
     searchType: ['搜职位', '搜公司'],
     typeIndex: 0,
-    list: [{}, {}, {}, {}],
+    list: [],
     buttontext: '加载中..',
     loading: true,
     pageNum: 1,
@@ -71,16 +74,12 @@ Page({
       })
       return
     }
-    this.setData({
-      loading: true,
-      showLoadButton: true,
-    })
     let requestList = () => {}
     let temp = {
       pageindex: pageNum,
-      pagesize: 10,
+      pagesize: !this.data.mylogin ? 5 : 10,
       name: this.data.searchKey,
-      area: city[1].RegionName,
+      area: this.data.type == 'nearby' ? this.data.nearby : city[1].RegionName,
     }
     if (typeIndex == 0) {
       // 职位搜索
@@ -103,8 +102,11 @@ Page({
       })
     }
     this.setData({
+      loading: true,
+      showLoadButton: true,
       loadData: false,
       nomore: false,
+      buttontext: '加载中..',
     })
     requestList(temp)
       .then((res) => {
@@ -146,6 +148,11 @@ Page({
             nomore: true,
           })
         }
+      })
+      .catch(() => {
+        this.setData({
+          nomore: true,
+        })
       })
       .finally(() => {
         this.setData({
@@ -218,11 +225,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if (!app.globalData.currentLocation) {
-      this.setData({
-        city: app.globalData.staticArea,
-      })
-    }
     if (!app.globalData.recommentSearch) {
       requestRecommendSearch().then((res) => {
         console.log('推荐搜索', res)
@@ -237,8 +239,14 @@ Page({
       })
     }
     this.setData({
+      initParams: options,
+      mylogin: app.globalData.mylogin,
       searchKey: options.searchKey || '',
       type: options.type || '',
+      isLocation: !app.globalData.currentLocation ? false : true,
+      nearby: !app.globalData.currentLocation
+        ? ''
+        : app.globalData.currentLocation.district,
       city: !app.globalData.currentLocation
         ? app.globalData.staticArea
         : [
@@ -247,7 +255,27 @@ Page({
           ],
     })
   },
-
+  onOpenLocation() {
+    app.getLocation().then(() => {
+      app.mapInstance.reverseGeocoder({
+        success: (res) => {
+          app.globalData.currentLocation = res.result.ad_info
+          this.setData(
+            {
+              isLocation: true,
+              nearby: res.result.ad_info.district,
+            },
+            () => {
+              this.getSingleLists()
+            }
+          )
+        },
+        fail: (err) => {
+          console.error(err)
+        },
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -294,7 +322,9 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.data.pageNum != 0 && this.getSingleLists(this.data.pageNum + 1)
+    this.data.mylogin &&
+      this.data.pageNum != 0 &&
+      this.getSingleLists(this.data.pageNum + 1)
   },
 
   /**

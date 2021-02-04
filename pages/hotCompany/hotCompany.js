@@ -1,41 +1,48 @@
 const app = getApp()
-import { requestDetailById, requestListByFairId, postJobFair } from '../../../api/JobFair'
+import { requestCompanyList } from '../../api/company'
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    data: {},
-    safeArea: app.globalData.safeArea ? 'safeArea' : '',
-    active: 0,
+    list: [],
+    buttontext: '加载中..',
     loading: true,
     pageNum: 1,
     loadData: false,
     nomore: false,
-    list: [],
-    buttontext: '加载中',
+    sizeValue: [],
+    industryValue: [],
   },
-  onShare() {},
-  getDetail(id) {
-    requestDetailById(id).then((res) => {
-      console.log('详情', res)
-      this.setData({
-        data: res.data,
-      })
+  onNavTo(e) {
+    const { url } = e.currentTarget.dataset
+    wx.navigateTo({
+      url
     })
   },
-  getList: function (pageNum = 1) {
+  getSingleLists: function (pageNum = 1) {
+    const { industryValue, sizeValue, city } = this.data
     this.setData({
+      loadData: false,
+      nomore: false,
       loading: true,
+      showLoadButton: true,
     })
-    requestListByFairId({
+    requestCompanyList({
       pageindex: pageNum,
       pagesize: 10,
-      id: this.data.id,
+      area: city[1].RegionName,
+      staffsize: sizeValue.join(','),
+      industry: industryValue.join(','),
+      action: 'recommend',
     })
       .then((res) => {
+        console.log('搜索结果', res)
         if (res.data.ret == 'success') {
           var data = res.data.dataList
+          this.setData({
+            init: true,
+          })
           if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
             this.setData({
               nomore: true,
@@ -71,41 +78,45 @@ Page({
       })
       .catch(() => {
         this.setData({
-          list: [],
           nomore: true,
         })
       })
-  },
-  onNavTo(e) {
-    const { id } = e.currentTarget.dataset
-    wx.navigateTo({
-      url: `/pages/companyDetail/companyDetail?id=${id}`
-    })
-  },
-  onConfirm() {
-    wx.showLoading({
-      mask: true
-    })
-    postJobFair(this.data.id).then((res) => {
-      app.showToast(res.data.msg, () => {
-        wx.navigateBack()
+      .finally(() => {
+        this.setData({
+          loadData: true,
+          showLoadButton: false,
+        })
       })
+  },
+  onFilterTap() {
+    const { sizeValue, industryValue } = this.data
+    wx.navigateTo({
+      url: `/pages/filter/filter?type=company`,
+      success: function (res) {
+        res.eventChannel.emit('filterValue', {
+          sizeValue,
+          industryValue,
+        })
+      },
+    })
+  },
+  onAreaTap() {
+    wx.navigateTo({
+      url: `/pages/area/area`,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData(
-      {
-        id: options.id,
-        role: app.globalData.roleInfo
-      },
-      () => {
-        this.getList()
-      }
-    )
-    this.getDetail(options.id)
+    this.setData({
+      city: !app.globalData.currentLocation
+        ? app.globalData.staticArea
+        : [
+            { RegionName: app.globalData.currentLocation.province },
+            { RegionName: app.globalData.currentLocation.city },
+          ],
+    })
   },
 
   /**
@@ -116,7 +127,13 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    const { sizeValue, industryValue } = this.data
+    this.setData({
+      totalFilterCount: sizeValue.length + industryValue.length,
+    })
+    this.getSingleLists()
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -136,16 +153,10 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    this.data.pageNum != 0 && this.getList(this.data.pageNUm + 1)
-  },
+  onReachBottom: function () {},
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    return {
-      title: '2021年春季招聘会',
-    }
-  },
+  onShareAppMessage: function () {},
 })

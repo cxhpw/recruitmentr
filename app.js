@@ -37,10 +37,9 @@ App({
         })
         Promise.all([
           requestConfig('bzgzsj'), // 公司工作时长
-          requestConfig('gsfl'),   // 公司福利
-          requestConfig('zwlx'),   // 求职者类型，全职，实习，兼职
+          requestConfig('gsfl'), // 公司福利
+          requestConfig('zwlx'), // 求职者类型，全职，实习，兼职
         ]).then(([a, b, c]) => {
-          
           this.globalData.workTimeOptions = a.data.dataList
           this.globalData.welfareOptions = b.data.dataList
           this.globalData.jopTypeOptions = c.data.dataList
@@ -84,6 +83,9 @@ App({
     //     this.globalData.allCityList = res.
     //   }
     // })
+    wx.showLoading({
+      mask: true,
+    })
     this.getLocation()
       .then((res) => {
         this.globalData.location = res
@@ -105,6 +107,9 @@ App({
       .catch((err) => {
         this.globalData.filterArea = this.globalData.staticArea
         console.error(err)
+      })
+      .finally(() => {
+        wx.hideLoading()
       })
   },
   onShow: function () {
@@ -173,7 +178,7 @@ App({
     auth: false,
     isRef: false,
     location: null,
-    roleInfo: null,
+    roleInfo: {},
     userInfo: {},
     hrInfo: {},
     mylogin: false,
@@ -182,7 +187,7 @@ App({
     filterArea: [],
     staticArea: [
       { RegionName: '北京', RegionCode: '11' },
-      { RegionName: '北京市辖区', RegionCode: '110100000000' },
+      { RegionName: '北京市', RegionCode: '110100000000' },
     ],
     userType: 'user', // 'user'|'hr'
     selectPostion: [],
@@ -196,7 +201,7 @@ App({
     companySizeOptions: [],
     welfareOptions: [],
     workTimeOptions: [],
-    jopTypeOptions: []
+    jopTypeOptions: [],
   },
   api: {
     // host: 'http://daf10181.hk2.ue.net.cn',

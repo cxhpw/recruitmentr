@@ -69,15 +69,15 @@ Page({
       pageindex: 10,
       cid: this.data.id,
       salary:
-        [-1, 0].indexOf(this.data.salaryValue) >= 0
+        [-1].indexOf(this.data.salaryValue) >= 0
           ? '不限'
           : this.data.salaryOptions[this.data.salaryValue].text,
       experience:
-        [-1, 0].indexOf(this.data.experienceValue) >= 0
+        [-1].indexOf(this.data.experienceValue) >= 0
           ? '不限'
           : this.data.experienceOptions[this.data.experienceValue].text,
       name:
-        [-1, 0].indexOf(this.data.recommendValue) >= 0
+        [-1].indexOf(this.data.recommendValue) >= 0
           ? ''
           : this.data.recommendOptions[this.data.recommendValue].text,
     })
@@ -169,51 +169,51 @@ Page({
         isMore = true
       }
       let recommendOptions = [
-          {
-            text: '全部',
-            value: 0,
-          },
+          // {
+          //   text: '全部',
+          //   value: 0,
+          // },
         ],
         salaryOptions = [
-          {
-            text: '全部',
-            value: 0,
-          },
+          // {
+          //   text: '全部',
+          //   value: 0,
+          // },
         ],
         experienceOptions = [
-          {
-            text: '全部',
-            value: 0,
-          },
+          // {
+          //   text: '全部',
+          //   value: 0,
+          // },
         ]
       res.data.JobFilter.forEach((item, index) => {
         switch (item.KeyName) {
           case '推荐职位':
             recommendOptions = recommendOptions.concat(
-              item.KeyValue.map((cell, index) => {
+              item.KeyValue.map((cell, i) => {
                 return {
                   text: cell.Item,
-                  value: index + 1,
+                  value: i,
                 }
               })
             )
             break
           case '经验':
             experienceOptions = experienceOptions.concat(
-              item.KeyValue.map((cell, index) => {
+              item.KeyValue.map((cell, i) => {
                 return {
                   text: cell.Item,
-                  value: index + 1,
+                  value: i,
                 }
               })
             )
             break
           case '薪资':
             salaryOptions = salaryOptions.concat(
-              item.KeyValue.map((cell, index) => {
+              item.KeyValue.map((cell, i) => {
                 return {
                   text: cell.Item,
-                  value: index + 1,
+                  value: i,
                 }
               })
             )

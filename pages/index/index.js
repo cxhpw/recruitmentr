@@ -1,5 +1,6 @@
 import { togglerRole } from '../../api/user'
 import { requestJopsList } from '../../api/jobs'
+import { requestList } from '../../api/JobFair'
 // index.js
 // 获取应用实例
 const app = getApp()
@@ -15,6 +16,7 @@ Page({
     user: null,
     activeIndex: 0,
     jobExpectList: [],
+    jopFairList: [],
   },
   onTap(e) {
     const { index } = e.currentTarget.dataset
@@ -27,17 +29,38 @@ Page({
       }
     )
   },
+  getJopFairList() {
+    requestList({
+      pageindex: 1,
+      pageNum: 9999,
+    }).then((res) => {
+      console.log('招聘会banner', res)
+      this.setData({
+        jopFairList: res.data.dataList,
+      })
+    })
+  },
+  onJopFairTap(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/activity/detail/detail?id=${id}`,
+    })
+    // wx.navigateTo({
+    //   url: `/pages/activity/activity`,
+    // })
+  },
   // 事件处理函数
   getList: function (pageNum = 1) {
     this.setData({
       loading: true,
+      buttontext: '加载中',
     })
     console.log(this.data.jobExpectList)
     requestJopsList({
       pageindex: pageNum,
       pageindex: 10,
       jid: this.data.jobExpectList.length
-        ? this.data.jobExpectList[this.data.activeIndex].JobID
+        ? this.data.jobExpectList[this.data.activeIndex].AutoID
         : '',
     })
       .then((res) => {
@@ -70,9 +93,16 @@ Page({
             this.setData({
               nomore: true,
               loadData: false,
+              list: [],
             })
           }
         }
+      })
+      .catch(() => {
+        this.setData({
+          nomore: true,
+          list: [],
+        })
       })
       .finally(() => {
         wx.hideLoading()
@@ -90,6 +120,7 @@ Page({
     })
   },
   onLoad() {
+    this.getJopFairList()
     togglerRole(99).then((res) => {
       app.globalData.userType = 'user'
       app.globalData.roleInfo.Role = res.data.Role
@@ -109,7 +140,7 @@ Page({
       this.setData(
         {
           user: app.globalData.userInfo,
-          jobExpectList: app.globalData.userInfo.JobExpectList,
+          jobExpectList: app.globalData.userInfo.JobExpectList || [],
         },
         () => {
           this.getList()

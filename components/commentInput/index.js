@@ -58,7 +58,7 @@ Component({
    */
   methods: {
     onSend() {
-      console.log(this.data.value)
+      this.triggerEvent('send', this.data.value)
     },
     onChange(e) {
       this.setData({

@@ -1,6 +1,6 @@
 import { requestHRInfo } from '../../api/hr/company'
 import { togglerRole, auth, getRoleInfos } from '../../api/user'
-
+import { requestList } from '../../api/JobFair'
 const app = getApp()
 Component({
   properties: {
@@ -31,6 +31,7 @@ Component({
     },
   },
   data: {
+    jopFairList: [],
     code: 0,
     mylogin: app.globalData.mylogin,
     user: null,
@@ -47,6 +48,14 @@ Component({
   lifetimes: {
     attached: function () {
       console.log('我的,挂载')
+      requestList({
+        pageindex: 1,
+        pagesize: 99999,
+      }).then((res) => {
+        this.setData({
+          jopFairList: res.data.dataList,
+        })
+      })
       // wx.login({
       //   success: (e) => {
       //     this.setData({
@@ -67,13 +76,13 @@ Component({
   },
   pageLifetimes: {
     show: function () {
-      // requestHRInfo().then((res) => {
-      //   app.globalData.hrInfo = res.data
-      //   this.setData({
-      //     mylogin: true,
-      //     user: res.data,
-      //   })
-      // })
+      requestHRInfo().then((res) => {
+        app.globalData.hrInfo = res.data
+        this.setData({
+          mylogin: true,
+          user: res.data,
+        })
+      })
     },
     hide: function () {},
     resize: function () {},
@@ -131,9 +140,9 @@ Component({
       }
     },
     onAdClick(e) {
-      const { url } = e.currentTarget.dataset
+      const { id } = e.currentTarget.dataset
       wx.navigateTo({
-        url,
+        url: `/pages/activity/detail/detail?id=${id}`
       })
     },
     onToggler() {

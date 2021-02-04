@@ -18,7 +18,7 @@
               <wxParamComponent html="{{ data.Content }}"></wxParamComponent>
             </view>
           </view>
-          <view class='fixed-bottom'>
+          <view class='fixed-bottom' wx:if="{{ role.Role == 1 }}">
             <view class='action-wrapper'>
               <view class='action-icon'>
                 <icon custom-class="my-icon" name="/assets/images/icon-share.jpg" color='#333' size='15'></icon>
@@ -30,7 +30,9 @@
                 <view class="text">客服</view>
                 <button open-type='contact' style='opacity:0' class='contact-button'></button>
               </view>
-              <button wx:if="{{ data.Status == 0 }}" class="button button-normal" catch:tap="onConfirm">立即报名</button>
+              <button wx:if="{{ data.Status == 0 }}" class="button button-normal" catch:tap="onConfirm">
+                立即报名
+              </button>
               <button wx:else class="button button-normal">已报名</button>
             </view>
           </view>

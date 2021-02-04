@@ -30,8 +30,9 @@
         "checkSiteMap": true,
         "uploadWithSourceMap": true,
         "compileHotReLoad": false,
-        "useMultiFrameRuntime": false,
+        "useMultiFrameRuntime": true,
         "useApiHook": true,
+        "useApiHostProcess": false,
         "babelSetting": {
             "ignore": [],
             "disablePlugins": [],
@@ -42,6 +43,7 @@
         "useIsolateContext": true,
         "useCompilerModule": true,
         "userConfirmedUseCompilerModuleSwitch": false,
+        "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
         "packNpmRelationList": [],
         "minifyWXSS": true
@@ -300,7 +302,7 @@
                 {
                     "name": "pages/companyDetail/companyDetail",
                     "pathName": "pages/companyDetail/companyDetail",
-                    "query": "id=2",
+                    "query": "id=8",
                     "scene": null
                 },
                 {
@@ -397,6 +399,12 @@
                     "name": "pages/collect/collect",
                     "pathName": "pages/collect/collect",
                     "query": "id=8&formData={\"WorkPlace\":\"蓝坤大厦\",\"Longitude\":\"114.040458674\",\"Latitude\":\"22.613314349\",\"Address\":\"广东省深圳市龙华区民康路213号\"}",
+                    "scene": null
+                },
+                {
+                    "name": "pages/chatroom/chatroom",
+                    "pathName": "pages/chatroom/chatroom",
+                    "query": "id=4",
                     "scene": null
                 }
             ]

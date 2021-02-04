@@ -1,0 +1,79 @@
+.search-list .search-item {
+  display: flex;
+  padding: 30rpx;
+  position: relative; }
+  .search-list .search-item:after {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: calc(30rpx + 112rpx + 30rpx);
+    border-bottom: 1px solid #EBEBEB;
+    transform: scaleY(0.5); }
+  .search-list .search-item .image {
+    width: 112rpx;
+    height: 112rpx;
+    border-radius: 4px;
+    margin-right: 30rpx; }
+  .search-list .search-item .con {
+    flex: 1; }
+  .search-list .search-item .name {
+    font-size: 33rpx;
+    font-weight: 500;
+    margin-bottom: 20rpx; }
+  .search-list .search-item .info {
+    font-size: 22rpx;
+    color: #666;
+    margin-bottom: 30rpx; }
+  .search-list .search-item .summary {
+    font-size: 22rpx;
+    color: #666;
+    display: flex; }
+    .search-list .search-item .summary .label {
+      color: #0866ff;
+      margin: 0 5rpx; }
+    .search-list .search-item .summary icon {
+      margin-left: auto; }
+    .search-list .search-item .summary .my-icon {
+      margin-left: auto;
+      font-weight: 500; }
+
+.filter-wrapper {
+  overflow: hidden;
+  display: flex;
+  align-items: center; }
+  .filter-wrapper .fl .item {
+    background: #f5f5f5;
+    font-size: 25rpx;
+    color: #666666;
+    height: 50rpx;
+    padding: 0 16rpx;
+    display: inline-block;
+    margin-left: 14rpx;
+    line-height: 50rpx; }
+    .filter-wrapper .fl .item:after {
+      content: '';
+      display: inline-block;
+      border-width: 7rpx;
+      border-style: solid;
+      border-color: transparent #c7c7c7 #c7c7c7 transparent;
+      margin-left: 5rpx;
+      margin-top: 10rpx; }
+
+.top-section {
+  padding: 10px 30rpx 10px;
+  border-bottom: 1px solid #EBEBEB;
+  background: #fff; }
+
+page {
+  background: #fff; }
+
+.nomore {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  padding: 20vh 0; }

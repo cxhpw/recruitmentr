@@ -17,7 +17,7 @@
     </view>
   </view>
   <view class='content-section'>
-    <van-tabs sticky tab-active-class="my-tab-active"  animated active="{{ active }}" bind:change="onChange" border="{{ false }}" line-width="15" color="#2351D3" custom-class="my-tabs" title-active-color="#333" title-inactive-color="#666">
+    <van-tabs sticky tab-active-class="my-tab-active" active="{{ active }}" bind:change="onChange" border="{{ false }}" line-width="15" color="#2351D3" custom-class="my-tabs" title-active-color="#333" title-inactive-color="#666">
       <van-tab title="公司介绍">
         <view class='intro-section'>
           <view class="">

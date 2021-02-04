@@ -2,37 +2,42 @@
   <van-tabs sticky active="{{ active }}" bind:change="onChange" line-width="{{ 15 }}" color="#0866FF">
     <van-tab wx:for="{{ tabs }}" title="{{item.title}}">
       <view class='prey-list'>
-        <view class='item' wx:for="{{lists[index].data}}" wx:key="{{cell.AutoID}}" wx:for-item="cell" catch:tap="onNavTo" data-uid="{{ item.UserID }}" data-cid="{{ item.AutoID }}">
-          <view class='flex-box align-center'>
-            <view class='image-wrapper'>
-              <image src='{{ cell.HeaderPhoto }}' class='avatar'></image>
-              <image src='{{ cell.Gender == "男" ? "/assets/images/boy.png" : "/assets/images/girl.png" }}' class='sex'></image>
-            </view>
-            <view class='flex-item'>
-              <view class='flex-box align-center mb20'>
-                <view class='name'>{{cell.Name }}</view>
-                <view class='f24 c666'>
-                  <text>{{cell.Experience }}</text>
-                  <text>|</text>
-                  <text>{{ cell.Educat }}</text>
-                  <text>|</text>
-                  <text>{{ cell.Salary }}</text>
+        <van-swipe-cell right-width="{{ 65 }}" async-close bind:close="onClose" wx:for="{{lists[index].data}}" wx:key="collect" wx:for-item="cell" id="{{ cell.UserID }}">
+          <view slot="right" class="del-btn">删除</view>
+          <view class='item' catch:tap="onNavTo" data-id="{{ cell.UserID }}">
+            <view class='flex-box align-center'>
+              <view class='image-wrapper'>
+                <image src='{{ cell.HeaderPhoto }}' class='avatar'></image>
+                <image src='{{ cell.Gender == "男" ? "/assets/images/boy.png" : "/assets/images/girl.png" }}' class='sex'></image>
+              </view>
+              <view class='flex-item'>
+                <view class='flex-box align-center mb20'>
+                  <view class='name'>{{cell.Name }}</view>
+                  <view class='f24 c666'>
+                    <text>{{cell.Experience }}</text>
+                    <text class="dot">|</text>
+                    <text>{{ cell.Educat }}</text>
+                    <text class="dot">|</text>
+                    <text>{{ cell.Salary }}</text>
+                  </view>
+                </view>
+                <view class='target flex-box align-center'>
+                  <view wx:for="{{ item.JobList }}" wx:for-item="jop">
+                    <text>{{jop.JobName}}</text>
+                    <text class='dot' wx:if="{{ index <  item.JobList.length - 1}}">·</text>
+                  </view>
                 </view>
               </view>
-              <view class='target flex-box align-center'>
-                <view wx:for="{{ item.JobList }}" wx:for-item="jop">
-                  <text>{{jop.JobName}}</text>
-                  <text class='dot' wx:if="{{ index <  item.JobList.length - 1}}">·</text>
-                </view>
-              </view>
+            </view>
+            <view class='summary'>
+              <wxParseComponent html="{{ cell.Advantage }}"></wxParseComponent>
+            </view>
+            <view class='date'>
+              {{ cell.AutoTimeStamp }}
+              <view class='fr'>{{ cell.Status }}</view>
             </view>
           </view>
-          <view class='summary'>{{ cell.Advantage }}</view>
-          <view class='date'>
-            {{ cell.AutoTimeStamp }}
-            <view class='fr'>{{ cell.Status }}</view>
-          </view>
-        </view>
+        </van-swipe-cell>
       </view>
       <nomore wx:if="{{lists[index].nomore}}" />
       <loadButton wx:if="{{!lists[index].nomore}}" loading="{{lists[index].loading}}" text="{{lists[index].buttontext}}" />

@@ -13,7 +13,7 @@
           </view>
         </view>
       </view>
-      <view class="filter-wrapper" wx:if="{{ searchKey.length }}">
+      <view class="filter-wrapper" wx:if="{{ searchKey.length || type != '' }}">
         <view class='fl'>
           <view catch:tap="onTypeTap" data-index="{{ index }}" class="item {{  typeIndex=== index ? 'active' : ''}}" wx:key="searchType" wx:for="{{ searchType }}">
             {{ item }}
@@ -30,18 +30,17 @@
       </view>
     </view>
   </van-sticky>
-  <view class='content'>
-    <!-- 历史记录 -->
-    <view class="search-quick-wrapper" wx:if="{{ !searchKey.length }}">
-      <view class="section">
-        <view class="title">推荐搜索</view>
-        <view class="list">
-          <view class="cell" wx:for="{{recommentSearch}}" catch:tap="onSelect" data-key="{{ item.SearchKey }}">{{ item.SearchKey }}</view>
-        </view>
-      </view>
+  <!-- 附近工作 -->
+  <nomore custom-class="my-nomore" title="" use-slot-title wx:if="{{ !isLocation && type == 'nearby' }}" src="../../components/nomore/2eb7ddd41d49a3a4ea0120508ca62621_02.png">
+    <view slot='title' class="summary">
+      <view>需获取您的位置信息</view>
+      <view>才能为您展示附近的工作</view>
     </view>
-    <!-- 历史记录 -->
-    <view class="search-result-wrapper" wx:else>
+    <button class="button button-normal  button-location" catch:tap="onOpenLocation">马上开启</button>
+  </nomore>
+  <!-- 附近工作 -->
+  <view class='content' wx:else>
+    <view class="search-result-wrapper" wx:if="{{ searchKey.length ||  (type == 'fieldwork' && list.length > 0) || (type == 'nearby' && list.length > 0)}}">
       <view class='search-list'>
         <!-- 企业 -->
         <block wx:if="{{ typeIndex == 1 }}">
@@ -97,16 +96,28 @@
           </view>
         </block>
       </view>
-      <loadButton wx:if="{{ showLoadButton }}" loading text="搜索中"></loadButton>
+      <loadButton wx:if="{{ !nomore }}" loading="{{ loading }}" text="{{ buttontext }}"></loadButton>
       <view class="nomore" wx:if="{{ nomore }}">
         没有匹配的{{typeIndex == 0 ? "职位" : "公司"}}，修改搜索条件再试试
       </view>
-      <view class='more' wx:if="{{ list.length > 5 }}">
+      <view class='more' wx:if="{{ list.length >= 5 && !mylogin }}">
         <Button class='button button-block'>
           查看更多职位
           <icon name='arrow' size='15' color='#0866FF'></icon>
         </Button>
       </view>
     </view>
+    <!-- 历史记录 -->
+    <view class="search-quick-wrapper" wx:else>
+      <view class="section">
+        <view class="title">推荐搜索</view>
+        <view class="list">
+          <view class="cell" wx:for="{{recommentSearch}}" catch:tap="onSelect" data-key="{{ item.SearchKey }}">
+            {{ item.SearchKey }}
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 历史记录 -->
   </view>
 </view>

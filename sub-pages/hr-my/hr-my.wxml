@@ -79,8 +79,8 @@
     <button wx:if="{{!mylogin}}" class='contact-button' open-type='getPhoneNumber' bindgetphonenumber="onPhone"></button>
   </view>
   <swiper class='my-swiper' indicator-dots indicator-active-color="#2351D3">
-    <swiper-item wx:for="{{ad}}">
-      <image class='image' src='{{ item.image }}' catch:tap="onAdClick" data-url="{{ item.url }}"></image>
+    <swiper-item wx:for="{{jopFairList}}">
+      <image class='image' src='{{ item.ContentImage }}' catch:tap="onAdClick" data-id="{{ item.AutoID }}"></image>
       <button wx:if="{{!mylogin}}" class='contact-button' open-type='getPhoneNumber' bindgetphonenumber="onPhone"></button>
     </swiper-item>
   </swiper>

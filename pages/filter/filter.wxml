@@ -52,7 +52,7 @@
       <view class='title'>求职意向</view>
       <view class='content'>
         <view class='list'>
-          <van-checkbox-group custom-class='checkbox-group' value="{{ types }}" bind:change="onTypesChange">
+          <van-checkbox-group custom-class='checkbox-group' value="{{ typesValue }}" bind:change="onTypesChange">
             <View class="item {{ typesValue.length === 0 ? 'active' : '' }}" style="margin-right: 27.5rpx" catch:tap="onCancel" data-target='typesValue'>
               不限
             </View>

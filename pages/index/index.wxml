@@ -10,14 +10,8 @@
   </view>
   <view class='swiper-section'>
     <swiper class='swiper' indicator-dots indicator-active-color="#0866FF" indicator-color="rgba(0, 0, 0, .3)" circular="{{true}}">
-      <swiper-item>
-        <image class='image' src='https://s3.ax1x.com/2021/01/21/shP1fA.jpg'></image>
-      </swiper-item>
-      <swiper-item>
-        <image class='image' src='https://s3.ax1x.com/2021/01/21/shP1fA.jpg'></image>
-      </swiper-item>
-      <swiper-item>
-        <image class='image' src='https://s3.ax1x.com/2021/01/21/shP1fA.jpg'></image>
+      <swiper-item wx:for="{{  jopFairList }}">
+        <image class='image' src='{{ item.ContentImage }}' data-id="{{ item.AutoID }}" catch:tap="onJopFairTap"></image>
       </swiper-item>
     </swiper>
   </view>
@@ -31,11 +25,11 @@
         <image src="/assets/images/index_2.png" class='image'></image>
         <view class='text'>找实习</view>
       </view>
-      <view class='flex-item' catch:tap="onNavTo" data-url="/pages/search/search?type=pluralism">
+      <view class='flex-item' catch:tap="onNavTo" data-url="/pages/search/search?type=pluralism&searchKey=兼职">
         <image src="/assets/images/index_3.png" class='image'></image>
         <view class='text'>找兼职</view>
       </view>
-      <view class='flex-item'>
+      <view class='flex-item' catch:tap="onNavTo" data-url="/pages/hotCompany/hotCompany">
         <image src="/assets/images/index_4.png" class='image'></image>
         <view class='text'>热门公司</view>
       </view>
@@ -49,7 +43,7 @@
     <van-sticky>
       <view class='edit-section'>
         <view class='type-tabs'>
-          <view class='item {{ activeIndex == index ? "active" : "" }}' catch:tap="onTap" data-index="{{ index }}" wx:for="{{ jobExpectList }}" data-id="{{ item.JobID }}">
+          <view class='item {{ activeIndex == index ? "active" : "" }}' catch:tap="onTap" data-index="{{ index }}" wx:for="{{ jobExpectList }}" data-id="{{ item.TypeID }}">
             {{ item.Job }}
           </view>
         </view>

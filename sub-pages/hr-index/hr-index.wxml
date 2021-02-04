@@ -12,8 +12,8 @@
         </view>
         <view class='fr'>
           <view class="filter-wrapper">
-            <view class='filter-item' catch:tap="onAreaTap">{{filterArea[1].RegionName}}</view>
-            <view class='filter-item' catch:tap="onNavTo" data-url="/pages/filter/filter">
+            <view class='filter-item' catch:tap="onAreaTap">{{city[1].RegionName}}</view>
+            <view class='filter-item' catch:tap="onNavToFilter">
               {{!filterData ? '筛选' : filterText }}
             </view>
           </view>
@@ -48,7 +48,9 @@
           <text class='dot'>·</text>
           <text>{{item.Specialty}}</text>
         </view>
-        <view class='summary'>{{ item.Advantage}}</view>
+        <view class='summary'>
+          <wxParseComponent custom-class="my-parse" html="{{ item.Advantage }}"></wxParseComponent>
+        </view>
       </view>
       <nomore wx:if="{{nomore}}"></nomore>
       <loadButton wx:else text="{{buttontext}}" loading="{{loading}}"></loadButton>

@@ -1,5 +1,5 @@
-@import "../../scss/minxi/minxi.scss";
-@import "../../scss/variable/variable.scss";
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
 page {
   background: #fff;
 }
@@ -89,5 +89,15 @@ page {
   .image {
     width: 100%;
     height: 100%;
+  }
+}
+
+.button-group {
+  margin-top: 150rpx;
+  padding: 0 40rpx;
+  box-sizing: border-box;
+  .button {
+    background: #e4e4e4;
+    color: #999999;
   }
 }

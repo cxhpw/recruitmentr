@@ -1,0 +1,37 @@
+<view class="page">
+  <van-sticky>
+    <view class='top-section'>
+      <view class="filter-wrapper">
+        <view class='fl'>
+          <view class='item' catch:tap='onAreaTap'>{{ city[1].RegionName }}</view>
+          <view class='item' catch:tap='onFilterTap'>
+            <text>筛选</text>
+            <text class="dot" wx:if="{{totalFilterCount > 0}}">·</text>
+            <text wx:if="{{ totalFilterCount > 0 }}">{{totalFilterCount}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </van-sticky>
+  <view class="search-list">
+    <view class='search-item' wx:for="{{ list }}" catch:tap="onNavTo" data-url="/pages/companyDetail/companyDetail?id={{ item.AutoID }}">
+      <image class='image' mode='aspectFill' src="{{ item.Logo }}"></image>
+      <view class='con'>
+        <view class='name'>{{ item.Name }}</view>
+        <view class='info'>
+          <text>{{ item.StaffSize }}</text>
+          <text class="dot">|</text>
+          <text>{{ item.Industry }}</text>
+        </view>
+        <view class='summary'>
+          热招
+          <text class='label'>{{ item.CJName }}</text>
+          等{{ item.JobCount }}个职位
+          <icon custom-class="my-icon" name='arrow' size='15' color='#BFBFBF'></icon>
+        </view>
+      </view>
+    </view>
+  </view>
+  <loadButton wx:if="{{ !nomore }}" loading="{{ loading }}" text="{{ buttontext }}"></loadButton>
+  <view class="nomore" wx:if="{{ nomore }}">没有匹配的公司，修改搜索条件再试试</view>
+</view>

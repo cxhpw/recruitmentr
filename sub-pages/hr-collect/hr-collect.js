@@ -15,18 +15,36 @@ Page({
     lists: [],
     active: 0,
   },
-  onNavTo(e) {
-    const { cid, uid } = e.currentTarget.dataset
-    wx.navigateTo({
-      url: `/pages/resume/resume?id=${uid}`,
-    })
+  onClose(event) {
+    console.log(event)
+    const { id } = event.currentTarget
+    const { position, instance } = event.detail
+    switch (position) {
+      case 'left':
+      case 'cell':
+        instance.close()
+        break
+      case 'right':
+        app.showModal({
+          content: '确定删除吗？',
+          success: (res) => {
+            if (res.confirm) {
+              postCollect(id).then((res) => {
+                app.showToast(res.data.msg)
+                instance.close()
+                this.getLists()
+              })
+            }
+          },
+        })
+        break
+    }
   },
-  onCollect(e) {
+  onNavTo(e) {
+    console.log(e)
     const { id } = e.currentTarget.dataset
-    postCollect(id).then((res) => {
-      app.showToast(res.data.msg, () => {
-        this.getLists()
-      })
+    wx.navigateTo({
+      url: `/pages/resume/resume?id=${id}`,
     })
   },
   onChange(e) {

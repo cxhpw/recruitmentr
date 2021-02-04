@@ -3,3 +3,12 @@ page {
 
 .target {
   font-size: 27rpx; }
+
+.del-btn {
+  width: 65px;
+  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #fff; }

@@ -113,5 +113,5 @@
       </view> -->
     </view>
   </view>
-  <comment-input id="comment" show bind:close="onClose" bind:success="onSuccess" aid="{{0}}" fid="{{ 0 }}" use-slot-button></comment-input>
+  <comment-input id="comment" show bind:close="onClose" bind:send="onSend" aid="{{0}}" fid="{{ 0 }}" use-slot-button></comment-input>
 </view>

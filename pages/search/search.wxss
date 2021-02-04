@@ -198,3 +198,20 @@ page {
   color: #999;
   text-align: center;
   padding: 20vh 0; }
+
+.my-nomore .summary {
+  color: #c1c1c1;
+  font-size: 25rpx;
+  line-height: 200%;
+  text-align: center; }
+
+.my-nomore .button-location {
+  border-radius: 70rpx;
+  height: 70rpx;
+  font-size: 28rpx;
+  width: 210rpx;
+  padding: 0;
+  margin-top: 50rpx; }
+
+.content {
+  flex: 1; }

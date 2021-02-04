@@ -12,6 +12,10 @@ Page({
     scrollHandle: [0, 0, 0, 0],
     canClick: true,
     loadData: false,
+    educationValue: [],
+    experienceValue: [],
+    salaryValue: [],
+    typesValue: [],
   },
   onPageScroll: function (e) {
     var _self = this

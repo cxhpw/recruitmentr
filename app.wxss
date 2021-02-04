@@ -81,7 +81,8 @@ page {
 
 .page {
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  min-height: 100vh; }
 
 .clearfix:after,
 .clearfix::before {
@@ -115,7 +116,7 @@ button:after {
   z-index: 100; }
 
 .button {
-  font-size: 30rpx;
+  font-size: 28rpx;
   border-radius: 4px;
   height: 80rpx;
   display: inline-flex;
@@ -126,7 +127,7 @@ button:after {
   border: 1px solid transparent;
   font-weight: 500;
   white-space: nowrap;
-  width: initial !important;
+  width: auto;
   background-color: #fff;
   box-sizing: border-box; }
 

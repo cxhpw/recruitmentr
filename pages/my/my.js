@@ -29,6 +29,7 @@ Page({
           if (res.data.ret == 'success') {
             wx.setStorageSync('LogiSessionKey', res.data.rdsession)
             app.globalData.auth = true
+            console.log('getRoleInfos', getRoleInfos)
             getRoleInfos().then((res) => {
               console.log('授权信息', res)
               app.globalData.roleInfo = res
@@ -68,6 +69,20 @@ Page({
         url: '/sub-pages/main/main',
       })
     })
+  },
+  onLayout() {
+    wx.clearStorageSync()
+    this.setData({
+      mylogin: false,
+    })
+    wx.login({
+      success: (e) => {
+        this.setData({
+          code: e.code,
+        })
+      },
+    })
+    app.onLaunch()
   },
   /**
    * 生命周期函数--监听页面加载

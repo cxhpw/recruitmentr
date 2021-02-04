@@ -27,7 +27,8 @@
     "pages/editor/editor",
     "pages/userResume/project/project",
     "pages/hopeJopPage/hopeJopPage",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/hotCompany/hotCompany"
   ],
   "window": {
     "backgroundTextStyle": "light",

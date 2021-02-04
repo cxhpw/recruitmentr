@@ -1,8 +1,9 @@
-<!--components/nomore/nomore.wxml-->
-    <view class="box">
-      
-      <view class="ullogin">
-        <image class="image" src="./2eb7ddd41d49a3a4ea0120508ca62621_03.png" style="margin-bottom:40rpx"></image>
-        <text class="ts_mess c999">{{title}}</text>
-      </view>
-    </view>
+<!-- components/nomore/nomore.wxml -->
+<view class="box custom-class">
+  <view class="ullogin">
+    <image class="image" src="{{src}}" style="margin-bottom:40rpx"></image>
+    <text class="ts_mess c999" wx:if="{{ title.length }}">{{title}}</text>
+    <slot name="title" wx:if="{{useSlotTitle}}"></slot>
+    <slot></slot>
+  </view>
+</view>
