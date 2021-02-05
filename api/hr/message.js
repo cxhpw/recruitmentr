@@ -26,7 +26,7 @@ export function requestLetterDetailById(id) {
     url: '/include/getdata',
     data: {
       apiname: 'getsitemessagedetial',
-      id
+      id,
     },
   })
 }

@@ -19,14 +19,14 @@ export function requestList(params) {
 
 /**
  * 获取招聘会详情
- * @param {Number} id
+ * @param {{id: Number,userid:Number}} params
  */
-export function requestDetailById(id) {
+export function requestDetailById(params) {
   return request({
     url: '/include/getdata',
     data: {
       apiname: 'getjobfairdetial',
-      id: id,
+      ...params,
     },
   })
 }
@@ -51,19 +51,15 @@ export function requestListByFairId(params) {
 
 /**
  * 招聘会报名
- * @param {Number} id 
+ * @param {Number} id
  */
 export function postJobFair(id) {
   return request({
     url: '/include/getdata',
-    method: "post",
+    method: 'post',
     data: {
       apiname: 'jobfairapply',
-      id
+      id,
     },
   })
 }
-
-
-
-

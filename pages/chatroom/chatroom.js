@@ -3,45 +3,92 @@ import { requestMessageDetailById } from '../../api/message'
 import { postResumeToHr } from '../../api/user/resume'
 const io = require('../../utils/weapp.socket.io')
 // socket 连接地址
-var socketUrl = 'ws://192.168.1.18:9999'
+var socketUrl = app.globalData.roleInfo.IP
+// var socketUrl = 'http://192.168.1.111:86'
 // socket 状态更新
 var socketMessage = ''
 // 上下文对象
 var that
 var socketMsgQueue = []
 var socketOpen = false
+var isRef = true
 Page({
   /**
    * 页面的初始数据
    */
   data: {
+    state: 'leave',
+    receiveID: 0,
     role: null,
     id: -1,
-    message: [],
+    message: [
+      {
+        type: 'my',
+        avatar: app.globalData.user,
+      },
+    ],
     card: [],
     init: false,
     time: '',
   },
-  sendSocketMessage(msg) {
-    console.log(socketOpen)
-    if (socketOpen) {
-      const message = {
-        Command: 'chat',
-        Content: msg,
-        RecvID: this.data.card.RID,
+  sendSocketMessage(value) {
+    return new Promise((resolve, reject) => {
+      const { user } = this.data
+      if (socketOpen) {
+        const message = {
+          Command: 'chat',
+          Content: value,
+          RecvID: this.data.card.RID || this.data.card.JSID,
+          SendID: app.globalData.roleInfo.AutoID,
+          HeaderPhoto: user.HeaderPhoto,
+        }
+        this.socketInstance.send({
+          data: JSON.stringify(message),
+          success: function (res) {
+            console.log('发送成功', res)
+            const { list, user, role, status } = that.data
+            list.push({
+              type: role.Role,
+              name: user.Name,
+              content: value,
+              avatar: user.HeaderPhoto,
+              status: 0,
+            })
+            that.setData({
+              list,
+            })
+            resolve()
+          },
+          fail: function (err) {
+            console.log('发送失败', err)
+            reject()
+          },
+        })
+      } else {
+        this.connectSocket().then(() => {
+          this.sendSocketMessage(value)
+        })
       }
-      wx.sendSocketMessage({
-        data: JSON.stringify(message),
-        success: function (res) {
-          console.log('发送成功', res)
-        },
-        fail: function (err) {
-          console.error('发送失败', err)
-        },
-      })
-    } else {
-      socketMsgQueue.push(msg)
-    }
+    })
+  },
+  connectSocket() {
+    this.socketInstance = wx.connectSocket({
+      url:
+        socketUrl +
+        `/${app.globalData.roleInfo.AutoID}/${this.data.receiveID}/${this.data.id}`,
+      header: {
+        'content-type': 'application/json',
+      },
+      method: 'post',
+      success: (res) => {
+        console.log('WebSocket创建成功', res)
+      },
+      fail: (err) => {
+        console.log('WebSocket创建失败', err)
+      },
+    })
+    this.initSocket()
+    return Promise.resolve()
   },
   onSubmitResume() {
     if (this.data.card.IsSendResume == 'True') {
@@ -66,6 +113,17 @@ Page({
       phoneNumber: this.data.card.Phone,
     })
   },
+  bottom() {
+    return new Promise((resolve, reject) => {
+      wx.pageScrollTo({
+        scrollTop: 100000,
+        duration: 0,
+        success: () => {
+          resolve()
+        },
+      })
+    })
+  },
   getList: function (pageNum = 1) {
     this.setData({
       loading: true,
@@ -79,9 +137,27 @@ Page({
         console.log('聊天室信息', res)
         if (res.data.ret == 'success') {
           var data = res.data.dataList
+          data.reverse()
+          data = data.map((item) => {
+            return {
+              name: item.Name,
+              type: item.UserType,
+              content: item.Content,
+              avatar: item.HeaderPhoto,
+              status: item.Status,
+              timeStamp: item.SendTime,
+            }
+          })
           if (pageNum == 1) {
             this.setData({
               card: res.data.data,
+              receiveID: res.data.data.RID || res.data.data.JSID,
+            })
+            wx.setNavigationBarTitle({
+              title:
+                app.globalData.roleInfo.Role == 99
+                  ? res.data.data.CName
+                  : res.data.data.JSName,
             })
           }
           if (res.data.TotalCount - 10 * (pageNum - 1) <= 10) {
@@ -124,6 +200,9 @@ Page({
         })
       })
       .finally(() => {
+        setTimeout(() => {
+          this.bottom()
+        }, 10)
         this.setData({
           init: true,
         })
@@ -132,38 +211,26 @@ Page({
   onClose() {},
   onSend(e) {
     const value = e.detail
-    // this.sendSocketMessage(value)
-    const message = {
-      Command: 'chat',
-      Content: value,
-      RecvID: this.data.card.RID,
+    console.log(value)
+    if (!value) {
+      return
     }
-    this.socketInstance.send({
-      data: JSON.stringify(message),
-      success: (res) => {
-        console.log(res)
-      },
-      fail: (err) => {
-        console.error(err)
-      }
+    this.sendSocketMessage(value).then(() => {
+      this.selectComponent('#comment').setData({
+        value: '',
+      })
+      this.bottom()
     })
-    // this.socketInstance.send({
-    //   data: '123456798',
-    //   success: (res) => {
-    //     console.log(res)
-    //   },
-    //   fail: (error) => {
-    //     console.error(error)
-    //   },
-    // })
-
-    // this.socketSendMessage('message')
   },
   socketStart: function () {
     // 设置socket连接地址 socketUrl
-    const socket = (this.socket = io(socketUrl))
+    const socket = (this.socket = io(socketUrl, {
+      path: `/${app.globalData.roleInfo.AutoID}`,
+      query: '',
+    }))
 
     socket.on('connect', () => {
+      console.log('SOCKET连接成功')
       this.setData({
         socketMessage: (socketMessage += 'SOCKET连接成功 → \n\n'),
       })
@@ -175,48 +242,56 @@ Page({
     })
 
     socket.on('connect_error', (d) => {
+      console.log('SOCKET连接失败')
       this.setData({
         socketMessage: (socketMessage += 'SOCKET连接失败 → \n\n'),
       })
     })
 
     socket.on('connect_timeout', (d) => {
+      console.log('SOCKET连接超时')
       this.setData({
         socketMessage: (socketMessage += 'SOCKET连接超时 → \n\n'),
       })
     })
 
     socket.on('disconnect', (reason) => {
+      console.log('SOCKET连接断开')
       this.setData({
         socketMessage: (socketMessage += 'SOCKET连接断开 → \n\n'),
       })
     })
 
     socket.on('reconnect', (attemptNumber) => {
+      console.log('SOCKET正在重连')
       this.setData({
         socketMessage: (socketMessage += 'SOCKET正在重连 → \n\n'),
       })
     })
 
     socket.on('reconnect_failed', () => {
+      console.log('SOCKET重连失败')
       this.setData({
         socketMessage: (socketMessage += 'SOCKET重连失败 → \n\n'),
       })
     })
 
     socket.on('reconnect_attempt', () => {
+      console.log('SOCKET正在重连')
       this.setData({
         socketMessage: (socketMessage += 'SOCKET正在重连 → \n\n'),
       })
     })
 
     socket.on('error', (err) => {
+      console.log('SOCKET连接错误')
       this.setData({
         socketMessage: (socketMessage += 'SOCKET连接错误 → \n\n'),
       })
     })
 
     socket.on('message', function (d) {
+      console.log('服务器返回数据')
       this.setData({
         socketMessage: (socketMessage += '服务器返回数据 → \n\n'),
       })
@@ -256,55 +331,75 @@ Page({
     })
     this.socketStop()
   },
+  initSocket() {
+    wx.onSocketOpen((header) => {
+      console.log('socket成功', header)
+      socketOpen = true
+    })
+    this.socketInstance.onOpen(() => {})
+    this.socketInstance.onMessage((res) => {
+      const data = JSON.parse(res.data)
+      console.log('接受到新的消息', data)
+      const { list, role, status } = this.data
+      if (data.Command == 'chat') {
+        list.push({
+          type: role.Role == 1 ? 99 : 1,
+          name: '',
+          content: data.Msg.Content,
+          avatar: data.Msg.HeaderPhoto,
+          status: status == 'leave' ? 1 : 99,
+        })
+        this.setData(
+          {
+            list,
+          },
+          () => {
+            this.bottom()
+          }
+        )
+      } else {
+        this.setData({
+          status: data.Command,
+        })
+      }
+    })
+    this.socketInstance.onError((err) => {
+      console.log('socket连接失败', err)
+    })
+    this.socketInstance.onClose(() => {
+      console.log('socket链接关闭')
+      // if (isRef) {
+      //   this.connectSocket()
+      // }
+      socketOpen = false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const that = this
+    that = this
     app.getRoleInfos().then((res) => {
       this.setData({
         role: res.data,
       })
     })
+    socketUrl =
+      'wss://' + app.globalData.roleInfo.IP + `:${app.globalData.roleInfo.Port}`
     this.setData(
       {
         id: options.id,
+        receiveID: options.receiveID,
         time: options.time,
+        user:
+          app.globalData.roleInfo.Role == 99
+            ? app.globalData.userInfo
+            : app.globalData.hrInfo,
       },
       () => {
-        this.getList()
+        this.connectSocket()
       }
     )
-
-    this.socketInstance = wx.connectSocket({
-      url: 'ws://192.168.1.18:9999/12',
-      // header: {
-      //   'content-type': 'application/json',
-      // },
-      success: (res) => {
-        console.log('WebSocket连接创建', res)
-      },
-      fail: () => {},
-    })
-    wx.onSocketOpen(function (header) {
-      console.log('onSocketOpen', header)
-      socketOpen = true
-      // const message = {
-      //   Command: 'chat',
-      //   Content: '我发送的消息',
-      //   RecvID: that.data.card.RID,
-      // }
-      // wx.sendSocketMessage({
-      //   data: JSON.stringify(message),
-      // })
-    })
-    wx.onSocketMessage(function (res) {
-      console.log('小程序接受消息', res)
-    })
-    wx.onSocketClose(function (res) {
-      console.log('socket关闭', res)
-    })
-    // that = this
     // this.socketStart()
   },
 
@@ -316,7 +411,10 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    // this.connectSocket()
+    this.getList()
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -326,7 +424,13 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {},
+  onUnload: function () {
+    isRef = false
+    this.socketInstance.close({
+      code: 1000,
+      success: () => {},
+    })
+  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

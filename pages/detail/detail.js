@@ -121,7 +121,7 @@ Page({
             app.globalData.auth = true
             getRoleInfos().then((res) => {
               console.log('授权信息', res)
-              app.globalData.roleInfo = res
+              app.globalData.roleInfo = res.data
               this.getUser()
                 .then(() => {
                   this.getDetail(this.data.id)

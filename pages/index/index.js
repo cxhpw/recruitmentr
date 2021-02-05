@@ -33,6 +33,9 @@ Page({
     requestList({
       pageindex: 1,
       pageNum: 9999,
+      userid: Object.keys(app.globalData.userInfo).length
+        ? app.globalData.userInfo.AutoID
+        : 0,
     }).then((res) => {
       console.log('招聘会banner', res)
       this.setData({
@@ -120,22 +123,10 @@ Page({
     })
   },
   onLoad() {
-    this.getJopFairList()
     togglerRole(99).then((res) => {
       app.globalData.userType = 'user'
       app.globalData.roleInfo.Role = res.data.Role
     })
-  },
-  onShow() {
-    this.setData(
-      {
-        user: app.globalData.userInfo,
-        jobExpectList: app.globalData.userInfo.JobExpectList || [],
-      },
-      () => {
-        this.getList()
-      }
-    )
     app.mylogin = () => {
       this.setData(
         {
@@ -147,6 +138,30 @@ Page({
         }
       )
     }
+  },
+  onShow() {
+    if (!this.data.jopFairList.length) {
+      this.getJopFairList()
+    }
+    this.getJopFairList()
+    this.setData(
+      {
+        user: app.globalData.userInfo,
+        jobExpectList: app.globalData.userInfo.JobExpectList || [],
+      },
+      () => {
+        this.getList()
+      }
+    )
+    // this.setData(
+    //   {
+    //     user: app.globalData.userInfo,
+    //     jobExpectList: app.globalData.userInfo.JobExpectList || [],
+    //   },
+    //   () => {
+    //     this.getList()
+    //   }
+    // )
   },
   onReachBottom() {
     this.data.pageNum != 0 && this.getList(this.data.pageNum + 1)

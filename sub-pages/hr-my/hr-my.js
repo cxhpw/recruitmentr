@@ -142,7 +142,7 @@ Component({
     onAdClick(e) {
       const { id } = e.currentTarget.dataset
       wx.navigateTo({
-        url: `/pages/activity/detail/detail?id=${id}`
+        url: `/pages/activity/detail/detail?id=${id}`,
       })
     },
     onToggler() {
@@ -150,7 +150,7 @@ Component({
         app.globalData.userType = 'user'
         app.globalData.roleInfo.Role = res.data.Role
         wx.switchTab({
-          url: '/pages/my/my',
+          url: '/pages/index/index',
         })
       })
     },
@@ -167,7 +167,20 @@ Component({
     },
     onNavTo(e) {
       let { url } = e.currentTarget.dataset
-      const { mylogin, isRegister } = this.data
+      const { mylogin, isRegister, user } = this.data
+      wx.navigateTo({
+        url,
+      })
+    },
+    onNavToM(e) {
+      let { url } = e.currentTarget.dataset
+      const { mylogin, isRegister, user } = this.data
+      if (user.Status == 1) {
+        wx.navigateTo({
+          url: '/sub-pages/hr-companyCertification/hr-companyCertification',
+        })
+        return
+      }
       wx.navigateTo({
         url,
       })

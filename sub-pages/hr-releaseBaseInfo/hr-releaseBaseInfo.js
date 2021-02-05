@@ -132,6 +132,7 @@ Page({
       id: options.id || -1,
       action: options.type || '',
       type: app.globalData.jopTypeOptions,
+      selectedtype: [app.globalData.jopTypeOptions[0]]
     })
     if (options.id) {
       this.getDetail(options.id)

@@ -72,6 +72,7 @@ Component({
         content: e.detail,
       }
       this.data.fid && (options.fid = this.data.fid)
+      this.triggerEvent('send', e.detail)
       // app
       //   .comment(options)
       //   .then((res) => {

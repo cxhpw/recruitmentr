@@ -1,3 +1,6 @@
+.chatroom-wrapper {
+  padding-bottom: calc(54px + 60rpx); }
+
 .top-section {
   background: #fff; }
   .top-section .flex-item {
@@ -46,7 +49,7 @@
       .resume-card .resume-card__top .con .name {
         font-size: 25rpx; }
       .resume-card .resume-card__top .con .price {
-        color: #64BFBB;
+        color: #64bfbb;
         font-size: 28rpx;
         margin-left: auto; }
     .resume-card .resume-card__top .info {
@@ -78,7 +81,7 @@
       font-size: 24rpx;
       color: #000; }
       .resume-card .resume-card__bottom .info .price {
-        color: #64BFBB;
+        color: #64bfbb;
         margin-left: 16rpx; }
   .resume-card .jop-top {
     display: flex;
@@ -89,7 +92,7 @@
       font-weight: 500; }
     .resume-card .jop-top .price {
       font-size: 28rpx;
-      color: #64BFBB;
+      color: #64bfbb;
       margin-left: auto; }
   .resume-card .jop-labels {
     padding: 0 30rpx 10rpx; }
@@ -98,7 +101,7 @@
       height: 40rpx;
       display: inline-flex;
       padding: 0 12rpx;
-      background: #EBEBEB;
+      background: #ebebeb;
       margin-right: 20rpx;
       margin-bottom: 20rpx;
       align-items: center; }
@@ -150,17 +153,25 @@
     border-radius: 50%; }
   .chatroom-item .chatroom-item__content {
     position: relative;
-    font-size: 28rpx;
-    color: #000;
-    background: #fff;
-    padding: 25rpx 30rpx;
-    border-radius: 4px;
     word-break: break-all; }
+    .chatroom-item .chatroom-item__content .content {
+      border-radius: 4px;
+      font-size: 28rpx;
+      color: #000;
+      background: #fff;
+      padding: 25rpx 30rpx; }
+    .chatroom-item .chatroom-item__content .status {
+      font-size: 24rpx;
+      color: #777777;
+      line-height: 1;
+      margin-top: 10rpx; }
+      .chatroom-item .chatroom-item__content .status.active {
+        color: #0866FF; }
   .chatroom-item.my {
     flex-direction: row-reverse; }
     .chatroom-item.my .chatroom-item__avatar {
       margin-right: 0;
       margin-left: 20rpx; }
-    .chatroom-item.my .chatroom-item__content {
-      background: #2351D3;
-      color: #fff; }
+    .chatroom-item.my .chatroom-item__content .content {
+      color: #fff;
+      background: #2351d3; }

@@ -14,9 +14,9 @@ Page({
     ],
   },
   onChatRoomTap(e) {
-    const { id } = e.currentTarget.dataset
+    const { id, receiveid } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/pages/chatroom/chatroom?id=${id}`,
+      url: `/pages/chatroom/chatroom?id=${id}&receiveID=${receiveid}`,
     })
   },
   onChange(e) {
@@ -34,6 +34,12 @@ Page({
     console.log(e)
     wx.navigateTo({
       url: '/sub-pages/hr-interview/hr-interview',
+    })
+  },
+  onNavTo(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/article/article?id=${id}`,
     })
   },
   initList() {
@@ -64,7 +70,7 @@ Page({
     }
     requestList({
       pageindex: pageNum,
-      pagesize: 20,
+      pagesize: 10,
       status: tabs[active].value,
     })
       .then((res) => {
@@ -94,6 +100,7 @@ Page({
 
           if (res.data.TotalCount > 0) {
             this.setData({
+              [`lists[${active}].nomore`]: false,
               [`lists[${active}].data`]:
                 pageNum == 1 ? data : lists[active].data.concat(data),
               [`lists[${active}].loadData`]: true,
@@ -140,7 +147,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {},
+  onShow: function () {
+    this.getLists()
+  },
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -160,7 +169,10 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {},
+  onReachBottom: function () {
+    const { lists, active } = this.data
+    lists[active].pageNum != 0 && this.getLists(lists[active].pageNum + 1)
+  },
 
   /**
    * 用户点击右上角分享

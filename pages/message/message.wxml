@@ -2,25 +2,27 @@
   <van-tabs sticky active="{{ active }}" bind:change="onChange" type='' custom-class='my-tabs' border="{{ false }}" title-active-color='#fff' title-inactive-color='#fff' bind:disabled="onTabsClick">
     <van-tab title="消息">
       <view class='chatroom-list'>
-        <view class='chatroom-item' catch:tap='onChatRoomTap' data-id="{{ item.AutoID }}" wx:for="{{lists[0].data}}">
+        <view class='chatroom-item' catch:tap='onChatRoomTap' data-id="{{ item.AutoID }}" data-receiveid="{{ item.UserID }}" wx:for="{{lists[0].data}}">
           <image src='{{ item.HeaderPhoto }}' class='image'></image>
           <view class='con'>
             <view class='flex-box align-center'>
               <text class='name'>{{ item.Name }}</text>
-              <text class='f24 c666'>{{item.Job }}</text>
+              <text class='f24 c666'>{{ item.CName }}</text>
+              <text class="dot">·</text>
+              <text class='f24 c666'>{{ item.Job }}</text>
               <text class='f23 c999 fr'>{{ item.SendTime }}</text>
             </view>
             <view class='content' wx:if="{{ item.Content.length }}">{{ item.Content }}</view>
           </view>
         </view>
       </view>
-      <nomore wx:if="{{ lists[0].nomore }}"></nomore>
-      <loadButton wx:else loading="{{lists[0].loading}}" text="{{lists[1].buttontext}}"></loadButton>
+      <nomore wx:if="{{ lists[active].nomore }}"></nomore>
+      <loadButton wx:else loading="{{lists[active].loading}}" text="{{lists[active].buttontext}}"></loadButton>
     </van-tab>
     <van-tab title="站内信">
       <view class=''>
         <view class='msg-list'>
-          <view class='item' wx:for="{{ lists[1].data }}" wx:key="msg" data-id="{{ item.AutoID }}">
+          <view class='item' wx:for="{{ lists[1].data }}" wx:key="msg" data-id="{{ item.AutoID }}" catch:tap="onNavTo">
             <view class='date'>{{ item.AutoTimeStamp }}</view>
             <view class='content'>
               <image src="{{ item.ContentImage }}" class='image' mode='widthFix'></image>
@@ -31,8 +33,8 @@
             </view>
           </view>
         </view>
-        <nomore wx:if="{{ lists[1].nomore }}"></nomore>
-        <loadButton wx:else loading="{{lists[1].loading}}" text="{{lists[1].buttontext}}"></loadButton>
+        <nomore wx:if="{{ lists[active].nomore }}"></nomore>
+        <loadButton wx:else loading="{{lists[active].loading}}" text="{{lists[active].buttontext}}"></loadButton>
       </view>
     </van-tab>
     <van-tab title="面试邀请" disabled></van-tab>

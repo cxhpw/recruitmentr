@@ -23,15 +23,15 @@
           <view class="">
             <view class='welfare-wrapper' catch:tap="onOpen">
               <view class='row' wx:if="{{ data.WorkHours.length ||  data.RestTime.length ||  data.OverTime.length}}">
-                <view class='cell'>
+                <view class='cell' wx:if="{{ data.WorkHours }}">
                   <icon custom-class="iconfont icon-shijian" color="#CCCCCC" size="16"></icon>
                   {{ data.WorkHours }}
                 </view>
-                <view class='cell'>
+                <view class='cell' wx:if="{{ data.RestTime }}">
                   <icon custom-class="iconfont icon-riqi" color="#CCCCCC" size="16"></icon>
                   {{ data.RestTime }}
                 </view>
-                <view class='cell'>
+                <view class='cell' wx:if="{{ data.OverTime }}">
                   <icon custom-class="iconfont icon-gouwudai" color="#CCCCCC" size="16"></icon>
                   {{ data.OverTime }}
                 </view>

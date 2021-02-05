@@ -32,16 +32,17 @@ Page({
             console.log('getRoleInfos', getRoleInfos)
             getRoleInfos().then((res) => {
               console.log('授权信息', res)
-              app.globalData.roleInfo = res
-
-              this.getUser().catch((err) => {
-                console.error('求职者信息', err)
-                if (err.reponsive.msg == '请注册求职者信息！') {
-                  wx.reLaunch({
-                    url: '/pages/register/register',
-                  })
-                  return
-                }
+              app.globalData.roleInfo = res.data
+              togglerRole(99).then(() => {
+                this.getUser().catch((err) => {
+                  console.error('求职者信息', err)
+                  if (err.reponsive.msg == '请注册求职者信息！') {
+                    wx.reLaunch({
+                      url: '/pages/register/register',
+                    })
+                    return
+                  }
+                })
               })
             })
           }
@@ -72,6 +73,11 @@ Page({
   },
   onLayout() {
     wx.clearStorageSync()
+    app.globalData.userInfo = {}
+    app.globalData.hrInfo = {}
+    app.globalData.roleInfo = {}
+    app.globalData.auth = false
+    app.globalData.mylogin = false
     this.setData({
       mylogin: false,
     })

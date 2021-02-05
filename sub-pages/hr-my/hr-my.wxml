@@ -32,7 +32,7 @@
     <button wx:if="{{!mylogin}}" class='contact-button' open-type='getPhoneNumber' bindgetphonenumber="onPhone"></button>
   </view>
   <view class=''>
-    <van-cell custom-class="my-cell" is-link catch:tap="onNavTo" data-url="/sub-pages/hr-position/hr-position">
+    <van-cell custom-class="my-cell" is-link catch:tap="onNavToM" data-url="/sub-pages/hr-position/hr-position">
       <view slot="title">
         <view class="flex-box align-center">
           <view class='van-cell-num'>{{ user.JobCount }}</view>

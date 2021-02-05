@@ -48,7 +48,7 @@ Page({
     //   url: `/sub-pages/hr-releaseJopName/hr-releaseJopName`,
     // })
     wx.navigateTo({
-      url: "/sub-pages/hr-position/hr-position?type=select"
+      url: '/sub-pages/hr-position/hr-position?type=select',
     })
   },
   valid() {
@@ -104,13 +104,17 @@ Page({
           address: lastAddress,
         }
       }
+      wx.showLoading({
+        mask: true,
+      })
       postResumeRemark(temp).then((res) => {
         if (res.data.ret == 'success') {
           this.setData({
             show: true,
           })
         } else {
-          app.showToast(res.data.msg) 
+          wx.hideLoading()
+          app.showToast(res.data.msg)
         }
       })
     }
@@ -120,7 +124,7 @@ Page({
       show: false,
     })
     wx.navigateBack({
-      delta: !this.data.type ? 2 : 1
+      delta: !this.data.type ? 2 : 1,
     })
   },
   onInput(e) {

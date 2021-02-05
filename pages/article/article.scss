@@ -1,0 +1,18 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+page {
+  background: #fff;
+}
+.page {
+  padding: 40rpx;
+}
+.title {
+  font-size: 36rpx;
+  margin-bottom: 40rpx;
+  font-weight: 500;
+}
+.content {
+  font-size: 28rpx;
+  color: #999;
+  line-height: 200%;
+}

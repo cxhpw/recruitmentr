@@ -7,6 +7,9 @@ module.exports = {
     var regExp = regExp + '';
     return str.replace(regExp, text);
   },
+  split: function(str, start, end) {
+   return str.substring(start, end)
+  },
   phone: function(phone){
     phone = phone + "";
     var len = phone.length;

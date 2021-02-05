@@ -40,8 +40,8 @@
       </van-tab>
       <van-tab title="企业">
         <view class='search-list'>
-          <view class='search-item' wx:for="{{ list }}" wx:key="list" data-id="{{ item.AutoID }}" catch:tap="onNavTo">
-            <image class='image' mode='aspectFill' src="https://s3.ax1x.com/2021/01/18/syDJ74.png"></image>
+          <view class='search-item' wx:for="{{ list }}" wx:key="list" data-id="{{ item.CID }}" catch:tap="onNavTo">
+            <image class='image' mode='aspectFill' src="{{ item.CLogo }}"></image>
             <view class='con'>
               <view class='name'>{{ item.CName }}</view>
               <view class='info'>

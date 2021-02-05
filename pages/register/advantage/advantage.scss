@@ -25,6 +25,7 @@ textarea {
   font-size: 30rpx;
   width: 100%;
   font-style: normal !important;
+  height: calc(100vh - 150rpx - 84rpx - 140rpx);
   &::placeholder {
     font-style: normal !important;
   }

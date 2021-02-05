@@ -1,5 +1,9 @@
 const app = getApp()
-import { requestDetailById, requestListByFairId, postJobFair } from '../../../api/JobFair'
+import {
+  requestDetailById,
+  requestListByFairId,
+  postJobFair,
+} from '../../../api/JobFair'
 Page({
   /**
    * 页面的初始数据
@@ -17,7 +21,14 @@ Page({
   },
   onShare() {},
   getDetail(id) {
-    requestDetailById(id).then((res) => {
+    requestDetailById({
+      id: id,
+      userid: !app.globalData.mylogin
+        ? 0
+        : app.globalData.roleInfo.Role == 99
+        ? app.globalData.userInfo.AutoID
+        : app.globalData.hrInfo.AutoID,
+    }).then((res) => {
       console.log('详情', res)
       this.setData({
         data: res.data,
@@ -32,6 +43,11 @@ Page({
       pageindex: pageNum,
       pagesize: 10,
       id: this.data.id,
+      userid: !app.globalData.mylogin
+        ? 0
+        : app.globalData.roleInfo.Role == 99
+        ? app.globalData.userInfo.AutoID
+        : app.globalData.hrInfo.AutoID,
     })
       .then((res) => {
         if (res.data.ret == 'success') {
@@ -79,12 +95,12 @@ Page({
   onNavTo(e) {
     const { id } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/pages/companyDetail/companyDetail?id=${id}`
+      url: `/pages/companyDetail/companyDetail?id=${id}`,
     })
   },
   onConfirm() {
     wx.showLoading({
-      mask: true
+      mask: true,
     })
     postJobFair(this.data.id).then((res) => {
       app.showToast(res.data.msg, () => {
@@ -99,7 +115,7 @@ Page({
     this.setData(
       {
         id: options.id,
-        role: app.globalData.roleInfo
+        role: app.globalData.roleInfo,
       },
       () => {
         this.getList()

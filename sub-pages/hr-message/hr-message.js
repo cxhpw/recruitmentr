@@ -24,14 +24,17 @@ Component({
     detached: function () {},
   },
   pageLifetimes: {
-    show: function () {},
+    show: function () {
+      this.getLists()
+    },
     hide: function () {},
     resize: function () {},
   },
   methods: {
-    onChatRoomTap() {
+    onChatRoomTap(e) {
+      const { id } = e.currentTarget.dataset
       wx.navigateTo({
-        url: '/pages/chatroom/chatroom',
+        url: `/pages/chatroom/chatroom?id=${id}`,
       })
     },
     onChange(e) {
@@ -49,6 +52,12 @@ Component({
       console.log(e)
       wx.navigateTo({
         url: '/sub-pages/hr-interview/hr-interview',
+      })
+    },
+    onNavTo(e) {
+      const { id } = e.currentTarget.dataset
+      wx.navigateTo({
+        url: `/pages/article/article?id=${id}`
       })
     },
     initList() {

@@ -4,7 +4,7 @@
       <!-- 企业端 -->
       <view class='top-section' wx:if="{{ role.Role == 1 }}">
         <view class='flex-box'>
-          <view class='flex-item'>
+          <view class='flex-item' catch:tap="onNavTo" data-url="/pages/resume/resume?id={{ card.JSID }}">
             <image class='image' src='/assets/images/icon-resume.jpg'></image>
             <view class='text'>看简历</view>
           </view>
@@ -12,18 +12,18 @@
             <image class='image' src='/assets/images/icon-phone.jpg'></image>
             <view class='text'>打电话</view>
           </view>
-          <view class='flex-item' catch:tap="onNavTo" data-url="/sub-pages/hr-invitePage/hr-invitePage?type=invite&id={{ card.JSID }}&jopID={{ card.JID }}">
+          <view wx:if="{{ card.cardEducat }}" class='flex-item' catch:tap="onNavTo" data-url="/sub-pages/hr-invitePage/hr-invitePage?type=invite&id={{ card.JSID }}&jopID={{ card.JID }}">
             <image class='image' src='/assets/images/icon-user.jpg'></image>
             <view class='text'>约面试</view>
           </view>
         </view>
       </view>
       <!-- 求职者 -->
-      <view class='top-section' wx:if="{{ role.Role ==99 }}">
+      <view class='top-section' wx:if="{{ role.Role == 99 }}">
         <view class='flex-box'>
           <view class='flex-item' catch:tap="onNavTo" data-url="/pages/companyDetail/companyDetail?id={{card.CID}}">
             <image class='image' src='/assets/images/icon-company.jpg'></image>
-            <view class='text'>公司首页</view>
+            <view class='text'>公司主页</view>
           </view>
           <view class='flex-item' catch:tap="onPhoneCall">
             <image class='image' src='/assets/images/icon-phone.jpg'></image>
@@ -40,7 +40,7 @@
     <view class='chatroom-wrapper' wx:else>
       <view class='chatroom-time'>{{ card.AutoTimeStamp }}</view>
       <!-- 企业端卡片 -->
-      <view class='resume-card' wx:if="{{ role.Role == 1 }}">
+      <view class='resume-card' wx:if="{{ role.Role == 1 && card.cardEducat.length }}" catch:tap="onNavTo" data-url="/pages/resume/resume?id={{ card.JSID }}">
         <view class='resume-card__top'>
           <view class="flex-box align-center">
             <image class='avatar' src='{{ card.HeaderPhoto }}'></image>
@@ -79,7 +79,7 @@
         </view>
       </view>
       <!-- 求职者卡片 -->
-      <view class="resume-card" wx:if="{{  role.Role == 99 }}">
+      <view class="resume-card" wx:if="{{ role.Role == 99 }}"  catch:tap="onNavTo" data-url="/pages/detail/detail?id={{ card.JID }}">
         <view class="jop-top">
           <view class='name'>{{ card.JName }}</view>
           <view class="price">{{ card.Salary }}</view>
@@ -103,9 +103,12 @@
           <view class='date'>{{ card.AutoTimeStamp }}由你发起的沟通</view>
         </view>
       </view>
-      <view class='chatroom-item {{ role.Role == item.UserType ? "my" : ""}}' wx:for="{{ list }}" wx:key="message">
-        <image src='/assets/images/首页_03.jpg' class='chatroom-item__avatar'></image>
-        <view class='chatroom-item__content'>您好！我对您发布的职位十分感兴趣，期待加入！！！</view>
+      <view class='chatroom-item {{ role.Role == item.type ? "my" : ""}}' wx:for="{{ list }}" wx:key="message">
+        <image src='{{ item.avatar }}' class='chatroom-item__avatar'></image>
+        <view  class='chatroom-item__content'>
+          <view class='content'>{{ item.content }}</view>
+          <!-- <view class="status" wx:if="{{ status != 0 }}">{{ item.status == 1 ? '未读' : '已读'}}</view> -->
+        </view>
       </view>
       <!-- <view class='chatroom-item {{ role.Role ==  }}'>
         <image src='/assets/images/首页_03.jpg' class='chatroom-item__avatar'></image>
@@ -113,5 +116,5 @@
       </view> -->
     </view>
   </view>
-  <comment-input id="comment" show bind:close="onClose" bind:send="onSend" aid="{{0}}" fid="{{ 0 }}" use-slot-button></comment-input>
+  <comment-input id="comment" show bind:close="onClose" bind:send="onSend" bind: aid="{{0}}" fid="{{ 0 }}" use-slot-button></comment-input>
 </view>

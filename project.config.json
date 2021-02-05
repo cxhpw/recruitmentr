@@ -13,7 +13,7 @@
         ]
     },
     "setting": {
-        "urlCheck": false,
+        "urlCheck": true,
         "es6": true,
         "enhance": false,
         "postcss": true,
@@ -404,6 +404,12 @@
                 {
                     "name": "pages/chatroom/chatroom",
                     "pathName": "pages/chatroom/chatroom",
+                    "query": "id=4",
+                    "scene": null
+                },
+                {
+                    "name": "pages/article/article",
+                    "pathName": "pages/article/article",
                     "query": "id=4",
                     "scene": null
                 }

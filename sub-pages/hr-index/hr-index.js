@@ -149,6 +149,7 @@ Component({
               })
             } else {
               this.setData({
+                list: [],
                 nomore: true,
                 loadData: false,
               })
