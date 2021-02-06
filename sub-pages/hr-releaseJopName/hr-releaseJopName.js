@@ -156,10 +156,13 @@ Page({
       this.setData({
         searchKey: options.search,
       })
+
+      this.getSingleLists(options.search)
+    }
+    if (options.type == 'search') {
       wx.setNavigationBarTitle({
         title: '职位分类',
       })
-      this.getSingleLists(options.search)
     }
   },
 
