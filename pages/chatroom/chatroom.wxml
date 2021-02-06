@@ -12,7 +12,7 @@
             <image class='image' src='/assets/images/icon-phone.jpg'></image>
             <view class='text'>打电话</view>
           </view>
-          <view wx:if="{{ card.cardEducat }}" class='flex-item' catch:tap="onNavTo" data-url="/sub-pages/hr-invitePage/hr-invitePage?type=invite&id={{ card.JSID }}&jopID={{ card.JID }}">
+          <view wx:if="{{  card.IsSendResume == 'True' }}" class='flex-item' catch:tap="onNavTo" data-url="/sub-pages/hr-invitePage/hr-invitePage?type=invite&id={{ card.JSID }}&jopID={{ card.JID }}">
             <image class='image' src='/assets/images/icon-user.jpg'></image>
             <view class='text'>约面试</view>
           </view>
@@ -40,7 +40,7 @@
     <view class='chatroom-wrapper' wx:else>
       <view class='chatroom-time'>{{ card.AutoTimeStamp }}</view>
       <!-- 企业端卡片 -->
-      <view class='resume-card' wx:if="{{ role.Role == 1 && card.cardEducat.length }}" catch:tap="onNavTo" data-url="/pages/resume/resume?id={{ card.JSID }}">
+      <view class='resume-card' wx:if="{{ role.Role == 1 && card.IsSendResume == 'True' }}" catch:tap="onNavTo" data-url="/pages/resume/resume?id={{ card.JSID }}">
         <view class='resume-card__top'>
           <view class="flex-box align-center">
             <image class='avatar' src='{{ card.HeaderPhoto }}'></image>

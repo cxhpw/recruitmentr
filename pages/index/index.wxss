@@ -89,11 +89,11 @@ page {
     align-items: center; }
     .edit-section .type-tabs .item {
       margin-right: 30rpx;
-      font-size: 25rpx;
+      font-size: 27rpx;
       font-weight: 500;
       color: #666; }
       .edit-section .type-tabs .item.active {
-        font-size: 36rpx;
+        font-size: 38rpx;
         color: #333; }
   .edit-section .btn {
     margin-left: auto;

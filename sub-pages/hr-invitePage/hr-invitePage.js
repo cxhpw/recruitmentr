@@ -107,16 +107,19 @@ Page({
       wx.showLoading({
         mask: true,
       })
-      postResumeRemark(temp).then((res) => {
-        if (res.data.ret == 'success') {
-          this.setData({
-            show: true,
-          })
-        } else {
+      postResumeRemark(temp)
+        .then((res) => {
+          if (res.data.ret == 'success') {
+            this.setData({
+              show: true,
+            })
+          } else {
+            app.showToast(res.data.msg)
+          }
+        })
+        .finally(() => {
           wx.hideLoading()
-          app.showToast(res.data.msg)
-        }
-      })
+        })
     }
   },
   onConfirm() {

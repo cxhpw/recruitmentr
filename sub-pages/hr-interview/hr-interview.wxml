@@ -1,6 +1,6 @@
 <view class="page">
-  <van-tabs sticky active="{{ active }}" bind:change="onChange" color="#0866FF" line-width="15" swipe-threshold="5">
-    <van-tab title="{{ item.title }}" wx:for="{{ tabs }}" wx:key="{{index}}">
+  <van-tabs custom-class="my-tabs" sticky active="{{ active }}" bind:change="onChange" color="#0866FF" line-width="15" swipe-threshold="5">
+    <van-tab title="{{ item.title }}" info="{{ item.count }}" wx:for="{{ tabs }}" wx:key="{{index}}">
       <view class="list">
         <view class="inner">
           <block wx:if="{{ role.Role == 1 }}">

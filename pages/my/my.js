@@ -29,7 +29,6 @@ Page({
           if (res.data.ret == 'success') {
             wx.setStorageSync('LogiSessionKey', res.data.rdsession)
             app.globalData.auth = true
-            console.log('getRoleInfos', getRoleInfos)
             getRoleInfos().then((res) => {
               console.log('授权信息', res)
               app.globalData.roleInfo = res.data
@@ -44,7 +43,11 @@ Page({
                   }
                 })
               })
+            }).catch(() => {
+
             })
+          } else {
+            console.error("失败48")
           }
         })
         .catch((err) => {

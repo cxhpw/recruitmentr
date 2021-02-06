@@ -3,7 +3,9 @@
     <van-tab title="消息">
       <view class='chatroom-list'>
         <view class='chatroom-item' catch:tap='onChatRoomTap' data-id="{{ item.AutoID }}" data-receiveid="{{ item.UserID }}" wx:for="{{lists[0].data}}">
-          <image src='{{ item.HeaderPhoto }}' class='image'></image>
+          <view class="avatar-wrapper">
+            <image src='{{ item.HeaderPhoto }}' class='image'></image>
+          </view>
           <view class='con'>
             <view class='flex-box align-center'>
               <text class='name'>{{ item.Name }}</text>
@@ -12,7 +14,7 @@
               <text class='f24 c666'>{{ item.Job }}</text>
               <text class='f23 c999 fr'>{{ item.SendTime }}</text>
             </view>
-            <view class='content' wx:if="{{ item.Content.length }}">{{ item.Content }}</view>
+            <view class='content' wx:if="{{ item.Content.length }}">{{ item.Content }}<view class="label" wx:if="{{ item.UnReadCount > 0 }}"></view></view>
           </view>
         </view>
       </view>

@@ -23,7 +23,7 @@
           <image class="icon" src="/assets/images/icon-resume.jpg"></image>
           <view class='text'>在线简历</view>
         </view>
-        <view wx:else  class='flex-item' catch:tap="onNavTo" data-url="/pages/companyDetail/companyDetail?id={{ data.UserID }}">
+        <view wx:else class='flex-item' catch:tap="onNavTo" data-url="/pages/companyDetail/companyDetail?id={{ data.UserID }}">
           <image class="icon" src="/assets/images/icon-resume.jpg"></image>
           <view class='text'>公司主页</view>
         </view>
@@ -62,6 +62,9 @@
           </view>
         </view>
       </van-cell>
+      <view class="remark" wx:if="{{ data.Remark.length &&  role.Role == 99 }}">
+        <view class='f24'>备注：{{ data.Remark }}</view>
+      </view>
     </view>
   </view>
   <view class='fixed-bottom'>

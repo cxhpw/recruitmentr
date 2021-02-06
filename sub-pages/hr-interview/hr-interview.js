@@ -14,7 +14,6 @@ Page({
       { title: '已拒绝', value: 100 },
     ],
     lists: [],
-
   },
   onChange(e) {
     console.log(e)
@@ -55,7 +54,27 @@ Page({
       .then((res) => {
         if (res.data.ret == 'success') {
           var data = res.data.dataList
+          tabs.forEach((item, index) => {
+            switch (index) {
+              case 0:
+                item.count = res.data.AllCount
+                break
+              case 1:
+                item.count = res.data.AcceptCount
+                break
+              case 2:
+                item.count = res.data.InterviewCount
+                break
+              case 3:
+                item.count = res.data.CompletedCount
+                break
+              case 4:
+                item.count = res.data.RefuseCount
+                break
+            }
+          })
           this.setData({
+            tabs,
             loadData: true,
             [`lists[${active}].init`]: true,
           })
@@ -105,7 +124,7 @@ Page({
   onNavTo(e) {
     const { id } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/sub-pages/hr-interviewDetail/hr-interviewDetail?id=${id}`
+      url: `/sub-pages/hr-interviewDetail/hr-interviewDetail?id=${id}`,
     })
   },
   /**
@@ -113,7 +132,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      role: app.globalData.roleInfo
+      role: app.globalData.roleInfo,
     })
     this.initList().then(() => {
       this.getLists()
@@ -128,9 +147,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏
@@ -151,7 +168,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    this.data.lists[this.data.active].pageNum !== 0 && this.data.getLists(this.data.lists[this.data.active].pageNum + 1)
+    this.data.lists[this.data.active].pageNum !== 0 &&
+      this.data.getLists(this.data.lists[this.data.active].pageNum + 1)
   },
 
   /**

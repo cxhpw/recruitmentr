@@ -1,10 +1,10 @@
-@import "../../scss/minxi/minxi.scss";
-@import "../../scss/variable/variable.scss";
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
 page {
   background: #fff;
 }
 .my-tabs {
-  .van-tabs__scroll  {
+  .van-tabs__scroll {
     background: $bodycolor;
   }
   .van-tab {
@@ -24,22 +24,39 @@ page {
     align-items: center;
     padding: 30rpx 40rpx;
     @include border-bottom($borderColor, 40rpx, 40rpx);
-    .image {
+    .avatar-wrapper {
+      position: relative;
       width: 100rpx;
       height: 100rpx;
-      border-radius: 50%;
       margin-right: 30rpx;
     }
+    .image {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
     .con {
-      fleX: 1;
+      flex: 1;
       .name {
         font-size: 30rpx;
         margin-right: 20rpx;
       }
       .content {
+        position: relative;
         color: #999;
         font-size: 27rpx;
         margin-top: 20rpx;
+        padding-right: 10px;
+        box-sizing: border-box;
+        .label {
+          position: absolute;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: red;
+          right: 0;
+          top: 0;
+        }
       }
     }
   }

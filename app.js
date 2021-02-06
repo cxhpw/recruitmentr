@@ -20,30 +20,34 @@ App({
     // wx.reLaunch({
     //   url: '/sub-pages/main/main'
     // })
+    setTimeout(() => {
+      requestResumeFilter().then((res) => {
+        this.globalData.educationOptions = res.data[0].keyvalue
+        this.globalData.salaryOptions = res.data[1].keyvalue
+        this.globalData.experienceOptions = res.data[2].keyvalue
+        this.globalData.jopStatusOptions = res.data[3].keyvalue
+      })
+      requestCompanyFilter().then((res) => {
+        this.globalData.industryOptions = res.data[1].keyvalue
+        this.globalData.companySizeOptions = res.data[0].keyvalue
+      })
+      Promise.all([
+        requestConfig('bzgzsj'), // 公司工作时长
+        requestConfig('gsfl'), // 公司福利
+        requestConfig('zwlx'), // 求职者类型，全职，实习，兼职
+      ]).then(([a, b, c]) => {
+        this.globalData.workTimeOptions = a.data.dataList
+        this.globalData.welfareOptions = b.data.dataList
+        this.globalData.jopTypeOptions = c.data.dataList
+      })
+    }, 10)
     this.updateAppHandle()
+
     // 登录
     this.getRoleInfos()
       .then((res) => {
         console.log('授权信息', res)
-        requestResumeFilter().then((res) => {
-          this.globalData.educationOptions = res.data[0].keyvalue
-          this.globalData.salaryOptions = res.data[1].keyvalue
-          this.globalData.experienceOptions = res.data[2].keyvalue
-          this.globalData.jopStatusOptions = res.data[3].keyvalue
-        })
-        requestCompanyFilter().then((res) => {
-          this.globalData.industryOptions = res.data[1].keyvalue
-          this.globalData.companySizeOptions = res.data[0].keyvalue
-        })
-        Promise.all([
-          requestConfig('bzgzsj'), // 公司工作时长
-          requestConfig('gsfl'), // 公司福利
-          requestConfig('zwlx'), // 求职者类型，全职，实习，兼职
-        ]).then(([a, b, c]) => {
-          this.globalData.workTimeOptions = a.data.dataList
-          this.globalData.welfareOptions = b.data.dataList
-          this.globalData.jopTypeOptions = c.data.dataList
-        })
+
         if (res.data.Role === 1) {
           togglerRole(99).then((res) => {
             this.globalData.userType = 'user'

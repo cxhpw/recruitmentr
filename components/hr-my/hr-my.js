@@ -100,7 +100,7 @@ Component({
                 mylogin: true,
               })
               getRoleInfos().then((res) => {
-                console.log('会员信息', res)
+                console.log('授权信息', res)
                 app.globalData.roleInfo = res.data
               })
               togglerRole(1).then((res) => {

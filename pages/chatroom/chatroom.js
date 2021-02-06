@@ -1,6 +1,7 @@
 const app = getApp()
 import { requestMessageDetailById } from '../../api/message'
 import { postResumeToHr } from '../../api/user/resume'
+import { postMessage } from '../../api/chatroom'
 const io = require('../../utils/weapp.socket.io')
 // socket 连接地址
 var socketUrl = app.globalData.roleInfo.IP
@@ -12,6 +13,7 @@ var that
 var socketMsgQueue = []
 var socketOpen = false
 var isRef = true
+var timer
 Page({
   /**
    * 页面的初始数据
@@ -33,44 +35,61 @@ Page({
   },
   sendSocketMessage(value) {
     return new Promise((resolve, reject) => {
-      const { user } = this.data
-      if (socketOpen) {
-        const message = {
-          Command: 'chat',
-          Content: value,
-          RecvID: this.data.card.RID || this.data.card.JSID,
-          SendID: app.globalData.roleInfo.AutoID,
-          HeaderPhoto: user.HeaderPhoto,
-        }
-        this.socketInstance.send({
-          data: JSON.stringify(message),
-          success: function (res) {
-            console.log('发送成功', res)
-            const { list, user, role, status } = that.data
-            list.push({
-              type: role.Role,
-              name: user.Name,
-              content: value,
-              avatar: user.HeaderPhoto,
-              status: 0,
-            })
-            that.setData({
-              list,
-            })
-            resolve()
-          },
-          fail: function (err) {
-            console.log('发送失败', err)
-            reject()
-          },
+      postMessage({
+        recvid: this.data.receiveID,
+        chatroomid: this.data.id,
+        content: value,
+      }).then((res) => {
+        console.log(res)
+        const { user, role } = this.data
+        this.getList().then(() => {
+          console.log('asdsad')
+          this.bottom()
         })
-      } else {
-        this.connectSocket().then(() => {
-          this.sendSocketMessage(value)
-        })
-      }
+        resolve()
+      })
     })
   },
+  // sendSocketMessage(value) {
+  //   return new Promise((resolve, reject) => {
+  //     const { user } = this.data
+  //     if (socketOpen) {
+  //       const message = {
+  //         Command: 'chat',
+  //         Content: value,
+  //         RecvID: this.data.card.RID || this.data.card.JSID,
+  //         SendID: app.globalData.roleInfo.AutoID,
+  //         HeaderPhoto: user.HeaderPhoto,
+  //       }
+  //       this.socketInstance.send({
+  //         data: JSON.stringify(message),
+  //         success: function (res) {
+  //           console.log('发送成功', res)
+  //           const { list, user, role, status } = that.data
+  //           list.push({
+  //             type: role.Role,
+  //             name: user.Name,
+  //             content: value,
+  //             avatar: user.HeaderPhoto,
+  //             status: 0,
+  //           })
+  //           that.setData({
+  //             list,
+  //           })
+  //           resolve()
+  //         },
+  //         fail: function (err) {
+  //           console.log('发送失败', err)
+  //           reject()
+  //         },
+  //       })
+  //     } else {
+  //       this.connectSocket().then(() => {
+  //         this.sendSocketMessage(value)
+  //       })
+  //     }
+  //   })
+  // },
   connectSocket() {
     this.socketInstance = wx.connectSocket({
       url:
@@ -128,7 +147,7 @@ Page({
     this.setData({
       loading: true,
     })
-    requestMessageDetailById({
+    return requestMessageDetailById({
       pageindex: pageNum,
       pagesize: 10,
       id: this.data.id,
@@ -200,12 +219,14 @@ Page({
         })
       })
       .finally(() => {
-        setTimeout(() => {
-          this.bottom()
-        }, 10)
-        this.setData({
-          init: true,
-        })
+        if (!this.data.init) {
+          setTimeout(() => {
+            this.bottom()
+          }, 10)
+          this.setData({
+            init: true,
+          })
+        }
       })
   },
   onClose() {},
@@ -219,7 +240,6 @@ Page({
       this.selectComponent('#comment').setData({
         value: '',
       })
-      this.bottom()
     })
   },
   socketStart: function () {
@@ -397,10 +417,13 @@ Page({
             : app.globalData.hrInfo,
       },
       () => {
-        this.connectSocket()
+        // this.connectSocket()
       }
     )
     // this.socketStart()
+    timer = setInterval(() => {
+      this.getList()
+    }, 1500)
   },
 
   /**
@@ -413,7 +436,7 @@ Page({
    */
   onShow: function () {
     // this.connectSocket()
-    this.getList()
+    // this.getList()
   },
 
   /**
@@ -425,11 +448,12 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    isRef = false
-    this.socketInstance.close({
-      code: 1000,
-      success: () => {},
-    })
+    // isRef = false
+    // this.socketInstance.close({
+    //   code: 1000,
+    //   success: () => {},
+    // })
+    clearInterval(timer)
   },
 
   /**

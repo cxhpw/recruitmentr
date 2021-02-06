@@ -144,24 +144,24 @@ Page({
       this.getJopFairList()
     }
     this.getJopFairList()
-    this.setData(
-      {
-        user: app.globalData.userInfo,
-        jobExpectList: app.globalData.userInfo.JobExpectList || [],
-      },
-      () => {
-        this.getList()
-      }
-    )
-    // this.setData(
-    //   {
-    //     user: app.globalData.userInfo,
-    //     jobExpectList: app.globalData.userInfo.JobExpectList || [],
-    //   },
-    //   () => {
-    //     this.getList()
-    //   }
-    // )
+    setTimeout(() => {
+      this.setData(
+        {
+          user: app.globalData.userInfo,
+          jobExpectList: app.globalData.userInfo.JobExpectList || [],
+        },
+        () => {
+          if (!this.data.jobExpectList.length) {
+            this.setData({
+              list: [],
+              nomore: true
+            })
+            return
+          }
+          this.getList()
+        }
+      )
+    }, 500)
   },
   onReachBottom() {
     this.data.pageNum != 0 && this.getList(this.data.pageNum + 1)

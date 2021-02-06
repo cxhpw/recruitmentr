@@ -50,7 +50,7 @@ export function togglerRole(params) {
 export function getRoleInfos(isRef = false, context = getApp()) {
   console.log(context)
   if (!isRef && Object.keys(context.globalData.roleInfo).length) {
-    return Promise.resolve(context.globalData.roleInfo)
+    return Promise.resolve({ data: context.globalData.roleInfo })
   }
   return request({
     url: '/include/getdata',

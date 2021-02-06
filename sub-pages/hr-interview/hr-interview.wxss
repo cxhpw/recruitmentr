@@ -69,3 +69,11 @@ page {
       font-size: 24rpx;
       color: #999;
       line-height: 1; }
+
+.my-tabs .van-info {
+  background: transparent !important;
+  top: -6px !important;
+  color: #999 !important;
+  font-weight: 500 !important;
+  padding: 0 !important;
+  min-width: auto !important; }
