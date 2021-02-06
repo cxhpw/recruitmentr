@@ -262,6 +262,24 @@ Page({
             { RegionName: app.globalData.currentLocation.city },
           ],
     })
+    //fieldwork实习， pluralism 兼职，nearby 附近，留空全职
+    switch (options.type) {
+      case 'fieldwork':
+        wx.setNavigationBarTitle({
+          title: '找实习',
+        })
+        break
+      case 'pluralism':
+        wx.setNavigationBarTitle({
+          title: '找兼职',
+        })
+        break
+      case 'nearby':
+        wx.setNavigationBarTitle({
+          title: '找附近',
+        })
+        break
+    }
   },
   onOpenLocation() {
     app.getLocation().then(() => {
@@ -334,9 +352,4 @@ Page({
       this.data.pageNum != 0 &&
       this.getSingleLists(this.data.pageNum + 1)
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {},
 })

@@ -161,7 +161,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '2021年春季招聘会',
+      title: this.data.data.Title,
     }
   },
 })

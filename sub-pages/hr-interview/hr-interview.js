@@ -170,10 +170,5 @@ Page({
   onReachBottom: function () {
     this.data.lists[this.data.active].pageNum !== 0 &&
       this.data.getLists(this.data.lists[this.data.active].pageNum + 1)
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {},
+  }
 })

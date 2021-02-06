@@ -173,9 +173,4 @@ Page({
     const { lists, active } = this.data
     lists[active].pageNum != 0 && this.getLists(lists[active].pageNum + 1)
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {},
 })
