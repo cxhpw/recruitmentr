@@ -17,7 +17,7 @@ Page({
   onNavTo(e) {
     const { url } = e.currentTarget.dataset
     wx.navigateTo({
-      url
+      url,
     })
   },
   getSingleLists: function (pageNum = 1) {

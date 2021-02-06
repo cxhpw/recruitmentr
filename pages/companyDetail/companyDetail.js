@@ -19,7 +19,7 @@ Page({
     experienceValue: -1,
     cityOptions: [],
     cityValue: -1,
-    show: false
+    show: false,
   },
   onSalaryChange(e) {
     console.log(e)
@@ -53,9 +53,9 @@ Page({
     )
   },
   onNavTo(e) {
-    const { url } =e.currentTarget.dataset
+    const { url } = e.currentTarget.dataset
     wx.navigateTo({
-      url
+      url,
     })
   },
   // 事件处理函数
@@ -142,12 +142,12 @@ Page({
   },
   onOpen() {
     this.setData({
-      show: true
+      show: true,
     })
   },
   onClose() {
     this.setData({
-      show: false
+      show: false,
     })
   },
   onPreview(e) {
@@ -245,7 +245,6 @@ Page({
     )
     this.setData({
       form: options.formData ? JSON.parse(options.formData) : null,
-     
     })
   },
 

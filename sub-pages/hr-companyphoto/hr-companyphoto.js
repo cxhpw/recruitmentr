@@ -104,7 +104,7 @@ Page({
       welfare: user.WelfareList.join(','),
       album: !isLogo
         ? fileList.map((item) => item.url).join(',')
-        : user.AlbumList.map(item => item.Img).join(','),
+        : user.AlbumList.map((item) => item.Img).join(','),
     }).then((res) => {
       app.showToast(res.data.msg, () => {
         wx.navigateBack()
@@ -123,7 +123,13 @@ Page({
     if (options.isLogo) {
       this.setData({
         fileList: app.globalData.hrInfo.Logo
-          ? [{ uid: getUuid(), url: app.globalData.hrInfo.Logo, status: 'done' }]
+          ? [
+              {
+                uid: getUuid(),
+                url: app.globalData.hrInfo.Logo,
+                status: 'done',
+              },
+            ]
           : [],
       })
     } else {
@@ -133,7 +139,7 @@ Page({
               return {
                 uid: getUuid(),
                 url: item.Img,
-                status: 'done'
+                status: 'done',
               }
             })
           : [],
@@ -173,5 +179,5 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {}
+  onReachBottom: function () {},
 })

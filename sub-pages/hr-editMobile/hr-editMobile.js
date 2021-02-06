@@ -14,7 +14,7 @@ Page({
   },
   onInput(e) {
     this.setData({
-      value: e.detail.value
+      value: e.detail.value,
     })
   },
   onSubmit() {
@@ -58,5 +58,5 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {}
+  onReachBottom: function () {},
 })

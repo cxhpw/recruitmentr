@@ -170,5 +170,5 @@ Page({
   onReachBottom: function () {
     this.data.lists[this.data.active].pageNum !== 0 &&
       this.data.getLists(this.data.lists[this.data.active].pageNum + 1)
-  }
+  },
 })

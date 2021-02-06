@@ -154,7 +154,7 @@ Page({
           if (!this.data.jobExpectList.length) {
             this.setData({
               list: [],
-              nomore: true
+              nomore: true,
             })
             return
           }

@@ -85,7 +85,7 @@ Page({
         province: this.data.ad_info.province,
         city: this.data.ad_info.city,
         district: this.data.ad_info.district,
-        business_area: this.data.business_area.title
+        business_area: this.data.business_area.title,
       }
       wx.navigateTo({
         url: `/sub-pages/hr-account/hr-account?formData=${JSON.stringify(
@@ -129,5 +129,5 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {}
+  onReachBottom: function () {},
 })

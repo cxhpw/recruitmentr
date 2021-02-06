@@ -132,7 +132,7 @@ Page({
       id: options.id || -1,
       action: options.type || '',
       type: app.globalData.jopTypeOptions,
-      selectedtype: [app.globalData.jopTypeOptions[0]]
+      selectedtype: [app.globalData.jopTypeOptions[0]],
     })
     if (options.id) {
       this.getDetail(options.id)
@@ -224,5 +224,5 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {}
+  onReachBottom: function () {},
 })

@@ -172,5 +172,4 @@ Page({
     this.data.lists[this.data.active].pageNum != 0 &&
       this.getLists(this.data.lists[this.data.active].pageNum + 1)
   },
-
 })

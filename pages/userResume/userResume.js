@@ -63,7 +63,9 @@ Page({
           statusValue: app.globalData.jopStatusOptions.indexOf(
             res.data.JobStatus
           ),
-          time: works.length ? new Date().getFullYear() - works[0].StartTime.split('.')[0] : '',
+          time: works.length
+            ? new Date().getFullYear() - works[0].StartTime.split('.')[0]
+            : '',
         })
       })
       .finally(() => {

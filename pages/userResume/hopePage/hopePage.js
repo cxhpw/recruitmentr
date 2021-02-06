@@ -21,11 +21,11 @@ Page({
     ],
     identityValue: 0,
     city: null,
-    from: ''
+    from: '',
   },
   onIdentityChange(e) {
     this.setData({
-      identityValue: e.detail.value
+      identityValue: e.detail.value,
     })
   },
   onNavTo(e) {
@@ -158,7 +158,7 @@ Page({
         salary: app.globalData.salaryOptions,
         industry: app.globalData.industryOptions,
         type: options.type || this.data.type,
-        from: options.from || ''
+        from: options.from || '',
       },
       () => {
         if (options.index != undefined) {

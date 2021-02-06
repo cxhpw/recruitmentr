@@ -276,7 +276,7 @@ Page({
         break
       case 'nearby':
         wx.setNavigationBarTitle({
-          title: '找附近',
+          title: '附近工作',
         })
         break
     }

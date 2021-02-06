@@ -107,5 +107,5 @@ Page({
    */
   onReachBottom: function () {
     this.data.pageNum != 0 && this.getList(this.data.pageNum + 1)
-  }
+  },
 })

@@ -29,25 +29,25 @@ Page({
           if (res.data.ret == 'success') {
             wx.setStorageSync('LogiSessionKey', res.data.rdsession)
             app.globalData.auth = true
-            getRoleInfos().then((res) => {
-              console.log('授权信息', res)
-              app.globalData.roleInfo = res.data
-              togglerRole(99).then(() => {
-                this.getUser().catch((err) => {
-                  console.error('求职者信息', err)
-                  if (err.reponsive.msg == '请注册求职者信息！') {
-                    wx.reLaunch({
-                      url: '/pages/register/register',
-                    })
-                    return
-                  }
+            getRoleInfos()
+              .then((res) => {
+                console.log('授权信息', res)
+                app.globalData.roleInfo = res.data
+                togglerRole(99).then(() => {
+                  this.getUser().catch((err) => {
+                    console.error('求职者信息', err)
+                    if (err.reponsive.msg == '请注册求职者信息！') {
+                      wx.reLaunch({
+                        url: '/pages/register/register',
+                      })
+                      return
+                    }
+                  })
                 })
               })
-            }).catch(() => {
-
-            })
+              .catch(() => {})
           } else {
-            console.error("失败48")
+            console.error('失败48')
           }
         })
         .catch((err) => {

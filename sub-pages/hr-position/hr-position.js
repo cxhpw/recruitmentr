@@ -140,7 +140,7 @@ Page({
   onLoad: function (options) {
     this.setData({
       type: options.type || this.data.type,
-      active: options.type ? 1 : this.data.active
+      active: options.type ? 1 : this.data.active,
     })
     this.initList().then(() => {
       console.log(123123)
@@ -177,5 +177,5 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {}
+  onReachBottom: function () {},
 })

@@ -1,4 +1,4 @@
-const app = getApp();
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
@@ -16,7 +16,7 @@ Page({
   },
   onNavTo() {
     wx.navigateTo({
-      url: "/sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo"
+      url: '/sub-pages/hr-releaseBaseInfo/hr-releaseBaseInfo',
     })
   },
   /**
@@ -52,5 +52,5 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {};
+  onReachBottom: function () {},
 })

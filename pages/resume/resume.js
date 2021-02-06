@@ -38,7 +38,9 @@ Page({
     works.sort((a, b) => {
       return new Date(a.StartTime).getTime() - new Date(b.StartTime).getTime()
     })
-    const time = works.length ? new Date().getFullYear() - works[0].StartTime.split('.')[0] : '';
+    const time = works.length
+      ? new Date().getFullYear() - works[0].StartTime.split('.')[0]
+      : ''
     postMessage(this.data.id).then((res) => {
       console.log(res)
       wx.navigateTo({

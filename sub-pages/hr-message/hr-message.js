@@ -57,7 +57,7 @@ Component({
     onNavTo(e) {
       const { id } = e.currentTarget.dataset
       wx.navigateTo({
-        url: `/pages/article/article?id=${id}`
+        url: `/pages/article/article?id=${id}`,
       })
     },
     initList() {

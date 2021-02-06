@@ -91,7 +91,7 @@ Page({
   },
   onInput(e) {
     this.setData({
-      jopName: e.detail.value
+      jopName: e.detail.value,
     })
   },
   /**

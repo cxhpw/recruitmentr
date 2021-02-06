@@ -8,7 +8,7 @@ Page({
     timeRange: [['1990以前'], []],
     timeRangeValue: [-1, -1],
     education: [],
-    educationValue: -1
+    educationValue: -1,
   },
   onTimeRangeColChange(e) {
     console.log(e)
@@ -29,7 +29,7 @@ Page({
   onTimeRangeCancel(e) {
     console.log(e)
     this.setData({
-      timeRangeValue: this.data.timeRangeValue
+      timeRangeValue: this.data.timeRangeValue,
     })
   },
   initCol(year) {
@@ -63,13 +63,19 @@ Page({
     const { value } = e.detail
     console.log(value)
     if (this.valid(value)) {
-      const formData = Object.assign({}, {
-        school: value.school,
-        profession: value.profession,
-        education: this.data.education[this.data.educationValue],
-        experience:value.experience,
-        timeRange: `${this.data.timeRange[0][this.data.timeRangeValue[0]]}-${this.data.timeRange[1][this.data.timeRangeValue[1]]}`
-      }, this.data.form)
+      const formData = Object.assign(
+        {},
+        {
+          school: value.school,
+          profession: value.profession,
+          education: this.data.education[this.data.educationValue],
+          experience: value.experience,
+          timeRange: `${this.data.timeRange[0][this.data.timeRangeValue[0]]}-${
+            this.data.timeRange[1][this.data.timeRangeValue[1]]
+          }`,
+        },
+        this.data.form
+      )
       wx.navigateTo({
         url: `../advantage/advantage?formData=${JSON.stringify(formData)}`,
       })
@@ -77,7 +83,7 @@ Page({
   },
   onEducationChange(e) {
     this.setData({
-      educationValue: e.detail.value
+      educationValue: e.detail.value,
     })
   },
   /**
@@ -87,7 +93,7 @@ Page({
     requestResumeFilter().then((res) => {
       console.log('====', res)
       this.setData({
-        education:res.data[0].keyvalue.slice(1)
+        education: res.data[0].keyvalue.slice(1),
       })
     })
     this.setData({

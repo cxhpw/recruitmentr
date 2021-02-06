@@ -51,7 +51,7 @@ Page({
         resttime: user.RestTime,
         overtime: user.OverTime,
         welfare: user.WelfareList.join(','),
-        album: user.AlbumList.map(item => item.Img).join(','),
+        album: user.AlbumList.map((item) => item.Img).join(','),
       }).then((res) => {
         app.showToast('更新成功', () => {
           wx.navigateBack()
@@ -98,5 +98,5 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {}
+  onReachBottom: function () {},
 })

@@ -15,7 +15,7 @@ Page({
       success: (res) => {
         const html = res.html
         getCurrentPages()[getCurrentPages().length - 2].setData({
-          advantage: res.html
+          advantage: res.html,
         })
         wx.navigateBack()
       },

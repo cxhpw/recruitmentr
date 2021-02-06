@@ -11,7 +11,7 @@ Page({
     identityValue: 1,
     date: '',
     avatar: '',
-    end: new Date().toLocaleDateString().replace(/\//ig,'-')
+    end: new Date().toLocaleDateString().replace(/\//gi, '-'),
   },
   bindDateChange(e) {
     this.setData({
@@ -150,5 +150,4 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {},
-
 })

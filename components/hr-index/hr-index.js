@@ -129,7 +129,7 @@ Component({
             buttontext: '暂无更多数据',
             nomore: true,
             list: [],
-            pageNum: 0
+            pageNum: 0,
           })
         })
     },

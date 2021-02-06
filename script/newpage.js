@@ -10,9 +10,10 @@ let pageRoot = path.join(srcRoot, './pages')
 let page = process.argv.slice(2)[0]
 let pageTitle = process.argv.slice(2)[1]
 
-
 if (!page) {
-  log.error('请输入页面名称 $ npm run || yarn new pageName [navigationBarTitleText]')
+  log.error(
+    '请输入页面名称 $ npm run || yarn new pageName [navigationBarTitleText]'
+  )
   shell.exit(1)
 }
 let dir = path.join(pageRoot, page)
