@@ -29,6 +29,7 @@ Page({
     loadData: false,
     nomore: false,
     showLoadButton: false,
+    classid: '',
   },
   onTypeTap(e) {
     const { index } = e.currentTarget.dataset
@@ -43,6 +44,11 @@ Page({
   },
   onSearch: Debounce(function (e) {
     console.log(e)
+    if (e.detail.value != this.data.searchKey) {
+      this.setData({
+        classid: '',
+      })
+    }
     this.setData(
       {
         searchKey: e.detail.value,
@@ -91,6 +97,7 @@ Page({
         staffsize: sizeValue.join(','),
         industry: industryValue.join(','),
         typeid: type == 'fieldwork' ? 27 : type == 'pluralism' ? 28 : '',
+        classid: this.data.classid,
       })
     } else {
       // 公司搜索
@@ -242,6 +249,7 @@ Page({
       initParams: options,
       mylogin: app.globalData.mylogin,
       searchKey: options.searchKey || '',
+      classid: options.classid || '',
       type: options.type || '',
       isLocation: !app.globalData.currentLocation ? false : true,
       nearby: !app.globalData.currentLocation

@@ -118,7 +118,7 @@ Page({
       () => {
         if (this.data.type == 'search') {
           wx.navigateTo({
-            url: `/pages/search/search?searchKey=${this.data.last[index].Name}`,
+            url: `/pages/search/search?searchKey=${this.data.last[index].Name}&classid=${this.data.last[index].AutoID}`,
           })
           return
         }

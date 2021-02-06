@@ -10,7 +10,7 @@
               <text class='f24 c666'>{{item.Job }}</text>
               <text class='f23 c999 fr'>{{ item.SendTime }}</text>
             </view>
-            <view class='content'>{{ item.Content }}</view>
+            <view class='content'>{{ item.Content }}<view class="label" wx:if="{{ item.UnReadCount > 0 }}"></view></view>
           </view>
         </view>
       </view>

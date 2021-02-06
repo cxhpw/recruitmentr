@@ -13,7 +13,8 @@ import request from '../utils/request'
  * salary: String,
  * experience: String,
  * staffsize: String,
- * industry: String
+ * industry: String,
+ * classid: Number
  * }} params
  * @summary name 搜索关键词
  * @summary area 城市
@@ -22,6 +23,7 @@ import request from '../utils/request'
  * @summary experience 经验
  * @summary staffsize 公司规模
  * @summary industry 行业分类
+ * @summary classid 岗位分类
  */
 export function requestJopsList(params) {
   return request({

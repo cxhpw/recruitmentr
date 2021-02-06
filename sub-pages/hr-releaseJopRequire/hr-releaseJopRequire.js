@@ -59,6 +59,9 @@ Page({
         salary,
         salaryValue,
       } = this.data
+      wx.showLoading({
+        mask: true,
+      })
       postReleaseJop({
         action: this.data.id == -1 ? 'add' : 'modify',
         id: this.data.id,
@@ -94,6 +97,9 @@ Page({
         .catch((err, options) => {
           console.error(err, options)
         })
+        .finally(() => {
+          wx.hideLoading()
+        })
     }
   },
   getDetail(id) {
@@ -116,18 +122,26 @@ Page({
       form: JSON.parse(options.formData),
       id: options.id || -1,
     })
-    requestResumeFilter().then((res) => {
-      console.log('筛选', res)
-      this.setData({
-        experience: res.data[2].keyvalue,
-        education: res.data[0].keyvalue,
-        salary: res.data[1].keyvalue,
-      }, () => {
-        if (options.id != -1) {
-            this.getDetail(options.id)
-        }
-      })
+    this.setData({
+      experience: app.globalData.experienceOptions,
+      education: app.globalData.educationOptions,
+      salary: app.globalData.salaryOptions,
     })
+    // requestResumeFilter().then((res) => {
+    //   console.log('筛选', res)
+    //   this.setData(
+    //     {
+    //       experience: res.data[2].keyvalue,
+    //       education: res.data[0].keyvalue,
+    //       salary: res.data[1].keyvalue,
+    //     },
+    //     () => {
+    //       if (options.id != -1) {
+    //         this.getDetail(options.id)
+    //       }
+    //     }
+    //   )
+    // })
   },
 
   /**

@@ -11,7 +11,7 @@
   </view>
   <view class='swiper-section'>
     <swiper class='swiper' indicator-dots indicator-active-color="#0866FF" indicator-color="rgba(0, 0, 0, .3)" circular="{{true}}">
-      <swiper-item wx:for="{{  jopFairList }}">
+      <swiper-item wx:for="{{ jopFairList }}">
         <image class='image' src='{{ item.ContentImage }}' data-id="{{ item.AutoID }}" catch:tap="onJopFairTap"></image>
       </swiper-item>
     </swiper>
