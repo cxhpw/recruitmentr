@@ -40,7 +40,7 @@
   </nomore>
   <!-- 附近工作 -->
   <view class='content' wx:else>
-    <view class="search-result-wrapper" wx:if="{{ searchKey.length ||  (type == 'fieldwork' && list.length > 0) || (type == 'nearby' && list.length > 0)}}">
+    <view class="search-result-wrapper" wx:if="{{ searchKey.length ||  (['fieldwork', 'nearby', 'other'].indexOf(this.data.type) != - 1 && list.length > 0)}}">
       <view class='search-list'>
         <!-- 企业 -->
         <block wx:if="{{ typeIndex == 1 }}">
