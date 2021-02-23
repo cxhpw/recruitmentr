@@ -71,7 +71,7 @@ Page({
     } = this.data
     if (
       this.data.searchKey == '' &&
-      ['fieldwork', 'pluralism', 'nearby'].indexOf(this.data.type) == -1
+      ['fieldwork', 'pluralism', 'nearby', 'other'].indexOf(this.data.type) == -1
     ) {
       this.setData({
         list: [],
@@ -97,7 +97,7 @@ Page({
         staffsize: sizeValue.join(','),
         industry: industryValue.join(','),
         typeid: type == 'fieldwork' ? 27 : type == 'pluralism' ? 28 : '',
-        classid: this.data.classid,
+        classid: type == 'other' ? 1043 : this.data.classid,
       })
     } else {
       // 公司搜索
@@ -264,6 +264,11 @@ Page({
     })
     //fieldwork实习， pluralism 兼职，nearby 附近，留空全职
     switch (options.type) {
+      case 'other':
+        wx.setNavigationBarTitle({
+          title: '其他职位',
+        })
+        break
       case 'fieldwork':
         wx.setNavigationBarTitle({
           title: '找实习',

@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="container">
+    <view class="list">
+      <view class="item" wx:for="{{ list }}"  data-id="{{ item.AutoID }}" catch:tap="onNavTo">
+        <!-- <view class="item-header">
+          <view class="flex-box align-center">
+            <view class="label">普通类</view>
+            <view class="author fr">傻b</view>
+          </view>
+        </view> -->
+        <view class="item-body">
+          <view class="title">{{ item.Title }}</view>
+        </view>
+        <view class="item-footer">
+          <view class="time">{{ item.AutoTimeStamp }}</view>
+        </view>
+      </view>
+    </view>
+    <nomore wx:if="{{ nomore }}"></nomore>
+    <loadButton wx:else></loadButton>
+  </view>
+</view>

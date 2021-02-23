@@ -4,6 +4,6 @@
     "van-tabs": "@vant/weapp/tabs/index"
   },
   "navigationBarTitleText": "消息",
-  "navigationBarBackgroundColor": "#0866ff",
+  "navigationBarBackgroundColor": "#529ad7",
   "navigationBarTextStyle": "white"
 }

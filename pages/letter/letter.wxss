@@ -1,0 +1,31 @@
+page {
+  background: #fff; }
+
+.item {
+  padding: 30rpx 0;
+  position: relative; }
+  .item:after {
+    position: absolute;
+    box-sizing: border-box;
+    transform-origin: center;
+    content: ' ';
+    pointer-events: none;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #EBEBEB;
+    transform: scaleY(0.5); }
+  .item .item-header {
+    margin-bottom: 20rpx; }
+  .item .item-body {
+    margin-bottom: 20rpx; }
+  .item .author {
+    color: #999;
+    font-size: 24rpx; }
+  .item .title {
+    font-weight: 500;
+    font-size: 28rpx; }
+  .item .time {
+    color: #999;
+    font-size: 24rpx; }

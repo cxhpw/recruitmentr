@@ -7,7 +7,7 @@ page {
 .top-section {
   color: #fff;
   padding: 50rpx 40rpx;
-  background: #0866FF; }
+  background: #529ad7; }
   .top-section .avatar {
     width: 110rpx;
     height: 110rpx;

@@ -94,10 +94,10 @@ page {
     display: flex;
     align-items: center; }
     .address-wrapper .bd .fl {
-      font-size: 29rpx; }
+      font-size: 29rpx;
+      margin-right: 30rpx; }
     .address-wrapper .bd .fr {
-      flex: 0 0 auto;
-      margin-left: 30rpx; }
+      flex: 0 0 auto; }
       .address-wrapper .bd .fr .image {
         width: 22rpx;
         height: 22rpx;
@@ -133,7 +133,7 @@ page {
   background: #fff;
   line-height: 200%;
   font-size: 27rpx;
-  color: #0866FF; }
+  color: #529ad7; }
   .intro-wrapper .more text {
     color: #666; }
 

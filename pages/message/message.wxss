@@ -2,7 +2,7 @@ page {
   background: #fff; }
 
 .my-tabs .van-tabs__scroll {
-  background: #0866FF; }
+  background: #529ad7; }
 
 .my-tabs .van-tab {
   flex: 0 0 auto;
@@ -94,5 +94,5 @@ page {
     text-align: right;
     padding: 30rpx 0; }
     .msg-list .item .button-group text {
-      color: #0866FF;
+      color: #529ad7;
       font-size: 25rpx; }

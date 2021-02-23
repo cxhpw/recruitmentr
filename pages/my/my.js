@@ -175,7 +175,7 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '柯城就业创业招聘网',
+      title: '柯城区求职招聘云平台',
       path: '/pages/index/index',
       imageUrl: 'https://s3.ax1x.com/2021/01/21/sh67FI.jpg',
     }

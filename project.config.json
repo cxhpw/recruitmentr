@@ -412,6 +412,11 @@
                     "pathName": "pages/article/article",
                     "query": "id=4",
                     "scene": null
+                },
+                {
+                    "name": "pages/letter/letter",
+                    "pathName": "pages/letter/letter",
+                    "scene": null
                 }
             ]
         }

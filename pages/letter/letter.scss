@@ -1,0 +1,28 @@
+@import '../../scss/minxi/minxi.scss';
+@import '../../scss/variable/variable.scss';
+page {
+  background: #fff;
+}
+.item {
+  padding: 30rpx 0;
+  @include border-bottom($borderColor, 0, 0);
+  .item-header { 
+    margin-bottom: 20rpx;
+  }
+  .item-body {
+    margin-bottom: 20rpx;
+  }
+  .label {}
+  .author {
+    color: #999;
+    font-size: 24rpx;
+  }
+  .title {
+    font-weight: 500;
+    font-size: 28rpx;
+  }
+  .time {
+    color: #999;
+    font-size: 24rpx;
+  }
+}

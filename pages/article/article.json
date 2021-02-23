@@ -2,5 +2,5 @@
   "usingComponents": {
     "wxParseComponent": "../../components/wxParseComponent"
   },
-  "navigationBarTitleText": "站内信"
+  "navigationBarTitleText": ""
 }

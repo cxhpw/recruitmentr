@@ -29,19 +29,20 @@
     "pages/hopeJopPage/hopeJopPage",
     "pages/detail/detail",
     "pages/hotCompany/hotCompany",
-    "pages/article/article"
+    "pages/article/article",
+    "pages/letter/letter"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "柯城就业创业招聘网",
+    "navigationBarTitleText": "柯城区求职招聘云平台",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
   "tabBar": {
     "custom": false,
     "color": "#999999",
-    "selectedColor": "#0866ff",
+    "selectedColor": "#529ad7",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
@@ -49,19 +50,19 @@
         "pagePath": "pages/index/index",
         "text": "找工作",
         "iconPath": "/assets/images/index.jpg",
-        "selectedIconPath": "/assets/images/index-select.jpg"
+        "selectedIconPath": "/assets/images/index-select.png"
       },
       {
         "pagePath": "pages/message/message",
         "text": "消息",
         "iconPath": "/assets/images/message.jpg",
-        "selectedIconPath": "/assets/images/message-select.jpg"
+        "selectedIconPath": "/assets/images/message-select.png"
       },
       {
         "pagePath": "pages/my/my",
         "text": "我的",
         "iconPath": "/assets/images/my.jpg",
-        "selectedIconPath": "/assets/images/my-select.jpg"
+        "selectedIconPath": "/assets/images/my-select.png"
       }
     ]
   },
