@@ -148,4 +148,4 @@ page {
       height: 31rpx;
       margin-right: 12rpx; }
     .search-section .search-wrapper text {
-      line-height: 24px; }
+      line-height: 27px; }

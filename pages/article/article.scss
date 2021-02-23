@@ -8,11 +8,18 @@ page {
 }
 .title {
   font-size: 36rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 20rpx;
   font-weight: 500;
+}
+.time {
+  font-size: 24rpx;
+  color: #999;
+  padding-bottom: 30rpx;
+  margin-bottom: 30rpx;
+  @include border-bottom($borderColor,0,0);
 }
 .content {
   font-size: 28rpx;
   color: #999;
-  line-height: 200%;
+  line-height: 150%;
 }

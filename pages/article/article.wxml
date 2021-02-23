@@ -1,5 +1,8 @@
 <view class="page">
-  <view class="title">{{ data.Title }}</view>
+  <view class="title">
+    {{ data.Title }}
+  </view>
+  <view class="time">{{ data.AutoTimeStamp }}</view>
   <view class="content">
     <wxParseComponent html="{{data.Content}}"></wxParseComponent>
   </view>
