@@ -17,6 +17,8 @@ Page({
     activeIndex: 0,
     jobExpectList: [],
     jopFairList: [],
+    color: '#fff',
+    background: "transparent"
   },
   onTap(e) {
     const { index } = e.currentTarget.dataset
@@ -165,5 +167,19 @@ Page({
   },
   onReachBottom() {
     this.data.pageNum != 0 && this.getList(this.data.pageNum + 1)
+  },
+  onPageScroll({ scrollTop }) {
+    console.log(scrollTop)
+    if (scrollTop > 64) {
+      this.setData({
+        color: '#000',
+        background: '#fff',
+      })
+    } else {
+      this.setData({
+        color: '#fff',
+        background: "transparent"
+      })
+    }
   },
 })

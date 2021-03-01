@@ -68,6 +68,7 @@ page {
   -webkit-justify-content: center;
   justify-content: center;
   font-weight: 500;
+  white-space: nowrap;
 }
 .weui-navigation-bar__inner .weui-navigation-bar__loading {
   font-size: 0;

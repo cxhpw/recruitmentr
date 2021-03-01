@@ -1,20 +1,23 @@
 <!-- index.wxml -->
 <wxs module="format" src="../../utils/index.wxs"></wxs>
 <view class="page">
+  <navigateBar title="柯城区求职招聘云平台" color="{{color}}" back="{{ false }}" extClass="my-navigateBar" background="{{background}}"></navigateBar>
   <!-- <image style="width: 750rpx;height: 100vh" src="/assets/images/9789a6583b0e6ccfa6ea3fb650da526.jpg" mode="aspectFill"></image> -->
-  <image class='bd' src="/assets/images/index-top1.png"></image>
-  <view class='search-section' catch:tap="onNavTo" data-url="/pages/search/search">
+  <!-- <image class='bd' src="/assets/images/index-top1.png"></image> -->
+  <!-- <view class='search-section' catch:tap="onNavTo" data-url="/pages/search/search">
     <view class='search-wrapper'>
       <image class='icon' src='/assets/images/icon_search.png'></image>
       <text>搜索职位、公司</text>
     </view>
-  </view>
+  </view> -->
   <view class='swiper-section'>
-    <swiper class='swiper' indicator-dots indicator-active-color="#0866FF" indicator-color="rgba(0, 0, 0, .3)" circular="{{true}}">
+    <swiper class='swiper' indicator-dots="{{ false }}" indicator-active-color="#0866FF" indicator-color="rgba(0, 0, 0, .3)" circular="{{true}}">
       <swiper-item wx:for="{{ jopFairList }}">
         <image class='image' src='{{ item.ContentImage }}' data-id="{{ item.AutoID }}" catch:tap="onJopFairTap"></image>
       </swiper-item>
     </swiper>
+    <span class="radius-left"></span>
+    <span class="radius-right"></span>
   </view>
   <view class='nav-section'>
     <view class='flex-box'>
