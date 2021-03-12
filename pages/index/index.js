@@ -1,11 +1,15 @@
 import { togglerRole } from '../../api/user'
 import { requestJopsList } from '../../api/jobs'
 import { requestList } from '../../api/JobFair'
+import { requestLetter } from '../../api/hr/message'
+import requestAd  from '../../api/ad'
+
 // index.js
 // 获取应用实例
 const app = getApp()
 Page({
   data: {
+    letterList: [],
     tabs: [{ title: '推荐' }, { title: '最新' }],
     tabIndex: 0,
     list: [],
@@ -18,7 +22,8 @@ Page({
     jobExpectList: [],
     jopFairList: [],
     color: '#fff',
-    background: "transparent"
+    background: 'transparent',
+    banner: []
   },
   onTap(e) {
     const { index } = e.currentTarget.dataset
@@ -53,6 +58,35 @@ Page({
     // wx.navigateTo({
     //   url: `/pages/activity/activity`,
     // })
+  },
+  getSingleLists: function (pageNum = 1) {
+    this.setData({
+      loadData: false,
+      nomore: false,
+      loading: true,
+      showLoadButton: true,
+    })
+    requestLetter({
+      pageindex: pageNum,
+      pagesize: 10,
+    })
+      .then((res) => {
+        console.log('站内行', res.data.dataList)
+        this.setData({
+          letterList: res.data.dataList,
+        })
+      })
+      .catch(() => {
+        this.setData({
+          nomore: true,
+        })
+      })
+      .finally(() => {
+        this.setData({
+          loadData: true,
+          showLoadButton: false,
+        })
+      })
   },
   // 事件处理函数
   getList: function (pageNum = 1) {
@@ -118,6 +152,12 @@ Page({
       url: '/pages/area/area',
     })
   },
+  onNavToN(e) {
+    const { id } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/article/article?id=${id}`
+    })
+  },
   onNavTo(e) {
     const { url } = e.currentTarget.dataset
     wx.navigateTo({
@@ -140,6 +180,13 @@ Page({
         }
       )
     }
+    this.getSingleLists()
+    requestAd().then((res) => {
+      console.log('banner', res)
+      this.setData({
+        banner: res.data.dataList,
+      })
+    })
   },
   onShow() {
     if (!this.data.jopFairList.length) {
@@ -165,6 +212,12 @@ Page({
       )
     }, 500)
   },
+  onAdTap(e) {
+    const { url } = this.data
+    wx.navigateTo({
+      url
+    })
+  },
   onReachBottom() {
     this.data.pageNum != 0 && this.getList(this.data.pageNum + 1)
   },
@@ -178,7 +231,7 @@ Page({
     } else {
       this.setData({
         color: '#fff',
-        background: "transparent"
+        background: 'transparent',
       })
     }
   },

@@ -16,14 +16,15 @@ page {
     padding: 20rpx 0;
     flex: 0 0 25%; }
   .nav-section .image {
-    width: 60rpx;
-    height: 60rpx;
+    width: 80rpx;
+    height: 80rpx;
     display: block;
-    margin: 0 auto 20rpx; }
+    margin: 0 auto 10rpx; }
   .nav-section .text {
     font-size: 24rpx;
-    color: #666;
-    text-align: center; }
+    color: #333;
+    text-align: center;
+    font-weight: 500; }
 
 .recruitment-list .card {
   background: #fff;
@@ -182,3 +183,34 @@ page {
 
 .my-navigateBar .weui-navigation-bar__placeholder {
   display: none; }
+
+.notify-section {
+  margin-top: 30rpx; }
+  .notify-section .box {
+    background: #f4f4f4;
+    border-radius: 12rpx;
+    padding: 18rpx 24rpx; }
+  .notify-section .notify-swiper {
+    height: 24px; }
+  .notify-section .flex-box {
+    height: 24px; }
+  .notify-section .label {
+    font-size: 20rpx;
+    height: 20px;
+    border-radius: 6rpx;
+    color: #f79c43;
+    border: 1Px solid #f79c43;
+    margin-right: 20rpx;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 14rpx; }
+  .notify-section .con {
+    line-height: 24px;
+    font-size: 14px;
+    flex: 1;
+    width: 1%;
+    font-size: 26rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
