@@ -1,64 +1,5 @@
 {
-    "description": "项目配置文件",
-    "packOptions": {
-        "ignore": [
-            {
-                "type": "folder",
-                "value": "script"
-            },
-            {
-                "type": "file",
-                "value": "gulpfile.js"
-            }
-        ]
-    },
-    "setting": {
-        "urlCheck": false,
-        "es6": true,
-        "enhance": false,
-        "postcss": true,
-        "preloadBackgroundData": false,
-        "minified": true,
-        "newFeature": false,
-        "coverView": true,
-        "nodeModules": false,
-        "autoAudits": false,
-        "showShadowRootInWxmlPanel": true,
-        "scopeDataCheck": false,
-        "uglifyFileName": false,
-        "checkInvalidKey": true,
-        "checkSiteMap": true,
-        "uploadWithSourceMap": true,
-        "compileHotReLoad": false,
-        "useMultiFrameRuntime": true,
-        "useApiHook": true,
-        "useApiHostProcess": false,
-        "babelSetting": {
-            "ignore": [],
-            "disablePlugins": [],
-            "outputPath": ""
-        },
-        "enableEngineNative": false,
-        "bundle": false,
-        "useIsolateContext": true,
-        "useCompilerModule": true,
-        "userConfirmedUseCompilerModuleSwitch": false,
-        "userConfirmedBundleSwitch": false,
-        "packNpmManually": false,
-        "packNpmRelationList": [],
-        "minifyWXSS": true
-    },
-    "compileType": "miniprogram",
-    "libVersion": "2.14.4",
-    "appid": "wxabc2ae5bcff8777b",
-    "projectname": "app",
-    "debugOptions": {
-        "hidedInDevtools": []
-    },
-    "scripts": {},
-    "isGameTourist": false,
-    "simulatorType": "wechat",
-    "simulatorPluginLibVersion": {},
+    "setting": {},
     "condition": {
         "plugin": {
             "list": []
@@ -416,6 +357,24 @@
                 {
                     "name": "pages/letter/letter",
                     "pathName": "pages/letter/letter",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/hr-index/hr-index",
+                    "pathName": "sub-pages/hr-index/hr-index",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "sub-pages/main/main",
+                    "pathName": "sub-pages/main/main",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/welcome/welcome",
+                    "pathName": "pages/welcome/welcome",
                     "scene": null
                 }
             ]

@@ -119,6 +119,9 @@ Component({
                 requestHRInfo()
                   .then((res) => {
                     console.log('hr 信息', res)
+                    this.setData({
+                      user: res.data,
+                    })
                     app.globalData.hrInfo = res.data
                   })
                   .catch((err) => {
@@ -149,7 +152,7 @@ Component({
       togglerRole(99).then((res) => {
         app.globalData.userType = 'user'
         app.globalData.roleInfo.Role = res.data.Role
-        wx.switchTab({
+        wx.reLaunch({
           url: '/pages/index/index',
         })
       })

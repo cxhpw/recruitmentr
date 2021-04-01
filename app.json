@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/welcome/welcome",
     "pages/index/index",
     "pages/my/my",
     "pages/message/message",
@@ -35,7 +36,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "柯城区求职招聘云平台",
+    "navigationBarTitleText": "柯城云就业",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",

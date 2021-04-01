@@ -1,8 +1,9 @@
-import { togglerRole } from '../../api/user'
+import { togglerRole, getRoleInfos } from '../../api/user'
 import { requestJopsList } from '../../api/jobs'
 import { requestList } from '../../api/JobFair'
 import { requestLetter } from '../../api/hr/message'
-import requestAd  from '../../api/ad'
+import { requestUserInfo } from '../../api/user/user'
+import requestAd from '../../api/ad'
 
 // index.js
 // 获取应用实例
@@ -23,7 +24,7 @@ Page({
     jopFairList: [],
     color: '#fff',
     background: 'transparent',
-    banner: []
+    banner: [],
   },
   onTap(e) {
     const { index } = e.currentTarget.dataset
@@ -155,7 +156,7 @@ Page({
   onNavToN(e) {
     const { id } = e.currentTarget.dataset
     wx.navigateTo({
-      url: `/pages/article/article?id=${id}`
+      url: `/pages/article/article?id=${id}`,
     })
   },
   onNavTo(e) {
@@ -164,11 +165,48 @@ Page({
       url,
     })
   },
+  getUser() {
+    return new Promise((resolve, reject) => {
+      requestUserInfo()
+        .then((res) => {
+          console.log('求职者信息', res)
+          app.globalData.mylogin = true
+          app.globalData.userInfo = res.data
+          this.setData({
+            user: res.data,
+            mylogin: true,
+          })
+        })
+        .catch((err) => {
+          // console.error('求职者信息', err)
+          reject(err)
+          // if (err.reponsive.msg == '请注册求职者信息！') {
+          //   wx.reLaunch({
+          //     url: '/pages/register/register',
+          //   })
+          //   return
+          // }
+          // wx.reLaunch({
+          //   url: '/pages/register/register'
+          // })
+        })
+    })
+  },
   onLoad() {
     togglerRole(99).then((res) => {
       app.globalData.userType = 'user'
       app.globalData.roleInfo.Role = res.data.Role
+       this.getUser().catch((err) => {
+         console.error('求职者信息', err)
+         if (err.reponsive.msg == '请注册求职者信息！') {
+           wx.reLaunch({
+             url: '/pages/register/register',
+           })
+           return
+         }
+       })
     })
+
     app.mylogin = () => {
       this.setData(
         {
@@ -215,7 +253,7 @@ Page({
   onAdTap(e) {
     const { url } = this.data
     wx.navigateTo({
-      url
+      url,
     })
   },
   onReachBottom() {

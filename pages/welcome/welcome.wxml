@@ -1,0 +1,8 @@
+<view class="page">
+  <view class="container">
+    <view class="list">
+      <view class="item" catch:tap="onNavTo1" data-url="/pages/index/index">我要求职</view>
+      <view class="item" catch:tap="onNavTo" data-url="/sub-pages/main/main">我要招聘</view>
+    </view>
+  </view>
+</view>

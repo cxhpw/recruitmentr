@@ -98,7 +98,7 @@ Page({
           console.error(err, options)
         })
         .finally(() => {
-          wx.hideLoading()
+          // wx.hideLoading()
         })
     }
   },
