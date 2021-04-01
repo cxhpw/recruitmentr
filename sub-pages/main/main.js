@@ -34,11 +34,9 @@ Page({
   },
   onShareAppMessage: function (e) {
     return {
-      title: `柯城社区`,
-      // path: `/pages/selectSeat/selectSeat?code=${
-      //   this.data.Codes[e.target.dataset.index]
-      // }`,
-      // imageUrl: '/assets/images/main.jpg',
+      title: '柯城云就业',
+      path: '/pages/index/index',
+      imageUrl: 'https://s3.ax1x.com/2021/01/21/sh67FI.jpg',
     }
   },
   cameraTap: function () {
@@ -105,10 +103,13 @@ Page({
         // 未填写企业信息
         console.error('--', err)
         if (err.reponsive.msg == '请授权登录！') {
+
         } else {
-          wx.reLaunch({
-            url: '/sub-pages/hr-register/hr-register',
-          })
+          app.globalData.mylogin = false
+          wx.removeStorageSync('LogiSessionKey')
+          // wx.reLaunch({
+          //   url: '/sub-pages/hr-register/hr-register',
+          // })
         }
       })
   },

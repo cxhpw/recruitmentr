@@ -7,7 +7,6 @@ Page({
     avatar: '',
     address: null,
     ad_info: null,
-    business_area: null,
   },
   onMap() {
     const temp = {
@@ -25,7 +24,6 @@ Page({
             console.log('工作地点解析', res)
             this.setData({
               ad_info: res.result.address_component,
-              business_area: res.result.address_reference.business_area,
             })
           },
         })
@@ -85,7 +83,6 @@ Page({
         province: this.data.ad_info.province,
         city: this.data.ad_info.city,
         district: this.data.ad_info.district,
-        business_area: this.data.business_area.title,
       }
       wx.navigateTo({
         url: `/sub-pages/hr-account/hr-account?formData=${JSON.stringify(

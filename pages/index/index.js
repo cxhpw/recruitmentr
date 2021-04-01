@@ -196,15 +196,20 @@ Page({
     togglerRole(99).then((res) => {
       app.globalData.userType = 'user'
       app.globalData.roleInfo.Role = res.data.Role
-       this.getUser().catch((err) => {
-         console.error('求职者信息', err)
-         if (err.reponsive.msg == '请注册求职者信息！') {
-           wx.reLaunch({
-             url: '/pages/register/register',
-           })
-           return
-         }
-       })
+      this.getUser()
+        .then((res) => {
+          console.log('求职者信息', res)
+          app.globalData.mylogin = true
+          app.globalData.userInfo = res.data
+          this.setData({
+            user: res.data,
+            mylogin: true,
+          })
+        })
+        .catch((err) => {
+          app.globalData.mylogin = false
+          wx.removeStorageSync('LogiSessionKey')
+        })
     })
 
     app.mylogin = () => {
@@ -271,6 +276,13 @@ Page({
         color: '#fff',
         background: 'transparent',
       })
+    }
+  },
+  onShareAppMessage() {
+    return {
+      title: '柯城云就业',
+      path: '/pages/index/index',
+      imageUrl: 'https://s3.ax1x.com/2021/01/21/sh67FI.jpg',
     }
   },
 })

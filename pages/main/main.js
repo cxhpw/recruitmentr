@@ -30,11 +30,9 @@ Page({
   },
   onShareAppMessage: function (e) {
     return {
-      title: `柯城区求职招聘云平台`,
-      // path: `/pages/selectSeat/selectSeat?code=${
-      //   this.data.Codes[e.target.dataset.index]
-      // }`,
-      // imageUrl: '/assets/images/main.jpg',
+      title: '柯城云就业',
+      path: '/pages/index/index',
+      imageUrl: 'https://s3.ax1x.com/2021/01/21/sh67FI.jpg',
     }
   },
   cameraTap: function () {

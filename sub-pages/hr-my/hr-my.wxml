@@ -68,7 +68,7 @@
         </view>
       </view>
     </van-cell>
-    <van-cell border="{{ false }}" custom-class="my-cell" right-icon-class="my-right-icon" is-link catch:tap="onToggler">
+    <van-cell border="{{ false }}" custom-class="my-cell" right-icon-class="my-right-icon" is-link catch:tap="onToggler" wx:if="{{ mylogin }}">
       <view slot="title">
         <view class="flex-box align-center">
           <image class='icon' src='/assets/images/icon_togger.png'></image>

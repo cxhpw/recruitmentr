@@ -21,6 +21,7 @@ Component({
           },
         })
         requestHRInfo().then((res) => {
+          console.log('啊实打实的', res)
           app.globalData.hrInfo = res.data
           this.setData({
             mylogin: true,
@@ -33,7 +34,7 @@ Component({
   data: {
     jopFairList: [],
     code: 0,
-    mylogin: app.globalData.mylogin,
+    mylogin: false,
     user: null,
     ad: [
       {
