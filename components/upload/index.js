@@ -330,7 +330,8 @@ Component({
       formData.encrypttime = encodeURIComponent(
         encrypt(getTimeStr(Date.now(), 'datetime', true))
       )
-
+      formData.customrdsession = wx.getStorageSync('LogiSessionKey')
+      console.log('formData', formData)
       // formData.uploadfile = filePath;
       this.uploadTask[uid] = wx.uploadFile({
         url,

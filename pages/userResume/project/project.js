@@ -168,7 +168,11 @@ Page({
         educatex: JSON.stringify(user.EducatExList),
       }
       console.log(options)
+      wx.showLoading({
+        mask: true,
+      })
       postUserInfo(options).then((res) => {
+        wx.hideLoading()
         if (res.data.ret == 'fail') {
           app.showToast(res.data.msg)
         } else {

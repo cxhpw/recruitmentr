@@ -59,11 +59,15 @@ Page({
         }`,
         SchoolEx: experience,
       }
+      wx.showLoading({
+        mask: true,
+      })
       editResumeInfo({
         action: 'educatex',
         id: this.data.id,
         json: JSON.stringify(result),
       }).then(() => {
+        wx.hideLoading()
         wx.navigateBack()
       })
     }

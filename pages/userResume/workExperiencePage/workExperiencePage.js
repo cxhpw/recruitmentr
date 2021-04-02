@@ -151,6 +151,9 @@ Page({
         start,
         end,
       } = this.data
+      wx.showLoading({
+        mask: true
+      })
       const result = {
         CompanyName: value.name,
         Industry: industry[industryValue],
@@ -171,6 +174,7 @@ Page({
         id: this.data.id,
         json: JSON.stringify(result),
       }).then(() => {
+        wx.hideLoading()
         wx.navigateBack()
       })
     }

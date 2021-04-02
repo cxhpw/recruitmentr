@@ -101,11 +101,15 @@ Page({
       //   workex: JSON.stringify(user.WorkExList),
       //   educatex: JSON.stringify(user.EducatExList),
       // }
+      wx.showLoading({
+        mask: true,
+      })
       editResumeInfo({
         action: 'jobexpect',
         id: this.data.id,
         json: JSON.stringify(result),
       }).then((res) => {
+        wx.hideLoading()
         wx.navigateBack()
       })
       // postUserInfo(options).then((res) => {})
