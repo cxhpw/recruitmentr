@@ -22,6 +22,7 @@ Page({
     identityValue: 0,
     city: null,
     from: '',
+    mylogin: false
   },
   onIdentityChange(e) {
     this.setData({
@@ -163,6 +164,7 @@ Page({
         industry: app.globalData.industryOptions,
         type: options.type || this.data.type,
         from: options.from || '',
+        mylogin: app.globalData.mylogin
       },
       () => {
         if (options.index != undefined) {

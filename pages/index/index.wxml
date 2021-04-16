@@ -53,7 +53,7 @@
       </view>
     </view>
   </view>
-  <View class='notify-section' wx:if="{{  letterList.length }}">
+  <View class='notify-section' wx:if="{{ letterList.length }}">
     <view class='container'>
       <view class='box'>
         <swiper class='notify-swiper' vertical autoplay  interval="3000"  circular>
@@ -68,7 +68,7 @@
       </view>
     </view>
   </View>
-  <block wx:if="{{ jobExpectList.length }}">
+  <block wx:if="{{ mylogin }}">
     <van-sticky>
       <view class='edit-section'>
         <scroll-view scroll-x="{{true}}" style="flex: 1;width:1%">
@@ -79,7 +79,8 @@
           </view>
         </scroll-view>
         <view class='btn' catch:tap="onNavTo" data-url="/pages/hopeJopPage/hopeJopPage">
-          <icon custom-class="iconfont  icon-bianjibiaoge" size="18"></icon>
+          <icon custom-class="iconfont  icon-add1" size="18"></icon>
+          <view class="text">添加职位</view>
         </view>
       </view>
     </van-sticky>

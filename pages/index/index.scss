@@ -127,12 +127,19 @@ page {
     margin-left: auto;
     font-size: 0;
     padding-left: 40rpx;
+    display: inline-flex;
+    flex-direction: column;
     .iconfont {
-      color: #444;
+      color: #298df7;
     }
     .icon {
       width: 34rpx;
       height: 34rpx;
+    }
+    .text {
+      font-size: 24rpx;
+      margin-top: 10rpx;
+      color: #666;
     }
   }
 }

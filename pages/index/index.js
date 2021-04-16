@@ -19,7 +19,7 @@ Page({
     nomore: false,
     pageNum: 1,
     user: null,
-    activeIndex: 0,
+    activeIndex: 0, 
     jobExpectList: [],
     jopFairList: [],
     color: '#fff',
@@ -37,20 +37,20 @@ Page({
       }
     )
   },
-  getJopFairList() {
-    requestList({
-      pageindex: 1,
-      pageNum: 9999,
-      userid: Object.keys(app.globalData.userInfo).length
-        ? app.globalData.userInfo.AutoID
-        : 0,
-    }).then((res) => {
-      console.log('招聘会banner', res)
-      this.setData({
-        jopFairList: res.data.dataList,
-      })
-    })
-  },
+  // getJopFairList() {
+  //   requestList({
+  //     pageindex: 1,
+  //     pageNum: 9999,
+  //     userid: Object.keys(app.globalData.userInfo).length
+  //       ? app.globalData.userInfo.AutoID
+  //       : 0,
+  //   }).then((res) => {
+  //     console.log('招聘会banner', res)
+  //     this.setData({
+  //       jopFairList: res.data.dataList,
+  //     })
+  //   })
+  // },
   onJopFairTap(e) {
     const { id } = e.currentTarget.dataset
     wx.navigateTo({
@@ -211,19 +211,15 @@ Page({
           wx.removeStorageSync('LogiSessionKey')
         })
     })
-
+    this.getList()
     app.mylogin = () => {
       this.setData(
         {
           user: app.globalData.userInfo,
           jobExpectList: app.globalData.userInfo.JobExpectList || [],
-        },
-        () => {
-          this.getList()
         }
       )
     }
-    this.getSingleLists()
     requestAd().then((res) => {
       console.log('banner', res)
       this.setData({
@@ -232,10 +228,10 @@ Page({
     })
   },
   onShow() {
-    if (!this.data.jopFairList.length) {
-      this.getJopFairList()
-    }
-    this.getJopFairList()
+    this.getSingleLists()
+    this.setData({
+      mylogin: app.globalData.mylogin
+    })
     setTimeout(() => {
       this.setData(
         {
@@ -243,13 +239,12 @@ Page({
           jobExpectList: app.globalData.userInfo.JobExpectList || [],
         },
         () => {
-          if (!this.data.jobExpectList.length) {
-            this.setData({
-              list: [],
-              nomore: true,
-            })
-            return
-          }
+          // if (!this.data.jobExpectList.length) {
+          //   this.setData({
+          //     list: [],
+          //     nomore: true,
+          //   })
+          // }
           this.getList()
         }
       )
@@ -265,7 +260,6 @@ Page({
     this.data.pageNum != 0 && this.getList(this.data.pageNum + 1)
   },
   onPageScroll({ scrollTop }) {
-    console.log(scrollTop)
     if (scrollTop > 64) {
       this.setData({
         color: '#000',

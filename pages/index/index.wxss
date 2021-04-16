@@ -106,12 +106,18 @@ page {
   .edit-section .btn {
     margin-left: auto;
     font-size: 0;
-    padding-left: 40rpx; }
+    padding-left: 40rpx;
+    display: inline-flex;
+    flex-direction: column; }
     .edit-section .btn .iconfont {
-      color: #444; }
+      color: #298df7; }
     .edit-section .btn .icon {
       width: 34rpx;
       height: 34rpx; }
+    .edit-section .btn .text {
+      font-size: 24rpx;
+      margin-top: 10rpx;
+      color: #666; }
 
 .swiper-section {
   position: relative;
